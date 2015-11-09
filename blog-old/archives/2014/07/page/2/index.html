@@ -1,0 +1,1028 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 2 | Archives: 2014/7 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title">2014/7</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-07-16T01:14:56.000Z"><a href="/2014/07/16/20140716/">Jul 16 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/07/16/20140716/">2014/07/16</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="setInterval_or_callback問題">setInterval or callback問題</h1>
+<p>call function 時的怪問題</p>
+<h3 id="正常執行">正常執行</h3>
+<pre><code>setInterval(<span class="operator"><span class="keyword">call</span> , <span class="number">30</span>);</span>
+
+function <span class="operator"><span class="keyword">call</span>() {
+   console.log(<span class="string">'setInterval'</span>);</span>
+}
+</code></pre><h3 id="只會執行一次call()">只會執行一次call()</h3>
+<pre><code>setInterval(<span class="operator"><span class="keyword">call</span>() , <span class="number">30</span>);</span>
+
+function <span class="operator"><span class="keyword">call</span>() {
+   console.log(<span class="string">'setInterval'</span>);</span>
+}
+</code></pre><h3 id="pass_function_reference_才沒有問題">pass function reference 才沒有問題</h3>
+<pre><code>setInterval(<span class="function"><span class="keyword">function</span><span class="params">()</span>{<span class="title">call</span><span class="params">()</span>} , 30);</span>
+
+<span class="function"><span class="keyword">function</span> <span class="title">call</span><span class="params">()</span> {</span>
+   <span class="transposed_variable">console.</span><span class="built_in">log</span>(<span class="string">'setInterval'</span>);
+}
+</code></pre><h1 id="canvas_shiny">canvas shiny</h1>
+<p><a href="https://developer.mozilla.org/samples/canvas-tutorial/6_1_canvas_composite.html" target="_blank">link</a></p>
+<h1 id="requestAnimationFrame">requestAnimationFrame</h1>
+<p><a href="http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/" target="_blank">requestAnimationFrame for Smart Animating</a></p>
+<h1 id="orbit">orbit</h1>
+<p><a href="http://jsfiddle.net/wY8d7/1/" target="_blank">link</a></p>
+<h1 id="cursor">cursor</h1>
+<p><a href="http://cssdeck.com/labs/canvas-mouse-cursor-leaving-colorful-circle-trails" target="_blank">link</a></p>
+<h1 id="運動學_Kinematics">運動學 Kinematics</h1>
+<p><a href="http://www.cnblogs.com/miloyip/archive/2010/06/14/Kinematics_ParticleSystem.html" target="_blank">link</a></p>
+<h1 id="html5-animation">html5-animation</h1>
+<p><a href="http://lamberta.github.io/html5-animation/" target="_blank">very useful</a></p>
+<p><a href="http://lamberta.github.io/html5-animation/examples/ch08/08-spring-4.html" target="_blank">springing to a moving target</a></p>
+<h1 id="pointer-events">pointer-events</h1>
+<p><a href="http://www.qianduan.net/css3-pointer-event-description.html/comment-page-1" target="_blank">link</a></p>
+<h1 id="fullscreen_image_blur_effect_with_html5">fullscreen image blur effect with html5</h1>
+<p><a href="http://tympanus.net/codrops/2011/11/18/fullscreen-image-blur-effect-with-html5/" target="_blank">link</a></p>
+<p><a href="http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html" target="_blank">link</a></p>
+<h1 id="problem_1_:_當往下拉畫面時_滑鼠的位置會出錯">problem 1 : 當往下拉畫面時 滑鼠的位置會出錯</h1>
+<p><a href="http://stackoverflow.com/questions/4249648/jquery-get-mouse-position-within-an-element" target="_blank">jquery-get-mouse-position-within-an-element</a></p>
+<pre><code>function track_mouse(e) {
+        console<span class="preprocessor">.log</span>(<span class="string">"mouse position:"</span>+e<span class="preprocessor">.pageX</span>+<span class="string">" : "</span>+e<span class="preprocessor">.pageY</span>)
+        var parentOffset = $(this)<span class="preprocessor">.parent</span>()<span class="preprocessor">.offset</span>()<span class="comment">;</span>
+        console<span class="preprocessor">.log</span>()<span class="comment">;</span>
+
+   mouse<span class="preprocessor">.x</span> = e<span class="preprocessor">.pageX</span> - parentOffset<span class="preprocessor">.left</span><span class="comment">;</span>
+   mouse<span class="preprocessor">.y</span> = e<span class="preprocessor">.pageY</span> - parentOffset<span class="preprocessor">.top</span><span class="comment">;</span>
+}
+</code></pre><p>去扣掉parent 也就是上層 捲動的位移量</p>
+<h1 id="problem_2_:_canvas跟主要畫面衝突">problem 2 : canvas跟主要畫面衝突</h1>
+<p><a href="http://stackoverflow.com/questions/4169350/getting-mouse-position-in-a-canvas-element-when-z-index-1" target="_blank">link</a></p>
+<p>原因:canvas z-index:-1 所以當canvas要抓 mouseover event的時候 會抓不到</p>
+<p>所以去找document的mouseover event去抓位置 , 但是這時候又發現 $(document) 沒有parentOffset , 又會出現 當往下拉畫面時 滑鼠的位置出錯問題 , 所以problem 1 的解決方法也不能用</p>
+<p><a href="http://stackoverflow.com/questions/6519043/get-mouse-position-on-scroll" target="_blank">link</a></p>
+<p><a href="http://api.jquery.com/scrollleft/" target="_blank">scrollleft</a></p>
+<ol>
+<li><p>當沒有給參數時 會回傳當前horizental位置</p>
+</li>
+<li><p>當有給參數時 就會設定到那個位置</p>
+<pre><code> $(document).mousemove(<span class="function"><span class="keyword">function</span><span class="params">(e)</span>{</span>
+         mouse.x = e.pageX - lastScrolledLeft;
+         mouse.y = e.pageY - lastScrolledTop;
+     });
+     $(window).scroll(<span class="function"><span class="keyword">function</span><span class="params">(e)</span> {</span>
+         lastScrolledLeft = $(document).scrollLeft();
+         lastScrolledTop = $(document).scrollTop();
+
+     mouse.x -= lastScrolledLeft;
+     mouse.y -= lastScrolledTop;
+ });
+</code></pre></li>
+</ol>
+<p>solving : 記錄每次scroll的位移量 然後捲動和移動時都要去扣掉scroll的位移量</p>
+<h1 id="stackblur">stackblur</h1>
+<p><a href="http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html" target="_blank">link</a></p>
+<p><a href="http://jsfiddle.net/nwellcome/27QUM/" target="_blank">link</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-07-15T01:26:32.000Z"><a href="/2014/07/15/20140715/">Jul 15 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/07/15/20140715/">2014/07/15</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="gradient">gradient</h1>
+<h1 id="box_shadow">box shadow</h1>
+<p><a href="http://www.corelangs.com/css/box/shadow.html" target="_blank">link</a></p>
+<p><a href="http://www.corelangs.com/css/box/image-shadow.html" target="_blank">link</a></p>
+<p><a href="http://wpsites.net/web-design/box-shadow-effect-wordpress/" target="_blank">link</a></p>
+<p><a href="http://benohead.com/post-it-cards-with-css/" target="_blank">post-it-cards-with-css</a></p>
+<h1 id="test_shadow">test shadow</h1>
+<p><a href="http://designshack.net/articles/css/12-fun-css-text-shadows-you-can-copy-and-paste/" target="_blank">link</a></p>
+<p><a href="http://line25.com/articles/using-css-text-shadow-to-create-cool-text-effects" target="_blank">link</a></p>
+<h1 id="挺有質感的">挺有質感的</h1>
+<p><a href="http://line25.com/wp-content/uploads/2009/letterpress/demo/demo.html" target="_blank">link</a></p>
+<h1 id="transform">transform</h1>
+<p><a href="http://www.zhangxinxu.com/wordpress/2012/09/css3-3d-transform-perspective-animate-transition/" target="_blank">超好笑講解</a></p>
+<h1 id="hover">hover</h1>
+<p><a href="http://www.corelangs.com/css/box/hover.html" target="_blank">link</a></p>
+<h1 id="hover_off">hover off</h1>
+<p><a href="http://css-tricks.com/different-transitions-for-hover-on-hover-off/" target="_blank">link</a></p>
+<h1 id="z-index">z-index</h1>
+<h1 id="jquery_animation">jquery animation</h1>
+<p><a href="http://css-tricks.com/examples/jQueryStop/" target="_blank">link</a></p>
+<h1 id="jquery_animation_transform">jquery animation transform</h1>
+<p><a href="http://stackoverflow.com/questions/5462275/animate-element-transform-rotate" target="_blank">要用比較特殊的方法來使用</a></p>
+<h1 id="click_and_drop_the_text">click and drop the text</h1>
+<p><a href="http://www.javascriptkit.com/dhtmltutors/css3-transitions-and-jquery.shtml" target="_blank">link</a></p>
+<h1 id="rainbow-load">rainbow-load</h1>
+<h1 id="html5_canvas_flame_particle">html5 canvas flame particle</h1>
+<p><a href="http://thecodeplayer.com/walkthrough/html5-canvas-experiment-a-cool-flame-fire-effect-using-particles" target="_blank">link</a></p>
+<h1 id="html_canvas">html canvas</h1>
+<p><a href="http://vimeo.com/36278748" target="_blank">link</a></p>
+<p>trails 留下殘影</p>
+<p>gravity </p>
+<p>fuzzy white image</p>
+<p>blue glowy bitmap</p>
+<p>collisions with the floor</p>
+<p>different blending</p>
+<p>3D particles</p>
+<h1 id="trails">trails</h1>
+<p><a href="http://rectangleworld.com/blog/archives/214" target="_blank">link</a></p>
+<h1 id="shiny">shiny</h1>
+<p><a href="http://rectangleworld.com/blog/archives/358" target="_blank">link</a></p>
+<h1 id="discuz">discuz</h1>
+<h1 id="font">font</h1>
+<h1 id="scroll">scroll</h1>
+<p>bootstrap grayscale</p>
+<p><a href="http://jsfiddle.net/kevinPHPkevin/8tLdq/1/" target="_blank">link</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-07-14T11:18:26.000Z"><a href="/2014/07/14/20140714/">Jul 14 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/07/14/20140714/">2014/07/14</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="winter_下降_變成_start_上昇">winter 下降 變成 start 上昇</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/image/canvas/1.png" alt="image"><br>改成<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/image/canvas/2.png" alt="image"><br><a href="http://stackoverflow.com/questions/1527803/generating-random-numbers-in-javascript-in-a-specific-range" target="_blank">link</a><br><a href="http://stackoverflow.com/questions/2142535/how-to-clear-the-canvas-for-redrawing" target="_blank">link</a></p>
+<h1 id="變成plugin">變成plugin</h1>
+<p><a href="http://stackoverflow.com/questions/3239680/jquery-dynamic-canvas-creation-ctx-getcontext-is-not-a-function" target="_blank">link</a></p>
+<h1 id="fixed">fixed</h1>
+<p><a href="http://davidwalsh.name/css-fixed-position" target="_blank">link</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-07-11T01:18:24.000Z"><a href="/2014/07/11/20140711/">Jul 11 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/07/11/20140711/">2014/07/11</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="fullscreen_image_blur_effect_with_html5">fullscreen image blur effect with html5</h1>
+<p><a href="http://tympanus.net/Development/FullscreenImageBlurEffect/index2.html" target="_blank">link</a></p>
+<ol>
+<li>z-index</li>
+<li>$(window).width() , $(window).height</li>
+<li>winterland</li>
+<li>sakura</li>
+</ol>
+<h1 id="png_background_transparent">png background transparent</h1>
+<p><a href="http://stackoverflow.com/questions/9155377/set-transparent-background-using-imagemagick-and-commandline-prompt" target="_blank">link</a></p>
+<h1 id="fps">fps</h1>
+<p><a href="http://codetheory.in/controlling-the-frame-rate-with-requestanimationframe/" target="_blank">link</a></p>
+<h1 id="ctx-fill()_跟_ctx-drawImage()">ctx.fill() 跟 ctx.drawImage()</h1>
+<p>兩者差距太大了 根本不能用ctx.drawImage取代</p>
+<h1 id="canvas_star">canvas star</h1>
+<p><a href="http://programmingthomas.wordpress.com/2012/05/16/drawing-stars-with-html5-canvas/" target="_blank">link</a></p>
+<p>改成上昇星星！</p>
+<h1 id="html5_canvas">html5 canvas</h1>
+<p><a href="http://www.html5canvastutorials.com/tutorials/html5-canvas-custom-shapes/" target="_blank">link</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-07-10T01:40:36.000Z"><a href="/2014/07/10/20140710/">Jul 10 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/07/10/20140710/">2014/07/10</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="log4j-properties">log4j.properties</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/1.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2.png" alt="image"></p>
+<p><a href="http://logging.apache.org/log4j/1.2/manual.html" target="_blank">link</a></p>
+<ol>
+<li>Loggers</li>
+<li>Appenders</li>
+<li>Layouts</li>
+</ol>
+<h3 id="Level">Level</h3>
+<p><strong>logger.setLevel</strong></p>
+<p>DEBUG &lt; INFO &lt; WARN &lt; ERROR &lt; FATAL</p>
+<p>設定level 決定你要看到的log層級</p>
+<h3 id="appender">appender</h3>
+<p>=&gt; an output destination</p>
+<p>=&gt;  exist for the console, files, GUI components ….</p>
+<p>也就是說它可以output成很多種格式 </p>
+<p>一次可以同時決定多個output(appender)</p>
+<p><strong>appAppender</strong></p>
+<h1 id="Layout">Layout</h1>
+<p>users wish to customize not only the <strong>output destination </strong>but also the <strong>output format</strong>. </p>
+<ol>
+<li>output destination : appender</li>
+</ol>
+<ol>
+<li>output format : layout</li>
+</ol>
+<p>決定user設定logging顯示的方式</p>
+<p>conversion pattern : “%r [%t] %-5p %c - %m%n”</p>
+<p>output : 176 [main] INFO  org.foo.Bar - Located nearest gas station.</p>
+<ol>
+<li><p>%r =&gt; program啟動後到執行這行logger的時間(millisecond)</p>
+</li>
+<li><p>[#t] =&gt; 誰(thread)在執行這個log request</p>
+</li>
+<li><p>%-5p =&gt;  the level of the log statement</p>
+</li>
+<li><p>%c =&gt;  the name of the logger</p>
+</li>
+<li><ul>
+<li>%m%n =&gt; the message of the statement</li>
+</ul>
+</li>
+</ol>
+<p><a href="http://javacrazyer.iteye.com/blog/1135493" target="_blank">詳細中文解說</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4.png" alt="image"></p>
+<p>${user.home} =&gt; 找到此電腦使用者的根目錄</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/5.png" alt="image"></p>
+<p>記錄時間,哪個package,class,function 記錄下的log</p>
+<p><a href="http://stackoverflow.com/questions/17380071/log4j-doesnt-work-in-test-classes" target="_blank">log4j.properties need to be on the classpath</a></p>
+<h1 id="gradle_application">gradle application</h1>
+<p>想要執行gradle project 必須要設定main(程式進入點在哪),gradle run 才能夠執行</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/3.png" alt="image"></p>
+<pre><code>    <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>spring-context-support<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">version</span>&gt;</span>${org.springframework-version}<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+</code></pre><p>${org.springframework-version} <a href="http://spring.io/blog/2009/12/02/obtaining-spring-3-artifacts-with-maven/" target="_blank">這個用法</a></p>
+<p>其實是這先找到這個<a href="http://stackoverflow.com/questions/6398421/maven-dependency-for-whole-org-springframework" target="_blank">link</a></p>
+<h1 id="測試service">測試service</h1>
+<p><a href="http://spring.io/guides/tutorials/rest/4/" target="_blank">rest-4</a></p>
+<h1 id="Spring_Security">Spring Security</h1>
+<p><a href="http://spring.io/guides/tutorials/rest/5/" target="_blank">rest-5</a></p>
+<h1 id="canvas_grass_sky_gradient">canvas grass sky gradient</h1>
+<p><a href="http://cssdeck.com/labs/4ksohwya" target="_blank">link</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-07-09T01:19:08.000Z"><a href="/2014/07/09/20140709/">Jul 9 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/07/09/20140709/">2014/07/09</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="JUnit">JUnit</h1>
+<p><a href="http://teddy-chen-tw.blogspot.tw/2011/11/unit-tests.html" target="_blank">test</a></p>
+<p><a href="http://openhome.cc/Gossip/JUnit/" target="_blank">超詳細講解</a></p>
+<ol>
+<li><p>test …. test </p>
+</li>
+<li><p>setup,teardown -&gt; 設定text fixture (測試裝備)</p>
+</li>
+<li><p>suite 整合這些test 可以決定一次要執行哪些test</p>
+</li>
+<li><p>report result 可以匯出測試報告</p>
+</li>
+</ol>
+<h1 id="Mock">Mock</h1>
+<p>模擬真實物件或資源，隔離環境對目前測試的影響。</p>
+<p>所以SpringMVC 的library : mockMVC 的意思也是這樣 , 模擬放入tomcat 來執行.</p>
+<h1 id="test_suite">test suite</h1>
+<p><a href="https://github.com/junit-team/junit/wiki/Aggregating-tests-in-suites" target="_blank">suite</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/test/1.png" alt="image"></p>
+<h1 id="SpringMVC_settings">SpringMVC settings</h1>
+<p><a href="http://spring.io/guides/tutorials/rest/3/" target="_blank">rest-3</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/conf.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-07-08T01:24:02.000Z"><a href="/2014/07/08/20140708/">Jul 8 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/07/08/20140708/">2014/07/08</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Build_Automation_Software_for_Java">Build Automation Software for Java</h1>
+<p><a href="http://www.codedata.com.tw/java/understanding-gradle-1-ant/" target="_blank">Ant -&gt; Maven-&gt; Gradle</a></p>
+<h1 id="log4j">log4j</h1>
+<p>設定方式有兩種</p>
+<p>1.log4j.properties<br>2.log4j.xml</p>
+<p><a href="http://stackoverflow.com/questions/14497787/log4j-properties-vs-log4j-xml" target="_blank">link</a></p>
+<h1 id="Maven">Maven</h1>
+<p><code>mvn archetype:generate</code>  </p>
+<p><code>mvn archetype:generate \
+-DarchetypeArtifactId=maven-archetype-quickstart \
+-DinteractiveMode=false \
+-DgroupId=tw.com.codedata -DartifactId=helloworld</code> =&gt;產生基本專案</p>
+<p><code>mvn help:effective-pom</code> =&gt; 查詢現在 pom.xml 的有效設定</p>
+<p><code>mvn exec:java</code> =&gt; 執行java</p>
+<p><code>mvn exec:java -Dexec.mainClass=&quot;tw.com.codedata.App&quot;</code></p>
+<p>我根本就不用手動去下載log4j , 只要在pom.xml裡加上</p>
+<pre><code>        <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">version</span>&gt;</span>1.1.1<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">version</span>&gt;</span>1.2.16<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+</code></pre><p>下<code>mvn package</code> 後就會自動下載需要的jar</p>
+<p>在<code>maven/apache-maven-3.1.0/conf/settings.xml</code></p>
+<p>預設repository放置的位置是<code>~/.m2</code> , 所以只要你有設定在pom.xml裡面的dependencies, 都會下載到這個位置</p>
+<h1 id="gradle">gradle</h1>
+<p>以build.gradle(DSL) 取代 pom.xml</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/5.png" alt="image"></p>
+<h3 id="gradle_plugin">gradle plugin</h3>
+<p><code>apply plugin: &#39;java&#39;</code><br><code>apply plugin:&#39;application&#39;</code></p>
+<h3 id="gradle_command">gradle command</h3>
+<p><code>gradle tasks</code> 列出可以執行的task</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/4.png" alt="image"></p>
+<p><code>gradle distZip</code> 產生 -&gt; build/distributions/helloworld.zip</p>
+<p><code>gradle dependenecies</code> -&gt; 顯示相依性</p>
+<p><code>gradle build</code></p>
+<p><code>gradle run</code></p>
+<p><a href="http://www.gradle.org/docs/current/javadoc/index.html?org/gradle/api/Project.html" target="_blank">gradle document</a></p>
+<h3 id="相依關係設定">相依關係設定</h3>
+<p><code>compile &#39;com.amazonaws:aws-java-sdk:1.+&#39;</code></p>
+<p>怎麼來的?</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/6.png" alt="image"></p>
+<p>原本有加上apply plugin:’application’</p>
+<p>所以可以直接<code>gradle run</code></p>
+<p>但改掉後 就沒辦了</p>
+<p>build.gradle:</p>
+<pre><code>apply plugin: <span class="string">'java'</span>
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile <span class="keyword">group</span>: <span class="string">'commons-logging'</span>, name: <span class="string">'commons-logging'</span>, version: <span class="string">'1.1.1'</span>
+    compile <span class="keyword">group</span>: <span class="string">'log4j'</span>, name: <span class="string">'log4j'</span>, version: <span class="string">'1.2.16'</span>
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir <span class="string">'src'</span>
+        }
+        resources {
+            srcDir <span class="string">'config'</span>
+        }
+    }
+}
+</code></pre><p><code>gradle build</code> 沒有問題 </p>
+<p>但是<code>java -classpath builds/lib/helloworld2.jar tw.com.codedata.App</code> 出現lost logFactory的訊息</p>
+<p>看一下helloworld2.jar 裡面 沒有包入commons-logging,也沒有包入log.class</p>
+<p>需要再加入</p>
+<pre><code>jar {
+    <span class="built_in">from</span> configurations.compile.collect { zipTree <span class="keyword">it</span> }
+}
+</code></pre><p>表示會在jar中加入dependecies</p>
+<p><code>java -classpath builds/lib/helloworld2.jar tw.com.codedata.App</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/7.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/8.png" alt="image"></p>
+<h1 id="Building_Java_Projects_with_Gradle">Building Java Projects with Gradle</h1>
+<p><a href="http://spring.io/guides/gs/gradle/" target="_blank">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/9.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/10.png" alt="image"></p>
+<p>加上joda-time</p>
+<p>可是教學只有說加入</p>
+<pre><code>dependencies {
+    compile <span class="string">"joda-time:joda-time:2.2"</span>
+}
+</code></pre><p>這樣會下載joda-time 可是沒有把東西包進jar檔裡面</p>
+<p>若是要把joda-time也包進去jar檔</p>
+<pre><code>jar {
+    <span class="built_in">from</span> configurations.compile.collect { zipTree <span class="keyword">it</span> }
+}
+</code></pre><p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/11.png" alt="image"></p>
+<p>可是加上</p>
+<p>apply plugin: ‘application’</p>
+<p>mainClassName = ‘main.java.hello.HelloWorld’</p>
+<p>就不需要家jar{} 了</p>
+<p>並且下<code>gradle run</code> 就可以執行</p>
+<p><code>gradle wrapper</code></p>
+<p>將你的gradle和jar都包起來,所以其他人下載你的code去run時,是用包起來的gradle執行,所以他的電腦上也不需要安裝gradle</p>
+<p>在sts執行<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/12.png" alt="image"></p>
+<p>執行的方式跟maven project差很多 …</p>
+<p>不能debug gradle task?<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/13.png" alt="image"></p>
+<h1 id="gradle_in_sts">gradle in sts</h1>
+<p>根據這篇<a href="https://github.com/spring-projects/eclipse-integration-gradle/blob/master/README.md" target="_blank">link</a> 加入gradle plugin ,就可以產生gradle project , 我覺得應該只要裝gradle plugin就好了 , gradle tooling不知道要幹嘛,</p>
+<p>接下來也可以build 可以run了</p>
+<p>但是沒辦法deploy tomcat , 因為他是gradle project,但不是dynamic web project</p>
+<p>根據<a href="http://stackoverflow.com/questions/15110545/how-to-run-a-gradle-web-application" target="_blank">link</a>,找到相似的方法是加入<code>apply plugin: &#39;eclipse-wtp&#39;</code>到build.gradle , 但還是不能理解 , 最後看到這篇<a href="http://www.hierax.org/2013/12/deploying-gradle-webapp-project-in.html" target="_blank">link</a>,接下來在build的時候 最後多做一個task, ecliplse</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/14.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/15.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/16.png" alt="image"></p>
+<p>而且奇怪的是執行<code>./gradlew tomcatRunWar</code></p>
+<p>網址:<code>http://localhost:8080/aggregators/orders</code></p>
+<p>但deploy tomcat</p>
+<p>網址:<code>http://localhost:8080/tut-rest-3-complete/aggregators/orders</code> 也就是要加上project名稱</p>
+<p>終於把<a href="http://spring.io/guides/tutorials/rest/3/" target="_blank">tutorial3</a>,放入sts執行了</p>
+<p>接下來要看test怎麼做了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/18.png" alt="image"></p>
+<p>run as Junit test =&gt; 右邊junit window 顯示綠色 代表通過 紅色代表失敗</p>
+<h1 id="Spring_MVC_Based_Application_Test_Driven_Development">Spring MVC Based Application Test Driven Development</h1>
+<p><a href="http://codewithzenmind.wordpress.com/2013/07/11/spring-mvc-based-application-test-driven-development-part-1-project-setup-and-first-test/" target="_blank">link</a></p>
+<p><a href="http://krishnasblog.com/2013/02/22/junit-testing-of-spring-mvc-application-introduction/" target="_blank">link</a></p>
+<h1 id="tomcat_能夠debug">tomcat 能夠debug</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/17.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-07-07T01:40:53.000Z"><a href="/2014/07/07/20140707/">Jul 7 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/07/07/20140707/">2014/07/07</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Gradle">Gradle</h1>
+<p><a href="http://www.gradle.org/get-started" target="_blank">gradle</a></p>
+<h2 id="projects">projects</h2>
+<p>jar</p>
+<p>web app</p>
+<h2 id="tasks">tasks</h2>
+<p>compiling some classes, creating a JAR, generating javadoc, or publishing some archives to a repository.</p>
+<h2 id="build-gradle(build_script)">build.gradle(build script)</h2>
+<p>定義project tasks dependencies</p>
+<h2 id="編譯">編譯</h2>
+<p>gradle build</p>
+<h2 id="執行">執行</h2>
+<ol>
+<li><p><code>java -jar build/libs/basic.jar &quot;Hello&quot;</code> (要設定一堆有的沒有的)</p>
+</li>
+<li><p><code>java -classpath build/libs/basic.jar org.jack.test.Main jackmew</code></p>
+</li>
+</ol>
+<h2 id="Eclipse">Eclipse</h2>
+<p>apply plugin: “eclipse”</p>
+<p><code>gradle eclipse</code></p>
+<h1 id="TDD_(Test_Driven_Development)">TDD (Test Driven Development)</h1>
+<p><a href="http://ithelp.ithome.com.tw/question/10109845" target="_blank">30天快速上手TDD</a></p>
+<h1 id="Gradle_vs_Maven">Gradle vs Maven</h1>
+<p><a href="http://www.codedata.com.tw/java/understanding-gradle-3-gradle-task-abc/" target="_blank">link</a></p>
+<h1 id="Spring_tutorials">Spring tutorials</h1>
+<p><a href="http://www.codedata.com.tw/java/understanding-gradle-3-gradle-task-abc/" target="_blank">link</a></p>
+<p>也就是說要全部完成和理解 Spring tutorials</p>
+<p>先必須去了解Gradle 和 TDD</p>
+<h1 id="Spring_java_config">Spring java config</h1>
+<h1 id="spring">spring</h1>
+<p><a href="http://spring.io/guides" target="_blank">guide</a></p>
+<p><a href="http://spring.io/guides/gs/gradle/" target="_blank">Building Java Projects with Gradle</a></p>
+<p><a href="http://spring.io/guides/gs/rest-service/" target="_blank">Building a RESTful Web Service</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-07-04T01:36:39.000Z"><a href="/2014/07/04/20140704/">Jul 4 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/07/04/20140704/">2014/07/04</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="tomcat">tomcat</h1>
+<p>原本常用的<code>tail -f ../logs/catalina.out</code> 並不是原本tomcat就具備的log方式 , 那是因為之前有用<a href="http://tomcat.apache.org/tomcat-7.0-doc/logging.html" target="_blank">log4j.jar</a> </p>
+<h1 id="log4j">log4j</h1>
+<p>只要下仔<a href="http://tomcat.apache.org/download-70.cgi" target="_blank">JULI log4j jar</a> , 將此jar檔 放入<code>~/maven/usr/tomcat/apache-tomcat-7.0.42/bin</code> 之後就可以使用<code>tail -f ../logs/catalina.out</code></p>
+<h1 id="maven">maven</h1>
+<p><a href="http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html" target="_blank">maven in 5 minute</a></p>
+<p>apache-maven-3.1.0/conf/settings.xml</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/1.png" alt="image"></p>
+<p>設定localRepository去讀lib/repo</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/2.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/3.png" alt="image"></p>
+<h1 id="java">java</h1>
+<p><code>cd ~/maven/lib</code></p>
+<p><code>ln -s /Library/Java/JavaVirtualMachines/jdk1.7.0_11.jdk/Contents/Home/ current</code> 建立symalink current</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-07-03T03:01:03.000Z"><a href="/2014/07/03/20140703/">Jul 3 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/07/03/20140703/">2014/07/03</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Maven">Maven</h1>
+<p><code>. ./setenv.sh</code> 第一個點是指現在的shell</p>
+<h1 id="Template_,_Widget">Template , Widget</h1>
+<p>html template , 在Wix的網站有很多free html tempate</p>
+<p>font awesome 有很多 漂亮的文字 圖片可以用</p>
+<p>font hover , github hover 都有一堆漂亮東西可以用</p>
+<p>我應該將這些template , widget 準備起來 , 就可以用這些元件整合</p>
+<p>出漂亮的效果.</p>
+<h1 id="spring_filter_java_config">spring filter java config</h1>
+<p><a href="http://www.robinhowlett.com/blog/2013/02/13/spring-app-migration-from-xml-to-java-based-config/" target="_blank">link</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+    <a href="/archives/2014/07/" class="alignleft prev">Prev</a>
+  
+  
+    <a href="/archives/2014/07/page/3/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

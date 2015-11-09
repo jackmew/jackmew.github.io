@@ -1,0 +1,858 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 22 | Archives | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title">Archives</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-11T03:12:58.000Z"><a href="/2014/03/11/wbase-development/">Mar 11 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/11/wbase-development/">wbase development</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="Start">Start</h3>
+<p>了解Spec 了解需求</p>
+<p>這時候PM的存在就非常重要,若是在不理解的情況下coding,不但進度緩慢,做出來的結果又會是錯的.<br>討論設計良好的database model,然而在SQL,和NoSQL的設計概念又不同了,設計不夠好的database model<br>將導致coding困難,IO次數提高,因而拖慢整個系統效能.</p>
+<h3 id="開發環境_development_enviroment">開發環境 development enviroment</h3>
+<p>jdk 1.7.1<br>maven 3.1.0<br>tomcat 7<br>spring tool kit 3.4<br>UI JQuery Mobile</p>
+<p>基本上都是選最新版本,但有時是擴充原本舊系統的功能,就要裝上跟舊系統一樣的版本,或者是提出需求者的自身環境是舊版本,<br>這還不包括有些版本系統會不相容,導致開發過程碰到很多問題,這些需要有相當經驗,和大量閱讀相關document.</p>
+<p>Module </p>
+<table>
+<thead>
+<tr>
+<th>wbase-service</th>
+<th>wbase-web</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>config</td>
+<td>controller(js)</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>view (html)</td>
+<td></td>
+</tr>
+<tr>
+<td>domain</td>
+<td>resources(CSS)</td>
+<td></td>
+</tr>
+<tr>
+<td>repository</td>
+<td>nls(National Language Support)</td>
+<td></td>
+</tr>
+<tr>
+<td>service</td>
+<td>lib</td>
+<td></td>
+</tr>
+<tr>
+<td>util</td>
+<td>util</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>此時只分成前端Javascript , 後端Java<br>分成多模組的情況下比較好擴充,在build或deploy時,也可以做一個</p>
+<p>service就像是我們自己寫的library一樣,可以給多個web使用</p>
+<p>設計成<em>event-driven model</em></p>
+<p>每一個頁面load完後 onDocuemntReady 之後 點擊各個element 觸發event 然後處理各式各樣的問題</p>
+<h2 id="wbase-web_pom-xml">wbase-web pom.xml</h2>
+<h6 id="專案名稱_打包成war檔_給tomcat_server部署用_對wbase-web_下_mvn_package_打包成war檔_內含非常多jar檔">專案名稱 打包成war檔 給tomcat server部署用 對wbase-web 下 mvn package 打包成war檔 內含非常多jar檔</h6>
+<pre><code>    <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>com.dl.wbase<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>wbase-web<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">version</span>&gt;</span>1.0.0<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">name</span>&gt;</span>wbase-web<span class="tag">&lt;/<span class="title">name</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="title">packaging</span>&gt;</span>
+</code></pre><h6 id="在Servlet_3-0-1版本後_就沒有web-xml_,_springmvc,xml,都定義到java_config中,當然還是有pom-xml">在Servlet 3.0.1版本後 就沒有web.xml , springmvc,xml,都定義到java config中,當然還是有pom.xml</h6>
+<pre><code>    <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>javax.servlet-api<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">version</span>&gt;</span>3.0.1<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="title">scope</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+</code></pre><h6 id="spring-context用來控制beam_,_new_beam">spring-context用來控制beam , new beam</h6>
+<pre><code>    <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">version</span>&gt;</span>${org.springframework-version}<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+</code></pre><h6 id="@service,@controller,@RequestMapping">@service,@controller,@RequestMapping</h6>
+<pre><code>    <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>javax.inject<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>javax.inject<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">version</span>&gt;</span>1<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+</code></pre><h6 id="application_library_我們可能會用到JavaMail,Quartz">application library 我們可能會用到JavaMail,Quartz</h6>
+<pre><code>    <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>spring-context-support<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">version</span>&gt;</span>${org.springframework-version}<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+</code></pre><h6 id="基本上是使用log4j_slf4可以綁在log4j_or_common4j_等library上_並用API控制之">基本上是使用log4j slf4可以綁在log4j or common4j 等library上 並用API控制之</h6>
+<pre><code><span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+            <span class="comment">&lt;!-- exclude missing libraries in central Maven repository because of license issues --&gt;</span>
+            <span class="tag">&lt;<span class="title">exclusions</span>&gt;</span>
+                <span class="tag">&lt;<span class="title">exclusion</span>&gt;</span>
+                    <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>javax.mail<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+                    <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>mail<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+                <span class="tag">&lt;/<span class="title">exclusion</span>&gt;</span>
+                <span class="tag">&lt;<span class="title">exclusion</span>&gt;</span>
+                    <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>javax.jms<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+                    <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>jms<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+                <span class="tag">&lt;/<span class="title">exclusion</span>&gt;</span>
+                <span class="tag">&lt;<span class="title">exclusion</span>&gt;</span>
+                    <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>com.sun.jdmk<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+                    <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>jmxtools<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+                <span class="tag">&lt;/<span class="title">exclusion</span>&gt;</span>
+                <span class="tag">&lt;<span class="title">exclusion</span>&gt;</span>
+                    <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>com.sun.jmx<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+                    <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>jmxri<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+                <span class="tag">&lt;/<span class="title">exclusion</span>&gt;</span>
+            <span class="tag">&lt;/<span class="title">exclusions</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="title">scope</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+</code></pre><h6 id="不用java本來內建的Date,另外用別的library_因為joda-time可以處理sql的Date資料型態_並且有比較多method可以使用">不用java本來內建的Date,另外用別的library 因為joda-time可以處理sql的Date資料型態 並且有比較多method可以使用</h6>
+<pre><code>    <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>joda-time<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>joda-time<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">version</span>&gt;</span>2.2<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+</code></pre><h6 id="Json的library_因此我們很容易就可以將資料轉成json_並用json取資料">Json的library 因此我們很容易就可以將資料轉成json 並用json取資料</h6>
+<pre><code>    <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>jackson-core<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">version</span>&gt;</span>2.2.3<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>jackson-databind<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">version</span>&gt;</span>2.2.3<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+</code></pre><h6 id="其他…-">其他….</h6>
+<h2 id="配置">配置</h2>
+<p>wbase-service:<br>ServiceConfig.java =&gt;取代web.xml springmvc.xml設定檔 config</p>
+<p>User.java =&gt; persistence =&gt; ORM(Object Relational Mapping)對應資料庫table用<br>UserService.java =&gt;<br>UserServiceImpl.java =&gt; 處理資料的方式</p>
+<p>wbase-web:<br>MVCConfing.java =&gt; config  rescource mapping 把某些url都轉到某個路徑</p>
+<h2 id="Implement_Spring_RESTful_services">Implement Spring RESTful services</h2>
+<p>REST =&gt; 在網址就表現出這個網頁(物件)所要處理的事情<br>RequestMethod=&gt;get(取資料),post,put(塞資料),delete(刪除資料)</p>
+<p>ex:</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/wbase1.png" alt="image"></p>
+<p>當我要call InstallController裡的bulkInstall method<br>只要在url上輸入 <a href="http://localhost:8080/wbase-web/rest/installer/bulkInstall" target="_blank">http://localhost:8080/wbase-web/rest/installer/bulkInstall</a></p>
+<p>直接由url call controller這方法 我覺得還挺有趣的 而且很容易測試</p>
+<h2 id="2014/1/22">2014/1/22</h2>
+<p>前端頁面設計</p>
+<p>UIDWidget.html</p>
+<p>UIDWidget.css</p>
+<p>UIDWidget.js</p>
+<p>測試使用$.getJSON 抓假json格式資料</p>
+<p>由於是採用AJAX方式 因此一定要在在server執行 </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/wbase2.png" alt="image"></p>
+<p>成功</p>
+<h2 id="2014/1/23">2014/1/23</h2>
+<p>思考怎麼實做分頁 要用jqgrid?</p>
+<p>之前的案子方法是</p>
+<p>=========================================================<br>Pagination<br>全部的資料筆數<br>private int totalRecoutCount;<br>每一頁顯示的資料筆數<br>private int pageRecordCount;<br>全部的總頁數<br>private it totalPageCount;<br>目前要顯示的頁碼<br>private int pageNo;</p>
+<p>private List recordDatas = new ArrayList();</p>
+<p>PageableList<E> extends ArrayList<E><br>private int totalRecordCount  =&gt; 撈出來 轉成pageableList的資料數</p>
+<p>Output the JSON data<br>BaseMultiActionCtrl<br>outputJSon</p>
+<p>JacksonUtility</p>
+<p>JsonUtility</p>
+<p>JsonUtilityCallBack</p>
+<p>Controller 轉換頁面 決定要做什麼動作</p>
+<p>Service 抓出資料</p>
+<p>Dao 設定抓資料條件 抓資料對象(persistence)</p>
+<p>Hibernate 處理如何抓資料</p>
+<p>persistence 對應 table<br>class name =&gt; table name</p>
+<p>attribute name =&gt; record name</p>
+<p>前端資料驗證</p>
+<p>queryshop.jsp , editshop.jsp 檢驗輸入的方式 jquery validation</p>
+<p>validate=”maxlength= 200 required”</p>
+<p>=========================================================</p>
+<p>04UID設定 =&gt;button(新增)=&gt; 05UID設定-新增=&gt;<br>            button(pen)=&gt; 06UID修改描述(只有描述可以修改)<br>            button(tool)=&gt; 08UUID欄位設定(Charlie)</p>
+<p>popup <a href="http://" target="_blank">http://api.jquerymobile.com/resources/popup/example2.html#popupLogin</a></p>
+<p>=========================================================</p>
+<h2 id="2014/1/27">2014/1/27</h2>
+<p>登入<br>tol-005</p>
+<p>資料庫不會有明碼<br>資料庫是md5加密內容<br>return:<br>S(super)<br>1.S            =&gt;02功能選單                            =&gt;04UID設定             可查全部<br>2.no S        =&gt;03選擇清單=&gt;UID屬於某些 User        =&gt;04UID設定(已有查詢條件) 只能查自己有的UID                                                                   </p>
+<p>08UID欄位設定 submit=&gt;欄位審核    =&gt;13UID欄位審查 =&gt;比較 =&gt;14UID欄位變更審查<br>11WID使用者設定</p>
+<p>mac 內建 <strong>DigitalColor meter</strong> =&gt;可以直接看prototype的顏色</p>
+<p>show 頁面</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/wbase0127_1.png" alt="image"></p>
+<p>table左上 右上的半圓 應該要有兩個table合起來 多餘的部分會融入背景</p>
+<p>點選UID旁邊的edit圖示 會跳出修改視窗</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/wbase0127_2.png" alt="image"></p>
+<p>點選右上角的新增按鈕 跳出新增視窗</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/wbase0127_3.png" alt="image"></p>
+<p>輸入UID和描述<br>確定後會確實進入table</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/wbase0127_4.png" alt="image"></p>
+<h2 id="2014/1/27-1">2014/1/27</h2>
+<p>set content =&gt; text()    html() val()</p>
+<p>text() =&gt; 用於顯示字樣的 <code>&lt;p&gt; &lt;h1&gt; &lt;span&gt;</code></p>
+<p>val()  =&gt; <code>&lt;input&gt;    &lt;form&gt;</code></p>
+<p><a href="http://www.w3schools.com/jquery/jquery_dom_set.asp" target="_blank">link</a></p>
+<p>build project 產生<strong>javascript validator</strong>的問題 超煩</p>
+<p>preference =&gt; Validation =&gt;Suspend all validators 勾選</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/javascriptValidate1.png" alt="image"></p>
+<p>這是用來檢查xml javascript jsp等檔案有沒有發生錯誤 但是其實這些檔案都不用build成class<br>所以有檢查跟沒檢查差不多 這些檔案不應該在build的時候產生問題</p>
+<p>JavaScript =&gt; Validator =&gt; Errors/Warning =&gt;Enable JavaScript semantic validation 取消勾選</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/javascriptValidate2.png" alt="image"></p>
+<p>取消勾選 =&gt;取消檢查javascript語法<br>有些外部引用的.js jquery等 會有部分讓eclipse無法辨識 但其實是可以執行的</p>
+<p>此時問題還沒有解決</p>
+<p>solution =&gt; google =&gt; eclipse disable javascript validator</p>
+<p><a href="http://" target="_blank">http://stackoverflow.com/questions/3131878/how-do-i-remove-javascript-validation-from-my-eclipse-project</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/javascriptValidate3.png" alt="image"><br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/javascriptValidate4.png" alt="image"><br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/javascriptValidate5.png" alt="image"></p>
+<p>終於可以安心build </p>
+<p>但是eclipse build 還是要常常先clean build , server clean build</p>
+<h3 id="Workflow">Workflow</h3>
+<p>SiteController</p>
+<pre><code><span class="annotation">@Controller</span>
+<span class="annotation">@RequestMapping</span>(<span class="string">"/"</span>)
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SiteController</span> {</span>
+    <span class="keyword">private</span> <span class="keyword">static</span> Logger logger = LoggerFactory.getLogger(SiteController.class);
+
+    <span class="annotation">@RequestMapping</span>(method = RequestMethod.GET)
+    <span class="keyword">public</span> String <span class="title">workbench</span>() {
+        <span class="keyword">return</span> <span class="string">"redirect:/dhtml/workbench/view/LoginWidget.html"</span>;
+    }
+}
+</code></pre><p>workbench()這個function的名稱是可以隨便改的???</p>
+<p>@RequestMapping(“/“)表示這個project的根目錄 </p>
+<p>當url指到wbase-web/    =&gt;mapping到SiteController處理 呼叫workbench() 並回傳String 到url上</p>
+<p>因此導到LoginWidget.html</p>
+<p>LoginWidget.html點擊button LoginWidget.js發送帳號密碼後call=&gt;/rest/account/login去執行AccountController的method login</p>
+<p>並呼叫accountService.login(username,password)<br>return null(HttpStatus.FORBIDDEN)  =&gt; $ajax.error<br>        or<br>        User(HttpStatus.OK) =&gt;$ajax.success =&gt; $.mobile.navigate(“/wbase-web/dhtml/workbench/view/UserWidget.html”</p>
+<h2 id="2014/1/28">2014/1/28</h2>
+<h3 id="JQuery_Validate-js">JQuery Validate.js</h3>
+<p><a href="http://jqueryvalidation.org/" target="_blank">jqueryvalidation.org</a></p>
+<p><a href="http://jqueryvalidation.org/documentation/" target="_blank">jqueryvalidation documentation</a></p>
+<p><a href="http://jqueryvalidation.org/validate" target="_blank">validate</a></p>
+<p><img src="http://" alt="image"></p>
+<p>validate() hook 到form上 讓他具有validate能力 並且改寫default validate方式</p>
+<p>valid() 執行驗證</p>
+<pre><code>  $(<span class="string">"#modifyUIDForm"</span>).validate({
+
+        showErrors: <span class="function"><span class="keyword">function</span><span class="params">(errorMap, errorList)</span> {</span>
+                <span class="keyword">if</span>(errorList.length==<span class="number">0</span>) <span class="keyword">return</span>;
+                <span class="keyword">var</span> msg = <span class="string">""</span>;
+                <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;errorList.length; i++) {
+                    <span class="keyword">var</span> error = errorList[i];
+                    <span class="keyword">var</span> selector = <span class="string">"label[for='"</span> + error.element.id + <span class="string">"']"</span>
+                    <span class="keyword">var</span> label = $(selector).text();
+
+                    msg = msg + label + <span class="string">":"</span> + error.message + <span class="string">"\n"</span>;
+                }
+                alert(msg);
+            },
+            onfocusout: <span class="literal">false</span>,
+            onkeyup: <span class="literal">false</span>
+  });
+</code></pre><p>onfocusout:true =&gt; 當滑鼠移開 focus out的時候 =&gt; 就會一直validate 很煩 =&gt;所以設成false<br>onKeyup也要設成false =&gt; 不然認為不是觸發條件的button按下去 就會一直alert<br>應該只有click確定送出後 才要validate一次</p>
+<p>$(“#userForm”).valid() 加上要驗證的form上 也可以加在element上</p>
+<h2 id="2014/1/29">2014/1/29</h2>
+<h4 id="table_switch_分頁的方式">table switch 分頁的方式</h4>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/tableSwitch.png" alt="image"></p>
+<p>rowsPage =&gt; 決定一個頁面要有幾筆資料 =&gt; global variable<br>totalRows =&gt; 全部的資料筆數<br>numPages =&gt; 有幾個頁面</p>
+<p>InitialTableSwitch() =&gt;根據以上參數(rowsPage, totalRows, numPages)<br>                                =&gt;初始化一頁要顯示幾筆資料 ,加上轉換第幾頁的頁籤(Navigator)<br>createNavigator() =&gt;建立頁籤</p>
+<p>完成基本分頁 並底下有黑色圈圈可以點選換頁</p>
+<h4 id="GET">GET</h4>
+<p>沒有content-type<br>將傳送的資料 藏在url裡 傳的方式是 Query String</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/get.png" alt="image"></p>
+<h4 id="POST">POST</h4>
+<p>Content-Type =&gt;我們傳出去的資料是什麼樣的格式 在這邊是form 傳出去 編碼方式是UTF-8</p>
+<p>Accept =&gt; server 接收的格式</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/post.png" alt="image"></p>
+<p><strong>Web Service =&gt;大家公認好的網路設計<br>RestFul是其中最簡單的是一種</strong></p>
+<h2 id="2014/1/29-1">2014/1/29</h2>
+<p>以RESTful的方式實現POST 傳送JSON </p>
+<p>LoginWidget.js =&gt; client端 key資料 把資料送上server 端驗證</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/wbase0205.png" alt="image"></p>
+<p>contentType =&gt; 告訴server我們要傳送的資料形態</p>
+<p>dataType =&gt; 告訴server 在server端要接收什麼樣的資料形態</p>
+<p>dto = &gt; data transfer object =&gt; 反正就是當成一對對pair的物件</p>
+<p>var payload = JSON.stringify(dto);</p>
+<p>serialize an object to JSON  =&gt; To convert an JSON object to a string, use JSON.stringify:</p>
+<p>To convert a string to JSON object, use JSON.parse:</p>
+<p><a href="http://" target="_blank"><br>http://stackoverflow.com/questions/191881/serializing-to-json-in-jquery</a></p>
+<p>url=&gt;requestMapping到AccountController.java的function</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/wbase0205_1.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/wbase0205_2.png" alt="image"><br>payload:undefined<br>執行   var payload = JSON.stringify(dto);<br>payload:{“username”:”dsfd”,”password”:”1234”}</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/wbase0205_3.png" alt="image"></p>
+<p>所以這邊server端確實抓到MAP<br>MAP可以很輕易和JSON資料互相轉換</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/wbase0205_4.png" alt="image"></p>
+<p>Controller層<br>再去呼叫Service做資料帳號密碼的比對是否正確<br>是=&gt;OK<br>否=&gt;FORBIDDON</p>
+<h3 id="JQuery_Mobile">JQuery Mobile</h3>
+<p>有很多Widget,但是一些比較細節的部分,沒辦法使用它原本的設定時,就必須要覆蓋掉它原本的屬性<br>需要加上<strong>!important</strong></p>
+<pre><code><span class="tag">override</span> 
+
+<span class="class">.ui-page</span> <span class="rules">{
+    <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">rgb(<span class="number">188</span>,<span class="number">188</span>,<span class="number">188</span>)</span> <span class="important">!important</span></span></span>;
+<span class="rule">}</span></span>
+
+<span class="class">.ui-content</span> <span class="rules">{<span class="comment">/*override all content*/</span>
+    <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span> <span class="important">!important</span></span></span>;
+    <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#a8a8a8</span> <span class="important">!important</span></span></span>;   
+    <span class="rule"><span class="attribute">position </span>:<span class="value"> absolute <span class="important">!important</span></span></span>; 
+    <span class="rule"><span class="attribute">top </span>:<span class="value"> <span class="number">40</span>px <span class="important">!important</span></span></span>;  
+    <span class="rule"><span class="attribute">right </span>:<span class="value"> <span class="number">0</span> <span class="important">!important</span></span></span>; 
+    <span class="rule"><span class="attribute">bottom </span>:<span class="value"> <span class="number">40</span>px <span class="important">!important</span></span></span>;  
+    <span class="rule"><span class="attribute">left </span>:<span class="value"> <span class="number">0</span> <span class="important">!important</span></span></span>;  
+<span class="rule">}</span></span>
+</code></pre><h3 id="$-mobile-navigate()_v-s-_window-location-href">$.mobile.navigate()  v.s. window.location.href</h3>
+<p>原本JQuery mobile的推薦方式是用naviatate轉送頁面<br>但JQuery mobile的方式只載入部分程式,它只載入content部分,header,footer不載,就是會少載很多東西<br>為什麼要這樣設計?<br>因為JQuery mobile , backbone, AngularJS都是屬於SPA(single page application)的架構設計 前端MVC的設計</p>
+<pre><code>success: <span class="function"><span class="keyword">function</span><span class="params">(dto)</span> {</span>
+           $.mobile.navigate(<span class="string">"wbase-web/dhtml/workbench/view/UserWidget.html"</span>)<span class="string">'
+       },</span>
+</code></pre><p>因此我們採用舊的方式轉換頁面</p>
+<pre><code>success: <span class="function"><span class="keyword">function</span><span class="params">(dto)</span> {</span>
+            window.location.href = <span class="string">"./MenuWidget.html"</span>;
+        },
+</code></pre><h4 id="workflow">workflow</h4>
+<p>LoginWidget.html(js)<br>$.ajax    url: “/wbase-web/rest/account/login” =&gt;<br>class AccountController(RequestMapping(“/rest/account”))<br>function ResponseEntity<User> login (RequestMapping value=”/login”)</p>
+<p>success: function(dto) {<br>            window.location.href = “./MenuWidget.html”;<br>        },<br>轉到MenuWidget.html(js)<br>$(“#menu”).<strong>enhanceWithin</strong>(); =&gt;套用css 套用jquery mobile樣式</p>
+<p>$.ajax url: “/wbase-web/rest/account/getPrivileges”<br>class AccountController<br>function getPrivileges =&gt; accountService.getPrivilegees(username)</p>
+<p>DAO =&gt;Privilege.java<br>            id<br>            name<br>            description<br>            priority =&gt;排序</p>
+<h2 id="2014/2/6">2014/2/6</h2>
+<p>controller<br>return ResponseEntity (會回傳http status , 決定是否success)</p>
+<p>domain            =&gt;    UIDBasic<br>service            =&gt;    UIDService<br>service.impl    =&gt;    UIDServiceImpl<br>controller        =&gt;    UIDSettingController</p>
+<p>在網址輸入</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/wbase0206_1.png" alt="image"></p>
+<p>到UIDSettingController =&gt; call UIDService  =&gt; get List<UIDBasic></p>
+<p>所以可以證實有抓到放在resources/xxx.json假資料</p>
+<p>接下來直接執行程式 回傳的資料會UIDWidget.js街到</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/wbase0206_2.png" alt="image"></p>
+<p>可以看到dto裡面有資料</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/wbase0206_3.png" alt="image"></p>
+<p>抓到每一筆資料就讓它addUID一次<br>所以剛剛用url return的資料讓他寫到table裡</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/wbase0206_4.png" alt="image"></p>
+<p>Dialog Popup</p>
+<p>麻煩的問題在於$(this)<br>因為點下去的瞬間$(this)才可以抓到要刪除的record , 但是跑出dialog再點下確定的按鈕,此時的$(this)表示別的意思<br>因此我先用selectedRecord 再點下去時先記錄要刪除的record , 按下確定按鈕後 可以用記錄到的selectedRecord刪除</p>
+<h4 id="JQuery_Validate_Plugin">JQuery Validate Plugin</h4>
+<p>新增uid時 uid和descriptioin都是必填<br>先在form上加上驗證function</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/validate_1.png" alt="image"></p>
+<p>改寫 驗證條件,要顯現的訊息</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/validate_2.png" alt="image"></p>
+<p>在都沒有填寫的狀況下 按下確定<br>跳出alert 成功</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/validate_3.png" alt="image"></p>
+<p>再加上<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/validate_4.png" alt="image"><br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/validate_5.png" alt="image"></p>
+<p>就可以顯示中文</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/validate_6.png" alt="image"></p>
+<p>發現這樣子寫的效益可能不大 完整請看<br><a href="https://www.dropbox.com/s/rt1gbk1b9v8mpoq/wbase.pdf" target="_blank">wbase development</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-10T11:24:48.000Z"><a href="/2014/03/10/mongodb-initialized/">Mar 10 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/10/mongodb-initialized/">MongoDB initialized</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="MongoDB">MongoDB</h1>
+<p><a href="http://www.mongodb.org/" target="_blank">http://www.mongodb.org/</a></p>
+<p>mongo     =&gt;     Document-Oriented database</p>
+<p>mysql,ms-sql =&gt; Relational-Oriented database</p>
+<p>mongoDB的使用上,不需要先建立儲存資料的結構,定義資料型別,基本上你可以把所有key:value格式的資料丟進去,ex:JSON,Array,Hash,非常適合物件導向</p>
+<p>不用先create資料表 在mongoDB只要找不到對應的collection就直接新增一個collection</p>
+<p>想必大部份人都比較熟關聯式資料庫,所以看表格來學習,我覺得是比較快速的</p>
+<p><a href="http://docs.mongodb.org/manual/reference/sql-comparison/" target="_blank">http://docs.mongodb.org/manual/reference/sql-comparison/</a></p>
+<table>
+<thead>
+<tr>
+<th>SQL</th>
+<th>mongo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Relational-Oriented</td>
+<td>Docment-Orented</td>
+<td></td>
+</tr>
+<tr>
+<td>table</td>
+<td>collection(channel)</td>
+<td></td>
+</tr>
+<tr>
+<td>row</td>
+<td>document</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="Mongo_GUI_=&gt;_Robomongo">Mongo GUI =&gt; Robomongo</h3>
+<p>一个基于 Shell 的跨平台开源 MongoDB 管理工具 嵌入了 JavaScript 引擎和 MongoDB</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo1.png" height=500 width=700 alt="robo"> </p>
+<p>右上的黑色部分 輸入javascript語法 點擊左上的綠色三角形 執行</p>
+<h3 id="MongoLab_-_mongoDB_Hosting:Database-as-a-service">MongoLab - mongoDB Hosting:Database-as-a-service</h3>
+<p><a href="http://" target="_blank">https://mongolab.com/</a></p>
+<p>因為Mac的硬碟空間已經很小了,不想要再裝DB在裡面,就試著想了個免費的database hosting試試看,沒想到非常簡單</p>
+<p>註冊之後 找到這個頁面</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo2.png" height=500 width=700 alt="register"> </p>
+<p>按下 create new</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo3.png" height=500 width=700 alt="create new"> </p>
+<p>plan選擇development就可以免費使用500mb</p>
+<p>成功後 點一下就可以看到URI</p>
+<p>接著會叫你add new database user</p>
+<p>之後就會給你連結此資料庫的資訊</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo4.png" height=500 width=700 alt=""> </p>
+<p>在Robomongo create new connection<br>填上Address,port,database user </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo5.png" height=500 width=700 alt=""> </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo6.png" height=500 width=700 alt=""> </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo7.png" height=500 width=700 alt=""> </p>
+<p>Done </p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-10T09:18:23.000Z"><a href="/2014/03/10/my-first-post-hexo/">Mar 10 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/10/my-first-post-hexo/">my first post &#39;hexo&#39;</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Hexo">Hexo</h1>
+<p><strong>node.js</strong> blog framework</p>
+<p><a href="http://zespia.tw/hexo/" target="_blank">http://zespia.tw/hexo/</a></p>
+<h2 id="Install">Install</h2>
+<p><code>npm install -g hexo</code></p>
+<p><code>cd hexo_JackMew/</code><br>(the directory you want to put hexo file)</p>
+<p><code>hexo init</code> </p>
+<p>then you’ll see these file in the directory.</p>
+<p>_config.yml,package.json,scaffolds,scripts,source,themes</p>
+<p><code>hexo generate</code></p>
+<p><code>hexo server</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/hexo/img/hexo1.png" height=500 width=700 alt=""></p>
+<h2 id="deploy">deploy</h2>
+<p><code>vim _config.yml</code></p>
+<pre><code><span class="label">deploy:</span>
+    type:` `github
+    ropository:` `https://github<span class="preprocessor">.com</span>/yourname/yourname<span class="preprocessor">.github</span><span class="preprocessor">.io</span><span class="preprocessor">.git</span>
+    bracnch:` `master  
+</code></pre><p>the point is that you need to have <code>blank</code> after :</p>
+<p><code>hexo generate</code></p>
+<p><code>hexo deploy</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/hexo/img/hexo2.png" height=500 width=700 alt=""></p>
+<p></br><br></br></p>
+<h2 id="new_post">new post</h2>
+<p></br><br></br></p>
+<p><code>hexo new &quot;your post name&quot;</code></p>
+<p><code>cd source/_posts</code></p>
+<p>you’ll see the new file postname.<code>md</code></p>
+<p><code>vim postname.md</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/hexo/img/hexo7.png" height=300 width=400 alt=""></p>
+<p>Categories and tags will create link to your post.</p>
+<p>When you finished the post.</p>
+<p><code>hexo generate</code> again</p>
+<p><code>hexo deploy</code></p>
+<p>The new post is on the blog now , <strong>Amazing ! how easy it is !!!</strong></p>
+<p></br></p>
+<h2 id="Mou">Mou</h2>
+<p>md means markdown </p>
+<p>I use <a href="http://mouapp.com/" target="_blank">Mou</a> to edit the markdown.</p>
+<p>because of it’s concise UI and live preview.</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/hexo/img/hexo3.png" height=500 width=700 alt=""></p>
+<p>but when I write down the post first time , I found it some inconvinience .</p>
+<p>I can’t resize the image linked from the external dropbox.</p>
+<p>The way I solve this problem is :</p>
+<p><code>&lt;img src=&quot;https://dl.dropboxusercontent.com/u/47510080/markdown/hexo/img/hexo2.png&quot; height=500 width=700 alt=&quot;local hexo&quot;&gt;</code></p>
+<p>and I can’t change my text color directly.</p>
+<p>Maybe that’s because I’am the newbie to the markdown.</p>
+<h2 id="IMG_scr_=_dropbox_url">IMG scr = dropbox url</h2>
+<p>I waste an half hour to do this.<br>Finally I found that the file need to put into the Public folder</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/hexo/img/hexo4.png" height=188 width=255 alt=""></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/hexo/img/hexo5.png" height=188 width=255 alt=""></p>
+<p>and you can direclty use the copy url.</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/hexo/img/hexo6.png" height=300 width=400 alt=""></p>
+<p>you can copy the url in local.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-07T09:57:37.000Z"><a href="/2014/03/07/hello-world/">Mar 7 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/07/hello-world/">Hello World</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Welcome to <a href="http://zespia.tw/hexo" target="_blank">Hexo</a>! This is your very first post. Check <a href="http://zespia.tw/hexo/docs" target="_blank">documentation</a> to learn how to use.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+    <a href="/archives/page/21/" class="alignleft prev">Prev</a>
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

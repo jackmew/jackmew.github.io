@@ -1,0 +1,385 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2014/05/15 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  <meta name="description" content="java.net.url
+java-restful這個架構挺像我們wbase-web的方式
+how-do-you-set-session-attributes-with-java-net-urlconnection 結論是session是server端的東西 client端無法產生
+當建立連線後 會">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="2014/05/15"/>
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-15T05:37:42.000Z"><a href="/2014/05/15/20140515/">May 15 2014</a></time>
+      
+      
+  
+    <h1 class="title">2014/05/15</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="java-net-url">java.net.url</h1>
+<p><a href="http://www.codedata.com.tw/java/java-restful-1-jersey-and-jax-rs" target="_blank">java-restful</a>這個架構挺像我們wbase-web的方式</p>
+<p><a href="http://stackoverflow.com/questions/11706918/how-do-you-set-session-attributes-with-java-net-urlconnection" target="_blank">how-do-you-set-session-attributes-with-java-net-urlconnection</a> 結論是session是server端的東西 client端無法產生</p>
+<p>當建立連線後 會產生sessionID 之後再次連上去 會因為同樣的sessionID 所以就可以知道你已經登入過了</p>
+<p><a href="http://www.hccp.org/java-net-cookie-how-to.html" target="_blank">如何抓cookie 然後抓sessionID</a> 但是他寫了一個很大的CookieManager 我不需要那麼多功能</p>
+<p><a href="http://rritw.com/a/JAVAbiancheng/JAVAzonghe/20100829/15676.html" target="_blank">Java模擬網站登錄</a> 這個取得sessionID的方式比較適合我</p>
+<p><a href="http://stackoverflow.com/questions/2793150/how-to-use-java-net-urlconnection-to-fire-and-handle-http-requests" target="_blank">java.net.url post 這根本精華篇吧</a></p>
+<p><a href="http://examples.javacodegeeks.com/enterprise-java/rest/restful-java-client-with-java-net-url/" target="_blank">restful-java-client-with-java-net-url</a>借由這篇我才發現寫成這樣<code>&quot;{\&quot;id\&quot;:1,\&quot;firstName\&quot;:\&quot;Liam\&quot;,\&quot;age\&quot;:22,\&quot;lastName\&quot;:\&quot;Marco\&quot;}&quot;</code>就會是JSON格式</p>
+<p>然而我又發現到</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/url1.png" alt="image"></p>
+<p>是先將array 包起資料 然後再變成JSON的</p>
+<p>所以我的JSON資料應該最外層再包一層</p>
+<p><code>&quot;[{\&quot;id\&quot;:1,\&quot;firstName\&quot;:\&quot;Liam\&quot;,\&quot;age\&quot;:22,\&quot;lastName\&quot;:\&quot;Marco\&quot;}]&quot;</code></p>
+<p>就可以傳到</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/url2.png" alt="image"></p>
+<p>requestBody 就可以接收到參數了</p>
+<p><code>conn.getInputStream()</code> 實際產生連線的部分</p>
+<h1 id="java_連rest_api_測試">java 連rest api 測試</h1>
+<p>以java的方式 連上 url 去call rest api 來做測試</p>
+<p>還挺有趣的 而且明顯發現自己的sense變強了 雖然還是要查資料</p>
+<p>但寫比較快了 之後錄上影片</p>
+<p>明天要解決的問題</p>
+<ol>
+<li><p>String抓部分message</p>
+</li>
+<li><p>用Terminal(console) 執行此java code</p>
+</li>
+</ol>
+<h1 id="restClient">restClient</h1>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/blog/">blog</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/wbase/">wbase</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jackmew.github.io/2014/05/15/20140515/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

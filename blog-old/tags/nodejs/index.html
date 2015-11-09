@@ -1,0 +1,354 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>nodejs | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title tag">nodejs</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-13T05:43:07.000Z"><a href="/2014/03/13/nodejs-install/">Mar 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/13/nodejs-install/">nodejs install</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Mac_install_node">Mac install node</h2>
+<p><code>brew install node</code><br><code>node -v</code> to show the version of node you installed</p>
+<p>In <code>/usr/local/bin</code> you’ll find <code>node</code> &amp; <code>npm</code></p>
+<h3 id="n_=&gt;_node_verision_management">n =&gt; node verision management</h3>
+<p><code>npm install -g n</code></p>
+<p><code>n help</code> =&gt; Commands</p>
+<p><code>n --version</code> =&gt; look version</p>
+<h3 id="node">node</h3>
+<h5 id="test1">test1</h5>
+<p>create a javascript =&gt; helloworld.js</p>
+<pre><code>console.<span class="keyword">log</span>(<span class="string">"Hello World"</span>);
+</code></pre><p><code>cd node/</code></p>
+<p><code>node helloworld.js</code></p>
+<p>output : Hello World</p>
+<h5 id="test2">test2</h5>
+<p><code>$ node -e &quot;console.log(&#39;Hello worldddddddd&#39;)&quot;</code></p>
+<p>output : Hello worldddddddd</p>
+<p>console is console object that node.js provided to show console text.</p>
+<h5 id="test3">test3</h5>
+<p>create a HTTP server</p>
+<pre><code><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);
+
+http.createServer(<span class="function"><span class="keyword">function</span><span class="params">(req,res)</span>{</span>
+    res.writeHead(<span class="number">200</span>,{<span class="string">'Content-Type'</span>:<span class="string">'text/html'</span>});
+    res.write(<span class="string">'&lt;h1&gt;Node.js&lt;/h1&gt;'</span>);
+    res.end(<span class="string">'&lt;p&gt;Hello World&lt;/p&gt;'</span>);
+}).listen(<span class="number">3000</span>);
+
+console.log(<span class="string">"HTTP serve is listening at port 3000."</span>);
+</code></pre><h3 id="supervisor">supervisor</h3>
+<p>refresh browser and you can see the consequence.</p>
+<p><code>npm install -g supervisor</code></p>
+<p>use</p>
+<p><code>supervisor app.js</code></p>
+<h3 id="note">note</h3>
+<p>PHP總是重新讀取並解析指令稿=&gt;直接更新瀏覽器 觀察結果<br>Node.js只有在第一次參考到某部分才會去解析指令檔 以後都會直接存取記憶體</p>
+<p>supervisor可以幫助你實現 直接更新瀏覽器 馬上觀察結果</p>
+<p>Module=&gt;node.js提供了require來呼叫其他模組</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

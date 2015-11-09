@@ -1,0 +1,461 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2014/09/19 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  <meta name="description" content="eclipse import module
+首先在terminal 啟動成功
+分析結構
+source-&amp;gt; 有很多module , main:web . 而且竟然有個pom.xml!?
+
+pom
+maven的設定檔:
+
+表示要使用哪些repository , 依賴哪些dependencis
+
+設">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="2014/09/19"/>
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-19T01:41:50.000Z"><a href="/2014/09/19/20140919/">Sep 19 2014</a></time>
+      
+      
+  
+    <h1 class="title">2014/09/19</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="eclipse_import_module">eclipse import module</h1>
+<h2 id="首先在terminal_啟動成功">首先在terminal 啟動成功</h2>
+<h3 id="分析結構">分析結構</h3>
+<p>source-&gt; 有很多module , main:web . 而且竟然有個pom.xml!?</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/15.png" alt="image"></p>
+<h3 id="pom">pom</h3>
+<p>maven的設定檔:</p>
+<ol>
+<li><p>表示要使用哪些repository , 依賴哪些dependencis</p>
+</li>
+<li><p>設定repository的path</p>
+</li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/16.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/17.png" alt="image"></p>
+<p>結論: 當需要dependency時 都是去repository抓.</p>
+<h3 id="build整個模組">build整個模組</h3>
+<p>設定目前terminal環境 <code>. ~/project/tbs/bin/stetenv.sh</code></p>
+<ol>
+<li><p>然後在<code>~/project/tbs/svn/impl/trunk/souce</code> <code>mvn -o install</code></p>
+</li>
+</ol>
+<p>就會用source的pom去build整個模組</p>
+<ol>
+<li>web module(main module) , 裡面設定了需要依賴哪些我們自己寫的module</li>
+</ol>
+<p>所以直接在<code>~/project/tbs/svn/impl/trunk/souce/web</code> <code>mvn -o install</code></p>
+<p>也是build整個模組</p>
+<h3 id="mvn_clean_vs_compile_vs_package_vs_install">mvn clean vs compile vs package vs install</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/18.png" alt="image"></p>
+<p>所以說 只要build bat module的 最少指令應該是</p>
+<p><code>~/project/tbs/svn/impl/trunk/source/bat --&gt; mvn clean install</code></p>
+<p><code>~/project/tbs/svn/impl/trunk/source/web --&gt; mvn clean install</code></p>
+<p>因為web是build成 war 檔 , war 包了其他所有module jar , 所以web 每一次都必須install</p>
+<h3 id="tomcat">tomcat</h3>
+<p>將war複製貼上到 tomcat/apache-tomcat-5.5.35/webapps/</p>
+<p>啟動</p>
+<p><code>~/project/tbs/usr/tomcat/apache-tomcat-5.5.35/bin/ --&gt;sh startup.sh</code></p>
+<p>看log</p>
+<p><code>~/project/tbs/usr/tomcat/apache-tomcat-5.5.35/bin/ --&gt;tail -f ../logs/catalina.out</code></p>
+<p>關閉</p>
+<p><code>~/project/tbs/usr/tomcat/apache-tomcat-5.5.35/bin/ --&gt;sh shutdown.sh</code></p>
+<h3 id="module_import_to_eclipse">module import to eclipse</h3>
+<p>首先 以上動作做完以後 , 先impor main class =&gt; web</p>
+<p><code>~/project/tbs/svn/impl/trunk/source/web --&gt; mvn eclipse:eclipse</code></p>
+<p><a href="http://maven.apache.org/guides/mini/guide-ide-eclipse.html" target="_blank">link</a></p>
+<p>接下來就是一般的import動作 沒什麼問題 </p>
+<p>有問題的是之後的module</p>
+<p>一樣需要先下</p>
+<p><code>~/project/tbs/svn/impl/trunk/source/com --&gt; mvn eclipse:eclipse</code></p>
+<p>我們知道web 內 depend on 其他的module , 所以要改變原本的depend on<br>local repository =&gt; 改成 depend on local</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/19.png" alt="image"></p>
+<p>remove depending on local repository</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/20.png" alt="image"></p>
+<p>add depending on local</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/21.png" alt="image"></p>
+<p>另外 其他module間 可能會互相depend</p>
+<p>ex: bat depend on com</p>
+<p>一樣 要改變depend on what</p>
+<p>remove </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/23.png" alt="image"></p>
+<p>add</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/22.png" alt="image"></p>
+<h1 id="final">final</h1>
+<p>在IDE中 ex: eclipse , sts =&gt; clean build 產生的檔案 都找不到 , 但環境設定好後 是可以執行的.</p>
+<h1 id="trace_tbs">trace tbs</h1>
+<p>這次的問題是 <code>Batch</code></p>
+<p>問題流程</p>
+<p>一個xxx.ctr 會去執行 xxx.txt/xxx.csv<br>將此txt/csv 轉成 pdf檔</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/1.png" alt="image"></p>
+<p>執行這個測試程式 就會執行這個狀況</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/2.png" alt="image"></p>
+<p>接著這個查詢頁面 就可以看到執行成功的訊息!<br>但是 bug 就是 一次只能成功一個.ctr</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/3.png" alt="image"></p>
+<p>問題就是 為何產生一筆之後 就會錯誤? 再次執行 就可以再執行一次<br>答案 Thread 問題 沒有搬移 舊的log問題…聽不懂…</p>
+<p>May給的提示 : 1. Job Id : RPT-020-1 2. AutomailRPTServiceImpl.java</p>
+<p>所以我必須先去update tbs source</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/4.png" alt="image"></p>
+<p>然後搜尋<code>AutomailRPTServiceImpl.java</code> ,找到屬於是bat module , 所以要import bat module 才能夠debug .</p>
+<p>import 成功後</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/5.png" alt="image"></p>
+<p>找個地方下中斷點! 開始找問題</p>
+<p>但是 若是May給的提示只有Job Id呢?</p>
+<p>用file search</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/6.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/7.png" alt="image"></p>
+<p>原來通常一個Job Id 代表的是一個batchTask , 也就是batch裡面的某一支程式</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/8.png" alt="image"></p>
+<p>找到了某一個bean  再次去找相對應的class 名稱</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/9.png" alt="image"></p>
+<p>再次搜尋</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/11.png" alt="image"></p>
+<p>找到後 下中斷點</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/12.png" alt="image"></p>
+<p>開始一步步trace</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/13.png" alt="image"></p>
+<p>再不然 沒有提示的話 只好從這邊找到提示</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/14.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/blog/">blog</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/maven/">maven</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jackmew.github.io/2014/09/19/20140919/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

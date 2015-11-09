@@ -1,0 +1,544 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2014/10/20 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  <meta name="description" content="maven scm (Software Configuration Management)
+vaadin maven project
+vaddin 也可以是 maven project ?
+
+server-side development
+client-side development =&amp;gt; ">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="2014/10/20"/>
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-21T01:44:59.000Z"><a href="/2014/10/21/20141020/">Oct 21 2014</a></time>
+      
+      
+  
+    <h1 class="title">2014/10/20</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="maven_scm_(Software_Configuration_Management)">maven scm (Software Configuration Management)</h1>
+<h1 id="vaadin_maven_project">vaadin maven project</h1>
+<p>vaddin 也可以是 maven project ?</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/1.png" alt="image"></p>
+<h1 id="server-side_development">server-side development</h1>
+<h1 id="client-side_development_=&gt;_choose_this_one-">client-side development =&gt; choose this one.</h1>
+<p>Java -&gt; vaadin client compiler -&gt; Javascript (run in the web browser)</p>
+<ol>
+<li><p>是server-side的 component or add-ons</p>
+</li>
+<li><p>pure client-side GWT application -&gt; vaadin 相容於 GWT</p>
+</li>
+</ol>
+<p><a href="http://www.educity.cn/wenda/117318.html" target="_blank">link</a></p>
+<h1 id="結論就是看server-side就好">結論就是看server-side就好</h1>
+<h1 id="vaadin_是framework_,_不是library_!!!">vaadin 是framework , 不是library !!!</h1>
+<p>如果在只寫client-side 可能只能算是library ???</p>
+<p>framework : <a href="http://echo.nextapp.com/site/" target="_blank">echo</a>(類似)</p>
+<p>想法是 server &lt;—- ajax —-&gt; client(其實是server , Java code產生的javascript)</p>
+<p>client , click —&gt; server會收到(可能是用某種ajax的超快方式傳送?) , 所以click後的處理也是在server做 , 做完以後才又publish到client(client實際上只是一個顯示?) , vaadin是個framework , 所以說, vaadin處理data , 抓data也是用自己的方法(實際上也是用JPA?) .</p>
+<p><a href="http://www.educity.cn/wenda/117318.html" target="_blank">不錯的圖</a></p>
+<h1 id="而且更大的問題是server-side寫法_和client-side寫法不同_!">而且更大的問題是server-side寫法 和client-side寫法不同 !</h1>
+<h1 id="address_book_ui">address book ui</h1>
+<ol>
+<li><p>class UI : starting point .</p>
+</li>
+<li><p>user interface component 被存在session裡!?</p>
+</li>
+<li><p>UI.init() : 當component都created就會呼叫</p>
+</li>
+</ol>
+<h1 id="jpa_container">jpa container</h1>
+<p><a href="jpacontainer-tutorial/">jpacontainer-tutorial</a></p>
+<p><a href="https://vaadin.com/book/-/page/jpacontainer.usage.html" target="_blank">參考</a></p>
+<h1 id="execute_example">execute example</h1>
+<p><a href="http://demo.vaadin.com/book-examples-vaadin7/book/#application.eventlistener.classlistener" target="_blank">link</a></p>
+<p>是搭配這本<a href="https://vaadin.com/book/-/page/advanced.navigator.html" target="_blank">書</a></p>
+<h1 id="Apache_Ivy">Apache Ivy</h1>
+<p><a href="http://stackoverflow.com/questions/15561322/maven-or-ivy-which-one-is-better-with-a-system-already-in-production-and-the-o" target="_blank">ivy vs maven</a></p>
+<p>簡而言之 , <a href="http://ant.apache.org/ivy/" target="_blank">Ivy</a>可以視為Ant的延伸(Ivy adds dependency management functionality to Ant) , 所以若是你一開始就是用Ant 那你之後轉為用Ivy 就比較輕鬆 但是Maven就算是比較不一樣的做法了!</p>
+<h1 id="用maven_產生_vaadin_project">用maven 產生 vaadin project</h1>
+<p><a href="https://vaadin.com/book/-/page/getting-started.maven.html" target="_blank">link</a></p>
+<p>generate vaadin maven project : </p>
+<p><code>mvn archetype:generate -DarchetypeGroupId=com.vaadin -DarchetypeArtifactId=vaadin-archetype-application -DarchetypeVersion=LATEST -DgroupId=org.jackho -DartifactId=vaadinMaven2 -Dversion=1.0 -Dpackaging=war</code></p>
+<p><code>mvn package</code></p>
+<p><code>mvn jetty:run</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/2.png" alt="image"></p>
+<p><code>mvn clean</code> 時會把某theme , web.xml等東西砍掉 …  , <code>mvn package</code> 才會重新產生 很花時間！ , 而且我在eclipse 按下clean 好像沒有package 只有build? ,所以沒有產生theme,web.xml , 出現錯誤! ===&gt; 改成只用<code>mvn package</code></p>
+<h1 id="在eclipse中_無法package_…">在eclipse中 無法package …</h1>
+<h1 id="Navigator_管理多個page">Navigator 管理多個page</h1>
+<h1 id="Error_indicator">Error indicator</h1>
+<p>All components have a built-in error indicator</p>
+<h1 id="layout_,_vaadin_composition">layout , vaadin composition</h1>
+<h1 id="login_view">login view</h1>
+<h1 id="kineticjs">kineticjs</h1>
+<h1 id="how_it_work">how it work</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/canvas/kineticjs/1/1.png" alt="image"></p>
+<h1 id="example">example</h1>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/" target="_blank">link</a></p>
+<p><a href="http://stackoverflow.com/questions/19326365/paint-brush-on-html5-canvas-with-kineticjs-inconsistent" target="_blank">paint</a></p>
+<h1 id="Doc_/_API">Doc / API</h1>
+<p><a href="http://kineticjs.com/docs/" target="_blank">link</a></p>
+<h1 id="rectangle">rectangle</h1>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-kineticjs-rect-tutorial/" target="_blank">link</a></p>
+<h1 id="circle">circle</h1>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-kineticjs-circle-tutorial/" target="_blank">link</a></p>
+<h1 id="line">line</h1>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-kineticjs-line-tutorial/" target="_blank">link</a></p>
+<h1 id="rotate">rotate</h1>
+<p><a href="http://stackoverflow.com/questions/14949628/kinetic-js-rotating-image-on-touch" target="_blank">link</a></p>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-kineticjs-rotation-animation-tutorial/" target="_blank">link</a></p>
+<h1 id="drag_and_drop">drag and drop</h1>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-drag-and-drop-the-stage-with-kineticjs/" target="_blank">link</a></p>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-drag-and-drop-bounds-tutorial-with-kineticjs/" target="_blank">link</a></p>
+<h1 id="layer">layer</h1>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-layer-management-with-kineticjs/" target="_blank">link</a></p>
+<h1 id="shape_layer">shape layer</h1>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-shape-layering-with-kineticjs/" target="_blank">link</a></p>
+<h1 id="tooltip">tooltip</h1>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-kineticjs-label-tutorial/" target="_blank">link</a></p>
+<h1 id="game">game</h1>
+<p><a href="http://www.creativebloq.com/create-game-kineticjs-9134437" target="_blank">link</a></p>
+<h1 id="Reference">Reference</h1>
+<p><a href="http://ecardcanvas.com/edit#edit" target="_blank">link</a></p>
+<h1 id="script_defer=defer">script defer=defer</h1>
+<p><a href="http://stackoverflow.com/questions/5250412/how-exactly-does-script-defer-defer-work" target="_blank">link</a></p>
+<h1 id="draw_&amp;_drawScene_&amp;_drawHit">draw &amp; drawScene &amp; drawHit</h1>
+<p><a href="http://stackoverflow.com/questions/14722787/what-is-the-difference-between-kineticjs-draw-methods" target="_blank">link</a></p>
+<h1 id="line_setPosition_&amp;_setPoints">line setPosition &amp; setPoints</h1>
+<p><a href="http://stackoverflow.com/questions/15556509/kineticjs-difference-between-setpoints-and-setposition" target="_blank">link</a></p>
+<pre><code>    redLine<span class="preprocessor">.getPoints</span>() : [<span class="number">73</span>, <span class="number">70</span>, <span class="number">340</span>, <span class="number">23</span>] 
+    redLine<span class="preprocessor">.getPoints</span>()[<span class="number">0</span>] : <span class="number">73</span>
+    redLine<span class="preprocessor">.getPoints</span>()[<span class="number">0</span>]<span class="preprocessor">.x</span> : undefined 
+</code></pre><h1 id="diagram_&amp;_diagram_drag">diagram &amp; diagram drag</h1>
+<p><a href="http://stackoverflow.com/questions/18705587/diagram-creater-using-kineticjs" target="_blank">link</a></p>
+<h1 id="colorpicker_:_spectrum">colorpicker : spectrum</h1>
+<p><a href="http://bgrins.github.io/spectrum/" target="_blank">link</a></p>
+<h1 id="stage_size">stage size</h1>
+<p><a href="http://stackoverflow.com/questions/19644529/scale-kineticjs-stage-with-browser-resize" target="_blank">link</a></p>
+<p><code>stage.setWidth , stage.setHeight</code></p>
+<p><code>stage.setScaleX , stage.setScaleY</code></p>
+<h1 id="全部widget都bind_event">全部widget都bind event</h1>
+<p>bind在layer上 , </p>
+<pre><code>  layer.on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span><span class="params">(evt)</span> {</span>
+    <span class="keyword">var</span> shape = evt.target;
+    alert(shape.getName());
+  });
+</code></pre><p><code>evt.target</code>抓到特定widget</p>
+<h1 id="text_in_rectangle">text in rectangle</h1>
+<p><a href="http://stackoverflow.com/questions/15747390/fill-border-not-working-for-kineticjs-text-object-on-chrome" target="_blank">原本的text是有長方形的border的</a>改版以後變成沒有,新的做法是在<a href="http://stackoverflow.com/questions/15747390/fill-border-not-working-for-kineticjs-text-object-on-chrome" target="_blank">text後面再放一個rectangle</a></p>
+<p>text 超麻煩 :</p>
+<ol>
+<li><p>要用rectangle包上 變成border</p>
+</li>
+<li><p>此時drag時 只移動text , rectangle(border) , 沒有被移動 , 應該要包成group.</p>
+</li>
+</ol>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-drag-and-drop-a-group-with-kineticjs/" target="_blank">link</a></p>
+<p>我覺得這樣做法比較好,不管怎樣 先reset全部 都變成沒有border , 然後讓focus那一個有border .</p>
+<h1 id="selector">selector</h1>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-select-shapes-by-name-with-kineticjs/" target="_blank">link</a></p>
+<p><code>stage.get(&#39;#id&#39;)[0].method();</code></p>
+<p><code>stage.find(&#39;#id&#39;)[0].method();</code></p>
+<h1 id="remove_&amp;_destroy">remove &amp; destroy</h1>
+<p><a href="http://stackoverflow.com/questions/17316918/what-is-the-difference-between-remove-and-destroy-in-kinetic-js" target="_blank">link</a></p>
+<h1 id="不用remove_or_destroy_,_用hide_,_unhide就好啦!">不用remove or destroy , 用hide , unhide就好啦!</h1>
+<p><a href="http://stackoverflow.com/questions/14075859/kineticjs-add-rect-remove-rect-then-add-again-not-working-mouseover" target="_blank">link</a></p>
+<h1 id="加anchor到角落">加anchor到角落</h1>
+<p><a href="http://jsfiddle.net/m1erickson/4V9vs/" target="_blank">link</a></p>
+<h1 id="很棒的範例">很棒的範例</h1>
+<p><a href="http://www.html5canvastutorials.com/labs/html5-canvas-drag-and-drop-resize-and-invert-images/" target="_blank">主要</a></p>
+<ol>
+<li><p>laodImages =&gt; 讀取image , 設定image {} ,計算幾個image</p>
+</li>
+<li><p>callback function: initStage =&gt; set stage , group(image,anchor)</p>
+</li>
+<li><p>addAnchor -&gt; anchor的位置是手動給的 直接給角落的position</p>
+</li>
+<li><p>update</p>
+</li>
+</ol>
+<h1 id="image_onload">image onload</h1>
+<p>image 載入完成後 會執行的事件</p>
+<p><a href="http://jsfiddle.net/projeqht/kLnxK/" target="_blank">會隱藏四個角的Anchor</a></p>
+<p><a href="http://stackoverflow.com/questions/17530496/kinetic-js-problems-trying-to-resize-images" target="_blank">link</a></p>
+<h1 id="resize_/_rotate_image">resize / rotate image</h1>
+<p><a href="http://stackoverflow.com/questions/18023366/zooming-a-group-with-kineticjs" target="_blank">link</a></p>
+<p>從簡單的開始看吧…image &amp; group scale or rotate .</p>
+<h1 id="UI_reference">UI reference</h1>
+<p><a href="http://192.241.236.31/themes/preview/smartadmin/1.4.1/ajaxversion/#ajax/dashboard.html" target="_blank">link</a></p>
+<p><a href="http://wrapbootstrap.com/preview/WB00U99JJ" target="_blank">link</a></p>
+<h1 id="image_/_video">image / video</h1>
+<p>是存在資料庫中的儲存的 , 當按下某button , 列出 image 列表(query image all)  , 當按下某button , 列出 video 列表(query video all)</p>
+<p>這時候 點選某一個想要的檔案 , 先抓出url or binary ??? , 都可以放上src , 那暫存的時候 , 就是直接將 src後面那串儲存在某個.txt , or 某file就好！ 有道理！ , 可能要有個file儲存 , 所有widget的位置??? 還是儲存這個狀態的整個HTML ? (此狀態會顯示在HTML???)</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pass%20data/1.png" alt="image"></p>
+<h1 id="video">video</h1>
+<p>problem: 影片格式</p>
+<p><a href="http://www.w3schools.com/html/html5_video.asp" target="_blank">HTML5 <video></a> 只支援:MP4 WebM Ogg</p>
+<p>用<a href="http://www.w3schools.com/html/html_youtube.asp" target="_blank">youtube內嵌 </a>比較不會有這問題?</p>
+<p>那原系統是提供什麼樣的影片格式？ 若不符合 就要每次都需要先轉???</p>
+<h1 id="kineticjs_+_video">kineticjs + video</h1>
+<p><a href="http://stackoverflow.com/questions/13397655/kineticjs-how-to-play-video" target="_blank">link</a></p>
+<p><a href="http://html5doctor.com/video-canvas-magic/" target="_blank">link</a> 這個link是在解釋上面那個link的做法,首先一個canvas,一個video , 當video按下play時 , canvas同步去抓video此時的frame畫面,所以就可以達到canvas上播放影片的效果.</p>
+<p>因此在kinecticjs沒有提供video widget時 , 要怎麼做呢? 用image widget 同步去抓video frame畫面, 來達到video效果(video可能要藏在off screem的地方)！</p>
+<p>為什麼要這樣呢?因為kineticjs的widget有提供drag的功能,image也有 , 所以video若只用html5 tag的方式做 , 就無法drag了!</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/canvas/kineticjs/1/2.png" alt="image"></p>
+<p>靠背 根本不清楚？ 而且如果多放幾個video , 要一直去copy圖片 一直refresh video會不會有問題???</p>
+<p>還是說先用假的image,有drag方法 ,當最後preview 時候 , 才能播放video .</p>
+<h1 id="scale">scale</h1>
+<ol>
+<li><p>image/video 一組 , 基準點:center , 縮放 長寬比例不變 , rotate跟著中心點轉</p>
+</li>
+<li><p>文字一組 , 基準點:左上 , 縮放 只能左右 夾文字 , rotate跟著左上角</p>
+</li>
+<li><p>draw一組 , 根本很難儲存?</p>
+</li>
+</ol>
+<h1 id="bootstrap_list">bootstrap list</h1>
+<p><a href="http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-lists.php" target="_blank">link</a></p>
+<h1 id="bootstrap_非常有用">bootstrap 非常有用</h1>
+<p><a href="http://www.tutorialspoint.com/bootstrap/bootstrap_collapse_plugin.htm" target="_blank">link</a></p>
+<h1 id="todo">todo</h1>
+<p>以右上角和中心為基準點 , 在每次dragmove時 都計算其他三點.</p>
+<h1 id="circular_slider">circular slider</h1>
+<p><a href="http://stackoverflow.com/questions/4613261/get-and-set-position-with-jquery-offset" target="_blank">link</a></p>
+<p><a href="https://github.com/princejwesley/circular-slider" target="_blank">source code</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/blog/">blog</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/vaadin/">vaadin</a>, <a href="/tags/gwt/">gwt</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jackmew.github.io/2014/10/21/20141020/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

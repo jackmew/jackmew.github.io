@@ -1,0 +1,423 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2015/02/10 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  <meta name="description" content="Vaddin Field
+在Vaadin中 , Field長具備兩種模式 presentation &amp;amp; model 
+Presentation 是 給使用者看的
+Model 真實的資料
+接下來提 為何需要兩種模式
+ComboBox
+最常見的就是ComboBox , 為了支持多國語言 , Co">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="2015/02/10"/>
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-02-10T01:39:56.000Z"><a href="/2015/02/10/20150210/">Feb 10 2015</a></time>
+      
+      
+  
+    <h1 class="title">2015/02/10</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Vaddin_Field">Vaddin Field</h1>
+<p>在Vaadin中 , Field長具備兩種模式 presentation &amp; model </p>
+<p>Presentation 是 給使用者看的</p>
+<p>Model 真實的資料</p>
+<p>接下來提 為何需要兩種模式</p>
+<h1 id="ComboBox">ComboBox</h1>
+<p>最常見的就是ComboBox , 為了支持多國語言 , ComboBox的內容是根據不同Locale 從資料庫抓出來到 .</p>
+<p>顯示時是中文/英文(presentation) , 實際上是代碼10,20,30…(model).</p>
+<p>Vaadin有兩種解決方式 , 1. Converter 2. DataSource</p>
+<p>Converter的方式 , effort很高 , 要改寫ComboBox的運作方式 , 改寫運作方式 意味著一改掉 , 之後的運作方式 也必須考慮進去 , 所以可能要改上加改 .</p>
+<p>DataSource , 直接用ObjectProperty , field.setPropertyDataSource() 將值塞進去 , 預設的converter就會自動轉換</p>
+<h1 id="Form_/_error_trace">Form / error trace</h1>
+<p>因此 就有個Form這個class誕生 , 來紀錄Fields , 和ProppertysetItem</p>
+<p>這時候出現了問題  , 但是我一直查不到</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/21.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/22.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/23.png" alt="image"></p>
+<p>以上是一連串的錯誤訊息</p>
+<p>通常我們在call function時 是一個一個call , 所以會往內層call進去 , 進到較裡面的library去 , 所以錯誤會從內層先發出來 , 發出exception , 然後一層一層發出 , 所以通常最下面那行錯誤訊息 是我們寫的code發出的錯誤訊息 . </p>
+<p>但在callback , event driven的程式 就不一定是一層一層地發出 , 它可能中間有call 某event , 在第一時間沒有發出 , 後來被觸發了 , 才發出錯誤 , 也就是說 並不會順序一致地call .</p>
+<p>再來是Java發出的錯誤訊息, 在這個例子中 , 真正發出的錯誤是Form.java 29 的裡面的setPropertyDataSource , 但下面還有Java.lang.IllegalArgumentException , 也就是說我們可以知道Form的確發出了Exception , 但是還沒完 , 因為Vaadin的TextField 有內建Converter可以將Integer轉成String , 所以Java接到這個Exception , 開始嘗試去轉型 , 但是發生錯誤！</p>
+<p>其實真正錯誤的原因是 空字串 轉成 Integer  , 產生錯誤</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/24.png" alt="image"></p>
+<p>因此 改成 一開始的value就會是null , 不會有別的情況</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/25.png" alt="image"></p>
+<h1 id="null_,_primitvie_,_Object">null  , primitvie , Object</h1>
+<p>Java : int -&gt; primitive , Integer -&gt; Object</p>
+<p>Integer才能夠set null , 而且必須要有初始值</p>
+<p>int 不能夠set null , 不用有初始值</p>
+<h1 id="call_by_value_,_call_by_reference">call by value , call by reference</h1>
+<p>Integer -&gt; call by reference</p>
+<p>int -&gt; call by value </p>
+<p>Integer給的是一塊記憶體位置 , 所以若沒有給初始值 , 那Integer既不是value(值) 也不是refernce(記憶體位置) , 有點怪 .</p>
+<p>int 本身就是值 , 值無法設定null , 也不需要給初始值 , 因為….沒有就沒有 就是沒值啦 .</p>
+<h1 id="static">static</h1>
+<p>接下來看這兩個被放在util package的class</p>
+<p>這裡面都放了static function</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/26.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/28.png" alt="image"></p>
+<p><a href="http://pydoing.blogspot.tw/2010/11/java-static.html" target="_blank">static特性</a></p>
+<p>當我們要使用static function時 只要直接透過class就可以使用</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/27.png" alt="image"></p>
+<p>好 那理由呢?</p>
+<p>首先</p>
+<p>static 具有唯一性 , 不能夠被new , 也就是他不會有多個實體 永遠就只有一個 , 在util觀念下 , 工具也只要有一個 可以一直被使用就好 , 不需要有多個實體 存放不同的變數內容 . 所以在這邊宣告成static是很適合的 .</p>
+<p>同時帶到call by reference的觀念</p>
+<p><code>ItemUtils.bind(bean, item, &quot;uuid&quot;);</code> </p>
+<p>並沒有傳回值!?</p>
+<p>常常我都是將參數傳進去 一個 或多個 並且傳回來組合好的物件 .</p>
+<p>可是其實只在primitive type variable的狀況下 才強制一定要這樣做 , </p>
+<p>若是call by reference的object , 當值被改變時 , 是此記憶體位置內的變數都被改變 , 所以你再次acess這個物件時 , 這個位置內的變數 已經被改變了! (當然接到return值也是可以做到) , 那有時 為什麼都喜歡設定成return object呢? 因為Chain !</p>
+<p>Chain —&gt; x.a().b().c();</p>
+<h1 id="example">example</h1>
+<p>舉個例子 很白痴 但寫的時候都沒想到call by reference , call by value等想法</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/29.png" alt="image"></p>
+<p>當按下button時 會call setTf4()</p>
+<h1 id="primitive_int">primitive int</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/30.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/31.png" alt="image"></p>
+<p>所以應該是這樣</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/32.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/33.png" alt="image"></p>
+<h1 id="Integer">Integer</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/34.png" alt="image"></p>
+<p>一開始的i給100</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/35.png" alt="image"></p>
+<p>call changeObject()</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/36.png" alt="image"></p>
+<p>變成200!</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/vaadin/">vaadin</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jackmew.github.io/2015/02/10/20150210/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

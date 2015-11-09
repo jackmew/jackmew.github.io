@@ -1,0 +1,424 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>js | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  <meta name="description" content="Note
+物件導向程式語言(Object-Oriented Language) Java , C++ , C#
+1.封裝(Encapsulation)
+2.繼承(Inheritance)
+3.多型(Polymorphism) 好像比較少用
+程式語言俱備這三個特性,就稱之為物件導向程式語言.
+程式語言">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="js"/>
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-13T07:08:57.000Z"><a href="/2014/03/13/js/">Mar 13 2014</a></time>
+      
+      
+  
+    <h1 class="title">js</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="Note">Note</h3>
+<p>物件導向程式語言(Object-Oriented Language) Java , C++ , C#</p>
+<p>1.封裝(Encapsulation)</p>
+<p>2.繼承(Inheritance)</p>
+<p>3.多型(Polymorphism) 好像比較少用</p>
+<p>程式語言俱備這三個特性,就稱之為物件導向程式語言.</p>
+<p>程式語言是一連串的演進過程,當處理一件事情的時候,不需要俱備這些特性,</p>
+<p>但當同時處理多件事情時,你很難用直接的思考來處理事情</p>
+<p>所以呢 OO就是只是一種設計樣式來讓我們程式設計師可以去處理多種問題,方便維護,加上新功能,才能將專案做大.</p>
+<p>當然 你夠強 你想怎麼設計你的程式處理方式 就怎麼設計.</p>
+<p>然而現在程式設計通常都是團隊一起來寫,所以你的設計方式也需要讓其他人能夠理解,別人才能維護,擴充你設計的程式.</p>
+<p>在 Javascript中 變數 方法 皆是物件<br>物件又可以隨時新增子物件</p>
+<p>1.封裝(Encapsulation)</p>
+<p>Java , C++ , C# =&gt;    class</p>
+<p>JavaScript =&gt; Constructor function =&gt;1.declare 2.new</p>
+<p>2.繼承(Inheritance)</p>
+<p>Java , C++ , C# =&gt;    class extends</p>
+<p>JavaScript =&gt; prototype 比較像擴充</p>
+<h3 id="xxx-based">xxx-based</h3>
+<p>JavaScript — Prototype-based programming language :</p>
+<p>類別事實上就是物件    =&gt; 全部都是物件</p>
+<p>C++,C#,Java — Class-based programming language:</p>
+<p>class =&gt; 類別是抽象資料型態</p>
+<p>instance =&gt; class new instance</p>
+<p><a href="https://dl.dropboxusercontent.com/u/47510080/record/javascript/javascript%20object.pdf" target="_blank">筆記</a></p>
+<h3 id="JavaScript_101">JavaScript 101</h3>
+<p><a href="http://stage.learn.jquery.com/javascript-101/" target="_blank">JavaScript 101</a></p>
+<h5 id="Immediately-Invoked_Function_Expression(IIFE)">Immediately-Invoked Function Expression(IIFE)</h5>
+<p>在javascipt function可以當作參數<br>因為在javascript中所以東西都是物件 所以function也是物件 物件自然就可以當作參數</p>
+<h3 id="演進">演進</h3>
+<p>解讀javascript =&gt;javascript引擎</p>
+<p>Mozilla    =&gt;    TraceMonkey+mozilla</p>
+<p>Google    =&gt;    V8    +    webkit<br>Safari    =&gt;    應該跟Google一樣    </p>
+<p>瀏覽器    =&gt;    圖形引擎    + JavaScript引擎<br> JavaScript引擎 =&gt; 提供部分操作瀏覽器的功能(網路,DOM,外部事件,HTML視訊,canvas,儲存)</p>
+<p>JavaScript:</p>
+<p>1.<strong>ECMAScript</strong>是一種語言規範    =&gt;    數據類型 關鍵字 保留字 運算符 =&gt;是JavaScript的骨架</p>
+<p>2.<strong>DOM</strong>(Document Object Model)    =&gt;    Document=&gt;html(content)</p>
+<p>3.<strong>BOM</strong>(Browser Object Model)        =&gt;    Browser    =&gt;瀏覽器之間的作用</p>
+<p>DOM=&gt;每個Tag都是一個節點 節點下又有一堆屬性    可以拿來操控</p>
+<p><a href="http://www.dreamdu.com/javascript/what_is_bom/" target="_blank">BOM</a>=&gt;瀏覽器視窗大小 版本訊息 瀏覽歷史紀錄 cookie</p>
+<h5 id="標準化組織">標準化組織</h5>
+<p>JavaScript的標準化組織是ECMA</p>
+<p>DOM的標準化組織是W3C</p>
+<p>BOM缺乏標準</p>
+<h3 id="BOM_&amp;_DOM">BOM &amp; DOM</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/record/javascript/bomdom.png" alt="BOM &amp; DOM"></p>
+<p>histroy    瀏覽器的上一頁 下一頁</p>
+<p>location    看到這頁面的host hostname port</p>
+<p>navigator     瀏覽次數統計</p>
+<p>screen        瀏覽的屏幕高度 單位像素</p>
+<h3 id="JQuery">JQuery</h3>
+<p>jQuery是一套<strong>跨瀏覽器的</strong>JavaScript library=&gt;簡化HTML與JavaScript之間的操作</p>
+<p>jQuery物件 &lt;=&gt; DOM物件        是不一樣的</p>
+<p>jQuery物件只能用jQuery方法    &lt;=&gt;    DOM物件只能用DOM物件的方法</p>
+<p>jQuery物件 轉=&gt;    DOM物件<br>$(“#container”).get(0)</p>
+<p>DOM物件        轉=&gt;    jQuery物件<br>$(element)</p>
+<h3 id="JQuery_特性">JQuery 特性</h3>
+<p>jQuery有下列特色:<br>1.跨瀏覽器的DOM元素選擇</p>
+<p>2.DOM巡訪與更改：支援CSS</p>
+<p>3.Events</p>
+<p>4.CSS操縱</p>
+<p>5.animate</p>
+<p>6.Ajax</p>
+<p>7.jQuery Utility</p>
+<p>8.jQuery plugin</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/blog/">blog</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/javascript/">javascript</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jackmew.github.io/2014/03/13/js/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

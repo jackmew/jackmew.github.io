@@ -1,0 +1,557 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2014/05/23 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  <meta name="description" content="非常有用的callback教學 內容包括stream , module 也很重要
+art-of-node callbacks
+沒有加入callback,一般從上到下的執行方式
+var myNumber = 1;
+function addOne(){
+    myNumber ++;
+}
+addOne">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="2014/05/23"/>
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-23T02:46:37.000Z"><a href="/2014/05/23/20140523/">May 23 2014</a></time>
+      
+      
+  
+    <h1 class="title">2014/05/23</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="非常有用的callback教學_內容包括stream_,_module_也很重要">非常有用的callback教學 內容包括stream , module 也很重要</h1>
+<p><a href="https://github.com/maxogden/art-of-node#callbacks" target="_blank">art-of-node callbacks</a></p>
+<p>沒有加入callback,一般從上到下的執行方式</p>
+<pre><code><span class="keyword">var</span> myNumber = <span class="number">1</span>;
+<span class="function"><span class="keyword">function</span> <span class="title">addOne</span><span class="params">()</span><span class="comment">{
+    myNumber ++;
+}</span>
+<span class="title">addOne</span><span class="params">()</span>;</span>
+console.log(myNumber);
+</code></pre><p>output: 2</p>
+<p>在node中 關於hard disk , network ,connection db之類要花比較長時間的動作,都會做成async function,用非同步的方式處理</p>
+<p>這邊的例子是fs.readFile(‘something’,function);<br>也就是說fs.readFile讀到檔案後 再執行function</p>
+<pre><code><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);
+
+<span class="keyword">var</span> myNumber = <span class="literal">undefined</span>;
+
+<span class="function"><span class="keyword">function</span> <span class="title">addOne</span><span class="params">()</span>{</span>
+    <span class="comment">//當readFile讀完資料,再去做後面的callback function doneReading</span>
+    fs.readFile(<span class="string">'number.txt'</span>,<span class="function"><span class="keyword">function</span> <span class="title">doneReading</span><span class="params">(err,fileContent)</span>{</span>
+        myNumber = <span class="built_in">parseInt</span>(fileContent);
+        myNumber++;
+    });
+}
+
+addOne();
+<span class="comment">//問題是 我們沒有告訴console.log(myNumber)要等到fs.readFile結束 才執行</span>
+console.log(myNumber);
+</code></pre><p>output: undefined</p>
+<h2 id="為何會是這樣的結果呢?">為何會是這樣的結果呢?</h2>
+<ol>
+<li><p>執行node script.js     ,會先parse script.js裡面的code,並檢查有沒有syntax error    </p>
+</li>
+<li><p>define function, define variable</p>
+</li>
+<li>找到執行的動作    </li>
+</ol>
+<p>在這個例子中 addOne() 的確先被執行了,但是在async function時,等檔案找到 直到 回傳的這個中間的I/O讀取時間,是可以做其他動作的,所以找到下一個可以執行的動作,也就是console.log(myNumber),而這動作不需要什麼執行時間,所以就先印出結果了    </p>
+<h1 id="callback?">callback?</h1>
+<ol>
+<li>所謂的callback function,表示 這個function將在某個function執行之後執行.</li>
+<li>我們無法知道async function什麼時候會執行完成</li>
+<li>但我們知道async function的最後執行位置在哪裡 =&gt; async function的最後一行</li>
+</ol>
+<pre><code>    <span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);
+    <span class="keyword">var</span> myNumber = <span class="literal">undefined</span>;
+
+    <span class="function"><span class="keyword">function</span> <span class="title">addOne</span><span class="params">(callback)</span>{</span>
+        fs.readFile(<span class="string">'number.txt'</span>,<span class="function"><span class="keyword">function</span> <span class="title">doneReading</span><span class="params">(err,fileContents)</span>{</span>
+            myNumber = <span class="built_in">parseInt</span>(fileContents);
+            myNumber++;
+            <span class="comment">//我們可以知道 callback function的最後一行 必定最後執行</span>
+            callback();
+        });
+    }
+    <span class="function"><span class="keyword">function</span> <span class="title">logMyNumber</span><span class="params">()</span>{</span>
+        console.log(myNumber);
+    }
+
+    addOne(logMyNumber);
+</code></pre><p>所以我們將console.log(myNumber)包成function logMyNumber,變成addOne的callback function.</p>
+<p>所以現在的執行點變成一個,addOne(callback);</p>
+<p>並且我們從1.得知 fs.readFile讀到檔案後會去執行自己的callback doneReading,而3. 執行到最後一行 再去執行function logMyNumber.</p>
+<h1 id="callback的執行順序">callback的執行順序</h1>
+<ol>
+<li><p>a();<br>b();<br>c();</p>
+</li>
+</ol>
+<p>這三個function基本上會同時執行,執行快的就先做完</p>
+<ol>
+<li>closure ? hierarchy ?</li>
+</ol>
+<p>a(function(){<br>    b(function(){<br>        c();<br>    });<br>});</p>
+<p>a 執行完 執行b 再執行c</p>
+<h1 id="RequireBin_很酷的東西">RequireBin 很酷的東西</h1>
+<p><a href="http://requirebin.com/?gist=6031068" target="_blank">http://requirebin.com/?gist=6031068</a></p>
+<h1 id="回頭去看_昨天碰到的問題">回頭去看 昨天碰到的問題</h1>
+<p>我想用<a href="https://github.com/codetunnel/mongoose-simpledb" target="_blank">mongoose-simpledb</a>,做connect mongo的動作,但是碰到問題callback的問題    </p>
+<h2 id="我希望將mongo連線的資料變成另一個module">我希望將mongo連線的資料變成另一個module</h2>
+<p>settings.js</p>
+<pre><code><span class="built_in">module</span>.<span class="built_in">exports</span> = {
+    <span class="attribute">host</span>:<span class="string">'ds049898.mongolab.com:49898'</span>,
+    <span class="attribute">db</span>:<span class="string">'pokemon'</span>,
+    <span class="attribute">user</span>:<span class="string">'jmc'</span>,
+    <span class="attribute">password</span>:<span class="string">'jmcmongo'</span>
+};
+</code></pre><h2 id="連線的動作_也分為另一個module">連線的動作 也分為另一個module</h2>
+<p>connectDB.js</p>
+<pre><code>var simpledb = <span class="keyword">require</span>(<span class="string">'mongoose-simpledb'</span>);
+var settings = <span class="keyword">require</span>(<span class="string">'./settings'</span>);
+
+exports.connectDb = function(callback){
+
+    var DB;
+    var <span class="keyword">connect</span> = <span class="string">'mongodb://'</span>;
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.user);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(<span class="string">':'</span>);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.password);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(<span class="string">'@'</span>);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.host);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(<span class="string">'/'</span>);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.db);
+
+    console.<span class="keyword">log</span>(<span class="keyword">connect</span>);
+
+    var db = simpledb.init(<span class="keyword">connect</span>);
+    console.<span class="keyword">log</span>(<span class="string">"connect"</span>+db);
+    <span class="keyword">return</span> db;
+}
+</code></pre><h2 id="main">main</h2>
+<p>script.js</p>
+<pre><code><span class="keyword">var</span> connectStart = <span class="built_in">require</span>(<span class="string">'./connectDB'</span>);
+<span class="keyword">var</span> db = connectStart.connectDb()
+
+
+db.Fire.find({<span class="string">'name'</span>:<span class="string">'Charizard'</span>},<span class="function"><span class="keyword">function</span><span class="params">(err,result)</span>{</span>
+    <span class="keyword">if</span>(err) <span class="keyword">return</span> console.error(err);
+    console.log(result);
+});
+</code></pre><h1 id="db卻一直是undefined???">db卻一直是undefined???</h1>
+<p>因為connect db 這個動作是I/O 速度很慢 所以先被執行了db.Fire.find 此時db還沒連線,</p>
+<p>所以我們必須確定 在抓到db連線後 才回傳db  再去執行db.Fire.find</p>
+<p>connectDB.js</p>
+<pre><code>var simpledb = <span class="keyword">require</span>(<span class="string">'mongoose-simpledb'</span>);
+var settings = <span class="keyword">require</span>(<span class="string">'./settings'</span>);
+
+exports.connectDb = function(callback){
+
+    var <span class="keyword">connect</span> = <span class="string">'mongodb://'</span>;
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.user);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(<span class="string">':'</span>);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.password);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(<span class="string">'@'</span>);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.host);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(<span class="string">'/'</span>);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.db);
+
+    console.<span class="keyword">log</span>(<span class="keyword">connect</span>);
+
+    simpledb.init(<span class="keyword">connect</span>,function(err,db){
+    <span class="keyword">if</span>(err) <span class="keyword">return</span> console.error(err);
+    console.<span class="keyword">log</span>(db);
+
+    callback &amp;&amp; callback(db);
+    });
+}
+</code></pre><p>main: script.js</p>
+<pre><code><span class="keyword">var</span> connectStart = <span class="built_in">require</span>(<span class="string">'./connectDB'</span>);
+<span class="keyword">var</span> db = <span class="literal">undefined</span>;
+connectStart.connectDb(<span class="function"><span class="keyword">function</span><span class="params">(dbConnected)</span>{</span>
+    console.log(<span class="string">"script:"</span>+dbConnected);
+    db = dbConnected;
+    console.log(db);
+    fireFind();
+});
+
+<span class="function"><span class="keyword">function</span> <span class="title">fireFind</span><span class="params">()</span>{</span>
+    db.Fire.find({<span class="string">'name'</span>:<span class="string">'Charizard'</span>},<span class="function"><span class="keyword">function</span><span class="params">(err,result)</span>{</span>
+        <span class="keyword">if</span>(err) <span class="keyword">return</span> console.error(err);
+        console.log(result);
+    });
+}
+</code></pre><ol>
+<li><p>connectStart.connectDb先執行 並執行了simpledb.init</p>
+</li>
+<li><p>simpledb.init執行完後,執行自己的function console.log(db),</p>
+</li>
+<li><p>執行傳進來的callback &amp;&amp; callback(db);</p>
+</li>
+<li><p>執行fireFind()</p>
+</li>
+</ol>
+<p>這個過程只有一個啓動點     connectStart.connectDb</p>
+<h1 id="為什麼app-js就可以直接用_var_db_=_simpledb-init(‘mongodb://localhost/test’);">為什麼app.js就可以直接用 var db = simpledb.init(‘mongodb://localhost/test’);</h1>
+<p>app.js    </p>
+<p>因為pattern是不同的</p>
+<p>一個callback 接一個 callback的做法 是要確保之間相依性 順序性的正確</p>
+<p>而    </p>
+<p>1.啟動server    </p>
+<p>2.連接資料庫    </p>
+<p>之間沒有相依性 看誰先做完都沒關係 接下來的啓動點呢 ? </p>
+<pre><code>    app.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span><span class="params">(req,res)</span></span>{
+        db.Kitten.findOne({<span class="string">'name.first'</span>:<span class="string">'mew'</span>},<span class="function"><span class="keyword">function</span><span class="params">(err,koda)</span></span>{
+            <span class="keyword">if</span> (err) <span class="keyword">return</span> console.<span class="built_in">error</span>(err);
+            console.log(koda);
+        });
+    });    
+</code></pre><p>接下來router(url),match到,發出一個request後才會動作,而在這之前db已經被assign值了</p>
+<h1 id="傳db_object">傳db object</h1>
+<p>此時又發現一個問題    </p>
+<p>models , controllers(routes) , views  , app.js =&gt; load 所有要load的東西</p>
+<p>包抓資料庫connect,可是我的model裡面也必須要有db object才行,要怎麼樣才能傳db?<br>結果<a href="https://github.com/codetunnel/mongoose-simpledb" target="_blank">Chevex也已經解決這問題    </a></p>
+<p>只要你執行過simpledb.init後,在任何地方 下<code>var db = require(&#39;mongoose-simpledb&#39;).db;</code>就可以抓到db!</p>
+<h1 id="完成基本的express_crud_要deploy">完成基本的express crud 要deploy</h1>
+<h1 id="node_heroku">node heroku</h1>
+<p><a href="http://www.bymichaellancaster.com/blog/deploying-nodejs-on-heroku-cloud/" target="_blank">http://www.bymichaellancaster.com/blog/deploying-nodejs-on-heroku-cloud/</a></p>
+<h1 id="grunt">grunt</h1>
+<p><a href="http://ithelp.ithome.com.tw/question/10120425?tag=ithome.nq" target="_blank">http://ithelp.ithome.com.tw/question/10120425?tag=ithome.nq</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/blog/">blog</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/javascript/">javascript</a>, <a href="/tags/express/">express</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jackmew.github.io/2014/05/23/20140523/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

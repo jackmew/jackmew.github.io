@@ -1,0 +1,563 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>20140314 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  <meta name="description" content="Think
+1.Interface(介面)當在開發給大家使用的library or plugin 時,常常面對的是各個開發者or各個不同狀況,所以一開始的設計
+應該是設計一個基本界面,大家都可以清楚知道要怎麼使用,要怎麼call,之後我在加強library or plugin時
+也不會影響到他們ca">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="20140314"/>
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-14T03:48:15.000Z"><a href="/2014/03/14/20140314/">Mar 14 2014</a></time>
+      
+      
+  
+    <h1 class="title">20140314</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="Think">Think</h3>
+<p>1.Interface(介面)<br>當在開發給大家使用的library or plugin 時,常常面對的是各個開發者or各個不同狀況,所以一開始的設計</p>
+<p>應該是設計一個基本界面,大家都可以清楚知道要怎麼使用,要怎麼call,之後我在加強library or plugin時</p>
+<p>也不會影響到他們call method,他們的code也不需要改.</p>
+<p>開發過程中,會出現很多不預期的需求或想法出現,往往要加入很多跟一開始設計不同的想法進去,所以設計好一個共通</p>
+<p>簡單基本的界面是比較好面對之後開發的變化.</p>
+<p>2.Ajax async</p>
+<p>盡量減少使用,因為這個相對比較不常用的屬性,可能在各個瀏覽器用不同的方式來處理.</p>
+<p>3.browser 處理ajax的方式可能不一樣<br>firefox : callback回傳後 馬上寫入html<br>chrone,safari : callback全部完成 才會寫也入html</p>
+<p>4.pagination or pagerequest or something like that<br>在這長遠的開發歷史中,往往很多常用的東西都已經有既定模式來開發,用起來都差不多,既然如此我們參照這種模式開發下去,<br>假設之後用到別人設計的library or method之類的 ,就很好改</p>
+<p>5.call ajax 因為是async 非同步的 ,當使用很多個ajax的時候,你根本無法知道這個ajax什麼時候結束,先後順序又是什麼,<br>所以使用起來要非常小心,免得做到之後又出現無法預期的問題</p>
+<h3 id="Workflow">Workflow</h3>
+<p>Original : 按下查詢後 1.callAjax_queryOnePage(uidText,1); 2.pageManage(uidText,1);</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">onBtnQueryUIDClick</span><span class="params">(event)</span> {</span>    
+        <span class="keyword">var</span> uidText = $(<span class="string">"#uidCondition"</span>).val();
+        <span class="keyword">if</span>(!$(<span class="string">"#queryForm"</span>).valid())<span class="keyword">return</span>;
+      <span class="comment">//start query =&gt; show Loading</span>
+          showLoading(); 
+        callAjax_queryOnePage(uidText,<span class="number">1</span>);
+        pageManage(uidText,<span class="number">1</span>);
+      <span class="comment">//hide uid condition</span>
+        $(<span class="string">"#hideCondition"</span>).text(uidText);
+    }
+</code></pre><p>pageManage : 處理頁面page的轉換 讓Table hook plugin Navigator,就會自動出現頁次</p>
+<p><strong>problem :</strong> .Navigator 有點問題 在each之後 可能會有多次hook event</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">pageManage</span><span class="params">(uidText,currPage)</span> {</span>    
+        <span class="keyword">var</span> currPage = currPage;
+        <span class="keyword">var</span> uidText = uidText;
+        <span class="keyword">var</span> totalRows = callAjax_queryCount(uidText);
+        <span class="comment">//alert("totalRows"+totalRows);</span>
+        $(<span class="string">"#nav a"</span>).off();
+        $(<span class="string">"#UIDtable"</span>).Navigator({totalRows:totalRows,currPage:currPage});    
+        $(<span class="string">"#nav a"</span>).on( <span class="string">"click"</span>, onNavigatorClick);
+        <span class="comment">//callAjax_queryOnePage(uidText,currPage);</span>
+
+    }
+</code></pre><p>查詢 這一件事情 call 兩次 ajax ,分開處理 : 1.頁面顯示 2.頁次顯示</p>
+<p>基本上也不會不好 好的方面是 mongoDB count 處理速度比較慢 那我頁面可以顯示就先顯示啊 之後count抓完再顯示頁次.</p>
+<p>缺點是 頁次的設計通常都是用pagination or pagerequest 來做 , 為什麼不用是因為還要加上其他repository,加上很多class,</p>
+<p>而且跟目前我們回傳的設計有些不同,或許是我還搞不清楚吧,不過可以知道用pagination,也只不過是一種資料結構,裡面有list資料和count筆數而已,</p>
+<p>實際上也是要用兩次database IO來抓到這兩種資料,所以我就索性不用了,反正都可以達成目的.問題是在程式擴大後 或許會變成一定要用pagination的情況發生,</p>
+<p>因為裡面也提供了其他API可以使用,至少我在設計的時候應該像pagination call一次就抓到兩種回傳資料的方式,這樣假設我之後真的要使用pagination也比較</p>
+<p>不需要去改其他code</p>
+<p><strong>problem</strong></p>
+<pre><code> <span class="function"><span class="keyword">function</span> <span class="title">createNavigator</span><span class="params">()</span>{</span>
+                <span class="comment">//remove Navigator</span>
+                $(<span class="string">'#nav a'</span>).remove(); 
+                <span class="comment">//create first , previous page navigator</span>
+                $(<span class="string">'#nav'</span>).append(<span class="string">'&lt;a name="firstPage" href="#"&gt; &lt;&lt; &lt;/a&gt; '</span>);
+                $(<span class="string">'#nav'</span>).append(<span class="string">'&lt;a name="prevPage"  href="#"&gt;  &lt; &lt;/a&gt; '</span>);
+                <span class="comment">//create showPage navigator</span>
+                <span class="keyword">for</span> ( i = <span class="number">1</span>; i &lt;= numPages;i++ ) {
+                <span class="keyword">var</span> pageNum = i ;  <span class="comment">// a number</span>
+                $(<span class="string">'#nav'</span>).append(<span class="string">'&lt;a name="showPage"  href="#" rel="'</span> + i + <span class="string">'"&gt;'</span> + pageNum + <span class="string">'&lt;/a&gt; '</span>);
+                }<span class="comment">//end for</span>
+                <span class="comment">//create last , next page navigator</span>
+                $(<span class="string">'#nav'</span>).append(<span class="string">'&lt;a name="nextPage"  href="#"&gt; &gt; &lt;/a&gt; '</span>);
+                $(<span class="string">'#nav'</span>).append(<span class="string">'&lt;a name="lastPage"  href="#"&gt; &gt;&gt; &lt;/a&gt; '</span>);
+                $(<span class="string">'#nav'</span>).append(<span class="string">'&lt;a &gt;total page:'</span>+numPages+<span class="string">'&lt;/a&gt; '</span>);
+
+             }
+
+
+
+              <span class="keyword">var</span> hidegt = $(<span class="string">"a[name=showPage]"</span>).map(<span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+
+                    <span class="keyword">if</span>(<span class="keyword">this</span>.rel &gt; hideNext){
+                      console.log(<span class="keyword">this</span>.rel &gt; hideNext);
+                      <span class="keyword">return</span> <span class="string">'#nav a[rel='</span>+<span class="keyword">this</span>.rel+<span class="string">']'</span>;
+                    }
+              }).get().join(<span class="string">','</span>);
+</code></pre><p>讓它有幾頁就append幾個a ,但在有一千多頁後,要hide一千多頁!?</p>
+<p>事實上 最多我只要十頁 最少…1頁 這樣置中會不會有問題?</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/development/nav1.png" alt="Navigator"></p>
+<p>Original : create all , hide到只剩十筆</p>
+<p>問題是這樣長度會一直變動 而且又要一直考慮 要hide哪些 要show哪些 currPage show在哪個位置</p>
+<p>Change :</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/development/nav2.png" alt="Navigator"></p>
+<p>查詢 新增 修改 刪除: </p>
+<p>showLoading();<br>callAjax_queryOnePage(uidText,1);<br>pageManage(uidText,1);</p>
+<p>callAjax_queryOnePage</p>
+<p>1.回傳list &amp; count</p>
+<p>2.complete :  1.table.off 2.table.Navigator 3.onclick 4.onkeypress</p>
+<h1 id="callback_function">callback function</h1>
+<p><a href="http://learn.jquery.com/plugins/advanced-plugin-concepts/#provide-callback-capabilities" target="_blank">callback function</a></p>
+<p>$.ajax本身就是jquery 做的plugin(元件,function)<br>而callback function 的特性就是 執行完function 再執行function</p>
+<pre><code>$.ajax({
+            url: <span class="string">"/wbase-web/rest/uid/queryOnePage"</span>,
+
+        data: {
+          condition:condition,
+          pageNum: pageNum
+        },
+
+        <span class="built_in">type</span>: <span class="string">"GET"</span>,
+
+        dataType: <span class="string">"json"</span>,
+
+        success: <span class="function"><span class="keyword">function</span><span class="params">(dto)</span></span> {          
+           setUIDTable(dto); 
+           // <span class="keyword">end</span> query =&gt; <span class="keyword">end</span> show Loading
+           hideLoading(); 
+        },
+
+        <span class="built_in">error</span>: <span class="function"><span class="keyword">function</span><span class="params">(xhr, status)</span></span> {
+            console.log(xhr.statusText);
+            window.location.href = <span class="string">"./LoginWidget.html"</span>;
+        },
+        complete: <span class="function"><span class="keyword">function</span><span class="params">(xhr, status)</span></span> {
+            console.log(<span class="string">"complete."</span>);
+        }
+    });
+</code></pre><p><a href="http://stackoverflow.com/questions/15531722/jquery-plugin-invoke-callback-method-that-can-then-invoke-plugin-functions-base">jQuery plugin: invoke callback method that can then invoke plugin functions based on response
+</a></p>
+<p><a href="http://www.codechewing.com/library/how-to-add-callback-functions-to-jquery-plugin/" target="_blank">How to Add Callback Functions to a jQuery Plugin</a></p>
+<p><a href="http://acuriousanimal.com/blog/2013/02/25/things-i-learned-creating-a-jquery-plugin-part-ii/" target="_blank">http://acuriousanimal.com/blog/2013/02/25/things-i-learned-creating-a-jquery-plugin-part-ii/</a></p>
+<p>PaginateUtil.js(plugin)</p>
+<pre><code><span class="list">(<span class="title">function</span><span class="list">($)</span> {  // Protecting the $ Alias and Adding Scope
+
+$.fn.paginate = function<span class="list">(<span class="title">options</span>)</span> {
+
+      //default
+      var <span class="variable">**</span>settings<span class="variable">**</span> = $.extend<span class="list">({
+          //how many rows you want to show in a page
+          rowsPage : <span class="number">1</span>,
+          currPage : <span class="number">1</span>,
+          onEnterpress : function<span class="list">()</span> {}  //callback function
+
+      },options)</span><span class="comment">;</span>
+
+      return this.each<span class="list">(<span class="title">function</span><span class="list">()</span> {
+            var rowsPage = settings.rowsPage<span class="comment">;</span>
+            var currPage = settings.currPage<span class="comment">;</span>
+          var $table = $<span class="list">(<span class="title">this</span>)</span><span class="comment">;          </span>
+
+           $<span class="list">(<span class="string">"#nav input[name='showPage']"</span>)</span>.on<span class="list">('keypress', onKeyEnterpress)</span><span class="comment">;</span>
+            function onKeyEnterpress<span class="list">(<span class="title">event</span>)</span>{
+              if <span class="list">( event.which == <span class="number">13</span> )</span> {
+                 event.preventDefault<span class="list">()</span><span class="comment">;</span>
+                 var currPage = $<span class="list">('#nav input')</span>.val<span class="list">()</span><span class="comment">;</span>
+                  if<span class="list">(<span class="title">currPage</span> &lt;= numPages <span class="keyword">&amp;&amp;</span> currPage !== <span class="string">""</span> <span class="keyword">&amp;&amp;</span> currPage &gt; <span class="number">0</span>)</span>{ 
+                    // Here's the callback:
+                    <span class="variable">**</span>settings<span class="variable">**</span>.onEnterpress.call<span class="list">( this )</span><span class="comment">;</span>
+                  }
+              }     
+            }
+    })</span><span class="comment">;//end return             </span>
+  }<span class="comment">;//end paginate</span>
+}<span class="list">(<span class="title">jQuery</span>)</span>)</span><span class="comment">;</span>
+</code></pre><p>html</p>
+<pre><code>$("<span class="id">#UIDtable</span>")<span class="class">.paginate</span>(<span class="rules">{
+            <span class="rule"><span class="attribute">rowsPage</span>:<span class="value"><span class="number">1</span>,
+            onEnterpress:<span class="function">function()</span>{
+                <span class="function">alert(<span class="string">"That is callback function"</span>)</span></span></span>;
+            <span class="rule">}</span></span>
+    });
+</code></pre><h3 id="jQuery_plugin_callback_function_parameters">jQuery plugin callback function parameters</h3>
+<p>怎麼將plugin裡面的參數傳出來<a href="http://stackoverflow.com/questions/20435927/jquery-plugin-callback-function-parameters" target="_blank">callback function parameters</a></p>
+<h3 id="Function-prototype-call()">Function.prototype.call()</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call" target="_blank">settings.xxxfunction.call(this);</a></p>
+<h3 id="2014/03/15_What_is_page?">2014/03/15 What is page?</h3>
+<p>在遇到要處理大量資料時的機制,我們進入資料庫抓資料,資料處理上千上萬筆的資料是很快速的,然而我們前端比較無法負荷處理,也或許說根本不必要一次抓出那麼多資料,減少效能,而人有不可能一次看那麼多資料,那留在後面的資料就等於沒有同時抓出來的效用了,一次只抓一頁,而一頁有相對應的處理,這樣才能提升系統速度.</p>
+<p>做一個仿pageRequest dto(data transfer object) , 裡面是 </p>
+<p>1.抓回來排序好的一頁資料 2.count總筆數 </p>
+<p>做到跟前端javascript plugin呼應 由plugin的initial值來決定</p>
+<p>1.offset 2.limit(抓幾筆) </p>
+<pre><code><span class="keyword">var</span> rowsPAge = <span class="number">10</span>;
+
+$(<span class="string">"#UIDtable"</span>).paginate({
+        rowsPage:rowsPAge,
+</code></pre><p>之後傳回去的offset limit就是rowsPage</p>
+<p>但是<br><a href="https://www.google.com.tw/search?espv=210&amp;es_sm=91&amp;q=mongo+count+performance&amp;oq=mongo+count+p&amp;gs_l=serp.3.0.0j0i10i30j0i30l2j0i8i10i30j0i10i30j0i8i30l4.2527227.2532842.0.2534321.21.17.4.0.0.0.109.1065.16j1.17.0....0...1.1.37.serp..1.20.998.wvuCKjZykZQ" target="_blank">mongoDB count is slow</a></p>
+<p>我按下一頁 然後重新抓資料 抓筆數 ,都要5秒鐘?! 這樣太慢了</p>
+<p>而且現在才一千萬初頭的資料量,若是到五千萬,一千萬,user根本不想使用這個系統了.</p>
+<p>再次回到同一個使用上的問題 其實user下查詢時的重點應該是 可以找到他要的那幾筆資料 但user根本不需要幾百筆 幾百萬筆的資料 </p>
+<p>1.以mongo count速度很慢 不用count的情況下來實作</p>
+<p>2.可以有回到第一頁 但是不能有到最後一頁     |&lt; &lt;&lt; 1 2 3 4 5 6 7 8 9 10 &gt;&gt; …</p>
+<p>3.Navigator用原本的 並且不用讓頁數在中間</p>
+<p>4.一次抓出數頁 到了下一個段落 再次query一次</p>
+<p>5.因此query之後 要判斷 之後還有沒有</p>
+<p>測試mongo limit(limit) offset(skip) 效能</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(0).limit(10)</code> cost 0.064sec</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(0).limit(100)</code> cost 3.077sec<br>一開query10頁 花3秒 並且一query後 在這10頁內的換頁速度 非常快</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(0).limit(200)</code> cost 4.803sec</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(10).limit(10)</code> cost 0.666sec</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(100).limit(10)</code> cost 3.329sec</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(200).limit(10)</code> cost 4.903sec</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(100).limit(100)</code> cost 4.379sec</p>
+<p>query下個10頁 也就是11~20頁的時間要4秒</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(200).limit(100)</code> cost 6.05sec</p>
+<p>query再下個10頁 也就是21~30頁的時間要6秒</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(300).limit(100)</code> cost 8.192sec</p>
+<p>發現 skip 和 limit越高 速度越慢</p>
+<p>接下來每次都測試抓十筆資料 然後只改skip</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(0).limit(10)</code> cost 0.065sec</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(20).limit(10)</code> cost 1.047sec</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(50).limit(10)</code> cost 1.776sec</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(100).limit(10)</code> cost 3.706sec</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(200).limit(10)</code> cost 4.964sec</p>
+<p>接近20頁 換頁的速度就會變得非常慢</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(680).limit(10)</code> cost 25.43sec</p>
+<p>找到最後一頁之後 非常慢</p>
+<p>用倒序來找</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:-1}).skip(100).limit(10)</code> cost 3.264sec </p>
+<p>跟順序花的時間一樣 所以當要找後面的 就應該用倒序</p>
+<p>按下Navigator時 都是<strong>已經查到</strong>放在頁面上的資料</p>
+<p>按 下10頁 才會 query一次<br>按 第一頁 要判斷現在是不是在第一頁的range裡 不是就要下query</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/developent/">developent</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/wbase/">wbase</a>, <a href="/tags/javasciprt/">javasciprt</a>, <a href="/tags/callback/">callback</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jackmew.github.io/2014/03/14/20140314/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

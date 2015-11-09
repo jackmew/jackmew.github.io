@@ -1,0 +1,485 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2014/10/29 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  <meta name="description" content="vaadin CDI(Context and Dependency Injection (JSR-299)
+link
+tutorials
+TodoMVC
+好像很厲害
+vaadin &amp;amp; gwt
+原來vaadin跟gwt是密不可分的
+vaadin ToDoMVC
+footer
+
+status b">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="2014/10/29"/>
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-29T01:38:35.000Z"><a href="/2014/10/29/20141029/">Oct 29 2014</a></time>
+      
+      
+  
+    <h1 class="title">2014/10/29</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="vaadin_CDI(Context_and_Dependency_Injection_(JSR-299)">vaadin CDI(Context and Dependency Injection (JSR-299)</h1>
+<p><a href="https://vaadin.com/wiki/-/wiki/Main/Vaadin-CDI-integration" target="_blank">link</a></p>
+<p><a href="https://vaadin.com/wiki?p_p_id=36&amp;p_p_lifecycle=0&amp;p_p_state=normal&amp;p_p_mode=view&amp;p_p_col_id=row-1&amp;p_p_col_pos=1&amp;p_p_col_count=3&amp;p_r_p_185834411_title=I+-+Getting+started+with+Vaadin+CDI&amp;p_r_p_185834411_nodeName=vaadin.com+wiki&amp;_36_struts_action=%2Fwiki%2Fview" target="_blank">tutorials</a></p>
+<h1 id="TodoMVC">TodoMVC</h1>
+<p><a href="http://todomvc.com/" target="_blank">好像很厲害</a></p>
+<h1 id="vaadin_&amp;_gwt">vaadin &amp; gwt</h1>
+<p><a href="https://vaadin.com/gwt" target="_blank">原來vaadin跟gwt是密不可分的</a></p>
+<p><a href="https://github.com/jounik/TodoMVC" target="_blank">vaadin ToDoMVC</a></p>
+<h1 id="footer">footer</h1>
+<ol>
+<li>status bar</li>
+<li>power by …</li>
+</ol>
+<h1 id="header">header</h1>
+<p>左上logo<br>右上icon</p>
+<h1 id="widget_vs_gadget">widget vs gadget</h1>
+<p>widget : textField … reuse</p>
+<p>gadget : 已經組合好的功能 </p>
+<h1 id="inner_class">inner class</h1>
+<p>private !!! =&gt; 只有某class 會用到這個class , 所以只要是private就好了 </p>
+<h1 id="multi_window">multi window</h1>
+<p>視窗保留 , 非頁籤做法 非換頁做法 , 非single page , 像是eclipse藏起來一些gadget的做法 . </p>
+<h1 id="SASS"><a href="https://www.youtube.com/watch?v=yNIQOfOwDGM&amp;list=PLcRrh9hGNalnmA1mbDS0NBuq6N3Mnw2u1" target="_blank">SASS</a></h1>
+<ol>
+<li><p>可以解決Repeat code(redundancy)</p>
+</li>
+<li><p>cross browser code produce</p>
+</li>
+</ol>
+<h1 id="vaadin_SCSS">vaadin SCSS</h1>
+<p>style.scss =&gt; entry point</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/29.png" alt="image"></p>
+<p><code>@include todomvc</code> 會去抓定義的<code>@mixin todomvc</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/30.png" alt="image"></p>
+<p>todomvc 裡面又去抓 <code>@mixin reset</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/31.png" alt="image"></p>
+<p>而reset 在這邊叫做 fixed mixin , 用來改變apearance在各個browser正常顯示 或 要怎麼樣顯示 </p>
+<p>因此可以只改一個地方 就整個都可以改掉 -&gt; maintainable</p>
+<h1 id="怎麼樣解決redundancy?">怎麼樣解決redundancy?</h1>
+<h3 id="css_ex1">css ex1</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/33.png" alt="image"></p>
+<h3 id="scss_nesting_ex1">scss nesting ex1</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/34.png" alt="image"></p>
+<h3 id="css_ex2">css ex2</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/35.png" alt="image"></p>
+<h3 id="scss_nesting_ex2_=&gt;_&amp;_parent_selector">scss nesting ex2 =&gt; &amp; parent selector</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/36.png" alt="image"></p>
+<h3 id="css_ex3_勾勾">css ex3 勾勾</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/37.png" alt="image"></p>
+<h3 id="scss_nesting_ex3_=&gt;_unicode_產生勾勾">scss nesting ex3 =&gt; unicode 產生勾勾</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/38.png" alt="image"></p>
+<p><code>.todo-row .v-checkbox input:after</code> =&gt; <code>&amp;:after</code></p>
+<h3 id="scss_variable_=&gt;_maintainable">scss variable =&gt; maintainable</h3>
+<p>variable :</p>
+<ol>
+<li><p>定義在自己的scss裡 :  local variable</p>
+</li>
+<li><p>定義在外面 被import進來 : global variable</p>
+</li>
+</ol>
+<p>定義global variable : <code>_variables.scss</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/1.png" alt="image"></p>
+<p>main scss : todomvc.scss ==&gt; import <code>_variables.scss</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/4.png" alt="image"></p>
+<p>使用variable</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/3.png" alt="image"></p>
+<p>scss compile 到 css 的結果</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/2.png" alt="image"></p>
+<h1 id="_todomvc-scss_same_todomvc-scss">_todomvc.scss same todomvc.scss</h1>
+<p>convention that it is a partial scss , 表示他是partial , import時不用加底線</p>
+<h1 id="scss全部都compile到一個css">scss全部都compile到一個css</h1>
+<h1 id="@extend">@extend</h1>
+<p>reusable , 並加上東西</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/5.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/6.png" alt="image"></p>
+<h1 id="imformatica">imformatica</h1>
+<p>Informatica 為全球市佔率第一名的資料轉置工具 (ETL)，其功<br>能上可以讓企業內部各種異質系統資料庫進行合併整合，成為中<br>央集中的資料倉儲系統，並且在資料轉置的過程中，進行資料淨<br>化、資料對應、資料轉化的工作，並可以提供相關運算功能，<br>使得資料在透過 ETL 流程後，可以由單純的明細資料，轉換成<br>為有效用的資訊，除此之外，為了因應企業中龐大的交易資料，<br>Informatica 亦提供大量資料傳輸的功能，可以快速的轉換大量<br>資料，以期達成 Near Real Time 的分析目標。</p>
+<p>ETL(Extract, transform, load)</p>
+<h1 id="bootstrap-for-vaadin">bootstrap-for-vaadin</h1>
+<p>抓下bootstrap的.scss , 並且取出部分要用到的.scss(@extend來取)</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/5.png" alt="image"></p>
+<p>所以當我們使用<code>.v-widget</code> 就會用到bootstrap內body寫的屬性</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/6.png" alt="image"></p>
+<p>下面這個例子是<code>.v-button</code> 就會用到bootstrap內的.btn ….</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/7.png" alt="image"></p>
+<p>使用實例</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/8.png" alt="image"></p>
+<h1 id="他沒有build_-scss_就可以改變畫面了!?!?">他沒有build .scss 就可以改變畫面了!?!?</h1>
+<p>ivy , 不會產生style.css<br>maven 會產生style.css , 需要手動去compile =&gt; <code>mvn vaadin:compile-theme</code></p>
+<p>其實他是說 在development mode , scss 就會automaticallby be translated into css</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/9.png" alt="image"></p>
+<p>這是在web.xml設定production mode = false(development mode) 的方法</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/ㄅ10.png" alt="image"></p>
+<p>新的annotation做法(預設)</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/11.png" alt="image"></p>
+<p>但在maven就是無法auto compile…</p>
+<p>加上這個也沒用…</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/12.png" alt="image"></p>
+<h1 id="valo_位置_是在jar裏面">valo 位置 是在jar裏面</h1>
+<p><a href="http://vaadin.com/download/prerelease/7.3/7.3.0/7.3.0.alpha2/release-notes.html" target="_blank">link</a></p>
+<p><code>Java-based Sass compiler</code></p>
+<p>接下來我想到他的valo theme到底放在哪裡 , 最後發現是放在jar</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/13.png" alt="image"></p>
+<p><code>jar xr filename</code> 解開 </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/14.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/15.png" alt="image"></p>
+<p>哈哈 好酷</p>
+<h1 id="sass">sass</h1>
+<p>problem</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/16.png" alt="image"></p>
+<p><a href="https://github.com/csswizardry/inuit.css/issues/270" target="_blank">solve</a></p>
+<p><code>sass --watch style.scss:style.min.css --style compressed -E &quot;UTF-8&quot;</code></p>
+<p>後來更新gem</p>
+<p>更新sass </p>
+<p>終於可以用sass watch了!!!</p>
+<p>但是都沒問題之下 出現更奇怪的問題…</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/17.png" alt="image"></p>
+<p>我認為是vaadin裡 又加了什麼東西…</p>
+<h1 id="跟我想一樣的事情">跟我想一樣的事情</h1>
+<p><a href="https://github.com/mstahv/moresass" target="_blank">link</a></p>
+<p>但我覺得可能會失敗 …</p>
+<p>不想玩了 搞那麼複雜 好像也不會比較好用 = =</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/blog/">blog</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/vaadin/">vaadin</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jackmew.github.io/2014/10/29/20141029/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,510 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>gradle | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title tag">gradle</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-07-08T01:24:02.000Z"><a href="/2014/07/08/20140708/">Jul 8 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/07/08/20140708/">2014/07/08</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Build_Automation_Software_for_Java">Build Automation Software for Java</h1>
+<p><a href="http://www.codedata.com.tw/java/understanding-gradle-1-ant/" target="_blank">Ant -&gt; Maven-&gt; Gradle</a></p>
+<h1 id="log4j">log4j</h1>
+<p>設定方式有兩種</p>
+<p>1.log4j.properties<br>2.log4j.xml</p>
+<p><a href="http://stackoverflow.com/questions/14497787/log4j-properties-vs-log4j-xml" target="_blank">link</a></p>
+<h1 id="Maven">Maven</h1>
+<p><code>mvn archetype:generate</code>  </p>
+<p><code>mvn archetype:generate \
+-DarchetypeArtifactId=maven-archetype-quickstart \
+-DinteractiveMode=false \
+-DgroupId=tw.com.codedata -DartifactId=helloworld</code> =&gt;產生基本專案</p>
+<p><code>mvn help:effective-pom</code> =&gt; 查詢現在 pom.xml 的有效設定</p>
+<p><code>mvn exec:java</code> =&gt; 執行java</p>
+<p><code>mvn exec:java -Dexec.mainClass=&quot;tw.com.codedata.App&quot;</code></p>
+<p>我根本就不用手動去下載log4j , 只要在pom.xml裡加上</p>
+<pre><code>        <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">version</span>&gt;</span>1.1.1<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">version</span>&gt;</span>1.2.16<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+</code></pre><p>下<code>mvn package</code> 後就會自動下載需要的jar</p>
+<p>在<code>maven/apache-maven-3.1.0/conf/settings.xml</code></p>
+<p>預設repository放置的位置是<code>~/.m2</code> , 所以只要你有設定在pom.xml裡面的dependencies, 都會下載到這個位置</p>
+<h1 id="gradle">gradle</h1>
+<p>以build.gradle(DSL) 取代 pom.xml</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/5.png" alt="image"></p>
+<h3 id="gradle_plugin">gradle plugin</h3>
+<p><code>apply plugin: &#39;java&#39;</code><br><code>apply plugin:&#39;application&#39;</code></p>
+<h3 id="gradle_command">gradle command</h3>
+<p><code>gradle tasks</code> 列出可以執行的task</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/4.png" alt="image"></p>
+<p><code>gradle distZip</code> 產生 -&gt; build/distributions/helloworld.zip</p>
+<p><code>gradle dependenecies</code> -&gt; 顯示相依性</p>
+<p><code>gradle build</code></p>
+<p><code>gradle run</code></p>
+<p><a href="http://www.gradle.org/docs/current/javadoc/index.html?org/gradle/api/Project.html" target="_blank">gradle document</a></p>
+<h3 id="相依關係設定">相依關係設定</h3>
+<p><code>compile &#39;com.amazonaws:aws-java-sdk:1.+&#39;</code></p>
+<p>怎麼來的?</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/6.png" alt="image"></p>
+<p>原本有加上apply plugin:’application’</p>
+<p>所以可以直接<code>gradle run</code></p>
+<p>但改掉後 就沒辦了</p>
+<p>build.gradle:</p>
+<pre><code>apply plugin: <span class="string">'java'</span>
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile <span class="keyword">group</span>: <span class="string">'commons-logging'</span>, name: <span class="string">'commons-logging'</span>, version: <span class="string">'1.1.1'</span>
+    compile <span class="keyword">group</span>: <span class="string">'log4j'</span>, name: <span class="string">'log4j'</span>, version: <span class="string">'1.2.16'</span>
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir <span class="string">'src'</span>
+        }
+        resources {
+            srcDir <span class="string">'config'</span>
+        }
+    }
+}
+</code></pre><p><code>gradle build</code> 沒有問題 </p>
+<p>但是<code>java -classpath builds/lib/helloworld2.jar tw.com.codedata.App</code> 出現lost logFactory的訊息</p>
+<p>看一下helloworld2.jar 裡面 沒有包入commons-logging,也沒有包入log.class</p>
+<p>需要再加入</p>
+<pre><code>jar {
+    <span class="built_in">from</span> configurations.compile.collect { zipTree <span class="keyword">it</span> }
+}
+</code></pre><p>表示會在jar中加入dependecies</p>
+<p><code>java -classpath builds/lib/helloworld2.jar tw.com.codedata.App</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/7.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/8.png" alt="image"></p>
+<h1 id="Building_Java_Projects_with_Gradle">Building Java Projects with Gradle</h1>
+<p><a href="http://spring.io/guides/gs/gradle/" target="_blank">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/9.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/10.png" alt="image"></p>
+<p>加上joda-time</p>
+<p>可是教學只有說加入</p>
+<pre><code>dependencies {
+    compile <span class="string">"joda-time:joda-time:2.2"</span>
+}
+</code></pre><p>這樣會下載joda-time 可是沒有把東西包進jar檔裡面</p>
+<p>若是要把joda-time也包進去jar檔</p>
+<pre><code>jar {
+    <span class="built_in">from</span> configurations.compile.collect { zipTree <span class="keyword">it</span> }
+}
+</code></pre><p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/11.png" alt="image"></p>
+<p>可是加上</p>
+<p>apply plugin: ‘application’</p>
+<p>mainClassName = ‘main.java.hello.HelloWorld’</p>
+<p>就不需要家jar{} 了</p>
+<p>並且下<code>gradle run</code> 就可以執行</p>
+<p><code>gradle wrapper</code></p>
+<p>將你的gradle和jar都包起來,所以其他人下載你的code去run時,是用包起來的gradle執行,所以他的電腦上也不需要安裝gradle</p>
+<p>在sts執行<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/12.png" alt="image"></p>
+<p>執行的方式跟maven project差很多 …</p>
+<p>不能debug gradle task?<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/13.png" alt="image"></p>
+<h1 id="gradle_in_sts">gradle in sts</h1>
+<p>根據這篇<a href="https://github.com/spring-projects/eclipse-integration-gradle/blob/master/README.md" target="_blank">link</a> 加入gradle plugin ,就可以產生gradle project , 我覺得應該只要裝gradle plugin就好了 , gradle tooling不知道要幹嘛,</p>
+<p>接下來也可以build 可以run了</p>
+<p>但是沒辦法deploy tomcat , 因為他是gradle project,但不是dynamic web project</p>
+<p>根據<a href="http://stackoverflow.com/questions/15110545/how-to-run-a-gradle-web-application" target="_blank">link</a>,找到相似的方法是加入<code>apply plugin: &#39;eclipse-wtp&#39;</code>到build.gradle , 但還是不能理解 , 最後看到這篇<a href="http://www.hierax.org/2013/12/deploying-gradle-webapp-project-in.html" target="_blank">link</a>,接下來在build的時候 最後多做一個task, ecliplse</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/14.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/15.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/16.png" alt="image"></p>
+<p>而且奇怪的是執行<code>./gradlew tomcatRunWar</code></p>
+<p>網址:<code>http://localhost:8080/aggregators/orders</code></p>
+<p>但deploy tomcat</p>
+<p>網址:<code>http://localhost:8080/tut-rest-3-complete/aggregators/orders</code> 也就是要加上project名稱</p>
+<p>終於把<a href="http://spring.io/guides/tutorials/rest/3/" target="_blank">tutorial3</a>,放入sts執行了</p>
+<p>接下來要看test怎麼做了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/18.png" alt="image"></p>
+<p>run as Junit test =&gt; 右邊junit window 顯示綠色 代表通過 紅色代表失敗</p>
+<h1 id="Spring_MVC_Based_Application_Test_Driven_Development">Spring MVC Based Application Test Driven Development</h1>
+<p><a href="http://codewithzenmind.wordpress.com/2013/07/11/spring-mvc-based-application-test-driven-development-part-1-project-setup-and-first-test/" target="_blank">link</a></p>
+<p><a href="http://krishnasblog.com/2013/02/22/junit-testing-of-spring-mvc-application-introduction/" target="_blank">link</a></p>
+<h1 id="tomcat_能夠debug">tomcat 能夠debug</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/maven/17.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-07-07T01:40:53.000Z"><a href="/2014/07/07/20140707/">Jul 7 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/07/07/20140707/">2014/07/07</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Gradle">Gradle</h1>
+<p><a href="http://www.gradle.org/get-started" target="_blank">gradle</a></p>
+<h2 id="projects">projects</h2>
+<p>jar</p>
+<p>web app</p>
+<h2 id="tasks">tasks</h2>
+<p>compiling some classes, creating a JAR, generating javadoc, or publishing some archives to a repository.</p>
+<h2 id="build-gradle(build_script)">build.gradle(build script)</h2>
+<p>定義project tasks dependencies</p>
+<h2 id="編譯">編譯</h2>
+<p>gradle build</p>
+<h2 id="執行">執行</h2>
+<ol>
+<li><p><code>java -jar build/libs/basic.jar &quot;Hello&quot;</code> (要設定一堆有的沒有的)</p>
+</li>
+<li><p><code>java -classpath build/libs/basic.jar org.jack.test.Main jackmew</code></p>
+</li>
+</ol>
+<h2 id="Eclipse">Eclipse</h2>
+<p>apply plugin: “eclipse”</p>
+<p><code>gradle eclipse</code></p>
+<h1 id="TDD_(Test_Driven_Development)">TDD (Test Driven Development)</h1>
+<p><a href="http://ithelp.ithome.com.tw/question/10109845" target="_blank">30天快速上手TDD</a></p>
+<h1 id="Gradle_vs_Maven">Gradle vs Maven</h1>
+<p><a href="http://www.codedata.com.tw/java/understanding-gradle-3-gradle-task-abc/" target="_blank">link</a></p>
+<h1 id="Spring_tutorials">Spring tutorials</h1>
+<p><a href="http://www.codedata.com.tw/java/understanding-gradle-3-gradle-task-abc/" target="_blank">link</a></p>
+<p>也就是說要全部完成和理解 Spring tutorials</p>
+<p>先必須去了解Gradle 和 TDD</p>
+<h1 id="Spring_java_config">Spring java config</h1>
+<h1 id="spring">spring</h1>
+<p><a href="http://spring.io/guides" target="_blank">guide</a></p>
+<p><a href="http://spring.io/guides/gs/gradle/" target="_blank">Building Java Projects with Gradle</a></p>
+<p><a href="http://spring.io/guides/gs/rest-service/" target="_blank">Building a RESTful Web Service</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

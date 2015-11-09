@@ -1,0 +1,886 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 14 | blog | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title category">blog</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-07T02:28:01.000Z"><a href="/2014/05/07/20140507/">May 7 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/07/20140507/">2014/05/07</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="express_node_回憶操作流程">express node 回憶操作流程</h1>
+<p><code>~/node/microblog_mongo</code> 已經訂立好mongo連接的express project</p>
+<p><code>cd ~/node/microblog_mongo</code></p>
+<p><code>node app.js</code> 啟動node server後就可以在browser瀏覽</p>
+<p><code>mongod</code> local mongodb才會被啟動 </p>
+<p><strong>server debugging , node-inspector</strong></p>
+<p><code>npm install -g node-inspector</code></p>
+<p>啟動 <code>node-inspector --web-port={8081}</code> </p>
+<p>然後啟動node server <code>node --debug app.js</code></p>
+<p><strong>auto refresh , supervisor</strong></p>
+<p><code>npm install -g supervisor</code></p>
+<p><code>supervisor app.js</code> 此時你的code有變動 儲存後 會自動refresh</p>
+<p><strong>可以同時啟動</strong></p>
+<p><code>supervisor --debug app.js</code></p>
+<h1 id="pass_data">pass data</h1>
+<p>前端用javascript</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pass%20data/pd1.png" alt="pass"></p>
+<p>call jquery ajax的方式來傳data </p>
+<p>並先用JSON.stringify 將物件轉成Json才傳出去</p>
+<p>後端java,spring</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pass%20data/pd2.png" alt="pass"></p>
+<p>用List<Map>來接 JSON格式的資料</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pass%20data/pd3.png" alt="image"></p>
+<p>回傳用ResponseEnity 將List傳出</p>
+<p>而ajax的callback funtion =&gt; success 可以直接接住 ???</p>
+<h1 id="express_request_twice">express request twice</h1>
+<p><a href="https://gist.github.com/kentbrew/763822" target="_blank">How to short-circuit those annoying favicon requests in node.js</a></p>
+<p>好像不是request favicon的問題</p>
+<pre><code>collection.find().each(<span class="reserved">function</span>(err, doc) {
+          <span class="keyword">if</span>(doc != <span class="literal">null</span>) <span class="built_in">console</span>.log(<span class="string">"Doc from Each "</span>);
+          <span class="built_in">console</span>.log(doc);
+          <span class="built_in">console</span>.log(<span class="string">"end find"</span>)
+          <span class="regexp">//</span> <span class="reserved">var</span> user = <span class="keyword">new</span> User(doc);
+          callback(err,doc);
+          mongodb.close();
+        });  
+    });
+</code></pre><p>因為只有重新執行這段 並不是request全部 可能是<strong>each</strong>?</p>
+<h1 id="JavaDoc">JavaDoc</h1>
+<p>下註解 下註釋 而且還可以滑鼠移過去還會跳出解釋視窗</p>
+<h1 id="莫名其妙popup不會跟著變大">莫名其妙popup不會跟著變大</h1>
+<p>在沒有調form height的時候</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css20.png" alt="css"></p>
+<p>運作正常</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css23.png" alt="css"></p>
+<p>但一加上</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css21.png" alt="css"></p>
+<p>慘… 而且這問題還很難找出是什麼原因</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css22.png" alt="css"></p>
+<h1 id="textarea_height">textarea height</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css24.png" alt="css"></p>
+<p>一定要加上<code>!important</code>才能改變textarea height</p>
+<p>並且限制高度以後 就不能<code>resize textarea</code> 就是你不能用滑鼠去拖大textarea</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-06T02:35:47.000Z"><a href="/2014/05/06/20140506/">May 6 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/06/20140506/">2014/05/06</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="模組化">模組化</h1>
+<p>jquery mobile 調整某些屬性 可以用整體共用元素 .ui-btn , .ui-page之類的<br>但是這樣很容易 調整到沒預想到的部分 所以還是分成小單位各次調整比較穩當  </p>
+<p>而且同樣的問題 看起來可以用一樣的方法解決 卻其實不一定可以達到 如果無法一次調整 就要<br>冷靜下來 各個慢慢分析 擊破</p>
+<h1 id="加上隱藏屬性">加上隱藏屬性</h1>
+<p><code>$(&quot;#btnAddUID&quot;).css(&quot;visibility&quot;, &quot;hidden&quot;);</code></p>
+<h1 id="捲到最上層">捲到最上層</h1>
+<p>scroll to top</p>
+<p><a href="https://api.jquerymobile.com/jQuery.mobile.silentScroll/" target="_blank">link</a></p>
+<p><a href="http://stackoverflow.com/questions/9783442/back-to-top-with-jquery-mobile" target="_blank">link</a></p>
+<p>一定要加上easing才有用</p>
+<p><code>$(&#39;html, body&#39;).animate( {scrollTop: &quot;400px&quot;}, {easing: &quot;swing&quot;, duration: 1600});</code></p>
+<h1 id="jquery_mobile_draggable_popup">jquery mobile draggable popup</h1>
+<p><a href="http://stackoverflow.com/questions/17811200/draggable-non-modal-popup-jquery-mobile" target="_blank">link</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-05T01:26:51.000Z"><a href="/2014/05/05/20140505/">May 5 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/05/20140505/">2014/05/05</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="jquery_mobile_table_屬性">jquery mobile table 屬性</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css16.png" alt="css"></p>
+<p>改變row的長寬</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css17.png" alt="css"></p>
+<h1 id="jquery_mobile_theme_gradient">jquery mobile theme gradient</h1>
+<p>ThemeRoller 1.4版本移<a href="http://blog.jquerymobile.com/2013/10/24/jquery-mobile-1-4-0-rc1-released/" target="_blank">除了gradient的效果</a>,必須要<a href="https://github.com/jquery/themeroller.jquerymobile.com/issues/149" target="_blank">手動加上</a><code>background-image</code>,這樣的方式跟我們現在做的方式差不多</p>
+<h1 id="jquery_mobile_popup">jquery mobile popup</h1>
+<p><a href="http://stackoverflow.com/questions/10514906/jquery-mobile-how-to-place-a-solid-border-round-the-page" target="_blank">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css18.png" alt="css"></p>
+<p>加上了外框</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css19.png" alt="css"></p>
+<h1 id="漸層工具">漸層工具</h1>
+<p><a href="http://www.colorzilla.com/gradient-editor/" target="_blank">link</a></p>
+<h1 id="java_,_node-js_deploy">java , node.js deploy</h1>
+<p>我希望可以隨時有個測試server , 可以隨時測試抓東西 ,隨時存東西</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-02T01:29:09.000Z"><a href="/2014/05/02/20140502/">May 2 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/02/20140502/">2014/05/02</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="CSS3_media_queries">CSS3 media queries</h1>
+<p><a href="http://fundesigner.net/css3-media-queries/" target="_blank">link</a></p>
+<h1 id="文字換行_強迫不換行">文字換行 強迫不換行</h1>
+<p><a href="http://www.puritys.me/docs-blog/article-31-CSS-%E8%AA%9E%E6%B3%95%EF%BC%8C%E6%96%87%E5%AD%97%E6%8F%9B%E8%A1%8C%EF%BC%8C%E5%BC%B7%E8%BF%AB%E4%B8%8D%E6%8F%9B%E8%A1%8C%E3%80%82.html" target="_blank">link</a></p>
+<h1 id="限制大小_強迫不改變">限制大小 強迫不改變</h1>
+<p><a href="http://stackoverflow.com/questions/15300059/css-how-to-make-image-container-width-fixed-and-height-auto-stretched" target="_blank">link</a></p>
+<h1 id="小結論">小結論</h1>
+<p>現在html就自動預設很多特性 有時候會剛好滿足需求 有時候又像是畫蛇添足..有非常多需要去理解的細節</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-30T02:50:49.000Z"><a href="/2014/04/30/20140430/">Apr 30 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/04/30/20140430/">2014/04/30</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="排版">排版</h2>
+<p>div 方法</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css8.png" alt="css"></p>
+<p>html<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css6.png" alt="css"><br>css<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css7.png" alt="css"></p>
+<p>table 方法</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css10.png" alt="css"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css9.png" alt="css"></p>
+<p>charlie那個tab的寫法改成<a href="http://stackoverflow.com/questions/6743478/jquery-grouped-buttons-change-appearance-after-click" target="_blank">這樣</a>比較好？</p>
+<h2 id="jquery_mobile_button_hightlight">jquery mobile button hightlight</h2>
+<ol>
+<li>button 一開始</li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css11.png" alt="css"></p>
+<ol>
+<li>button click不放掉 </li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css12.png" alt="css"></p>
+<ol>
+<li>button click放掉(blur?)</li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css13.png" alt="css"></p>
+<p>2的click不放掉情況</p>
+<p>用這控制</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css14.png" alt="css"></p>
+<p><code>box-shadow</code>可以加上最外圍的渲染效果</p>
+<p>3.的blur情況 用<code>.ui-btn-active</code>控制</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css15.png" alt="css"></p>
+<p>並且<code>background</code> 是 <code>background-color</code>的<a href="http://stackoverflow.com/questions/10205464/whats-the-difference-between-specifying-background-vs-background-color-in" target="_blank">shortcut</a></p>
+<p>但我用background指定顏色會失敗?!</p>
+<h1 id="jqm的table_改成沒有responsive">jqm的table 改成沒有responsive</h1>
+<p><a href="http://stackoverflow.com/questions/19533705/how-can-i-stop-a-jquery-mobile-table-being-responsive" target="_blank">stop jquery mobile table being responsive</a></p>
+<h1 id="jqm_$-mobile-loading_not_working">jqm $.mobile.loading not working</h1>
+<p><a href="http://stackoverflow.com/questions/16276753/jquery-mobile-1-3-1-mobile-loading-not-working" target="_blank">link</a></p>
+<h1 id="page_event">page event</h1>
+<p>You were also probably using document ready for event binding. It should not be used with jQuery Mobile, instead use <a href="http://www.gajotres.net/document-onpageinit-vs-document-ready/" target="_blank">page events</a>.</p>
+<p>其實之前就常常這樣覺得 jquery mobile根本不是用在onDocumentReady 而是用他自己的page event 所以才會我們現在才會常常發生一些奇怪問題..</p>
+<h1 id="用STS_or_Eclipse_CSS_html都不一定會refresh">用STS or Eclipse CSS html都不一定會refresh</h1>
+<p>快被搞死 每次都不知道有沒有成功 浪費時間 ,<br>根本應該讓前端跟後端完全分開 前端用比較快速的方式開發 不然根本浪費時間 </p>
+<p>快瘋了 浪費時間！ 一直refresh 一直清除瀏覽記錄…</p>
+<p>**</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-29T02:37:02.000Z"><a href="/2014/04/29/20140429/">Apr 29 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/04/29/20140429/">2014/04/29</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="CSS">CSS</h2>
+<p>怎麼用nth-child去指定an+b 到我要的td or tr<br>好解釋<a href="http://stackoverflow.com/questions/22035799/css-nth-child-for-greater-than-and-less-than" target="_blank">css-nth-child-for-greater-than-and-less-than</a></p>
+<p><a href="http://css-tricks.com/useful-nth-child-recipies/" target="_blank">useful-nth-child-recipies</a></p>
+<p>使用popup 出現錯誤<a href="http://stackoverflow.com/questions/13419358/uncaught-error-cannot-call-methods-on-popup-prior-to-initialization" target="_blank">cannot call methods on popup prior to initialization;</a></p>
+<p>popup <a href="http://stackoverflow.com/questions/13729212/jquery-mobile-popup-not-appearing-in-center" target="_blank">出現不是在中間</a><br>加上<code>data-position-to=&quot;window&quot;</code></p>
+<p>原本很複雜的<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css1.png" alt="css"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css2.png" alt="css"></p>
+<p>改成<code>style=&quot;text-align:right&quot; class=&quot;ui-field-contain&quot;</code>就可以了<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css3.png" alt="css"></p>
+<p>也可以很輕易的置中<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css4.png" alt="css"></p>
+<p>jquery mobile 的button放上圖片要設after</p>
+<p>但一開始一直沒有想到可以連續設pesudo element 最後才發現可以連用</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css5.png" alt="css"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-28T01:45:54.000Z"><a href="/2014/04/28/20140428/">Apr 28 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/04/28/20140428/">2014/04/28</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="event_attached_vs_CSS">event attached vs CSS</h2>
+<p><a href="https://api.jquery.com/on/" target="_blank">.on()</a> </p>
+<p><a href="https://api.jquery.com/delegate/" target="_blank">.dalegate()</a> 適合用於大量綁定</p>
+<p><a href="https://api.jquery.com/category/events/event-handler-attachment/" target="_blank">.live()</a> 綁定在未來會出現的元素</p>
+<p><a href="http://blog.dimpurr.com/css-before-after/" target="_blank">css-before-after</a></p>
+<p><a href="http://css-tricks.com/perfect-full-page-background-image/" target="_blank">perfect-full-page-background-image</a></p>
+<p><a href="http://nicolasgallagher.com/css-background-image-hacks/" target="_blank">css-background-image-hacks</a></p>
+<p><a href="http://appcropolis.com/blog/advanced-customization-jquery-mobile-buttons/" target="_blank">挺清楚的自定jquery mobile button教學</a></p>
+<p><a href="http://stackoverflow.com/questions/10055921/why-cant-i-override-existing-pseudo-elements" target="_blank">why-cant-i-override-existing-pseudo-elements</a></p>
+<p>看到<a href="http://stackoverflow.com/questions/12309086/undo-pseudo-element-before-and-after-rules" target="_blank">這個</a> 靈機一動 改成</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/jqm2.png" alt="jqm"></p>
+<p>就成功了!?</p>
+<p><a href="http://boohover.pixnet.net/blog/post/35116159-%E9%99%B0%E5%BD%B1%E6%95%88%E6%9E%9C%E5%8F%8A%E5%85%89%E6%9A%88%E6%95%88%E6%9E%9C%E7%9A%84-box-shadow-(css-property" target="_blank">box-shadow</a>) 很酷</p>
+<p><a href="http://stackoverflow.com/questions/3806035/how-do-i-add-a-shadow-to-an-entire-table-using-just-css" target="_blank">drop shadow only bottom</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-25T03:05:08.000Z"><a href="/2014/04/25/20140425/">Apr 25 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/04/25/20140425/">2014/04/25</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="eclipse_enviroment">eclipse enviroment</h1>
+<p>今天wbase的svn換成另一個repository,所以要重新再次checkout出來一次,這時候就發現一些問題..eclipse抓不到之前設定的環境..</p>
+<p>eclipse設定環境的東西是記錄在.metadata裡面<br>而這個.metadata會根據你開啟的workspace來決定放在哪裡</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sts/sts1.png" alt="sts"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sts/sts2.png" alt="sts"></p>
+<p>那cornerstone是怎麼找到要update,commit的資訊呢?<br>因為他也會隱藏.svn檔案</p>
+<p>在eclipse中Window -&gt; show view -&gt; Navigator</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sts/sts3.png" alt="sts"><br>會發現在每一個資料夾都藏了一個.svn<br>所以之後你commit或update的時候就會知道是怎麼動作的</p>
+<p>我們的專案都有個pom.xml 也就是maven檔案</p>
+<p>所以import maven project</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sts/sts4.png" alt="sts"></p>
+<p>可是接下來javascript lib又跳出問題 要一直停止build </p>
+<p>這個沒有記錄在.metadata裡面</p>
+<p>解決方法是 在build時候 就將它排除</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sts/sts5.png" alt="sts"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sts/sts6.png" alt="sts"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sts/sts7.png" alt="sts"></p>
+<h2 id="button">button</h2>
+<p><a href="http://stackoverflow.com/questions/9748337/jquery-mobile-button-background-color" target="_blank">button size ,radius-corner,highlight</a></p>
+<p>很好用的<a href="http://www.colorzilla.com/gradient-editor/" target="_blank">gradient tool</a></p>
+<p><a href="http://www.w3schools.com/css/css_pseudo_classes.asp" target="_blank">css pseudo</a></p>
+<p>現在碰到的問題是可能是因為button還沒產生就先讓他連上eventHandler</p>
+<p>用<a href="http://stackoverflow.com/questions/12618214/binding-jquery-events-before-dom-insertion" target="_blank">delegate</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-24T01:13:33.000Z"><a href="/2014/04/24/20140424/">Apr 24 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/04/24/20140424/">2014/04/24</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Maverick裝好後 沒有再開過android emulator<br>今天開又失敗了</p>
+<p>再次安裝/usr/local/var/lib/android-sdk/extras/intel/Hardware_Accelerated_Execution_Manager/HAX.mapk</p>
+<p>就可以了</p>
+<h1 id="sencha_is_hard_to_debug">sencha is hard to debug</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jmcNote/jmc.png" alt="jmfNote"></p>
+<p>無法出現title,narrative</p>
+<p><code>itemTplL: &#39;&lt;pre&gt;&lt;div class=&quot;list-item-title&quot;&gt;{title}&lt;/div&gt;&lt;div class=&quot;list-item-narrative&quot;&gt;{narrative}&lt;/div&gt;&lt;/pre&gt;&#39;</code></p>
+<p>最後發現是<br>itemTplL =&gt; <code>itemTpl</code></p>
+<p>這怎麼debug?!?! 根本找不到…</p>
+<h2 id="phonegap_package">phonegap package</h2>
+<p>之前<br><code>sencha ~/sencha/touch-2.3.1/ phonegap init com.example.test</code></p>
+<p>只要<code>sencha phonegap init</code></p>
+<p>要重新再套入phonegap一次</p>
+<p>就先清掉<code>sencha phonegap remove</code></p>
+<p>再下一次<code>sencha phonegap init</code></p>
+<h2 id="Todo">Todo</h2>
+<p>先做<a href="http://loutilities.wordpress.com/2012/08/10/dogtag-app-in-30-minutes-part-1-node-js-and-mongodb/" target="_blank">Mobile GeoLocation App</a>先把node掛上server 接下來我才能call account password,或存一些note之類的</p>
+<p>再來就可以做這個<a href="http://miamicoder.com/2012/adding-a-login-screen-to-a-sencha-touch-application/" target="_blank">Adding Login Screen to a Sencha Touch Appclication </a>,sencha去抓node帳號密碼</p>
+<p>再來做themes: <a href="http://loutilities.wordpress.com/2012/08/10/dogtag-app-in-30-minutes-part-1-node-js-and-mongodb/" target="_blank">creating a Custom Theme for a Sencha Touch Application</a></p>
+<p>最後才會是profile</p>
+<h2 id="frame_or_include_header">frame or include header</h2>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-23T01:47:17.000Z"><a href="/2014/04/23/20140423/">Apr 23 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/04/23/20140423/">2014/04/23</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="Yahoo_Finance_API">Yahoo Finance API</h3>
+<p><a href="http://www.gummy-stuff.org/Yahoo-data.htm" target="_blank">Yahoo-data</a> 借由call resf url的方式來抓資料,不過這網址是兩三年前的 連列入參考</p>
+<h3 id="yahoo-finance_node">yahoo-finance node</h3>
+<p><a href="https://www.npmjs.org/package/yahoo-finance" target="_blank">yahoo-finance</a>,node實作的模組,但我還沒確定要用node還是java寫</p>
+<h3 id="Yahoo_Query_Language_(YQL)">Yahoo Query Language (YQL)</h3>
+<p><a href="https://developer.yahoo.com/yql/" target="_blank">YQL</a></p>
+<p><a href="https://developer.yahoo.com/yql/guide/running-chapt.html" target="_blank">yql-guide</a></p>
+<p>query,filter,and join data across Web service,網路上提供的rest資料 可以被YQL統整使用</p>
+<p><a href="https://developer.yahoo.com/yql/guide/two-minute-tutorial.html" target="_blank">Two-Minute Tutorial</a></p>
+<p><a href="https://www.datatables.org/" target="_blank">datatablesc挺有用</a></p>
+<h3 id="YDN">YDN</h3>
+<p><a href="https://developer.yahoo.com/forum/YQL/Does-your-app-or-website-use/1362770470112-29c0b07e-d763-4d7f-8cb0-d9753f1efe4f" target="_blank">有個叫做EA的人</a></p>
+<p>EA:<br>Hi Paul,<br>Check out <a href="http://" target="_blank">http://simfol.io/valuation/?sym1=yhoo</a><br>This is a stock valuation tool using historic and estimate financial data. I use YQL to pull all the data you see in the tool.<br>Thanks<br>感覺很像我需要的東西</p>
+<h2 id="google_stock_api">google stock api</h2>
+<p><a href="http://kie0723.blogspot.tw/2010/11/google-stock-api.html" target="_blank">台灣</a></p>
+<p><a href="http://stackoverflow.com/questions/10040954/alternative-to-google-finance-api" target="_blank">google finance api is deprecated , and try yahoo finance api.</a></p>
+<h2 id="think">think</h2>
+<p><a href="http://kuanming-style.blogspot.tw/2013/02/excelvbayahoo-finance-apis.html" target="_blank">Excel運用VBA抓取Yahoo Finance APIs股票資料</a>,經過這篇可以理解用excel去抓yahoo finance api的處理方式,另外<a href="http://kie0723.blogspot.tw/2010/11/google-stock-api.html" target="_blank">可參考</a></p>
+<p>並且從這個網址範例 <a href="http://finance.yahoo.com/d/quotes.csv?s=2201.TW+2498.TW+9921.TW&amp;f=snd1l1" target="_blank">http://finance.yahoo.com/d/quotes.csv?s=2201.TW+2498.TW+9921.TW&amp;f=snd1l1</a></p>
+<p>改成 <a href="http://finance.yahoo.com/d/quotes.csv?s=2201.TW+2498.TW+**4974.TWO**&amp;f=snd1l1" target="_blank">http://finance.yahoo.com/d/quotes.csv?s=2201.TW+2498.TW+**4974.TWO**&amp;f=snd1l1</a></p>
+<p>抓到姑丈叫我注意看看的股票</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/yfa/yfa1.png" alt="yfa"><br>這回傳的格式是CSV</p>
+<p>我比較想要做成像這樣的web or app <a href="http://simfol.io/valuation/?sym1=yhoo" target="_blank">simfol.io</a><br>如果是web or app的話 需要的格式是JSON</p>
+<p>從<a href="https://developer.yahoo.com/yql/console/#h=select+woeid+from+geo.places+where+text%3D%22san+francisco%2C+ca%22" target="_blank">yql console</a>的範例,可以看到可以輸出XML &amp; JSON格式的資料</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/yfa/yfa2.png" alt="yfa"></p>
+<p><a href="https://query.yahooapis.com/v1/public/yql?q=select%20woeid%20from%20geo.places%20where%20text%3D%22san%20francisco%2C%20ca%22&amp;format=json&amp;diagnostics=true&amp;callback=" target="_blank">https://query.yahooapis.com/v1/public/yql?q=select%20woeid%20from%20geo.places%20where%20text%3D%22san%20francisco%2C%20ca%22&amp;format=json&amp;diagnostics=true&amp;callback=</a></p>
+<p>url後面可以指定format=json</p>
+<p>但是call yahoo finance api 和 yahoo query language的url看起來不大一樣?</p>
+<p>所以yql可以回傳JSON不代表yfa可以回傳JSON?</p>
+<h2 id="CSV_vs_XML_vs_JSON">CSV vs XML vs JSON</h2>
+<p>CSV(Comma-separated values) : 傳回的資料是用逗號分隔，文字內容由雙引號夾住，一行代表一筆資料的格式。excel可以匯入csv</p>
+<p>這樣子的定義還蠻像JSON的</p>
+<p><a href="http://xml-directory.blogspot.tw/2011/05/csv-vs-xml-vs-json-which-is-best-format.html" target="_blank">實際比較</a></p>
+<p>CSV Comma-separated value</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/yfa/yfa5.png" alt="csv"></p>
+<p>優點 : 資料壓縮最小的格式</p>
+<p>缺點 : 不支援多層(hierarchy)結構</p>
+<p>XML extensible markup language</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/yfa/yfa3.png" alt="xml"></p>
+<p>優點 : W3C的標準格式 很好的支援多層結構</p>
+<p>缺點 : 包了很多tag , size比CSV大三倍</p>
+<p>JSON</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/yfa/yfa4.png" alt="json"></p>
+<p>優點 : 支援多層結構 object literal的方式很適合變成包成javaBean那種object</p>
+<p>缺點 : size比CSV大兩倍(比XML小)</p>
+<p>結論 <strong>JSON</strong>最適合從server傳資料到client！</p>
+<h2 id="sencha_charts">sencha charts</h2>
+<p>大概已經知道資料從哪裡抓了 問題是抓回來的資料要怎麼做顯示呢?</p>
+<p><a href="http://dev.sencha.com/deploy/touch-charts-beta/examples/Combo/" target="_blank">sencha touch-charts-beta</a></p>
+<h3 id="Todo">Todo</h3>
+<p>先關注在一支股票就4974.TWO吧</p>
+<p>讓他用sencha chart各種方式ex:bar charts,line charts..etc..顯示資料</p>
+<p>既然要寫的話..可能要稍微研究sencha proxy抓api的方式 並將資料傳給store 再用model定義輸出格式</p>
+<h2 id="ingo-hefti寫的test_MVC">ingo.hefti寫的test MVC</h2>
+<p><a href="http://www.sencha.com/forum/showthread.php?262730-MVC-Sample-App" target="_blank">testMVC</a></p>
+<h2 id="sencha_yql">sencha yql</h2>
+<p>意外發現！！！！！<br>其實在sencha touch裡面就有example使用yql!!!</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/yfa/syql1.png" alt="syql"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/yfa/syql2.png" alt="syql"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/yfa/syql3.png" alt="syql"></p>
+<h2 id="missing_charts">missing charts</h2>
+<p><a href="http://stackoverflow.com/questions/21340424/sencha-touch-2-3-1-missing-charts" target="_blank">sencha touch 2.3.1 missing charts</a></p>
+<p><a href="http://www.sencha.com/forum/showthread.php?248828-No-charting-included-in-sencha-touch-2.1.0-commercial.zip&amp;s=a90f9ab7d058f29656a321e9aed54976" target="_blank">I have been told that the only way to get Charts for commercial use is to buy Sencha Complete. No matter what product you allready have bought.</a></p>
+<p>結論是必須要另外<a href="https://www.sencha.com/store/sencha-complete/" target="_blank">購買</a>…</p>
+<p>包括Eclipse Plugin for Ext JS &amp; Touch , Sencha Touch Charts</p>
+<p>charts lib or plugins :</p>
+<p><a href="http://www.jchartfx.com/" target="_blank">jchartFX</a></p>
+<p><a href="http://nvd3.org/" target="_blank">d3</a></p>
+<p>我一直以為可以用sencha touch charts!!!</p>
+<p>太失望了…</p>
+<p>但!發現這個神人!<br><a href="churning">Jeff Wooden</a><br>他寫了這個<a href="http://www.codeimagined.com/javascript/opencharts-nvd3-charts-for-sencha-touch-extjs/" target="_blank">openCharts - NVD3 Charts for Sencha Touch &amp; ExtJS</a></p>
+<p>而且他網站超漂亮的！</p>
+<h2 id="sencha_touch_豐富教學">sencha touch 豐富教學</h2>
+<p><a href="http://miamicoder.com/sencha-touch-tutorials/" target="_blank">sencha touch tutorials</a></p>
+<h2 id="Note_Application">Note Application</h2>
+<h2 id="sencha_vs_jquery">sencha vs jquery</h2>
+<p><a href="http://www.gajotres.net/sencha-touch-vs-jquery-mobile/" target="_blank">Dragan Gaic</a>這個作者之前在我查jquery mobile的消息時候 常常看到</p>
+<p>我發現只能比較部分好壞 </p>
+<p>根本不能比整體到底哪個好</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+    <a href="/categories/blog/page/13/" class="alignleft prev">Prev</a>
+  
+  
+    <a href="/categories/blog/page/15/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

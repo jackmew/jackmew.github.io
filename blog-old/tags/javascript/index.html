@@ -1,0 +1,1074 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>javascript | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title tag">javascript</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-23T02:46:37.000Z"><a href="/2014/05/23/20140523/">May 23 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/23/20140523/">2014/05/23</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="非常有用的callback教學_內容包括stream_,_module_也很重要">非常有用的callback教學 內容包括stream , module 也很重要</h1>
+<p><a href="https://github.com/maxogden/art-of-node#callbacks" target="_blank">art-of-node callbacks</a></p>
+<p>沒有加入callback,一般從上到下的執行方式</p>
+<pre><code><span class="keyword">var</span> myNumber = <span class="number">1</span>;
+<span class="function"><span class="keyword">function</span> <span class="title">addOne</span><span class="params">()</span><span class="comment">{
+    myNumber ++;
+}</span>
+<span class="title">addOne</span><span class="params">()</span>;</span>
+console.log(myNumber);
+</code></pre><p>output: 2</p>
+<p>在node中 關於hard disk , network ,connection db之類要花比較長時間的動作,都會做成async function,用非同步的方式處理</p>
+<p>這邊的例子是fs.readFile(‘something’,function);<br>也就是說fs.readFile讀到檔案後 再執行function</p>
+<pre><code><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);
+
+<span class="keyword">var</span> myNumber = <span class="literal">undefined</span>;
+
+<span class="function"><span class="keyword">function</span> <span class="title">addOne</span><span class="params">()</span>{</span>
+    <span class="comment">//當readFile讀完資料,再去做後面的callback function doneReading</span>
+    fs.readFile(<span class="string">'number.txt'</span>,<span class="function"><span class="keyword">function</span> <span class="title">doneReading</span><span class="params">(err,fileContent)</span>{</span>
+        myNumber = <span class="built_in">parseInt</span>(fileContent);
+        myNumber++;
+    });
+}
+
+addOne();
+<span class="comment">//問題是 我們沒有告訴console.log(myNumber)要等到fs.readFile結束 才執行</span>
+console.log(myNumber);
+</code></pre><p>output: undefined</p>
+<h2 id="為何會是這樣的結果呢?">為何會是這樣的結果呢?</h2>
+<ol>
+<li><p>執行node script.js     ,會先parse script.js裡面的code,並檢查有沒有syntax error    </p>
+</li>
+<li><p>define function, define variable</p>
+</li>
+<li>找到執行的動作    </li>
+</ol>
+<p>在這個例子中 addOne() 的確先被執行了,但是在async function時,等檔案找到 直到 回傳的這個中間的I/O讀取時間,是可以做其他動作的,所以找到下一個可以執行的動作,也就是console.log(myNumber),而這動作不需要什麼執行時間,所以就先印出結果了    </p>
+<h1 id="callback?">callback?</h1>
+<ol>
+<li>所謂的callback function,表示 這個function將在某個function執行之後執行.</li>
+<li>我們無法知道async function什麼時候會執行完成</li>
+<li>但我們知道async function的最後執行位置在哪裡 =&gt; async function的最後一行</li>
+</ol>
+<pre><code>    <span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);
+    <span class="keyword">var</span> myNumber = <span class="literal">undefined</span>;
+
+    <span class="function"><span class="keyword">function</span> <span class="title">addOne</span><span class="params">(callback)</span>{</span>
+        fs.readFile(<span class="string">'number.txt'</span>,<span class="function"><span class="keyword">function</span> <span class="title">doneReading</span><span class="params">(err,fileContents)</span>{</span>
+            myNumber = <span class="built_in">parseInt</span>(fileContents);
+            myNumber++;
+            <span class="comment">//我們可以知道 callback function的最後一行 必定最後執行</span>
+            callback();
+        });
+    }
+    <span class="function"><span class="keyword">function</span> <span class="title">logMyNumber</span><span class="params">()</span>{</span>
+        console.log(myNumber);
+    }
+
+    addOne(logMyNumber);
+</code></pre><p>所以我們將console.log(myNumber)包成function logMyNumber,變成addOne的callback function.</p>
+<p>所以現在的執行點變成一個,addOne(callback);</p>
+<p>並且我們從1.得知 fs.readFile讀到檔案後會去執行自己的callback doneReading,而3. 執行到最後一行 再去執行function logMyNumber.</p>
+<h1 id="callback的執行順序">callback的執行順序</h1>
+<ol>
+<li><p>a();<br>b();<br>c();</p>
+</li>
+</ol>
+<p>這三個function基本上會同時執行,執行快的就先做完</p>
+<ol>
+<li>closure ? hierarchy ?</li>
+</ol>
+<p>a(function(){<br>    b(function(){<br>        c();<br>    });<br>});</p>
+<p>a 執行完 執行b 再執行c</p>
+<h1 id="RequireBin_很酷的東西">RequireBin 很酷的東西</h1>
+<p><a href="http://requirebin.com/?gist=6031068" target="_blank">http://requirebin.com/?gist=6031068</a></p>
+<h1 id="回頭去看_昨天碰到的問題">回頭去看 昨天碰到的問題</h1>
+<p>我想用<a href="https://github.com/codetunnel/mongoose-simpledb" target="_blank">mongoose-simpledb</a>,做connect mongo的動作,但是碰到問題callback的問題    </p>
+<h2 id="我希望將mongo連線的資料變成另一個module">我希望將mongo連線的資料變成另一個module</h2>
+<p>settings.js</p>
+<pre><code><span class="built_in">module</span>.<span class="built_in">exports</span> = {
+    <span class="attribute">host</span>:<span class="string">'ds049898.mongolab.com:49898'</span>,
+    <span class="attribute">db</span>:<span class="string">'pokemon'</span>,
+    <span class="attribute">user</span>:<span class="string">'jmc'</span>,
+    <span class="attribute">password</span>:<span class="string">'jmcmongo'</span>
+};
+</code></pre><h2 id="連線的動作_也分為另一個module">連線的動作 也分為另一個module</h2>
+<p>connectDB.js</p>
+<pre><code>var simpledb = <span class="keyword">require</span>(<span class="string">'mongoose-simpledb'</span>);
+var settings = <span class="keyword">require</span>(<span class="string">'./settings'</span>);
+
+exports.connectDb = function(callback){
+
+    var DB;
+    var <span class="keyword">connect</span> = <span class="string">'mongodb://'</span>;
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.user);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(<span class="string">':'</span>);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.password);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(<span class="string">'@'</span>);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.host);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(<span class="string">'/'</span>);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.db);
+
+    console.<span class="keyword">log</span>(<span class="keyword">connect</span>);
+
+    var db = simpledb.init(<span class="keyword">connect</span>);
+    console.<span class="keyword">log</span>(<span class="string">"connect"</span>+db);
+    <span class="keyword">return</span> db;
+}
+</code></pre><h2 id="main">main</h2>
+<p>script.js</p>
+<pre><code><span class="keyword">var</span> connectStart = <span class="built_in">require</span>(<span class="string">'./connectDB'</span>);
+<span class="keyword">var</span> db = connectStart.connectDb()
+
+
+db.Fire.find({<span class="string">'name'</span>:<span class="string">'Charizard'</span>},<span class="function"><span class="keyword">function</span><span class="params">(err,result)</span>{</span>
+    <span class="keyword">if</span>(err) <span class="keyword">return</span> console.error(err);
+    console.log(result);
+});
+</code></pre><h1 id="db卻一直是undefined???">db卻一直是undefined???</h1>
+<p>因為connect db 這個動作是I/O 速度很慢 所以先被執行了db.Fire.find 此時db還沒連線,</p>
+<p>所以我們必須確定 在抓到db連線後 才回傳db  再去執行db.Fire.find</p>
+<p>connectDB.js</p>
+<pre><code>var simpledb = <span class="keyword">require</span>(<span class="string">'mongoose-simpledb'</span>);
+var settings = <span class="keyword">require</span>(<span class="string">'./settings'</span>);
+
+exports.connectDb = function(callback){
+
+    var <span class="keyword">connect</span> = <span class="string">'mongodb://'</span>;
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.user);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(<span class="string">':'</span>);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.password);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(<span class="string">'@'</span>);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.host);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(<span class="string">'/'</span>);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.db);
+
+    console.<span class="keyword">log</span>(<span class="keyword">connect</span>);
+
+    simpledb.init(<span class="keyword">connect</span>,function(err,db){
+    <span class="keyword">if</span>(err) <span class="keyword">return</span> console.error(err);
+    console.<span class="keyword">log</span>(db);
+
+    callback &amp;&amp; callback(db);
+    });
+}
+</code></pre><p>main: script.js</p>
+<pre><code><span class="keyword">var</span> connectStart = <span class="built_in">require</span>(<span class="string">'./connectDB'</span>);
+<span class="keyword">var</span> db = <span class="literal">undefined</span>;
+connectStart.connectDb(<span class="function"><span class="keyword">function</span><span class="params">(dbConnected)</span>{</span>
+    console.log(<span class="string">"script:"</span>+dbConnected);
+    db = dbConnected;
+    console.log(db);
+    fireFind();
+});
+
+<span class="function"><span class="keyword">function</span> <span class="title">fireFind</span><span class="params">()</span>{</span>
+    db.Fire.find({<span class="string">'name'</span>:<span class="string">'Charizard'</span>},<span class="function"><span class="keyword">function</span><span class="params">(err,result)</span>{</span>
+        <span class="keyword">if</span>(err) <span class="keyword">return</span> console.error(err);
+        console.log(result);
+    });
+}
+</code></pre><ol>
+<li><p>connectStart.connectDb先執行 並執行了simpledb.init</p>
+</li>
+<li><p>simpledb.init執行完後,執行自己的function console.log(db),</p>
+</li>
+<li><p>執行傳進來的callback &amp;&amp; callback(db);</p>
+</li>
+<li><p>執行fireFind()</p>
+</li>
+</ol>
+<p>這個過程只有一個啓動點     connectStart.connectDb</p>
+<h1 id="為什麼app-js就可以直接用_var_db_=_simpledb-init(‘mongodb://localhost/test’);">為什麼app.js就可以直接用 var db = simpledb.init(‘mongodb://localhost/test’);</h1>
+<p>app.js    </p>
+<p>因為pattern是不同的</p>
+<p>一個callback 接一個 callback的做法 是要確保之間相依性 順序性的正確</p>
+<p>而    </p>
+<p>1.啟動server    </p>
+<p>2.連接資料庫    </p>
+<p>之間沒有相依性 看誰先做完都沒關係 接下來的啓動點呢 ? </p>
+<pre><code>    app.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span><span class="params">(req,res)</span></span>{
+        db.Kitten.findOne({<span class="string">'name.first'</span>:<span class="string">'mew'</span>},<span class="function"><span class="keyword">function</span><span class="params">(err,koda)</span></span>{
+            <span class="keyword">if</span> (err) <span class="keyword">return</span> console.<span class="built_in">error</span>(err);
+            console.log(koda);
+        });
+    });    
+</code></pre><p>接下來router(url),match到,發出一個request後才會動作,而在這之前db已經被assign值了</p>
+<h1 id="傳db_object">傳db object</h1>
+<p>此時又發現一個問題    </p>
+<p>models , controllers(routes) , views  , app.js =&gt; load 所有要load的東西</p>
+<p>包抓資料庫connect,可是我的model裡面也必須要有db object才行,要怎麼樣才能傳db?<br>結果<a href="https://github.com/codetunnel/mongoose-simpledb" target="_blank">Chevex也已經解決這問題    </a></p>
+<p>只要你執行過simpledb.init後,在任何地方 下<code>var db = require(&#39;mongoose-simpledb&#39;).db;</code>就可以抓到db!</p>
+<h1 id="完成基本的express_crud_要deploy">完成基本的express crud 要deploy</h1>
+<h1 id="node_heroku">node heroku</h1>
+<p><a href="http://www.bymichaellancaster.com/blog/deploying-nodejs-on-heroku-cloud/" target="_blank">http://www.bymichaellancaster.com/blog/deploying-nodejs-on-heroku-cloud/</a></p>
+<h1 id="grunt">grunt</h1>
+<p><a href="http://ithelp.ithome.com.tw/question/10120425?tag=ithome.nq" target="_blank">http://ithelp.ithome.com.tw/question/10120425?tag=ithome.nq</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-25T01:49:44.000Z"><a href="/2014/03/25/20140325/">Mar 25 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/25/20140325/">2014/03/25</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Operator">Operator</h2>
+<p>true,false定義:</p>
+<p>非0的整數皆為true</p>
+<p>undefined null “”空字串為false</p>
+<p>&amp;&amp; =&gt; a &amp;&amp; b</p>
+<p>a 為 true , return b<br>a 為 false , return a</p>
+<p>|| =&gt; a || b</p>
+<p>a 為 true , return a<br>a 為 fales , return b</p>
+<h2 id="executing_anonymous_function">executing anonymous function</h2>
+<p>表示執行這個function 並定義一個不是global的scope</p>
+<pre><code><span class="list">(<span class="title">function</span><span class="list">()</span>{
+
+
+})</span><span class="list">()</span><span class="comment">;</span>
+</code></pre><h2 id="callback">callback</h2>
+<p><a href="http://dreamerslab.com/blog/tw/javascript-callbacks/" target="_blank">dreamerslab callback</a></p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">ca</span><span class="params">(callback)</span>{</span>
+
+    console.log(<span class="string">"do something"</span>);
+    <span class="keyword">var</span> result = <span class="string">"for callback"</span>;
+
+    callback &amp;&amp; callback(result);
+
+}
+
+ca(<span class="function"><span class="keyword">function</span><span class="params">(result)</span>{</span>
+    console.log(result);
+});
+</code></pre><p>output:</p>
+<p>do something</p>
+<p>for callback</p>
+<p>可以看出ca(function(<strong>result</strong>));</p>
+<p>result是用來接callback回傳參數的</p>
+<p><strong>call &amp; apply</strong> <a href="http://dreamerslab.com/blog/tw/javascript-this/" target="_blank">link</a><br>昨天看書的定義大概是 允許一個物件去呼叫另一個物件的成員變數</p>
+<p>但實際上還是沒搞懂要在哪裡使用</p>
+<p>看來應該是callback function 時常會去call function , call別人的function,來使用的吧</p>
+<h2 id="scope">scope</h2>
+<p><a href="http://dreamerslab.com/blog/tw/javascript-function-scopes-and-closures/" target="_blank">dreamerslab scope</a></p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">photo</span><span class="params">()</span>{</span>
+        <span class="keyword">var</span> name = <span class="string">'JJ'</span>;
+        <span class="keyword">return</span>{
+                say_name : <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+                        console.log(name);
+                },
+                rename : <span class="function"><span class="keyword">function</span><span class="params">(newName)</span>{</span>
+                        name = newName;
+                }
+        };
+}
+
+<span class="keyword">var</span> pic = <span class="keyword">new</span> photo;
+
+pic.say_name();
+pic.rename(<span class="string">'JS'</span>);
+pic.say_name();
+</code></pre><p>這樣子寫法 模擬出JavaBean getter ,setter 只有在new出instance後 自己才可以去get set value</p>
+<p>這樣子的方式又叫做<strong>封裝(encapsulation)</strong></p>
+<p>那javascript中用 <strong>閉包(closure)</strong> 達到跟封裝差不多的效果 </p>
+<p>之前竟然沒有想到兩個名詞代表的意思其實還蠻相近的</p>
+<p>考慮到一直以來 其實都沒有完整得去學習javascript </p>
+<p>就是看到什麼就用什麼…</p>
+<p>以下是兩個資源豐富的網路上教學資源</p>
+<h3 id="JavaScript_Garden">JavaScript Garden</h3>
+<p><a href="http://bonsaiden.github.io/JavaScript-Garden/" target="_blank">link</a></p>
+<h3 id="Mozilla_Development_Network">Mozilla Development Network</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank">MDN JavaScript Guide</a></p>
+<pre><code><span class="keyword">var</span> x = <span class="number">1</span>;
+{
+    <span class="keyword">var</span> x = <span class="number">2</span>;
+}
+
+alert(x);
+</code></pre><p>output:2</p>
+<p>因為javascript 沒有block scope</p>
+<p>各個function中才有scope</p>
+<h3 id="Object_Manipulation_Statements">Object Manipulation Statements</h3>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-24T02:36:21.000Z"><a href="/2014/03/24/iife/">Mar 24 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/24/iife/">javascript</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Immediately-Invoked_Function_Expression">Immediately-Invoked Function Expression</h2>
+<p><a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/" target="_blank">Ben Alman</a></p>
+<p>就像是private variable</p>
+<h2 id="Closure">Closure</h2>
+<p>比較容易懂的講解<br><a href="http://www.ruanyifeng.com/blog/2009/08/
+learning_javascript_closures.html">closure</a></p>
+<p>closure(閉包) 的用處 應該跟Java的class內有public pretected private等Access Modifiers類似</p>
+<p>由於基本javascript</p>
+<p>1.只有global variable(屬於window object) ,和local variable,兩種方式存<br>取變數</p>
+<p>2.chain scope</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">f1</span><span class="params">()</span>{</span>
+    <span class="keyword">var</span> n=<span class="number">999</span>;
+
+    <span class="function"><span class="keyword">function</span> <span class="title">f2</span><span class="params">()</span>{</span>
+        alert(n);
+    }
+
+}
+</code></pre><p>f2 能看到 f1的local variable </p>
+<p>但 f2的local variable 對f1是不可見的</p>
+<p>單向=&gt;只能由外到內</p>
+<p>3.javascript具備Function as Arguments的特性</p>
+<p>藉由以上特性實作出類似public private的方法就叫做closure</p>
+<p>所以closure就是function內部 和 function外部 連接的橋梁</p>
+<p>closure會先存在momory中 不會因為執行完 就回收資源</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">counter</span><span class="params">()</span> {</span>
+    <span class="keyword">var</span> count = <span class="number">0</span>;
+    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        console.log(count++);
+    }
+}
+<span class="keyword">var</span> count = counter();
+count();
+count();
+count();
+</code></pre><p>output<br>        0<br>        1<br>        2</p>
+<p>如果使用不當 容易導致<a href="http://lp43.blogspot.tw/2011/11/memory-
+leak_02.html">momory leak</a></p>
+<h2 id="function_that_return_a_function">function that return a function</h2>
+<p>又發現奇怪特性<a href="http://stackoverflow.com/questions/7629891/functions-that-return-a-function-javascript" target="_blank"> function that return a function</a></p>
+<pre><code><span class="reserved">function</span> a() {
+    <span class="built_in">console</span>.log(<span class="string">'A'</span>);
+}
+<span class="regexp">//</span>alerts <span class="string">'A'</span>, returns <span class="literal">undefined</span>
+
+<span class="reserved">function</span> b() {
+    <span class="built_in">console</span>.log(<span class="string">'B'</span>);
+    <span class="keyword">return</span> a;
+}
+<span class="regexp">//</span>alerts <span class="string">'B'</span>, returns <span class="reserved">function</span> a
+
+<span class="reserved">function</span> c() {
+    <span class="built_in">console</span>.log(<span class="string">'C'</span>);
+    <span class="keyword">return</span> a();
+}
+<span class="regexp">//</span>alerts <span class="string">'C'</span>, alerts <span class="string">'A'</span>, returns <span class="literal">undefined</span>
+
+<span class="built_in">console</span>.log(<span class="string">"Function 'a' returns "</span> + a());
+<span class="built_in">console</span>.log(<span class="string">"Function 'b' returns "</span> + b());
+<span class="built_in">console</span>.log(<span class="string">"Function 'c' returns "</span> + c());
+</code></pre><p>output</p>
+<pre><code>A
+<span class="built_in">Function</span> <span class="string">'a'</span> returns <span class="literal">undefined</span>
+B
+<span class="built_in">Function</span> <span class="string">'b'</span> returns <span class="function"><span class="keyword">function</span> <span class="title">a</span><span class="params">()</span> {</span>
+    console.log(<span class="string">'A'</span>);
+}
+C
+A
+<span class="built_in">Function</span> <span class="string">'c'</span> returns <span class="literal">undefined</span>
+</code></pre><p>結論</p>
+<p>1.return a 沒加上括號() =&gt; 會return the reference to the function ,直接抓到那個function 所以印出整個function</p>
+<p>2.return a() =&gt; 會執行function a  並認為會有return值 而沒有assign return值 所以是undefined </p>
+<h2 id="d()()">d()()</h2>
+<p><strong>return variable</strong></p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">d</span><span class="params">()</span> {</span>
+        <span class="keyword">var</span> x = <span class="number">10</span>;
+
+        <span class="keyword">return</span> x ;
+}
+console.log(d());
+</code></pre><p>output</p>
+<pre><code>10
+</code></pre><p><strong>return function</strong></p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">d</span><span class="params">()</span> {</span>
+
+    console.log(<span class="string">"D"</span>);
+
+    <span class="function"><span class="keyword">function</span> <span class="title">e</span><span class="params">()</span>{</span>
+        console.log(<span class="string">"E"</span>);
+    }
+    <span class="keyword">return</span> e ;
+}
+d();
+console.log(<span class="string">"-----------------"</span>)
+d()();
+</code></pre><p>output</p>
+<pre><code><span class="header">D
+-----------------</span>
+D
+E
+</code></pre><p>當只下了d() return的function 只會顯示 他是個function 卻不會執行console.log(“E”);</p>
+<p>結論是return是function時 須這樣call : <code>d()()</code></p>
+<h2 id="memory_特性">memory 特性</h2>
+<p><a href="http://stackoverflow.com/questions/440739/what-do-parentheses-surrounding-a-javascript-object-function-class-declaration-m" target="_blank">還可以這樣用</a></p>
+<pre><code><span class="keyword">var</span> <span class="keyword">add</span> = <span class="function"><span class="keyword">function</span><span class="params">(n)</span><span class="comment">{
+        return 1+n;
+}</span>
+<span class="title">console</span>.<span class="title">log</span><span class="params">(<span class="keyword">add</span>(2)</span>);</span>
+</code></pre><p>output:3</p>
+<pre><code><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span><span class="params">(n)</span>{</span>
+        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+                <span class="keyword">return</span> <span class="number">1</span>+n;
+        }
+}
+console.log(add(<span class="number">2</span>)());
+</code></pre><p>output:3</p>
+<pre><code><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span><span class="params">(n)</span>{</span>
+        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">(x)</span>{</span>
+                <span class="keyword">return</span> x+n;
+        }
+}
+console.log(add(<span class="number">2</span>)(<span class="number">4</span>));
+</code></pre><p>output: 6</p>
+<pre><code><span class="keyword">var</span> add_gen = <span class="function"><span class="keyword">function</span><span class="params">(n)</span>{</span>
+        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">(x)</span>{</span>
+                <span class="keyword">return</span> n+x;
+        };
+};
+
+<span class="keyword">var</span> add2 = add_gen(<span class="number">2</span>);
+console.log(add2(<span class="number">3</span>));
+</code></pre><p>output:5</p>
+<p>好像很猛的教學 一堆看不懂…</p>
+<p><a href="http://ejohn.org/apps/learn/" target="_blank">Learning Advanced JavaScript</a></p>
+<p><a href="http://mzhou.me/article/81001/" target="_blank">scope,context,closure</a></p>
+<h4 id="Scope_作用域">Scope 作用域</h4>
+<p>決定變數的<strong>可見範圍</strong>和<strong>生命週期</strong>,<strong>減少命名衝突 </strong>  <strong>垃圾回收的基本單元</strong></p>
+<p>C =&gt; 由大括號包圍 (block scope)</p>
+<p>javascript =&gt; variable決定</p>
+<p>scope chain =&gt; 先查看自己的scope 再向上查看父scope 最後到global</p>
+<h4 id="Context_上下文">Context 上下文</h4>
+<p>上下文物件就是this,即被呼叫函數所處的環境 =&gt; 誰call它 this就指誰</p>
+<p><strong>call &amp; apply</strong> 允許一個物件去呼叫另一個物件的成員變數 =&gt; 動態決定this指的對象</p>
+<p><strong>bind</strong> 永久綁定函數的上下文(context)</p>
+<h4 id="Closure閉包">Closure閉包</h4>
+<p>其實每個function都是closure 只是比較不能表現出closure特性</p>
+<p>通常local variable的生命週期 是在function被call時開始 到function結束後會被釋放</p>
+<p>然而 當一個函數傳回它內部定義的一個函數時 因為被參照到了 無法釋放 就產生了closure閉包</p>
+<p>利用此特性 可以達到兩個主要用途</p>
+<p><strong>1.嵌套的回呼函數(callback function)</strong></p>
+<p>所謂嵌套 就是被很多層{}包起來 由於closure特性 儘管最外層的function已經執行完了 但有被內層function參照到的variable 所以不會被釋放</p>
+<p><strong>2.實現私有成員private</strong></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-18T06:19:07.000Z"><a href="/2014/03/18/20140316/">Mar 18 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/18/20140316/">2014/03/16</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="2014/03/16">2014/03/16</h3>
+<p>paging plugin 跟 user.js 之間控制要傳遞的參數</p>
+<p>currBlock</p>
+<h3 id="Closure">Closure</h3>
+<p><a href="http://www.javascriptkit.com/javatutors/closures.shtml" target="_blank">link</a></p>
+<h3 id="||_short-circuit_evaluation">|| short-circuit evaluation</h3>
+<p><a href="http://stackoverflow.com/questions/2100758/javascript-or-variable-assignment-explanation" target="_blank">short-circuit evaluation</a></p>
+<h3 id="mongodb_bad_offset">mongodb bad offset</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo8.png" alt="bad offset"></p>
+<p><code>db.repairDatabase()</code></p>
+<p>跑一段時間後 就解決了</p>
+<h3 id="popup_widget">popup widget</h3>
+<p><a href="http://api.jquerymobile.com/popup/#event-afteropen" target="_blank">popup widget attribute</a></p>
+<pre><code>          $( "<span class="id">#newUIDDialog</span>" )<span class="class">.popup</span>(<span class="rules">{
+              <span class="rule"><span class="attribute">afteropen</span>:<span class="value"> <span class="function">function( event, ui )</span> {
+                  $(<span class="string">'#UIDName'</span>).<span class="function">focus()</span></span></span>;
+              <span class="rule">}</span></span>
+          });
+</code></pre><p>直接放在onDocumentReady 當按下某跳出視窗後 會focus在第一個欄位</p>
+<h3 id="control_jquery_mobile_transition">control jquery mobile transition</h3>
+<p><a href="http://demos.jquerymobile.com/1.2.0/docs/api/methods.html" target="_blank">using jquery to control</a></p>
+<pre><code>$<span class="class">.mobile</span><span class="class">.changePage</span>( 
+        $("<span class="id">#pagetwo</span>"), 
+        <span class="rules">{ 
+            <span class="rule"><span class="attribute">transition</span>:<span class="value"> <span class="string">"turn"</span> 
+        </span></span></span>});
+</code></pre><h3 id="jquery_mobile">jquery mobile</h3>
+<p>header fixed</p>
+<p>根據文件是說加上<code>data-position=&quot;fixed&quot;</code> 就可以了</p>
+<p>但沒用</p>
+<p>還要加上<code>data-tap-toggle=&quot;false&quot;</code></p>
+<p><a href="http://stackoverflow.com/questions/9232415/jquery-mobile-disable-tap-to-toggle-fixed-header-and-footer" target="_blank">fixed</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-13T07:19:24.000Z"><a href="/2014/03/13/learn-canvas/">Mar 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/13/learn-canvas/">learn Canvas</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><a href="http://www.homeandlearn.co.uk/JS/html5_canvas_drawing_shapes.html" target="_blank">HTML5 Canvas</a></p>
+<h3 id="Snake">Snake</h3>
+<p>I practice javascript and a lit bit Canvas</p>
+<p>iframe</p>
+<p>note Canvas <a href="https://dl.dropboxusercontent.com/u/47510080/record/javascript/javascript%20object.pdf" target="_blank">link</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-13T07:08:57.000Z"><a href="/2014/03/13/js/">Mar 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/13/js/">js</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="Note">Note</h3>
+<p>物件導向程式語言(Object-Oriented Language) Java , C++ , C#</p>
+<p>1.封裝(Encapsulation)</p>
+<p>2.繼承(Inheritance)</p>
+<p>3.多型(Polymorphism) 好像比較少用</p>
+<p>程式語言俱備這三個特性,就稱之為物件導向程式語言.</p>
+<p>程式語言是一連串的演進過程,當處理一件事情的時候,不需要俱備這些特性,</p>
+<p>但當同時處理多件事情時,你很難用直接的思考來處理事情</p>
+<p>所以呢 OO就是只是一種設計樣式來讓我們程式設計師可以去處理多種問題,方便維護,加上新功能,才能將專案做大.</p>
+<p>當然 你夠強 你想怎麼設計你的程式處理方式 就怎麼設計.</p>
+<p>然而現在程式設計通常都是團隊一起來寫,所以你的設計方式也需要讓其他人能夠理解,別人才能維護,擴充你設計的程式.</p>
+<p>在 Javascript中 變數 方法 皆是物件<br>物件又可以隨時新增子物件</p>
+<p>1.封裝(Encapsulation)</p>
+<p>Java , C++ , C# =&gt;    class</p>
+<p>JavaScript =&gt; Constructor function =&gt;1.declare 2.new</p>
+<p>2.繼承(Inheritance)</p>
+<p>Java , C++ , C# =&gt;    class extends</p>
+<p>JavaScript =&gt; prototype 比較像擴充</p>
+<h3 id="xxx-based">xxx-based</h3>
+<p>JavaScript — Prototype-based programming language :</p>
+<p>類別事實上就是物件    =&gt; 全部都是物件</p>
+<p>C++,C#,Java — Class-based programming language:</p>
+<p>class =&gt; 類別是抽象資料型態</p>
+<p>instance =&gt; class new instance</p>
+<p><a href="https://dl.dropboxusercontent.com/u/47510080/record/javascript/javascript%20object.pdf" target="_blank">筆記</a></p>
+<h3 id="JavaScript_101">JavaScript 101</h3>
+<p><a href="http://stage.learn.jquery.com/javascript-101/" target="_blank">JavaScript 101</a></p>
+<h5 id="Immediately-Invoked_Function_Expression(IIFE)">Immediately-Invoked Function Expression(IIFE)</h5>
+<p>在javascipt function可以當作參數<br>因為在javascript中所以東西都是物件 所以function也是物件 物件自然就可以當作參數</p>
+<h3 id="演進">演進</h3>
+<p>解讀javascript =&gt;javascript引擎</p>
+<p>Mozilla    =&gt;    TraceMonkey+mozilla</p>
+<p>Google    =&gt;    V8    +    webkit<br>Safari    =&gt;    應該跟Google一樣    </p>
+<p>瀏覽器    =&gt;    圖形引擎    + JavaScript引擎<br> JavaScript引擎 =&gt; 提供部分操作瀏覽器的功能(網路,DOM,外部事件,HTML視訊,canvas,儲存)</p>
+<p>JavaScript:</p>
+<p>1.<strong>ECMAScript</strong>是一種語言規範    =&gt;    數據類型 關鍵字 保留字 運算符 =&gt;是JavaScript的骨架</p>
+<p>2.<strong>DOM</strong>(Document Object Model)    =&gt;    Document=&gt;html(content)</p>
+<p>3.<strong>BOM</strong>(Browser Object Model)        =&gt;    Browser    =&gt;瀏覽器之間的作用</p>
+<p>DOM=&gt;每個Tag都是一個節點 節點下又有一堆屬性    可以拿來操控</p>
+<p><a href="http://www.dreamdu.com/javascript/what_is_bom/" target="_blank">BOM</a>=&gt;瀏覽器視窗大小 版本訊息 瀏覽歷史紀錄 cookie</p>
+<h5 id="標準化組織">標準化組織</h5>
+<p>JavaScript的標準化組織是ECMA</p>
+<p>DOM的標準化組織是W3C</p>
+<p>BOM缺乏標準</p>
+<h3 id="BOM_&amp;_DOM">BOM &amp; DOM</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/record/javascript/bomdom.png" alt="BOM &amp; DOM"></p>
+<p>histroy    瀏覽器的上一頁 下一頁</p>
+<p>location    看到這頁面的host hostname port</p>
+<p>navigator     瀏覽次數統計</p>
+<p>screen        瀏覽的屏幕高度 單位像素</p>
+<h3 id="JQuery">JQuery</h3>
+<p>jQuery是一套<strong>跨瀏覽器的</strong>JavaScript library=&gt;簡化HTML與JavaScript之間的操作</p>
+<p>jQuery物件 &lt;=&gt; DOM物件        是不一樣的</p>
+<p>jQuery物件只能用jQuery方法    &lt;=&gt;    DOM物件只能用DOM物件的方法</p>
+<p>jQuery物件 轉=&gt;    DOM物件<br>$(“#container”).get(0)</p>
+<p>DOM物件        轉=&gt;    jQuery物件<br>$(element)</p>
+<h3 id="JQuery_特性">JQuery 特性</h3>
+<p>jQuery有下列特色:<br>1.跨瀏覽器的DOM元素選擇</p>
+<p>2.DOM巡訪與更改：支援CSS</p>
+<p>3.Events</p>
+<p>4.CSS操縱</p>
+<p>5.animate</p>
+<p>6.Ajax</p>
+<p>7.jQuery Utility</p>
+<p>8.jQuery plugin</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-13T05:43:07.000Z"><a href="/2014/03/13/nodejs-install/">Mar 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/13/nodejs-install/">nodejs install</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Mac_install_node">Mac install node</h2>
+<p><code>brew install node</code><br><code>node -v</code> to show the version of node you installed</p>
+<p>In <code>/usr/local/bin</code> you’ll find <code>node</code> &amp; <code>npm</code></p>
+<h3 id="n_=&gt;_node_verision_management">n =&gt; node verision management</h3>
+<p><code>npm install -g n</code></p>
+<p><code>n help</code> =&gt; Commands</p>
+<p><code>n --version</code> =&gt; look version</p>
+<h3 id="node">node</h3>
+<h5 id="test1">test1</h5>
+<p>create a javascript =&gt; helloworld.js</p>
+<pre><code>console.<span class="keyword">log</span>(<span class="string">"Hello World"</span>);
+</code></pre><p><code>cd node/</code></p>
+<p><code>node helloworld.js</code></p>
+<p>output : Hello World</p>
+<h5 id="test2">test2</h5>
+<p><code>$ node -e &quot;console.log(&#39;Hello worldddddddd&#39;)&quot;</code></p>
+<p>output : Hello worldddddddd</p>
+<p>console is console object that node.js provided to show console text.</p>
+<h5 id="test3">test3</h5>
+<p>create a HTTP server</p>
+<pre><code><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);
+
+http.createServer(<span class="function"><span class="keyword">function</span><span class="params">(req,res)</span>{</span>
+    res.writeHead(<span class="number">200</span>,{<span class="string">'Content-Type'</span>:<span class="string">'text/html'</span>});
+    res.write(<span class="string">'&lt;h1&gt;Node.js&lt;/h1&gt;'</span>);
+    res.end(<span class="string">'&lt;p&gt;Hello World&lt;/p&gt;'</span>);
+}).listen(<span class="number">3000</span>);
+
+console.log(<span class="string">"HTTP serve is listening at port 3000."</span>);
+</code></pre><h3 id="supervisor">supervisor</h3>
+<p>refresh browser and you can see the consequence.</p>
+<p><code>npm install -g supervisor</code></p>
+<p>use</p>
+<p><code>supervisor app.js</code></p>
+<h3 id="note">note</h3>
+<p>PHP總是重新讀取並解析指令稿=&gt;直接更新瀏覽器 觀察結果<br>Node.js只有在第一次參考到某部分才會去解析指令檔 以後都會直接存取記憶體</p>
+<p>supervisor可以幫助你實現 直接更新瀏覽器 馬上觀察結果</p>
+<p>Module=&gt;node.js提供了require來呼叫其他模組</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

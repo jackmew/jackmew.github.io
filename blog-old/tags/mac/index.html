@@ -1,0 +1,602 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>mac | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title tag">mac</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-22T03:00:14.000Z"><a href="/2014/04/22/20140422/">Apr 22 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/04/22/20140422/">2014/04/22</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="mac_mavericks">mac mavericks</h3>
+<p>昨天晚上更新過後 之前設定的node,npm,mongo,weinre,express,hexo,node-inspector都出現command not found</p>
+<p>好像是把/usr/local/bin/內 hyperlink的部分都清除了 應該是都設定為-g(global) 都會無法直接下 可以經由.bash_profile設定path</p>
+<p>所以-g表示的意思是 設定到/usr/local/bin底下</p>
+<ol>
+<li>首先解決node,npm,mongo的方法是設定PATH</li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/homebrew/brew1.png" alt="path"></p>
+<ol>
+<li>weinre,hexo,node-inspector,phonegap<code>npm install -g weinre</code></li>
+</ol>
+<p><code>npm install -g hexo</code><br><code>npm install -g node-inspector</code></p>
+<p><code>npm instal -g phonegap</code></p>
+<p>start finder <code>shift+cmd+g</code> path:/usr/local/bin 這個路徑會放置link給設定global的package</p>
+<ol>
+<li>express<code>npm install -g express</code> 照理說應該可以直接使用才對 在/usr/local/lib/node_modules/express有個Readme.md<br>另外再下<code>npm install -g express-generator@3</code><br>express的link就會出現在/usr/local/bin</li>
+</ol>
+<p>這個動作也會同時將需要用到的模組設成global,require才抓的到</p>
+<p>其實最好都用一樣的方式來設定比較有統一性?<br>不過都用 反正可以多理解 也沒差</p>
+<h4 id="小整理">小整理</h4>
+<p>用homebrew安裝的package會放在<code>/usr/local/Cellar</code></p>
+<p>用npm安裝的package會放在<code>/usr/local/lib/node_modules</code> 如果在安裝的時候設定<code>-g</code> ex:<code>npm install -g weinre</code> 會在<code>/usr/local/bin</code> 設定link <br><a href="http://blog.izs.me/post/3295261330/on-npm-and-homebrew" target="_blank">On npm and Homebrew</a> 會發現npm,homebrew可以<br>都安裝同一種套件 比如mongodb,然而他們管理套件的方式不一樣,有時後可能發生某種衝突? 像這次安裝express下了<code>-g</code>卻沒有用 還必須看ReadMe裡面多下一條<code>npm install -g express-generator@3</code> ,所以套件管理到底好不好…? 有點複雜..但還是想用呀！ 用起來實在太酷了！</p>
+<p><a href="http://coolestguidesontheplanet.com/installing-node-js-osx-10-9-mavericks/" target="_blank">Installing node.js on OSX 10.9 Mavericks</a> 仔細想想 我根本不需要用到homebrew,只要安裝這個就好拉…就npm就好了
+</p>
+<h3 id="sencha_+_jsonp_pdf_">sencha + jsonp pdf</h3>
+<p>~/jackho/sencha/senchaJsonp</p>
+<p><code>git add senchaJsonp</code><br><code>git add bird3/</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/git/git4.png" alt="git"><br>手動創立一個repository</p>
+<p><code>git config --list</code>可以看到帳號<br>應該又是因為更新Maverlick的問題</p>
+<p>下<code>git push -u origin master</code>碰到permission denied問題(publickey)</p>
+<p><a href="https://help.github.com/articles/generating-ssh-keys" target="_blank">解決方法</a><br><code>ssh -T git@github.com</code> 如果出現你註冊的名字 就代表驗證成功了</p>
+<p><code>git push -u origin master</code> 這次就push上去github了</p>
+<p>再加上一個README.md</p>
+<p><code>touch README.md</code></p>
+<p>編輯好後</p>
+<p><code>git add README.md</code></p>
+<p><code>git commit -m &quot;Add README.md&quot;</code><br><code>git push -u origin master</code>›<br><br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/git/git5.png" alt="git"></p>
+<p><code>git clone https://github.com/jackmew/senchaJsonp</code>就可以抓下來
+</p>
+<p>
+</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-14T01:41:35.000Z"><a href="/2014/03/14/safari-web-inspector/">Mar 14 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/14/safari-web-inspector/">Safari Web Inspector</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><a href="https://developer.apple.com/library/mac/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/GettingStarted/GettingStarted.html#//apple_ref/doc/uid/TP40007874-CH2-SW1" target="_blank">Safari Web Inspector</a></p>
+<p>開啓Safari 偏好設定(perference) -&gt; Advanced -&gt;勾選Show Develop menu in menu bar</p>
+<p><a href="https://developer.apple.com/library/mac/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/KeyboardShortcuts/KeyboardShortcuts.html#//apple_ref/doc/uid/TP40007874-CH8-SW1" target="_blank">Keyboard Shortcuts</a></p>
+<p><code>option + command + i</code> : 開啓debugger</p>
+<h3 id="Request_timeouts">Request timeouts</h3>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-13T07:44:45.000Z"><a href="/2014/03/13/vim/">Mar 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/13/vim/">vim</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><a href="http://linux.vbird.org/linux_basic/0310vi.php" target="_blank">鳥哥</a></p>
+<h3 id="useful">useful</h3>
+<p><code>i</code> : enter write mode </p>
+<p><code>shift + h</code> : move to top line first </p>
+<p><code>shift + m</code> : move to middle line first </p>
+<p><code>shift + l</code> : move to last line first </p>
+<p><code>wq</code> : save and quit </p>
+<p><code>q!</code> : force quit</p>
+<h3 id="vim_to_show_color">vim to show color</h3>
+<p><a href="http://blog.longwin.com.tw/2009/03/choose-vim-color-scheme-2009/" target="_blank">Tsung’s Blog</a></p>
+<p>copy</p>
+<pre><code><span class="built_in">set</span> ruler
+<span class="built_in">set</span> fileencoding=utf-<span class="number">8</span>
+<span class="built_in">set</span> fileencodings=utf-<span class="number">8</span>,cp950,ms950,big5
+syntax <span class="command"><span class="keyword">on</span></span>
+colorscheme sean
+</code></pre><p>paste in </p>
+<p><code>vim .vimrc</code></p>
+<p><code>syntax on</code> means you turn on vim’s color , and there is a lot of color theme you can download.<br>For example I download sean.vim and create a new folder in /.vim</p>
+<p><code>mkdir ~/.vim/colors</code></p>
+<p><code>mv /Users/jackho/Downloads/sean.vim /Users/jackho/.vim/colors</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mac/vim1.png" alt="vim with color"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-13T06:12:38.000Z"><a href="/2014/03/13/mac-terminal/">Mar 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/13/mac-terminal/">Mac Terminal</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="OS_console">OS console</h3>
+<p>mac : <a href="http://lifehacker.com/5633909/who-needs-a-mouse-learn-to-use-the-command-line-for-almost-anything" target="_blank">terminal  bash shell</a></p>
+<p>windows : <a href="http://lifehacker.com/179514/geek-to-live--introduction-to-cygwin-part-i" target="_blank">cygwin</a></p>
+<h5 id="I_often_used_command">I often used command</h5>
+<p><code>ls</code> : list the file in this directory</p>
+<p><code>ls -a</code> : show the hidden file</p>
+<p><code>man Command Name</code> : show what is this command got</p>
+<p><code>history</code> : see what command you have entered</p>
+<p><code>pwd</code> : see current path</p>
+<p><code>find ~/ -name &quot;*.vim&quot;</code> : show the file path you find</p>
+<p><code>vim filename</code> : edit file</p>
+<p><code>touch filename</code> : create a file</p>
+<p><code>rm filename</code></p>
+<p><code>rm -rf</code> : r(recursive) f(force) remove all file</p>
+<p><code>ln -s path theotherpath</code> : make a door to a folder</p>
+<p><code>ipconfig</code> : show your ip</p>
+<p><code>/usr/libexec/java_home</code> : show java path</p>
+<h3 id="Mac_Termianl_Dark_Theme">Mac Termianl Dark Theme</h3>
+<p>you can only open your terminal and find preference to change your terminal theme.</p>
+<p>but I can’t stop myself to find another more cooler theme for my terminal.</p>
+<p>Finally I found <a href="http://vansicklehq.com/post/2584550761/dark-theme-for-mac-terminal-with-cool-prompt" target="_blank">dark-theme</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mac/terminal%20theme1.png" alt="dark theme"></p>
+<p>I just copy</p>
+<pre><code>alias ls="ls -G"
+export PS1="<span class="command">\[</span><span class="command">\e</span><span class="special">[</span>1;30m<span class="command">\]</span><span class="command">\[</span><span class="special">[</span><span class="command">\e</span><span class="special">[</span><span class="command">\e</span><span class="special">[</span>1;30m<span class="command">\]</span><span class="command">\e</span><span class="special">[</span>1;33m<span class="command">\]</span> <span class="command">\u</span>@<span class="command">\H</span> 
+<span class="command">\[</span><span class="command">\e</span><span class="special">[</span>1;32m<span class="command">\]</span><span class="command">\w</span><span class="command">\[</span><span class="command">\e</span><span class="special">[</span>0m<span class="command">\]</span> <span class="command">\[</span><span class="command">\e</span><span class="special">[</span>1;30m<span class="command">\]</span><span class="command">\[</span><span class="special">]</span><span class="command">\]</span><span class="command">\n</span><span class="command">\[</span><span class="special">[</span><span class="command">\[</span> <span class="command">\[</span><span class="command">\e</span><span class="special">[</span>1;31m<span class="command">\]</span><span class="command">\T</span><span class="command">\[</span><span class="command">\e</span><span class="special">[</span>0m<span class="command">\]</span>
+<span class="command">\[</span><span class="command">\e</span><span class="special">[</span>1;30m<span class="command">\]</span> <span class="command">\[</span><span class="special">]</span><span class="command">\]</span> <span class="command">\[</span><span class="formula">$<span class="command">\]</span> <span class="command">\[</span><span class="command">\e</span><span class="special">[</span>37m<span class="command">\]</span>"
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad</span>
+</code></pre><p>and paste it in .bash_profile</p>
+<p>thx <a href="http://vansicklehq.com/" target="_blank">vansicklehq</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-13T05:46:38.000Z"><a href="/2014/03/13/about-mac/">Mar 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/13/about-mac/">about Mac</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="finder">finder</h3>
+<p>you want to find some file which finder hided.</p>
+<p>open finder and press <code>command + shift + G</code><br>maybe you want to look into <code>/usr/local</code> you key in <code>/usr/local</code> and you’ll find invisible file.</p>
+<h3 id="Emoji">Emoji</h3>
+<h3 id="hotkey_sleep">hotkey sleep</h3>
+<p><code>shift + control + power</code></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-13T01:18:56.000Z"><a href="/2014/03/13/save-bulk-data-in-mongo/">Mar 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/13/save-bulk-data-in-mongo/">save bulk data in mongo</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>We often spend a lot to downloading  something you want,and with my case , I want my mac connect to the internet all the time when I save data in the mongoDB.</p>
+<p>If you have problem like this, watch it <a href="https://discussions.apple.com/message/23709012#23709012" target="_blank">Losing network or internet connection after sleep/wake</a></p>
+<p>MarkH356 take a snapshot</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mac/connection.png" alt="MarkH356"></p>
+<p>thx to them</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

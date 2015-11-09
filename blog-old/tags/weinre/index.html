@@ -1,0 +1,466 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>weinre | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title tag">weinre</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-18T01:10:56.000Z"><a href="/2014/04/18/20140418/">Apr 18 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/04/18/20140418/">2014/04/18</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Weinre(Web_Inspector_Remote)">Weinre(Web Inspector Remote)</h2>
+<p><a href="http://blog.dwi2.com/blog/2013/04/mobile-web-remote-debugging/" target="_blank">開發Mobile Web的Remote Debugging工具</a>這篇是用andriod自己的adb工具才做debug</p>
+<p><a href="http://dustint.com/post/482/getting-started-with-weinre-mobile-debugging-on-windowsw" target="_blank">Getting started with Weinre mobile debugging on Windows</a></p>
+<p><code>ifconfig | grep &quot;inet&quot;</code> 找到ip後</p>
+<p><code>weinre --httpPort 8081 --boundHost 192.168.26.115</code> 設定ip 將預設的port:8080 改成8081</p>
+<ol>
+<li>非常簡單的html頁面</li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/weinre/weinre1.png" alt="weinre"></p>
+<p>關鍵點是在<head>裡加入</p>
+<pre><code><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://192.168.26.115:8081/target/target-script-min.js#anonymous"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</code></pre><p>就連上去了 </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/weinre/weinre2.png" alt="weinre"></p>
+<ol>
+<li>phonegap project</li>
+</ol>
+<p>產生最基本的phonegap project</p>
+<p>~/jachho/Sites/weinre</p>
+<p><code>phonegap create weinrepg1 com.example.weinrepg1 weinrepg1</code></p>
+<p>發現run的時候會出現這錯誤  這是正常的</p>
+<p><a href="http://www.sencha.com/forum/showthread.php?278944-Phonegap.js-not-found-in-development" target="_blank">Phonegap.js not found in development</a>當下<code>sencha app build native</code> or 單build ios,android後 才會出現phonegap.js </p>
+<p>更改~/jackho/Sites/weinre/weinrepg1/www/index.html</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/weinre/weinre3.png" alt="weinre"></p>
+<p>head加入<code>&lt;script src=&quot;http://192.168.26.115:8081/target/target-script-min.js#anonymous&quot;&gt;&lt;/script&gt;</code></p>
+<p>body加入<code>&lt;h1 style=&quot;color:pink&quot;&gt;this is the colorful text&lt;/h1&gt;</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/weinre/weinre4.png" alt="weinre"></p>
+<p>也成功了</p>
+<ol>
+<li>sencha phonegap weinre</li>
+</ol>
+<p>產生最基本的sencha project</p>
+<p>~/jackho/Sites/weinre/</p>
+<p><code>sencha -sdk ~/sencha/touch-2.3.1/ generate app weinresencha ./weinresencha</code></p>
+<p><code>cd weinresencha</code></p>
+<p><code>sencha -sdk ~/sencha/touch-2.3.1/ phonegap init com.example.weinresencha weinresencha</code></p>
+<p>更改~/jackho/Sites/weinre/weinresencha/index.html</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/weinre/weinre5.png" alt="weinre"></p>
+<p>一樣加入<code>&lt;script src=&quot;http://192.168.26.115:8081/target/target-script-min.js#anonymous&quot;&gt;&lt;/script&gt;</code></p>
+<p>~/jackho/Sites/weinre/weinresencha/app.js</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/weinre/weinre6.png" alt="weinre"></p>
+<p>launch加入<code>console.log(&quot;weinre sencha success&quot;);</code></p>
+<p>有抓到console</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/weinre/weinre7.png" alt="weinre"></p>
+<p>但我發現完全沒辦法對javascript debug…</p>
+<ol>
+<li>將3的project build 成apk 安裝到模擬器</li>
+</ol>
+<p><code>android avd</code> start 模擬器</p>
+<p>再次開不起..</p>
+<p>finder <code>cmd + shift + g</code> 路徑:~/.android</p>
+<p>找到~/.android/avd裡面的avdName.ini avdName.folder 都刪除</p>
+<p>再次new一個weinresencha.avd 然後start</p>
+<p><code>adb devices</code></p>
+<p>找到emulator-5554 device attached</p>
+<p>~/jackho/Sites/weinresencha</p>
+<p><code>sencha app build -run native</code></p>
+<p>失敗了 server抓不到sencha</p>
+<p>更改~/jackho/Sites/weinresencha/config.xml</p>
+<p><code>&lt;access origin=&quot;*&quot;/&gt;</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/weinre/weinre8.png" alt="weinre"></p>
+<p>再次<code>sencha app build -run native</code></p>
+<p>改變畫面</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/weinre/weinre9.png" alt="weinre"></p>
+<p>也可以產生alert()</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/weinre/weinre10.png" alt="weinre"></p>
+<p>關掉avd後 又不能開…</p>
+<p>terminal <code>cmd + shift + g</code> ~/.andriod/avd/weinresencha.avd/emulator-user.ini</p>
+<p>將裡面window.x和window.y的值改成0 </p>
+<p>就可以再次開啓</p>
+<ol>
+<li>安裝到手機上</li>
+</ol>
+<p>先到<a href="http://" target="_blank">https://build.phonegap.com/apps</a>刪除已經安裝的app</p>
+<p>因為免費賬號 一次只能放一個app</p>
+<p>發生奇怪的問題<a href="http://cnodejs.org/topic/50619cee01d0b801482a1e59" target="_blank">UNABLE_TO_VERIFY_LEAF_SIGNATURE</a></p>
+<p>先直接放到dropbox的public folder裡面</p>
+<p>手機點選dropbox一樣可以下載</p>
+<p>copy ~/Sites/weinre/weinresencha/phonegap/platforms/android/ant-build/HelloWorld-debug.apk<br>to</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/weinre/weinre11.png" alt="weinre"></p>
+<p>啓動weinre server </p>
+<p><code>weinre --httpPort 8081 --boundHost 192.168.26.115</code></p>
+<p>下載安裝後 在手機上執行app</p>
+<p>抓到了!</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/weinre/weinre12.png" alt="weinre"></p>
+<p>一樣產生一下alert()看看</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/weinre/weinre13.png" alt="weinre"></p>
+<p>成功了！ 超酷！</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/weinre/weinre14.png" alt="weinre"></p>
+<h2 id="sencha_function">sencha function</h2>
+<p><a href="http://www.sencha.com/forum/showthread.php?156757-can-i-self-define-a-function-in-controller" target="_blank">how to self-define function</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha22.png" alt="sencha"></p>
+<p>看來this的用法在sencha是門很大的學問,總之應該是為了cloure的關係,</p>
+<p>controller裡面用自己的function要用this指定,也可以<a href="http://stackoverflow.com/questions/17877539/how-to-call-controller-function-from-outside-controller-function-like-global-fun" target="_blank">controller call 另外一個controller的function</a></p>
+<h2 id="繼續JSONP_無法在手機上call的問題">繼續JSONP 無法在手機上call的問題</h2>
+<p>用weinre 在啓動的emulator上的app時 launch的console.log會抓不到</p>
+<p>因此我把launch的call ajax jsonp function取消掉 讓botton按到的時候才去call controller上的function</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha23.png" alt="sencha"></p>
+<p>可以看到app.js裡面有抓到controllers:birdCt 而且是在launch之前 所以birdCt的init在launch之前執行</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha24.png" alt="sencha"></p>
+<p>接下來我讓第一頁加上一個button</p>
+<p>並在birdCt控制button</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha25.png" alt="sencha"></p>
+<p>當button tap事件發生 call doCallAjaxJsonp<br>接下來再doCallAjaxJsonp call <strong>this</strong>.loginJsonp();</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha26.png" alt="sencha"></p>
+<p>接下來loginJsonp success 再call <strong>this</strong>.getJsonp();</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha27.png" alt="sencha"></p>
+<p>可以看到網頁版app的可以call ajax jsonp 抓到cross-domain的資料</p>
+<p>但是install到emulator後失敗</p>
+<p><a href="http://stackoverflow.com/questions/6518278/jquery-mobile-phonegap-ajax-calls-not-working-on-android-emulator?rq=1" target="_blank">解決方法</a>,因為模擬器不認識localhost</p>
+<p><code>ifconfig | grep &quot;inet&quot;</code></p>
+<p>找到inet 192.168.26.115</p>
+<p>將localhost的地方都取代成192.168.26.115</p>
+<p><code>android avd</code> start emulator</p>
+<p><code>adb devices</code> 確定emulator有連接上</p>
+<p>~/jackho/project/sencha/bird3</p>
+<p><code>sencha app build -run native</code> 裝進emulator 並直接run</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha28.png" alt="sencha"></p>
+<h2 id="接下來要真的從資料庫抓到資料">接下來要真的從資料庫抓到資料</h2>
+<p>開啓wbase</p>
+<p>輸入url</p>
+<p><code>http://localhost:8080/wbase-web/rest/uid/queryOnePage?currBlock=1&amp;condition=ZAAAAA</code></p>
+<p>會找到一筆資料</p>
+<p>放到finalList裡面</p>
+<p>ObjectMapper將object 轉成json string</p>
+<p>然後<a href="http://stackoverflow.com/questions/19699452/how-to-remove-square-bracket-from-json" target="_blank">將中括號移除</a></p>
+<p>最後包在callback裡面</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha29.png" alt="sencha"></p>
+<p>讓getJsonp success後執行getRealData()</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha31.png" alt="sencha"></p>
+<p>jsonp抓回來的是<a href="http://stackoverflow.com/questions/4162749/convert-js-object-to-json-string" target="_blank">object 轉成json</a></p>
+<p>成功！</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha30.png" alt="sencha"></p>
+<p>將condition: ‘ZAAAAA’ =&gt; condition: ‘ZBBBBB’</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha32.png" alt="sencha"></p>
+<p>水喔！</p>
+<p>接下來install 到 emulator中試試看</p>
+<p><code>sencha app build -run native</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha33.png" alt="sencha"></p>
+<p>很好！</p>
+<p>接下來安裝到手機裡面</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha34.png" alt="sencha"></p>
+<p>點手機上的button </p>
+<p>電腦上的meinre server 抓到console.log()</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha35.png" alt="sencha"></p>
+<p>很好！</p>
+<h2 id="manage_jsonp_object">manage jsonp object</h2>
+<p>但現在還有個問題 jsonp抓回來若是多個資料 會有問題?</p>
+<p>不知道要怎麼處理 之前ResponseEntity自動把object包起來 </p>
+<p>回傳很多個也沒問題 不知道jsonp是怎麼處理這問題的?</p>
+<p><a href="http://stackoverflow.com/questions/10323625/how-to-support-jsonp-with-spring-mvc-and-multiple-response-types" target="_blank">唯一線索???</a><br>_</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

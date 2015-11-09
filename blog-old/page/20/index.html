@@ -1,0 +1,1053 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 20 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-14T03:48:15.000Z"><a href="/2014/03/14/20140314/">Mar 14 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/14/20140314/">20140314</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="Think">Think</h3>
+<p>1.Interface(介面)<br>當在開發給大家使用的library or plugin 時,常常面對的是各個開發者or各個不同狀況,所以一開始的設計</p>
+<p>應該是設計一個基本界面,大家都可以清楚知道要怎麼使用,要怎麼call,之後我在加強library or plugin時</p>
+<p>也不會影響到他們call method,他們的code也不需要改.</p>
+<p>開發過程中,會出現很多不預期的需求或想法出現,往往要加入很多跟一開始設計不同的想法進去,所以設計好一個共通</p>
+<p>簡單基本的界面是比較好面對之後開發的變化.</p>
+<p>2.Ajax async</p>
+<p>盡量減少使用,因為這個相對比較不常用的屬性,可能在各個瀏覽器用不同的方式來處理.</p>
+<p>3.browser 處理ajax的方式可能不一樣<br>firefox : callback回傳後 馬上寫入html<br>chrone,safari : callback全部完成 才會寫也入html</p>
+<p>4.pagination or pagerequest or something like that<br>在這長遠的開發歷史中,往往很多常用的東西都已經有既定模式來開發,用起來都差不多,既然如此我們參照這種模式開發下去,<br>假設之後用到別人設計的library or method之類的 ,就很好改</p>
+<p>5.call ajax 因為是async 非同步的 ,當使用很多個ajax的時候,你根本無法知道這個ajax什麼時候結束,先後順序又是什麼,<br>所以使用起來要非常小心,免得做到之後又出現無法預期的問題</p>
+<h3 id="Workflow">Workflow</h3>
+<p>Original : 按下查詢後 1.callAjax_queryOnePage(uidText,1); 2.pageManage(uidText,1);</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">onBtnQueryUIDClick</span><span class="params">(event)</span> {</span>    
+        <span class="keyword">var</span> uidText = $(<span class="string">"#uidCondition"</span>).val();
+        <span class="keyword">if</span>(!$(<span class="string">"#queryForm"</span>).valid())<span class="keyword">return</span>;
+      <span class="comment">//start query =&gt; show Loading</span>
+          showLoading(); 
+        callAjax_queryOnePage(uidText,<span class="number">1</span>);
+        pageManage(uidText,<span class="number">1</span>);
+      <span class="comment">//hide uid condition</span>
+        $(<span class="string">"#hideCondition"</span>).text(uidText);
+    }
+</code></pre><p>pageManage : 處理頁面page的轉換 讓Table hook plugin Navigator,就會自動出現頁次</p>
+<p><strong>problem :</strong> .Navigator 有點問題 在each之後 可能會有多次hook event</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">pageManage</span><span class="params">(uidText,currPage)</span> {</span>    
+        <span class="keyword">var</span> currPage = currPage;
+        <span class="keyword">var</span> uidText = uidText;
+        <span class="keyword">var</span> totalRows = callAjax_queryCount(uidText);
+        <span class="comment">//alert("totalRows"+totalRows);</span>
+        $(<span class="string">"#nav a"</span>).off();
+        $(<span class="string">"#UIDtable"</span>).Navigator({totalRows:totalRows,currPage:currPage});    
+        $(<span class="string">"#nav a"</span>).on( <span class="string">"click"</span>, onNavigatorClick);
+        <span class="comment">//callAjax_queryOnePage(uidText,currPage);</span>
+
+    }
+</code></pre><p>查詢 這一件事情 call 兩次 ajax ,分開處理 : 1.頁面顯示 2.頁次顯示</p>
+<p>基本上也不會不好 好的方面是 mongoDB count 處理速度比較慢 那我頁面可以顯示就先顯示啊 之後count抓完再顯示頁次.</p>
+<p>缺點是 頁次的設計通常都是用pagination or pagerequest 來做 , 為什麼不用是因為還要加上其他repository,加上很多class,</p>
+<p>而且跟目前我們回傳的設計有些不同,或許是我還搞不清楚吧,不過可以知道用pagination,也只不過是一種資料結構,裡面有list資料和count筆數而已,</p>
+<p>實際上也是要用兩次database IO來抓到這兩種資料,所以我就索性不用了,反正都可以達成目的.問題是在程式擴大後 或許會變成一定要用pagination的情況發生,</p>
+<p>因為裡面也提供了其他API可以使用,至少我在設計的時候應該像pagination call一次就抓到兩種回傳資料的方式,這樣假設我之後真的要使用pagination也比較</p>
+<p>不需要去改其他code</p>
+<p><strong>problem</strong></p>
+<pre><code> <span class="function"><span class="keyword">function</span> <span class="title">createNavigator</span><span class="params">()</span>{</span>
+                <span class="comment">//remove Navigator</span>
+                $(<span class="string">'#nav a'</span>).remove(); 
+                <span class="comment">//create first , previous page navigator</span>
+                $(<span class="string">'#nav'</span>).append(<span class="string">'&lt;a name="firstPage" href="#"&gt; &lt;&lt; &lt;/a&gt; '</span>);
+                $(<span class="string">'#nav'</span>).append(<span class="string">'&lt;a name="prevPage"  href="#"&gt;  &lt; &lt;/a&gt; '</span>);
+                <span class="comment">//create showPage navigator</span>
+                <span class="keyword">for</span> ( i = <span class="number">1</span>; i &lt;= numPages;i++ ) {
+                <span class="keyword">var</span> pageNum = i ;  <span class="comment">// a number</span>
+                $(<span class="string">'#nav'</span>).append(<span class="string">'&lt;a name="showPage"  href="#" rel="'</span> + i + <span class="string">'"&gt;'</span> + pageNum + <span class="string">'&lt;/a&gt; '</span>);
+                }<span class="comment">//end for</span>
+                <span class="comment">//create last , next page navigator</span>
+                $(<span class="string">'#nav'</span>).append(<span class="string">'&lt;a name="nextPage"  href="#"&gt; &gt; &lt;/a&gt; '</span>);
+                $(<span class="string">'#nav'</span>).append(<span class="string">'&lt;a name="lastPage"  href="#"&gt; &gt;&gt; &lt;/a&gt; '</span>);
+                $(<span class="string">'#nav'</span>).append(<span class="string">'&lt;a &gt;total page:'</span>+numPages+<span class="string">'&lt;/a&gt; '</span>);
+
+             }
+
+
+
+              <span class="keyword">var</span> hidegt = $(<span class="string">"a[name=showPage]"</span>).map(<span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+
+                    <span class="keyword">if</span>(<span class="keyword">this</span>.rel &gt; hideNext){
+                      console.log(<span class="keyword">this</span>.rel &gt; hideNext);
+                      <span class="keyword">return</span> <span class="string">'#nav a[rel='</span>+<span class="keyword">this</span>.rel+<span class="string">']'</span>;
+                    }
+              }).get().join(<span class="string">','</span>);
+</code></pre><p>讓它有幾頁就append幾個a ,但在有一千多頁後,要hide一千多頁!?</p>
+<p>事實上 最多我只要十頁 最少…1頁 這樣置中會不會有問題?</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/development/nav1.png" alt="Navigator"></p>
+<p>Original : create all , hide到只剩十筆</p>
+<p>問題是這樣長度會一直變動 而且又要一直考慮 要hide哪些 要show哪些 currPage show在哪個位置</p>
+<p>Change :</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/development/nav2.png" alt="Navigator"></p>
+<p>查詢 新增 修改 刪除: </p>
+<p>showLoading();<br>callAjax_queryOnePage(uidText,1);<br>pageManage(uidText,1);</p>
+<p>callAjax_queryOnePage</p>
+<p>1.回傳list &amp; count</p>
+<p>2.complete :  1.table.off 2.table.Navigator 3.onclick 4.onkeypress</p>
+<h1 id="callback_function">callback function</h1>
+<p><a href="http://learn.jquery.com/plugins/advanced-plugin-concepts/#provide-callback-capabilities" target="_blank">callback function</a></p>
+<p>$.ajax本身就是jquery 做的plugin(元件,function)<br>而callback function 的特性就是 執行完function 再執行function</p>
+<pre><code>$.ajax({
+            url: <span class="string">"/wbase-web/rest/uid/queryOnePage"</span>,
+
+        data: {
+          condition:condition,
+          pageNum: pageNum
+        },
+
+        <span class="built_in">type</span>: <span class="string">"GET"</span>,
+
+        dataType: <span class="string">"json"</span>,
+
+        success: <span class="function"><span class="keyword">function</span><span class="params">(dto)</span></span> {          
+           setUIDTable(dto); 
+           // <span class="keyword">end</span> query =&gt; <span class="keyword">end</span> show Loading
+           hideLoading(); 
+        },
+
+        <span class="built_in">error</span>: <span class="function"><span class="keyword">function</span><span class="params">(xhr, status)</span></span> {
+            console.log(xhr.statusText);
+            window.location.href = <span class="string">"./LoginWidget.html"</span>;
+        },
+        complete: <span class="function"><span class="keyword">function</span><span class="params">(xhr, status)</span></span> {
+            console.log(<span class="string">"complete."</span>);
+        }
+    });
+</code></pre><p><a href="http://stackoverflow.com/questions/15531722/jquery-plugin-invoke-callback-method-that-can-then-invoke-plugin-functions-base">jQuery plugin: invoke callback method that can then invoke plugin functions based on response
+</a></p>
+<p><a href="http://www.codechewing.com/library/how-to-add-callback-functions-to-jquery-plugin/" target="_blank">How to Add Callback Functions to a jQuery Plugin</a></p>
+<p><a href="http://acuriousanimal.com/blog/2013/02/25/things-i-learned-creating-a-jquery-plugin-part-ii/" target="_blank">http://acuriousanimal.com/blog/2013/02/25/things-i-learned-creating-a-jquery-plugin-part-ii/</a></p>
+<p>PaginateUtil.js(plugin)</p>
+<pre><code><span class="list">(<span class="title">function</span><span class="list">($)</span> {  // Protecting the $ Alias and Adding Scope
+
+$.fn.paginate = function<span class="list">(<span class="title">options</span>)</span> {
+
+      //default
+      var <span class="variable">**</span>settings<span class="variable">**</span> = $.extend<span class="list">({
+          //how many rows you want to show in a page
+          rowsPage : <span class="number">1</span>,
+          currPage : <span class="number">1</span>,
+          onEnterpress : function<span class="list">()</span> {}  //callback function
+
+      },options)</span><span class="comment">;</span>
+
+      return this.each<span class="list">(<span class="title">function</span><span class="list">()</span> {
+            var rowsPage = settings.rowsPage<span class="comment">;</span>
+            var currPage = settings.currPage<span class="comment">;</span>
+          var $table = $<span class="list">(<span class="title">this</span>)</span><span class="comment">;          </span>
+
+           $<span class="list">(<span class="string">"#nav input[name='showPage']"</span>)</span>.on<span class="list">('keypress', onKeyEnterpress)</span><span class="comment">;</span>
+            function onKeyEnterpress<span class="list">(<span class="title">event</span>)</span>{
+              if <span class="list">( event.which == <span class="number">13</span> )</span> {
+                 event.preventDefault<span class="list">()</span><span class="comment">;</span>
+                 var currPage = $<span class="list">('#nav input')</span>.val<span class="list">()</span><span class="comment">;</span>
+                  if<span class="list">(<span class="title">currPage</span> &lt;= numPages <span class="keyword">&amp;&amp;</span> currPage !== <span class="string">""</span> <span class="keyword">&amp;&amp;</span> currPage &gt; <span class="number">0</span>)</span>{ 
+                    // Here's the callback:
+                    <span class="variable">**</span>settings<span class="variable">**</span>.onEnterpress.call<span class="list">( this )</span><span class="comment">;</span>
+                  }
+              }     
+            }
+    })</span><span class="comment">;//end return             </span>
+  }<span class="comment">;//end paginate</span>
+}<span class="list">(<span class="title">jQuery</span>)</span>)</span><span class="comment">;</span>
+</code></pre><p>html</p>
+<pre><code>$("<span class="id">#UIDtable</span>")<span class="class">.paginate</span>(<span class="rules">{
+            <span class="rule"><span class="attribute">rowsPage</span>:<span class="value"><span class="number">1</span>,
+            onEnterpress:<span class="function">function()</span>{
+                <span class="function">alert(<span class="string">"That is callback function"</span>)</span></span></span>;
+            <span class="rule">}</span></span>
+    });
+</code></pre><h3 id="jQuery_plugin_callback_function_parameters">jQuery plugin callback function parameters</h3>
+<p>怎麼將plugin裡面的參數傳出來<a href="http://stackoverflow.com/questions/20435927/jquery-plugin-callback-function-parameters" target="_blank">callback function parameters</a></p>
+<h3 id="Function-prototype-call()">Function.prototype.call()</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call" target="_blank">settings.xxxfunction.call(this);</a></p>
+<h3 id="2014/03/15_What_is_page?">2014/03/15 What is page?</h3>
+<p>在遇到要處理大量資料時的機制,我們進入資料庫抓資料,資料處理上千上萬筆的資料是很快速的,然而我們前端比較無法負荷處理,也或許說根本不必要一次抓出那麼多資料,減少效能,而人有不可能一次看那麼多資料,那留在後面的資料就等於沒有同時抓出來的效用了,一次只抓一頁,而一頁有相對應的處理,這樣才能提升系統速度.</p>
+<p>做一個仿pageRequest dto(data transfer object) , 裡面是 </p>
+<p>1.抓回來排序好的一頁資料 2.count總筆數 </p>
+<p>做到跟前端javascript plugin呼應 由plugin的initial值來決定</p>
+<p>1.offset 2.limit(抓幾筆) </p>
+<pre><code><span class="keyword">var</span> rowsPAge = <span class="number">10</span>;
+
+$(<span class="string">"#UIDtable"</span>).paginate({
+        rowsPage:rowsPAge,
+</code></pre><p>之後傳回去的offset limit就是rowsPage</p>
+<p>但是<br><a href="https://www.google.com.tw/search?espv=210&amp;es_sm=91&amp;q=mongo+count+performance&amp;oq=mongo+count+p&amp;gs_l=serp.3.0.0j0i10i30j0i30l2j0i8i10i30j0i10i30j0i8i30l4.2527227.2532842.0.2534321.21.17.4.0.0.0.109.1065.16j1.17.0....0...1.1.37.serp..1.20.998.wvuCKjZykZQ" target="_blank">mongoDB count is slow</a></p>
+<p>我按下一頁 然後重新抓資料 抓筆數 ,都要5秒鐘?! 這樣太慢了</p>
+<p>而且現在才一千萬初頭的資料量,若是到五千萬,一千萬,user根本不想使用這個系統了.</p>
+<p>再次回到同一個使用上的問題 其實user下查詢時的重點應該是 可以找到他要的那幾筆資料 但user根本不需要幾百筆 幾百萬筆的資料 </p>
+<p>1.以mongo count速度很慢 不用count的情況下來實作</p>
+<p>2.可以有回到第一頁 但是不能有到最後一頁     |&lt; &lt;&lt; 1 2 3 4 5 6 7 8 9 10 &gt;&gt; …</p>
+<p>3.Navigator用原本的 並且不用讓頁數在中間</p>
+<p>4.一次抓出數頁 到了下一個段落 再次query一次</p>
+<p>5.因此query之後 要判斷 之後還有沒有</p>
+<p>測試mongo limit(limit) offset(skip) 效能</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(0).limit(10)</code> cost 0.064sec</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(0).limit(100)</code> cost 3.077sec<br>一開query10頁 花3秒 並且一query後 在這10頁內的換頁速度 非常快</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(0).limit(200)</code> cost 4.803sec</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(10).limit(10)</code> cost 0.666sec</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(100).limit(10)</code> cost 3.329sec</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(200).limit(10)</code> cost 4.903sec</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(100).limit(100)</code> cost 4.379sec</p>
+<p>query下個10頁 也就是11~20頁的時間要4秒</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(200).limit(100)</code> cost 6.05sec</p>
+<p>query再下個10頁 也就是21~30頁的時間要6秒</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(300).limit(100)</code> cost 8.192sec</p>
+<p>發現 skip 和 limit越高 速度越慢</p>
+<p>接下來每次都測試抓十筆資料 然後只改skip</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(0).limit(10)</code> cost 0.065sec</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(20).limit(10)</code> cost 1.047sec</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(50).limit(10)</code> cost 1.776sec</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(100).limit(10)</code> cost 3.706sec</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(200).limit(10)</code> cost 4.964sec</p>
+<p>接近20頁 換頁的速度就會變得非常慢</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:1}).skip(680).limit(10)</code> cost 25.43sec</p>
+<p>找到最後一頁之後 非常慢</p>
+<p>用倒序來找</p>
+<p><code>db.UID.find({uaid: &quot;UAID_3&quot;}).sort({_id:-1}).skip(100).limit(10)</code> cost 3.264sec </p>
+<p>跟順序花的時間一樣 所以當要找後面的 就應該用倒序</p>
+<p>按下Navigator時 都是<strong>已經查到</strong>放在頁面上的資料</p>
+<p>按 下10頁 才會 query一次<br>按 第一頁 要判斷現在是不是在第一頁的range裡 不是就要下query</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-14T01:41:35.000Z"><a href="/2014/03/14/safari-web-inspector/">Mar 14 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/14/safari-web-inspector/">Safari Web Inspector</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><a href="https://developer.apple.com/library/mac/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/GettingStarted/GettingStarted.html#//apple_ref/doc/uid/TP40007874-CH2-SW1" target="_blank">Safari Web Inspector</a></p>
+<p>開啓Safari 偏好設定(perference) -&gt; Advanced -&gt;勾選Show Develop menu in menu bar</p>
+<p><a href="https://developer.apple.com/library/mac/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/KeyboardShortcuts/KeyboardShortcuts.html#//apple_ref/doc/uid/TP40007874-CH8-SW1" target="_blank">Keyboard Shortcuts</a></p>
+<p><code>option + command + i</code> : 開啓debugger</p>
+<h3 id="Request_timeouts">Request timeouts</h3>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-13T09:20:35.000Z"><a href="/2014/03/13/dropbox-host-website/">Mar 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/13/dropbox-host-website/">dropbox host website</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><a href="http://www.maketecheasier.com/4-ways-to-host-your-website-on-dropbox/" target="_blank">Host Your Website on Dropbox</a></p>
+<p>jackmew.kissr.com 只有5mb大小 應該很夠吧..</p>
+<p><a href="http://www.kissr.com/sites" target="_blank">kissr hosting</a></p>
+<p>超快….</p>
+<p>其他兩個我就不試了</p>
+<p>但身為一個工程師 當然要在更Do it myself一點 </p>
+<p>試試看第4個方法</p>
+<p>的確是可以 但會擋jquery CDN,要下載下來放到dropbox裡面才可以抓得到</p>
+<p><a href="http://www.lionseo.com/blog/htaccess-redirect-301/" target="_blank">htaccess-redirect</a></p>
+<p>.htaccess(hyptertext access) <a href="https://en.wikipedia.org/wiki/Htaccess" target="_blank">wiki</a></p>
+<p>果然自己做就會發現很多技術的東西,接下來第4個方法要有自己的domain name才能使用,不過也只是url變的比較漂亮而已,就先這樣吧</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-13T08:45:34.000Z"><a href="/2014/03/13/jquery-mobile/">Mar 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/13/jquery-mobile/">jquery mobile</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>在wbase的案子中 我們是使用jquery mobile 做我們的前端開發界面</p>
+<p><a href="http://jquerymobile.com/" target="_blank">jquerymobile.com/</a></p>
+<p>基本上jquey mobile 的所有Widget 都具備跨平台的特性,也就是說你用它的UI在所有的瀏覽器啊,所有的平板,手機都不會產生異常,某個CSS不work之類的</p>
+<p>但是這也表示比較難自己刻出客制化的模樣,因為它已經定義出framework或者使用常規這樣,當你要改變原本它給你的設定時,會比較麻煩,要override某些特性,但</p>
+<p>override的同時又要注意會不會蓋掉你原本有用到的特性,如果都不改變它給你的widget,的確是非常好用的jquery UI,而且原本給你的模樣,其實也都有美化過了,但若是</p>
+<p>你每個地方都想要與他人不同,那就不推薦使用jquery mobile囉</p>
+<p>開發時最常看的Document</p>
+<p>jquery mobile <a href="http://demos.jquerymobile.com/1.4.2/" target="_blank">Demo</a></p>
+<p>jquery mobile API <a href="http://api.jquerymobile.com/" target="_blank">API</a></p>
+<h4 id="JQuery_Mobile_Theme">JQuery Mobile Theme</h4>
+<p>差不多就是改變顏色而已 </p>
+<p><a href="http://themeroller.jquerymobile.com/" target="_blank">http://themeroller.jquerymobile.com/</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/theme.png" alt="image"></p>
+<p>你可以自己配置A-Z種theme</p>
+<p>用data-theme=”a-z”    來選擇</p>
+<p>download下來後 放到</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/theme_2.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/theme_3.png" alt="image"></p>
+<p>在html裡引用 就會自動override原本的設定</p>
+<p>jquery mobile <a href="https://dl.dropboxusercontent.com/u/47510080/record/javascript/JQuery%20Mobile.pdf" target="_blank">筆記</a> </p>
+<p><a href="http://www.w3schools.com/jquerymobile/" target="_blank">w3c jquery mobile</a> </p>
+<h3 id="Your_own_jquery_mobile_icon">Your own jquery mobile icon</h3>
+<pre><code><span class="class">.ui-icon-dotted</span><span class="pseudo">:after</span> <span class="rules">{
+    <span class="rule"><span class="attribute">background-image</span>:<span class="value"> <span class="function">url(<span class="string">"../icon/dotted.png"</span>)</span></span></span>;
+    <span class="comment">/* Make your icon fit */</span>
+    <span class="rule"><span class="attribute">background-size</span>:<span class="value"> <span class="number">30</span>px <span class="number">30</span>px</span></span>;
+<span class="rule">}</span></span>
+</code></pre><p>dotted是你命名這個icon的名稱</p>
+<p>url是你圖片放置位置</p>
+<p>size若是你的圖片大小不是正方形 ,那你可能要花點時間,才能調出不扭曲的形狀</p>
+<p>原本jquery mobile icon是切出來方方正正的圖形</p>
+<h3 id="Override">Override</h3>
+<pre><code><span class="class">.ui-page</span> <span class="rules">{
+    <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">rgb(<span class="number">188</span>,<span class="number">188</span>,<span class="number">188</span>)</span> <span class="important">!important</span></span></span>;
+<span class="rule">}</span></span>
+</code></pre><p>override你原本頁面的背景顏色 </p>
+<p>在override時都要在後面加上<strong>!important</strong></p>
+<p>之前也有override botton大小,但是發現這個屬性會給其他tab input使用到,所以一改,其他地方也都會改到, 非常困擾</p>
+<h3 id="ui-field-contain">ui-field-contain</h3>
+<p><a href="http://demos.jquerymobile.com/1.4.2/forms-field-contain/#&amp;ui-state=dialog" target="_blank">form</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/jqm1.png" alt="form"></p>
+<p>要出現平行時 需加上class=”ui-field-contain”</p>
+<pre><code>&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"ui-field-contain"</span>&gt;
+    &lt;label <span class="keyword">for</span>=<span class="string">"textinput-1"</span>&gt;Text Input:&lt;/label&gt;
+    &lt;input type=<span class="string">"text"</span> <span class="property">name</span>=<span class="string">"textinput-1"</span> <span class="property">id</span>=<span class="string">"textinput-1"</span> placeholder=<span class="string">"Text input"</span> value=<span class="string">""</span>&gt;
+&lt;/<span class="keyword">div</span>&gt;
+</code></pre><p>然後這class在popup Widget or dialog Widget就無法產生效果,已經google到有很多人碰到這個bug</p>
+<p>最後只好自己在dialog裡面用table 排版</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-13T07:55:59.000Z"><a href="/2014/03/13/ajax-note/">Mar 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/13/ajax-note/">ajax note</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Ajax_(Asynchronous_JavaScript_And_XML)">Ajax (Asynchronous JavaScript And XML)</h2>
+<p>主要目的是改進web應用程式的使用者界面</p>
+<p>一般我們的程式在local執行時,讀取資料,頁面都可以非常快速</p>
+<p>但在web的情況下,讀取資料都需connect server ,將server資料抓下來到local,相對會較慢</p>
+<p>然而Ajax可以改善這情況,將web應用程式在browser建立出如同local的應用程式.</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/ajax/ajax1.png" alt="web"></p>
+<p>加入Ajax<br>在第一次載入網頁時需先將XMLHttpRequest物件送出 建立Ajax engine</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/ajax/ajax2.png" alt="ajax"></p>
+<p>JQuery的Ajax 方法</p>
+<p>$.load()</p>
+<p>$.getScript()</p>
+<p>$.get()</p>
+<p>$.post()</p>
+<p>$.getJSON()</p>
+<p>$.ajax()</p>
+<p><strong>HTTP get</strong> : 超連結 網頁表單<br>透過URL網址後的字串傳送到Web伺服器</p>
+<p>url:<a href="http://xxx.xxx/?key1=value1&amp;key2=value2" target="_blank">http://xxx.xxx/?key1=value1&amp;key2=value2</a></p>
+<p>查詢資料用<br>ajax get(),ajax()</p>
+<p><strong>HTTP post</strong> :傳送大量資料到伺服器</p>
+<p>$.ajax是最常用的ajax function ,其他的function都是它的變形</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">callAjax_getRole</span><span class="params">()</span>{</span>
+
+    <span class="keyword">var</span> o;
+    $.ajax({
+          url: <span class="string">"/wbase-web/rest/uid/validateRole"</span>,
+
+          type: <span class="string">"GET"</span>,
+
+          dataType: <span class="string">"json"</span>,
+
+          async:<span class="literal">false</span>, <span class="comment">//同步 =&gt;到success才會結束執行 所以我才拿得到return值</span>
+
+          success: <span class="function"><span class="keyword">function</span><span class="params">(dto)</span> {</span>
+              o = dto ;
+          },
+
+          error: <span class="function"><span class="keyword">function</span><span class="params">(xhr, status)</span> {</span>
+              console.log(xhr.statusText);
+              window.location.href = <span class="string">"./LoginWidget.html"</span>;
+          },
+
+          complete: <span class="function"><span class="keyword">function</span><span class="params">(xhr, status)</span> {</span>
+
+          }
+      });
+      <span class="keyword">return</span>(o.role);
+  }
+</code></pre><p>在wbase project 用了非常多$.ajax</p>
+<p>有很多參數可以使用 <a href="http://www.w3schools.com/jquery/ajax_ajax.asp" target="_blank">w3c jquery ajax</a></p>
+<p>之前也有實作過autocomplete</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-13T07:44:45.000Z"><a href="/2014/03/13/vim/">Mar 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/13/vim/">vim</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><a href="http://linux.vbird.org/linux_basic/0310vi.php" target="_blank">鳥哥</a></p>
+<h3 id="useful">useful</h3>
+<p><code>i</code> : enter write mode </p>
+<p><code>shift + h</code> : move to top line first </p>
+<p><code>shift + m</code> : move to middle line first </p>
+<p><code>shift + l</code> : move to last line first </p>
+<p><code>wq</code> : save and quit </p>
+<p><code>q!</code> : force quit</p>
+<h3 id="vim_to_show_color">vim to show color</h3>
+<p><a href="http://blog.longwin.com.tw/2009/03/choose-vim-color-scheme-2009/" target="_blank">Tsung’s Blog</a></p>
+<p>copy</p>
+<pre><code><span class="built_in">set</span> ruler
+<span class="built_in">set</span> fileencoding=utf-<span class="number">8</span>
+<span class="built_in">set</span> fileencodings=utf-<span class="number">8</span>,cp950,ms950,big5
+syntax <span class="command"><span class="keyword">on</span></span>
+colorscheme sean
+</code></pre><p>paste in </p>
+<p><code>vim .vimrc</code></p>
+<p><code>syntax on</code> means you turn on vim’s color , and there is a lot of color theme you can download.<br>For example I download sean.vim and create a new folder in /.vim</p>
+<p><code>mkdir ~/.vim/colors</code></p>
+<p><code>mv /Users/jackho/Downloads/sean.vim /Users/jackho/.vim/colors</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mac/vim1.png" alt="vim with color"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-13T07:19:24.000Z"><a href="/2014/03/13/learn-canvas/">Mar 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/13/learn-canvas/">learn Canvas</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><a href="http://www.homeandlearn.co.uk/JS/html5_canvas_drawing_shapes.html" target="_blank">HTML5 Canvas</a></p>
+<h3 id="Snake">Snake</h3>
+<p>I practice javascript and a lit bit Canvas</p>
+<p>iframe</p>
+<p>note Canvas <a href="https://dl.dropboxusercontent.com/u/47510080/record/javascript/javascript%20object.pdf" target="_blank">link</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-13T07:08:57.000Z"><a href="/2014/03/13/js/">Mar 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/13/js/">js</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="Note">Note</h3>
+<p>物件導向程式語言(Object-Oriented Language) Java , C++ , C#</p>
+<p>1.封裝(Encapsulation)</p>
+<p>2.繼承(Inheritance)</p>
+<p>3.多型(Polymorphism) 好像比較少用</p>
+<p>程式語言俱備這三個特性,就稱之為物件導向程式語言.</p>
+<p>程式語言是一連串的演進過程,當處理一件事情的時候,不需要俱備這些特性,</p>
+<p>但當同時處理多件事情時,你很難用直接的思考來處理事情</p>
+<p>所以呢 OO就是只是一種設計樣式來讓我們程式設計師可以去處理多種問題,方便維護,加上新功能,才能將專案做大.</p>
+<p>當然 你夠強 你想怎麼設計你的程式處理方式 就怎麼設計.</p>
+<p>然而現在程式設計通常都是團隊一起來寫,所以你的設計方式也需要讓其他人能夠理解,別人才能維護,擴充你設計的程式.</p>
+<p>在 Javascript中 變數 方法 皆是物件<br>物件又可以隨時新增子物件</p>
+<p>1.封裝(Encapsulation)</p>
+<p>Java , C++ , C# =&gt;    class</p>
+<p>JavaScript =&gt; Constructor function =&gt;1.declare 2.new</p>
+<p>2.繼承(Inheritance)</p>
+<p>Java , C++ , C# =&gt;    class extends</p>
+<p>JavaScript =&gt; prototype 比較像擴充</p>
+<h3 id="xxx-based">xxx-based</h3>
+<p>JavaScript — Prototype-based programming language :</p>
+<p>類別事實上就是物件    =&gt; 全部都是物件</p>
+<p>C++,C#,Java — Class-based programming language:</p>
+<p>class =&gt; 類別是抽象資料型態</p>
+<p>instance =&gt; class new instance</p>
+<p><a href="https://dl.dropboxusercontent.com/u/47510080/record/javascript/javascript%20object.pdf" target="_blank">筆記</a></p>
+<h3 id="JavaScript_101">JavaScript 101</h3>
+<p><a href="http://stage.learn.jquery.com/javascript-101/" target="_blank">JavaScript 101</a></p>
+<h5 id="Immediately-Invoked_Function_Expression(IIFE)">Immediately-Invoked Function Expression(IIFE)</h5>
+<p>在javascipt function可以當作參數<br>因為在javascript中所以東西都是物件 所以function也是物件 物件自然就可以當作參數</p>
+<h3 id="演進">演進</h3>
+<p>解讀javascript =&gt;javascript引擎</p>
+<p>Mozilla    =&gt;    TraceMonkey+mozilla</p>
+<p>Google    =&gt;    V8    +    webkit<br>Safari    =&gt;    應該跟Google一樣    </p>
+<p>瀏覽器    =&gt;    圖形引擎    + JavaScript引擎<br> JavaScript引擎 =&gt; 提供部分操作瀏覽器的功能(網路,DOM,外部事件,HTML視訊,canvas,儲存)</p>
+<p>JavaScript:</p>
+<p>1.<strong>ECMAScript</strong>是一種語言規範    =&gt;    數據類型 關鍵字 保留字 運算符 =&gt;是JavaScript的骨架</p>
+<p>2.<strong>DOM</strong>(Document Object Model)    =&gt;    Document=&gt;html(content)</p>
+<p>3.<strong>BOM</strong>(Browser Object Model)        =&gt;    Browser    =&gt;瀏覽器之間的作用</p>
+<p>DOM=&gt;每個Tag都是一個節點 節點下又有一堆屬性    可以拿來操控</p>
+<p><a href="http://www.dreamdu.com/javascript/what_is_bom/" target="_blank">BOM</a>=&gt;瀏覽器視窗大小 版本訊息 瀏覽歷史紀錄 cookie</p>
+<h5 id="標準化組織">標準化組織</h5>
+<p>JavaScript的標準化組織是ECMA</p>
+<p>DOM的標準化組織是W3C</p>
+<p>BOM缺乏標準</p>
+<h3 id="BOM_&amp;_DOM">BOM &amp; DOM</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/record/javascript/bomdom.png" alt="BOM &amp; DOM"></p>
+<p>histroy    瀏覽器的上一頁 下一頁</p>
+<p>location    看到這頁面的host hostname port</p>
+<p>navigator     瀏覽次數統計</p>
+<p>screen        瀏覽的屏幕高度 單位像素</p>
+<h3 id="JQuery">JQuery</h3>
+<p>jQuery是一套<strong>跨瀏覽器的</strong>JavaScript library=&gt;簡化HTML與JavaScript之間的操作</p>
+<p>jQuery物件 &lt;=&gt; DOM物件        是不一樣的</p>
+<p>jQuery物件只能用jQuery方法    &lt;=&gt;    DOM物件只能用DOM物件的方法</p>
+<p>jQuery物件 轉=&gt;    DOM物件<br>$(“#container”).get(0)</p>
+<p>DOM物件        轉=&gt;    jQuery物件<br>$(element)</p>
+<h3 id="JQuery_特性">JQuery 特性</h3>
+<p>jQuery有下列特色:<br>1.跨瀏覽器的DOM元素選擇</p>
+<p>2.DOM巡訪與更改：支援CSS</p>
+<p>3.Events</p>
+<p>4.CSS操縱</p>
+<p>5.animate</p>
+<p>6.Ajax</p>
+<p>7.jQuery Utility</p>
+<p>8.jQuery plugin</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-13T06:12:38.000Z"><a href="/2014/03/13/mac-terminal/">Mar 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/13/mac-terminal/">Mac Terminal</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="OS_console">OS console</h3>
+<p>mac : <a href="http://lifehacker.com/5633909/who-needs-a-mouse-learn-to-use-the-command-line-for-almost-anything" target="_blank">terminal  bash shell</a></p>
+<p>windows : <a href="http://lifehacker.com/179514/geek-to-live--introduction-to-cygwin-part-i" target="_blank">cygwin</a></p>
+<h5 id="I_often_used_command">I often used command</h5>
+<p><code>ls</code> : list the file in this directory</p>
+<p><code>ls -a</code> : show the hidden file</p>
+<p><code>man Command Name</code> : show what is this command got</p>
+<p><code>history</code> : see what command you have entered</p>
+<p><code>pwd</code> : see current path</p>
+<p><code>find ~/ -name &quot;*.vim&quot;</code> : show the file path you find</p>
+<p><code>vim filename</code> : edit file</p>
+<p><code>touch filename</code> : create a file</p>
+<p><code>rm filename</code></p>
+<p><code>rm -rf</code> : r(recursive) f(force) remove all file</p>
+<p><code>ln -s path theotherpath</code> : make a door to a folder</p>
+<p><code>ipconfig</code> : show your ip</p>
+<p><code>/usr/libexec/java_home</code> : show java path</p>
+<h3 id="Mac_Termianl_Dark_Theme">Mac Termianl Dark Theme</h3>
+<p>you can only open your terminal and find preference to change your terminal theme.</p>
+<p>but I can’t stop myself to find another more cooler theme for my terminal.</p>
+<p>Finally I found <a href="http://vansicklehq.com/post/2584550761/dark-theme-for-mac-terminal-with-cool-prompt" target="_blank">dark-theme</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mac/terminal%20theme1.png" alt="dark theme"></p>
+<p>I just copy</p>
+<pre><code>alias ls="ls -G"
+export PS1="<span class="command">\[</span><span class="command">\e</span><span class="special">[</span>1;30m<span class="command">\]</span><span class="command">\[</span><span class="special">[</span><span class="command">\e</span><span class="special">[</span><span class="command">\e</span><span class="special">[</span>1;30m<span class="command">\]</span><span class="command">\e</span><span class="special">[</span>1;33m<span class="command">\]</span> <span class="command">\u</span>@<span class="command">\H</span> 
+<span class="command">\[</span><span class="command">\e</span><span class="special">[</span>1;32m<span class="command">\]</span><span class="command">\w</span><span class="command">\[</span><span class="command">\e</span><span class="special">[</span>0m<span class="command">\]</span> <span class="command">\[</span><span class="command">\e</span><span class="special">[</span>1;30m<span class="command">\]</span><span class="command">\[</span><span class="special">]</span><span class="command">\]</span><span class="command">\n</span><span class="command">\[</span><span class="special">[</span><span class="command">\[</span> <span class="command">\[</span><span class="command">\e</span><span class="special">[</span>1;31m<span class="command">\]</span><span class="command">\T</span><span class="command">\[</span><span class="command">\e</span><span class="special">[</span>0m<span class="command">\]</span>
+<span class="command">\[</span><span class="command">\e</span><span class="special">[</span>1;30m<span class="command">\]</span> <span class="command">\[</span><span class="special">]</span><span class="command">\]</span> <span class="command">\[</span><span class="formula">$<span class="command">\]</span> <span class="command">\[</span><span class="command">\e</span><span class="special">[</span>37m<span class="command">\]</span>"
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad</span>
+</code></pre><p>and paste it in .bash_profile</p>
+<p>thx <a href="http://vansicklehq.com/" target="_blank">vansicklehq</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-13T05:46:38.000Z"><a href="/2014/03/13/about-mac/">Mar 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/13/about-mac/">about Mac</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="finder">finder</h3>
+<p>you want to find some file which finder hided.</p>
+<p>open finder and press <code>command + shift + G</code><br>maybe you want to look into <code>/usr/local</code> you key in <code>/usr/local</code> and you’ll find invisible file.</p>
+<h3 id="Emoji">Emoji</h3>
+<h3 id="hotkey_sleep">hotkey sleep</h3>
+<p><code>shift + control + power</code></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/page/19/" class="alignleft prev">Prev</a>
+  
+  
+    <a href="/page/21/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

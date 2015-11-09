@@ -1,0 +1,370 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>spring securitry | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title tag">spring securitry</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-08-11T05:43:20.000Z"><a href="/2014/08/11/20140811/">Aug 11 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/08/11/20140811/">2014/08/11</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Spring_Security">Spring Security</h1>
+<h1 id="SpringApplication-run">SpringApplication.run</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/18.png" alt="image"></p>
+<p>我發現App 這個class 預設會extends WebMvcConfigurerAdapter , 然後當想要改一些基本設定 addResourceHandlers , addViewControllers 時 才需要明確地寫出extends WebMvcConfigurerAdapter , 可是當我將extends WebMvcConfigurerAdapter 寫在別的class , 它(spring boot) 的基本設定就會失效.</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/19.png" alt="image"></p>
+<p>所以變成強制你一定要去設定addResourceHandlers , addViewControllers , 也就是說當我改成多了一個SpringContext 的 configuration 設定時 可能會導致部分Spring Boot  基本設定失效 , 並且可能失效在我不知道的地方 …嗎 ???</p>
+<h1 id="WebSecurityConfig">WebSecurityConfig</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/20.png" alt="image"></p>
+<p>configureGlobal 可能會將user,password,roles 存入memory(session)中 , 因為當我測試登入時 , 點下登入button沒有辦法進入debug模式 也就是說 他是直接去對memory(session) 比對 帳號密碼</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/21.png" alt="image"></p>
+<p>再來是login.html 的 <code>data-th-action=&quot;@{/login}&quot;</code> , 我在controller沒有去設定對這個url接收request , <code>data-th-if=&quot;${param.error}&quot; &amp; data-th-if=&quot;${param.logout}&quot;</code>  這個param我也沒有設定 , 所以說當使用Spring Security 的 configureGlobal 的 AuthenticationManagerBuilder 時 它會自動幫你處理很多事情 . </p>
+<p><a href="http://docs.spring.io/spring-security/site/docs/4.0.0.M1/reference/htmlsingle/" target="_blank">Spring Security Reference</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/22.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/23.png" alt="image"></p>
+<p>看來 裡面還包含很多功能 已經被建立在裡面了</p>
+<p><a href="http://docs.spring.io/spring-security/site/docs/4.0.0.M1/reference/htmlsingle/#jc-form" target="_blank">Detail</a></p>
+<p><a href="http://docs.spring.io/spring-security/site/docs/4.0.0.M1/reference/htmlsingle/#jc-authentication" target="_blank">Authentication</a>:</p>
+<ol>
+<li>In Memory Authentication </li>
+<li>JDBC Authentication</li>
+<li>LDAP Authenetication</li>
+</ol>
+<h1 id="Logout">Logout</h1>
+<p>原本:</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/24.png" alt="image"></p>
+<p>變成會顯示current user name &amp; 可以logout </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/25.png" alt="image"></p>
+<p><code>data-th-with=&quot;currentUser=${#httpServletRequest.userPrincipal?.name}&quot;</code></p>
+<p>會去從httpServletRequest 抓參數 並且設定變數currentUser<br>這個變數會拿來show current user name</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/26.png" alt="image"></p>
+<p><code>data-th-action=&quot;@{/logout}&quot;</code> 會觸發到Spring security預設的authentication</p>
+<h1 id="userDetails">userDetails</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/27.png" alt="image"></p>
+<ol>
+<li><p>SpringSecurityContextHolder : The most fundamental object in spring security : 儲存security的想關屬性 , data , detail</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/28.png" alt="image"></p>
+</li>
+</ol>
+<ol>
+<li>Authentication object to represent SpringSecurityContextHolder </li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/29.png" alt="image"></p>
+<ol>
+<li>userDetails is a core interface in Spring Security. As the adapter between  your own database</li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/30.png" alt="image"></p>
+<ol>
+<li>UserDetails 將 SpringSecurityContextHolder的資料 放入Authentication</li>
+</ol>
+<p>也就是說SpringSecurityContextHolder儲存security訊息 , userDetails adapter the database &amp; 寫入 從SpringSecurityContextHolder抓來的security資料 放入Authentication, 所以如果你有相關的security資料要取得 都跟Authentication 去取得</p>
+<h1 id="@override">@override</h1>
+<p>發DAOImple 不能加上@override ??? 奇怪？</p>
+<p><a href="http://stackoverflow.com/questions/8697513/why-do-i-get-must-override-a-superclass-method-with-override" target="_blank">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/31.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

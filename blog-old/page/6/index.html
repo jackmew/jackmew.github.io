@@ -1,0 +1,1025 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 6 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-13T04:46:00.000Z"><a href="/2014/10/13/20141013/">Oct 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/10/13/20141013/">2014/10/13</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="GWT_(Google_Web_Toolkit)">GWT (Google Web Toolkit)</h1>
+<p>寫Java , 會幫你轉成Web程式(HTML,CSS,Javascript) .</p>
+<p>提供RPC(Remote Procedure Call)</p>
+<ol>
+<li>不同Process 可以互相call 彼此API</li>
+<li>不同電腦 可以互相call 彼此API</li>
+</ol>
+<h1 id="Vaddin_(thinking_of_U_and_I)">Vaddin (thinking of U and I)</h1>
+<h1 id="start">start</h1>
+<p>homebrew 安裝</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/8.png" alt="image"></p>
+<p><code>webAppCreator</code> : 產生GWT的檔案結構 產生新的project</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/9.png" alt="image"></p>
+<p>啟動project內建的server</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/10.png" alt="image"></p>
+<p>輕鬆成功 而且改程式 只需要refresh</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/11.png" alt="image"></p>
+<p>xxx.gwt.xml : GWT module definition , 從這邊找到需要引用的module 然後整個project就可以使用.</p>
+<p><code>host page</code> : refer to javascript source code</p>
+<p><code>application style sheet</code></p>
+<p>interface EntryPoint -&gt; onModuleLoad</p>
+<p>panel -&gt; html page</p>
+<p>root panel -&gt; 可以有好幾個panel</p>
+<p>原本的tutorial只有文字 太讓人崩潰了…<br>找到有圖片的<a href="https://developers.google.com/web-toolkit/tools/gwtdesigner/tutorials/stockwatcher?hl=zh-TW" target="_blank">link</a><br>裡面在用畫面的時候用到<a href="http://www.eclipse.org/windowbuilder/download.php" target="_blank">windowBuilder</a> , 好像很猛 , <a href="http://jackapplepizza.pixnet.net/blog/post/78467792-eclipse-%E5%AE%89%E8%A3%9D-window-builder-%E6%95%99%E5%AD%B8" target="_blank">安裝方法就跟一般plugin一樣</a></p>
+<p>安裝好了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/1.png" alt="image"></p>
+<h1 id="fuck_根本不行_換另一個方法">fuck 根本不行  換另一個方法</h1>
+<p><a href="http://www.gwtproject.org/usingeclipse.html" target="_blank">用GWT原本的方法</a></p>
+<p>重點是這個<a href="https://code.google.com/p/google-web-toolkit/issues/detail?id=8649" target="_blank">unpack, and don’t forget to change your preference in eclipse to use 2.6.1 instead of default 2.6.0</a></p>
+<p>先移除掉 windowBuilder</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/4.png" alt="image"></p>
+<p>再加上GWT Designer</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/5.png" alt="image"></p>
+<p>預設eclipse會抓gwt-2.6.0 , 這時候的版本會有bug 無法使用 , 要改成gwt-2.6.1</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/6.png" alt="image"></p>
+<p>成功了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/7.png" alt="image"></p>
+<p>現在的問題是 那之後要用的UI Library:Vaddin 有支援這樣的作法嗎？<br>所以先暫時不用吧</p>
+<p>正在進行中</p>
+<p><a href="https://developers.google.com/web-toolkit/tools/gwtdesigner/tutorials/stockwatcher?hl=zh-TW" target="_blank">link</a></p>
+<p><a href="http://www.gwtproject.org/doc/latest/tutorial/buildui.html" target="_blank">link</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-08T01:37:54.000Z"><a href="/2014/10/08/20141008/">Oct 8 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/10/08/20141008/">2014/10/08</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="_"> </h1>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-07T01:40:40.000Z"><a href="/2014/10/07/20141007/">Oct 7 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/10/07/20141007/">2014/10/07</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="posgresql">posgresql</h1>
+<p>start up postgresql server</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/35.png" alt="image"></p>
+<p>start postgrsql GUI pgadmin</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/36.png" alt="image"></p>
+<p>connected</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/37.png" alt="image"></p>
+<h1 id="important_note">important note</h1>
+<p><a href="http://jackmew.github.io/2014/09/12/20140911/">note</a></p>
+<h1 id="task_data_mobel">task data mobel</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/task/1/1.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-06T01:31:05.000Z"><a href="/2014/10/06/20141006/">Oct 6 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/10/06/20141006/">2014/10/06</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Set_up_jsp">Set up jsp</h1>
+<p><a href="https://github.com/spring-projects/spring-boot/tree/master/spring-boot-samples/spring-boot-sample-web-jsp" target="_blank">link</a></p>
+<p>pom.xml</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/1.png" alt="image"></p>
+<p>internalViewResolver -&gt; application.properties</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/7.png" alt="image"></p>
+<p>要注意的是@RestController 會自動把object轉成json , 所以model轉到jsp 就失效了 , 必須用@Controller</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/2.png" alt="image"></p>
+<h1 id="rest">rest</h1>
+<p>localhost:8080/simple/xxx</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/3.png" alt="image"></p>
+<p>可以直接抓後面的xxx String</p>
+<h1 id="@ExceptionHandler">@ExceptionHandler</h1>
+<p>當<code>throw xxxException</code> 時 , 會去找到<code>@ExceptionHandler(xxxException.class)</code>的function . </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/4.png" alt="image"></p>
+<h1 id="custom_exception">custom exception</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/5.png" alt="image"></p>
+<p>而customeGenericException 只是繼承 Exception or RuntimeException , 並且改寫成你需要的效果.</p>
+<h1 id="@ControllerAdvice">@ControllerAdvice</h1>
+<p>The above <code>@ExceptionHandler</code> example is only apply to a single controller, to apply it globally (all controllers), annotate a class with <code>@ControllerAdvice</code>.</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/6.png" alt="image"></p>
+<p>將關於error handle setting 都放到另外一個class , 這個class有標記 @ControllerAdvice , 表示所有的controller 都可以throw exception , 然後這個class的某個function 接 .</p>
+<h1 id="reference">reference</h1>
+<p><a href="http://www.mkyong.com/spring-mvc/spring-mvc-exceptionhandler-example/" target="_blank">mkyong</a></p>
+<h1 id="validate_+_thymeleaf">validate + thymeleaf</h1>
+<p>change template engine jsp to thymeleaf</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/8.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/9.png" alt="image"></p>
+<h3 id="person_(domain_object)">person (domain object)</h3>
+<p>add validator</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/13.png" alt="image"></p>
+<h3 id="controller">controller</h3>
+<p>根據validator of person , 傳送不符合資料後的訊息給BindingResult .</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/10.png" alt="image"></p>
+<h3 id="thymeleaf">thymeleaf</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/11.png" alt="image"></p>
+<h3 id="result">result</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/12.png" alt="image"></p>
+<h1 id="html_,_ajax">html , ajax</h1>
+<p>application.properties</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/14.png" alt="image"></p>
+<p>pom.xml</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/15.png" alt="image"></p>
+<p>configuration </p>
+<p>因為/WEB-INF 會隱藏底下的檔案 所以要選擇哪些檔案可以當作是資源來使用</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/16.png" alt="image"></p>
+<p>redirect</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/17.png" alt="image"></p>
+<p>Comment - text </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/18.png" alt="image"></p>
+<p>當我要用ajax call rest  時 一直失敗 </p>
+<p>後來解決了 要注意兩點</p>
+<ol>
+<li><p>接收的是Comment (object) </p>
+</li>
+<li><p>Comment的attribute 也要對到 :text</p>
+</li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/19.png" alt="image"></p>
+<p>將外邊的array , 移除</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/20.png" alt="image"></p>
+<p>最後才成功</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/21.png" alt="image"></p>
+<p>其實只要用一個object就好了 , 原本是array包object .</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/22.png" alt="image"></p>
+<h1 id="HTTP_status">HTTP status</h1>
+<p>ajax 在判定非200 ok時 都會出現error , 就算這個http status 是自己丟出來的也是一樣 . 但我覺得他的確應該出錯error , 那error接下來要怎麼判斷是什麼樣子的error呢?</p>
+<p><a href="http://stackoverflow.com/questions/3290182/rest-http-status-codes-for-failed-validation-or-invalid-duplicate" target="_blank">REST HTTP status codes for failed validation or invalid duplicate</a> </p>
+<p><a href="http://www.vijaywebsolutions.com/about-handling-errors-in-restful-applications/" target="_blank">有不同的想法</a></p>
+<p><a href="http://stackoverflow.com/questions/18534478/how-to-set-response-header-in-spring-mvc" target="_blank">response.setHeader</a></p>
+<h3 id="首先_@ResponseStatus(HttpStatus-BAD_REQUEST)_決定了HttpStatus">首先  @ResponseStatus(HttpStatus.BAD_REQUEST) 決定了HttpStatus</h3>
+<h3 id="加入_response-setHeader(“X-Status-Reason”,”Validation_failed”);">加入 response.setHeader(“X-Status-Reason”,”Validation failed”);</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/26.png" alt="image"></p>
+<h3 id="ajax_error">ajax error</h3>
+<p>可以藉由看error的HttpStatus code ,決定下一步要怎麼做</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/27.png" alt="image"></p>
+<p>console</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/28.png" alt="image"></p>
+<h1 id="tangocard_的response標準">tangocard 的response標準</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/23.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/24.png" alt="image"></p>
+<h1 id="vigay_的response標準">vigay 的response標準</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/25.png" alt="image"></p>
+<h3 id="自己訂立標準">自己訂立標準</h3>
+<h1 id="再加上一個attribute">再加上一個attribute</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/31.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/29.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/30.png" alt="image"></p>
+<p>操作</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/32.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/33.png" alt="image"></p>
+<p>很容易就加成功了</p>
+<h1 id="自定義_驗證錯誤_顯示訊息">自定義 驗證錯誤 顯示訊息</h1>
+<p><code>src/main/resources</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/35.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/34.png" alt="image"></p>
+<h1 id="驗證_i18n">驗證 i18n</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/36.png" alt="image"></p>
+<p>change localization</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/38.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/37.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-03T01:08:04.000Z"><a href="/2014/10/03/20141003/">Oct 3 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/10/03/20141003/">2014/10/03</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Validating_Form_Input">Validating Form Input</h1>
+<p>基本上傳上去的資料 都可以當作是傳form</p>
+<p><a href="http://docs.oracle.com/javaee/6/tutorial/doc/gircz.html" target="_blank">validator 參考</a></p>
+<h1 id="JAX-WS_&amp;_JAX-RS">JAX-WS &amp; JAX-RS</h1>
+<p><a href="http://www.codedata.com.tw/java/java-restful-1-jersey-and-jax-rs" target="_blank">codedata</a></p>
+<p>提供技術標準</p>
+<h2 id="JAX-WS(Java_API_for_XML_Web_Services-JSR224)">JAX-WS(Java API for XML Web Services-JSR224)</h2>
+<h2 id="JAX-RS(Java_API_for_RESTful_Web_Services-JSR311)">JAX-RS(Java API for RESTful Web Services-JSR311)</h2>
+<h2 id="Jersey">Jersey</h2>
+<p>是JAX-RS的reference implementation .  有一些Annotatin 方便加入在spring中 , 可以快速地寫好RESTful .</p>
+<h1 id="workflow">workflow</h1>
+<p>所以當要使用bean validation , 要先include hibernate validation</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/2/10.png" alt="image"></p>
+<p>接下來 當碰到@Valid, 就會trigger 去 驗證 某個 bean 的 validator</p>
+<p>錯誤訊息 會存在BindingResult </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/2/11.png" alt="image"></p>
+<h1 id="problem">problem</h1>
+<p>@Valid validate person 時 , 如何知道傳進來的資料 是怎麼對應Person的attribute ? </p>
+<p>在jsp &amp; thymeleaf 中 , 有將一個 bean 傳到 view , 並傳回來 , 但是在rest架構下呢 ?</p>
+<p>這幾篇是一樣的做法 用Exception Handler <a href="http://blog.codeleak.pl/2013/09/request-body-validation-in-spring-mvc-3.2.html" target="_blank">link</a> <a href="http://fruzenshtein.com/spring-rest-exception-handling-1/" target="_blank">link</a></p>
+<p><a href="http://www.petrikainulainen.net/programming/spring-framework/spring-from-the-trenches-adding-validation-to-a-rest-api/" target="_blank">這篇講的非常清楚</a> 可以仔細看之下 , 實作上有點麻煩 , 但可以理解細節 還是很好 , spring boot 應該有不同處理方式 .</p>
+<p>可以run sample : <a href="https://github.com/pkainulainen/spring-from-the-trenches/tree/master/rest-validation-3.2" target="_blank">link</a></p>
+<h2 id="controller">controller</h2>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/2/12.png" alt="image"></p>
+<h2 id="domain_object_&amp;_validator">domain object &amp; validator</h2>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/2/13.png" alt="image"></p>
+<h2 id="啟動">啟動</h2>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/2/14.png" alt="image"></p>
+<h2 id="curl">curl</h2>
+<p><a href="https://spring.io/guides/gs/accessing-data-rest/" target="_blank">參考</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/2/15.png" alt="image"></p>
+<p>但是回應 404 not found</p>
+<p>我發現是因為 firstName =&gt; text</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/2/16.png" alt="image"></p>
+<p>成功 回傳text</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/2/17.png" alt="image"></p>
+<p>成功 回傳<code>@NotEmtpy</code>錯誤訊息</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/2/18.png" alt="image"></p>
+<p>成功 回傳<code>@Length(max = 140)</code>錯誤訊息</p>
+<p>麻煩的是 必須要對錯誤訊息處理 對Exception處理</p>
+<p>FieldErrorDTO =&gt; 包bean錯誤訊息的data transfer object</p>
+<p>ValidationErrorDTO =&gt; 包所有的FiledError =&gt; 所有錯誤訊息DTO的收集</p>
+<p>RestErrorHandler =&gt; 當ruquest產生錯誤 handler的class , 處理錯誤訊息 處理localizatoin .</p>
+<h1 id="exception-handling-in-spring-mvc">exception-handling-in-spring-mvc</h1>
+<p><a href="http://spring.io/blog/2013/11/01/exception-handling-in-spring-mvc" target="_blank">link</a> , 這裡面包含了一個<a href="https://github.com/paulc4/mvc-exceptions" target="_blank">spring boot sample</a></p>
+<p>原來一切的根據 都是從這個文章 重要!!!</p>
+<h3 id="Handling_Exception">Handling Exception</h3>
+<ol>
+<li><p>per exception =&gt; <code>@ResponseStatus</code> =&gt; 自定義exception class,可以在任何時候 你throw exception 讓此class接收 . </p>
+</li>
+<li><p>per controller  =&gt; conroller based exception handling =&gt; <code>@RequestMapping</code>-&gt; throw exception -&gt; <code>@ExceptionHanlder(xxx.class)</code>接收</p>
+</li>
+<li><p>globally =&gt; <code>@ControllerAdvice</code> =&gt; 一個exception handling 給全系統使用 =&gt; annotation driven interceptor</p>
+</li>
+</ol>
+<p>Unhandled exception =&gt; HTTP 500 </p>
+<h3 id="default_exception_happened_where_to_dispatch">default exception happened where to dispatch</h3>
+<ol>
+<li>spring mvc =&gt; <code>simpleMappingExceptionResolver</code> manage it .</li>
+</ol>
+<ol>
+<li>spring boot =&gt;  default -&gt; /error . customize -&gt; <code>ErrorMVCAutoConfiguration</code>-<code>defaultErrorView</code> . <code>InternalResourceViewResolver</code>-&gt; Thymeleaf/JSP</li>
+</ol>
+<h1 id="stackoverflow">stackoverflow</h1>
+<p>有個人跟我一樣的想法  <a href="http://stackoverflow.com/questions/20707485/spring-boot-validation-respond-with-json" target="_blank">link</a></p>
+<h1 id="Spring-boot_and_Scala">Spring-boot and Scala</h1>
+<p>靠!!! 怎麼有點酷！！！ <a href="http://www.java-allandsundry.com/2014/03/spring-boot-and-scala.html" target="_blank">link</a>  這一個也是用scala 寫 spring boot <a href="http://plainoldobjects.com/2014/04/01/building-microservices-with-spring-boot-part1/" target="_blank">link</a></p>
+<h1 id="spring_boot_改寫_petrikainulainen_trenches">spring boot 改寫 petrikainulainen trenches</h1>
+<p><code>mvn archetype:create -DgroupId=org.jackho.sbRestValidate -DartifactId=sbRestValidate</code></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-02T08:58:14.000Z"><a href="/2014/10/02/20141002/">Oct 2 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/10/02/20141002/">2014/10/02</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="TopLink_JPA_Annotation_Reference">TopLink JPA Annotation Reference</h1>
+<p><a href="http://www.oracle.com/technetwork/middleware/ias/toplink-jpa-annotations-096251.html" target="_blank">一系列教學</a></p>
+<h1 id="@OneToOne">@OneToOne</h1>
+<p>參考</p>
+<p><a href="http://stackoverflow.com/questions/16863411/deciding-on-foreign-key-while-implementing-one-to-one-relationship-in-mysql" target="_blank">link</a><br><a href="http://www.techavalanche.com/2012/05/10/one-to-one-unidirectional-mapping-using-foreign-key/" target="_blank">link</a></p>
+<p><a href="http://www.techavalanche.com/2012/06/16/one-to-one-bidirectional-mapping-using-foreign-key/" target="_blank">link</a></p>
+<p><a href="http://www.mkyong.com/mysql/how-to-define-one-to-one-relationship-in-mysql/" target="_blank">link</a></p>
+<h3 id="OnetoOne_relationships_should_be_generally_merged_simply_into_one_table-">OnetoOne relationships should be generally merged simply into one table.</h3>
+<p>也就是說兩個table 的 relationship被設成OneToOne , 表示 這兩個table的關係幾乎是不可分的.</p>
+<p>但其實mysql並沒有OneToOne的設定 , 那要如何讓mysql認為這兩個table像是OneToOne呢？ 就是設定foreign key , not null , cascade 等條件.</p>
+<h1 id="stock_&lt;—-&gt;_stockDetail">stock &lt;—-&gt; stockDetail</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/10.png" alt="image"></p>
+<h1 id="person_&lt;—-&gt;_passport">person &lt;—-&gt; passport</h1>
+<h3 id="unidirectional">unidirectional</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/12.png" alt="image"></p>
+<p>可以看到右下方 可以設定On update , On deleate 的 propagation.</p>
+<p>person has a passport</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/13.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/14.png" alt="image"></p>
+<p>注意到<code>@JoinColumn</code> 是設在person上 , <code>我覺得設定在passport上比較好</code> , 但這樣也不會有錯的原因就是他有設定</p>
+<p><code>cascade = CascadeType.ALL</code> 當 save/remove/update  person , 這些動作也會操作到 passport 上</p>
+<p><code>fetch=FetchType.EAGER</code> : 預設OneToOne 的 relationship 是 EAGER , 表示當我們取person時 同時 passport 也會 fetch .</p>
+<h3 id="bidirectional">bidirectional</h3>
+<p>將passport的部分改掉</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/15.png" alt="image"></p>
+<p>mapped by 表示 person field 是 <code>inverse field</code> 而不是 <code>persistent field</code></p>
+<p>結論是 OneToOne 情況 <code>foreign key(@JoinColumn)</code> 設在哪邊 沒有太大影響 .</p>
+<h1 id="OneToMany">OneToMany</h1>
+<p>這一篇 符合了我以上的想法: <a href="http://stackoverflow.com/questions/2584521/in-a-bidirectional-jpa-onetomany-manytoone-association-what-is-meant-by-the-in" target="_blank">這才是最正確的解釋</a> , 網路上有些文章是有問題的..</p>
+<p>customer &lt;——&gt; order</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/16.png" alt="image"></p>
+<p>一開始 提起問題者 覺得疑問的是 為什麼<code>mapped by 是放在 owing side</code> ???</p>
+<p>接下來回答的人說 在1.OO 2.sql 中是不同的</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/17.png" alt="image"></p>
+<p>講的非常好！！！</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/18.png" alt="image"></p>
+<h1 id="mysql_workbench_-_data_model">mysql workbench - data model</h1>
+<p>非常非常酷的功能 , 又可以建立漂亮的ER-model , 真的非常棒 <a href="https://www.youtube.com/watch?v=7Pwj7nV-oRM" target="_blank">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/19.png" alt="image"></p>
+<p>點選左下角的Models</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/21.png" alt="image"></p>
+<p>建立一個database , 預設是mydb , 你可以改掉名稱 .</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/22.png" alt="image"></p>
+<p>進入diagram</p>
+<p>可以新增一個table</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/23.png" alt="image"></p>
+<p>建立table 設定column 設定foreign key</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/24.png" alt="image"></p>
+<h1 id="diagram_to_real_datbase">diagram to real datbase</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/25.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/26.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/27.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/28.png" alt="image"></p>
+<h1 id="sbJpaBlog_-_data_model">sbJpaBlog - data model</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/30.png" alt="image"></p>
+<p>製作好 這個data model 後 , 當要forword engineer時(將此data model 變成真正的database) , 出現錯誤<a href="http://stackoverflow.com/questions/18056786/error-1022-cant-write-duplicate-key-in-table" target="_blank">Can’t write; duplicate key in table</a><br>似乎是foreign key 名稱 重複的關係 , </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/31.png" alt="image"></p>
+<p>反白的部分是foreign key的名字 , 不是foreign key對應column的名字 , 所以可以改掉 , 然後就成功了!</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/32.png" alt="image"></p>
+<h1 id="JSR-303(hibernate_validator)">JSR-303(hibernate validator)</h1>
+<p><a href="http://en.wikipedia.org/wiki/Bean_Validation" target="_blank">Wiki</a></p>
+<p>Java Bean Validation (JSR 303) is a framework that has been approved by the JCP as of 16 November 2009 and is accepted as part of the Java EE 6 specification. Bean Validation defines a metadata model and API for JavaBean validation</p>
+<h1 id="hibernate_validator_&amp;_spring_validator">hibernate validator &amp; spring validator</h1>
+<p><a href="http://stackoverflow.com/questions/11378320/using-jsr-303-validator-instead-of-spring-validator" target="_blank">link</a></p>
+<p><a href="http://www.journaldev.com/2668/spring-mvc-form-validation-example-using-annotation-and-custom-validator-implementations" target="_blank">link</a></p>
+<h1 id="validating-form-input">validating-form-input</h1>
+<p><a href="http://spring.io/guides/gs/validating-form-input/" target="_blank">link</a></p>
+<h1 id="Adding_Validation_to_a_REST_API">Adding Validation to a REST API</h1>
+<p><a href="http://www.petrikainulainen.net/programming/spring-framework/spring-from-the-trenches-adding-validation-to-a-rest-api/" target="_blank">spring-from-the-trenches-adding-validation-to-a-rest-api</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-30T01:10:27.000Z"><a href="/2014/09/30/20140930/">Sep 30 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/09/30/20140930/">2014/09/30</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="spring_data_jpa">spring data jpa</h1>
+<p><a href="http://www.petrikainulainen.net/spring-data-jpa-tutorial/" target="_blank">petrikainulainen</a></p>
+<p><a href="http://blog-tothought.rhcloud.com/blog/tag/30/page/2" target="_blank">tothought</a></p>
+<p><a href="https://github.com/spring-projects/spring-boot" target="_blank">很多example</a></p>
+<p><a href="http://www.jayway.com/2014/07/04/integration-testing-a-spring-boot-application/" target="_blank">簡單清楚的test</a></p>
+<h1 id="spring_test">spring test</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/1.png" alt="image"></p>
+<p><code>transitionPropertyValueException</code> 的錯誤是因為</p>
+<p>在Post中又有個PostPart , 這時候hibernate會認定 應該要有<code>@Transactional</code> , 不然可能</p>
+<p>資料完整性會出現問題.</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/2.png" alt="image"></p>
+<h1 id="relationship_1">relationship 1</h1>
+<p>Post —-&gt; PostPart (unidirectional)</p>
+<p>@JoinColumn =&gt; 表示是foreign key =&gt; 指向某table的primary key</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/5.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/6.png" alt="image"></p>
+<h1 id="relationship_2">relationship 2</h1>
+<p>Post &lt;—-&gt; PostPart (bidirectional)</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/3.png" alt="image"></p>
+<p><code>@JoinColumn</code> 表示這是foreign key 去指向 另一個table的primary key</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/4.png" alt="image"></p>
+<p><code>mappedBy=&quot;postPart&quot;</code> 指向被指定的原本field </p>
+<h1 id="relationship_3">relationship 3</h1>
+<p>Post —-&gt; Comment (unidirectional)</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/7.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/8.png" alt="image"></p>
+<p>可是這時候 <code>commentRepository.save(comment);</code> 失敗了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/9.png" alt="image"></p>
+<p>為什麼?</p>
+<p>先來看一下<a href="http://webdesign.kerthis.com/sql/sql_foreign_key" target="_blank">foreign key的定義</a></p>
+<p>從這網址的範例了解到foreign key 1.可以參考到另外一個table 2.確定資料的完整性 </p>
+<p>第二點的意義就是 foreign key refer 到的 field 必須是具有值的 . </p>
+<p>這可以確保Order 內的 Customer 是一定存在的!</p>
+<p>所以Post —-&gt; Comment 這邊的關係是設錯的 , 因為Comment,若是Post不存在時 是沒有意義的, 所以應該是Comment設上<code>@JoinColumn(foreign key)</code> refer to Post , 這樣才對 , </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/11.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/12.png" alt="image"></p>
+<p><code>@OneToMany(mappedBy=&quot;post&quot;,cascade=CascadeType.ALL)</code></p>
+<p>加上這句 表示變成bidirectional , 並且! 當POST被delete , update等動作時 , 會連帶去改變Comment , 也就是說 當Comment對應到的Post被刪除時 , Comment也要被同時刪除!</p>
+<h1 id="在這樣的定義下_我認為relationship_1,_2_是錯的_!">在這樣的定義下 我認為relationship 1, 2 是錯的 !</h1>
+<p>Post —-&gt; PostPart </p>
+<p>因為PostPart 是不能夠獨立存在的 , 若 Post 不存在 又怎麼會有PostPart呢? </p>
+<p>所以<code>@JoinColumn(foreign key)</code> 應該是設在PostPart中才對</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/13.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/14.png" alt="image"></p>
+<h1 id="加強_sql_概念">加強 sql 概念</h1>
+<p><a href="http://code.tutsplus.com/tutorials/sql-for-beginners--net-8200" target="_blank">link</a></p>
+<p>PRIMARY KEY : a way to identify each row of data in a table.</p>
+<p><a href="https://www.youtube.com/channel/UCkuzGLn9nxFwlS0lY2ruuJg" target="_blank">link</a></p>
+<p><a href="https://www.youtube.com/user/CalebTheVideoMaker2" target="_blank">link</a></p>
+<h1 id="mysql_workbench">mysql workbench</h1>
+<p><a href="http://www.mysql.com/products/workbench/" target="_blank">裝上mysql workbench</a> 出現無法以root登入的問題 , 其實我用homebrew安裝mysql時 <a href="http://stackoverflow.com/questions/9695362/macosx-homebrew-mysql-root-password" target="_blank">根本沒設定root password ?</a> , </p>
+<p>啟動mysql workbench 後 在 terminal 變得也不能啟動<code>mysqld</code> , 似乎是<a href="http://serverfault.com/questions/477448/mysql-keeps-crashing-innodb-unable-to-lock-ibdata1-error-11" target="_blank">mysql workbench 已經使用了?</a> , 最後用<code>lsof -i:3306</code> 找到哪個process正在使用它 , 然後把它刪掉 <code>kill -9 PROCESS</code> .</p>
+<p>終於關掉<code>mysqld</code> 後 , <a href="http://dev.mysql.com/doc/refman/5.0/en/resetting-permissions.html" target="_blank">像辦法重設root password</a> , 我用的是其中 <code>Resetting the Root Password: Generic Instructions</code> 的方法</p>
+<p><code>mysql --skip-grant-tables --skip-networking</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/1.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/2.png" alt="image"></p>
+<p><code>mysqld</code> =&gt; 無法正常關掉 mysql server =&gt; kill -9 mysqldProcess 還會自己再次自動產生…</p>
+<p><a href="http://linux.vbird.org/linux_basic/0440processcontrol.php" target="_blank">kill -15 mysqldProcess</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/3.png" alt="image"></p>
+<p><code>mysql.server start</code> , <code>mysql.server stop</code> 比較好用</p>
+<h1 id="EER(Enhanced_Entity-relationship)_Diagram">EER(Enhanced Entity-relationship) Diagram</h1>
+<p>聽到這名字就覺得好熟悉呀… </p>
+<p>基礎教學<a href="http://www.youtube.com/watch?v=-fQ-bRllhXc" target="_blank">link</a></p>
+<p><a href="http://blog.wu-boy.com/2012/11/innodb-as-the-default-mysql-storage-engine/" target="_blank">InnoDb Storage Engine</a></p>
+<h1 id="crow’s_foot_notation">crow’s foot notation</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/4.png" alt="image"></p>
+<h1 id="Join_?_foreign_key_?">Join ? foreign key ?</h1>
+<h2 id="sql中">sql中</h2>
+<p>雖然有用foreign key , 但要同時抓customer &amp; order 還是得要用join(inner join) .</p>
+<p>所以我們知道 join 跟 foreign key 沒關係 .</p>
+<h3 id="customer">customer</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/5.png" alt="image"></p>
+<h3 id="order_(有建立foreign_key到customer)">order (有建立foreign key到customer)</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/6.png" alt="image"></p>
+<h3 id="customer_join_order">customer join order</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/7.png" alt="image"></p>
+<h2 id="jpa中">jpa中</h2>
+<h3 id="post">post</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/13.png" alt="image"></p>
+<h3 id="postPart">postPart</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/14.png" alt="image"></p>
+<p>要做類似join的方式 其實是因為在一個domain object中有另外一個domain object , 跟foreign key 也沒關係 .</p>
+<p>也就是說在這邊指定的@OneToOne , @JoinColumn(的確是表示foreign key) , 也跟抓不抓的到另外的domain object(table) 沒關係 . 這幾個Annotation 都是hibernate用來讓你清楚定義domain object constraint的方式 . </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/15.png" alt="image"></p>
+<h1 id="foreign_key_constraint">foreign key constraint</h1>
+<p>要注意的是它是一個constraint , 對於資料表間的對應 作限制 以達到資料完整性的目標.</p>
+<p>什麼叫做資料完整性? 以上述為例 PostPart必須要有Post對應 , 才有意義, 當Post被刪除 , PostPart單獨存在時,留在資料庫中,永遠不會被找到(不會被使用) , 所以它變成一個沒有用的資料 留在資料庫當中 .</p>
+<h1 id="relationship_4">relationship 4</h1>
+<p>Post —-&gt; Tag (ManyToMany)</p>
+<p>因為要做到ManyToMany 表示 這兩個Tag間 還需要有一個<code>bridge table</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/16.png" alt="image"></p>
+<p><code>@JoinTable(name=&quot;POST_TAG&quot;,joinColumns={@JoinColumn(name=&quot;POST_ID&quot;)},
+        inverseJoinColumns={@JoinColumn(name=&quot;TAG_ID&quot;)})</code></p>
+<p>這段程式碼 就是在製作一個<code>bridge table</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/17.png" alt="image"></p>
+<p>產生了一個 Post_Tag的bridge table</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/18.png" alt="image"></p>
+<h1 id="unidirectional_&amp;_bidirectional">unidirectional &amp; bidirectional</h1>
+<p>邏輯上 只要在對方內有自己的id , 或 自己的id在對方那 , 應該是都可以互相找到的 ,</p>
+<p>所以說為什麼可以輕易在domain object中做到 bidirectional 是因為jpa已經幫你做好了!</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-29T01:53:37.000Z"><a href="/2014/09/29/20140929/">Sep 29 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/09/29/20140929/">2014/09/29</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="TAF_example">TAF example</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/TAF/7.png" alt="image"></p>
+<p>其實範例都差不多了 但是希望在Json的部分 加上實際運用 . 既然如此 我將calendar的eventObject,存入資料庫 . </p>
+<p><a href="http://stackoverflow.com/questions/14138532/h2-database-string-to-timestamp" target="_blank">H2 date</a></p>
+<p><a href="http://stackoverflow.com/questions/17987647/moment-js-transform-to-date-object" target="_blank">moment long to date format</a></p>
+<p><a href="http://stackoverflow.com/questions/4772425/format-date-in-java" target="_blank">format date string to date</a> </p>
+<p><a href="http://stackoverflow.com/questions/12409600/error-request-header-field-content-type-is-not-allowed-by-access-control-allow" target="_blank">allow contentType: “application/json</a></p>
+<p><a href="http://stackoverflow.com/questions/24603721/spring-boot-application-with-h2-file-database" target="_blank">data.sql</a></p>
+<h1 id="fullcalendar">fullcalendar</h1>
+<p><a href="http://stackoverflow.com/questions/23743441/fullcalendar-cannot-read-property-getday-of-undefined" target="_blank">Cannot read property ‘day’ of null</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-25T03:40:21.000Z"><a href="/2014/09/25/20140925/">Sep 25 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/09/25/20140925/">2014/09/25</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Ubuntu(server)">Ubuntu(server)</h1>
+<p>/home -&gt;1mgr /home<br>      -&gt;2mgr /home<br>      -&gt;3emgr /home</p>
+<p>各自的project由不同使用者帳號密碼登入,進入後的project有各自的/home(/root).</p>
+<h1 id="speed_up_ecilpse_&amp;_tomcat">speed up ecilpse &amp; tomcat</h1>
+<p>查code 改code 不是最困難的地方 , 反而是eclipse &amp; tomcat 開的速度很慢 , 超慢 …接下來就是要找怎麼樣提升速度!</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-23T02:39:31.000Z"><a href="/2014/09/23/20140923/">Sep 23 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/09/23/20140923/">2014/09/23</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Tbs_import_module">Tbs import module</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/3.png" alt="image"><br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/4.png" alt="image"><br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/5.png" alt="image"><br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/6.png" alt="image"><br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/7.png" alt="image"></p>
+<p>啟動成功</p>
+<p>接下來import到eclipse</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/8.png" alt="image"><br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/9.png" alt="image"><br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/10.png" alt="image"></p>
+<p>remove module<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/11.png" alt="image"></p>
+<p>add module<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/12.png" alt="image"><br>看一下api module有沒有depend on 其他module<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/13.png" alt="image"></p>
+<p>接下來deploy也要設定 remove xxx.jar , add project<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/29.png" alt="image"></p>
+<p>然後clean , deploy 沒問題</p>
+<p>接下來是fmt module , 做法就跟api一樣</p>
+<p>fmt 有depend on com,api</p>
+<p>remove<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/14.png" alt="image"></p>
+<p>add</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/15.png" alt="image"></p>
+<p>接下來deploy也要設定 remove xxx.jar , add project<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/29.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/page/5/" class="alignleft prev">Prev</a>
+  
+  
+    <a href="/page/7/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

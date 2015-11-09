@@ -1,0 +1,430 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2014/10/02 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  <meta name="description" content="TopLink JPA Annotation Reference
+一系列教學
+@OneToOne
+參考
+linklink
+link
+link
+OnetoOne relationships should be generally merged simply into one table.
+也就是說兩個">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="2014/10/02"/>
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-02T08:58:14.000Z"><a href="/2014/10/02/20141002/">Oct 2 2014</a></time>
+      
+      
+  
+    <h1 class="title">2014/10/02</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="TopLink_JPA_Annotation_Reference">TopLink JPA Annotation Reference</h1>
+<p><a href="http://www.oracle.com/technetwork/middleware/ias/toplink-jpa-annotations-096251.html" target="_blank">一系列教學</a></p>
+<h1 id="@OneToOne">@OneToOne</h1>
+<p>參考</p>
+<p><a href="http://stackoverflow.com/questions/16863411/deciding-on-foreign-key-while-implementing-one-to-one-relationship-in-mysql" target="_blank">link</a><br><a href="http://www.techavalanche.com/2012/05/10/one-to-one-unidirectional-mapping-using-foreign-key/" target="_blank">link</a></p>
+<p><a href="http://www.techavalanche.com/2012/06/16/one-to-one-bidirectional-mapping-using-foreign-key/" target="_blank">link</a></p>
+<p><a href="http://www.mkyong.com/mysql/how-to-define-one-to-one-relationship-in-mysql/" target="_blank">link</a></p>
+<h3 id="OnetoOne_relationships_should_be_generally_merged_simply_into_one_table-">OnetoOne relationships should be generally merged simply into one table.</h3>
+<p>也就是說兩個table 的 relationship被設成OneToOne , 表示 這兩個table的關係幾乎是不可分的.</p>
+<p>但其實mysql並沒有OneToOne的設定 , 那要如何讓mysql認為這兩個table像是OneToOne呢？ 就是設定foreign key , not null , cascade 等條件.</p>
+<h1 id="stock_&lt;—-&gt;_stockDetail">stock &lt;—-&gt; stockDetail</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/10.png" alt="image"></p>
+<h1 id="person_&lt;—-&gt;_passport">person &lt;—-&gt; passport</h1>
+<h3 id="unidirectional">unidirectional</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/12.png" alt="image"></p>
+<p>可以看到右下方 可以設定On update , On deleate 的 propagation.</p>
+<p>person has a passport</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/13.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/14.png" alt="image"></p>
+<p>注意到<code>@JoinColumn</code> 是設在person上 , <code>我覺得設定在passport上比較好</code> , 但這樣也不會有錯的原因就是他有設定</p>
+<p><code>cascade = CascadeType.ALL</code> 當 save/remove/update  person , 這些動作也會操作到 passport 上</p>
+<p><code>fetch=FetchType.EAGER</code> : 預設OneToOne 的 relationship 是 EAGER , 表示當我們取person時 同時 passport 也會 fetch .</p>
+<h3 id="bidirectional">bidirectional</h3>
+<p>將passport的部分改掉</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/15.png" alt="image"></p>
+<p>mapped by 表示 person field 是 <code>inverse field</code> 而不是 <code>persistent field</code></p>
+<p>結論是 OneToOne 情況 <code>foreign key(@JoinColumn)</code> 設在哪邊 沒有太大影響 .</p>
+<h1 id="OneToMany">OneToMany</h1>
+<p>這一篇 符合了我以上的想法: <a href="http://stackoverflow.com/questions/2584521/in-a-bidirectional-jpa-onetomany-manytoone-association-what-is-meant-by-the-in" target="_blank">這才是最正確的解釋</a> , 網路上有些文章是有問題的..</p>
+<p>customer &lt;——&gt; order</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/16.png" alt="image"></p>
+<p>一開始 提起問題者 覺得疑問的是 為什麼<code>mapped by 是放在 owing side</code> ???</p>
+<p>接下來回答的人說 在1.OO 2.sql 中是不同的</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/17.png" alt="image"></p>
+<p>講的非常好！！！</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/18.png" alt="image"></p>
+<h1 id="mysql_workbench_-_data_model">mysql workbench - data model</h1>
+<p>非常非常酷的功能 , 又可以建立漂亮的ER-model , 真的非常棒 <a href="https://www.youtube.com/watch?v=7Pwj7nV-oRM" target="_blank">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/19.png" alt="image"></p>
+<p>點選左下角的Models</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/21.png" alt="image"></p>
+<p>建立一個database , 預設是mydb , 你可以改掉名稱 .</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/22.png" alt="image"></p>
+<p>進入diagram</p>
+<p>可以新增一個table</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/23.png" alt="image"></p>
+<p>建立table 設定column 設定foreign key</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/24.png" alt="image"></p>
+<h1 id="diagram_to_real_datbase">diagram to real datbase</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/25.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/26.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/27.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/28.png" alt="image"></p>
+<h1 id="sbJpaBlog_-_data_model">sbJpaBlog - data model</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/30.png" alt="image"></p>
+<p>製作好 這個data model 後 , 當要forword engineer時(將此data model 變成真正的database) , 出現錯誤<a href="http://stackoverflow.com/questions/18056786/error-1022-cant-write-duplicate-key-in-table" target="_blank">Can’t write; duplicate key in table</a><br>似乎是foreign key 名稱 重複的關係 , </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/31.png" alt="image"></p>
+<p>反白的部分是foreign key的名字 , 不是foreign key對應column的名字 , 所以可以改掉 , 然後就成功了!</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/32.png" alt="image"></p>
+<h1 id="JSR-303(hibernate_validator)">JSR-303(hibernate validator)</h1>
+<p><a href="http://en.wikipedia.org/wiki/Bean_Validation" target="_blank">Wiki</a></p>
+<p>Java Bean Validation (JSR 303) is a framework that has been approved by the JCP as of 16 November 2009 and is accepted as part of the Java EE 6 specification. Bean Validation defines a metadata model and API for JavaBean validation</p>
+<h1 id="hibernate_validator_&amp;_spring_validator">hibernate validator &amp; spring validator</h1>
+<p><a href="http://stackoverflow.com/questions/11378320/using-jsr-303-validator-instead-of-spring-validator" target="_blank">link</a></p>
+<p><a href="http://www.journaldev.com/2668/spring-mvc-form-validation-example-using-annotation-and-custom-validator-implementations" target="_blank">link</a></p>
+<h1 id="validating-form-input">validating-form-input</h1>
+<p><a href="http://spring.io/guides/gs/validating-form-input/" target="_blank">link</a></p>
+<h1 id="Adding_Validation_to_a_REST_API">Adding Validation to a REST API</h1>
+<p><a href="http://www.petrikainulainen.net/programming/spring-framework/spring-from-the-trenches-adding-validation-to-a-rest-api/" target="_blank">spring-from-the-trenches-adding-validation-to-a-rest-api</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/blog/">blog</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/spring data jpa/">spring data jpa</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jackmew.github.io/2014/10/02/20141002/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

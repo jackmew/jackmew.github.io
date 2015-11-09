@@ -1,0 +1,461 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2014/09/30 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  <meta name="description" content="spring data jpa
+petrikainulainen
+tothought
+很多example
+簡單清楚的test
+spring test
+
+transitionPropertyValueException 的錯誤是因為
+在Post中又有個PostPart , 這時候hibernate會認">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="2014/09/30"/>
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-30T01:10:27.000Z"><a href="/2014/09/30/20140930/">Sep 30 2014</a></time>
+      
+      
+  
+    <h1 class="title">2014/09/30</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="spring_data_jpa">spring data jpa</h1>
+<p><a href="http://www.petrikainulainen.net/spring-data-jpa-tutorial/" target="_blank">petrikainulainen</a></p>
+<p><a href="http://blog-tothought.rhcloud.com/blog/tag/30/page/2" target="_blank">tothought</a></p>
+<p><a href="https://github.com/spring-projects/spring-boot" target="_blank">很多example</a></p>
+<p><a href="http://www.jayway.com/2014/07/04/integration-testing-a-spring-boot-application/" target="_blank">簡單清楚的test</a></p>
+<h1 id="spring_test">spring test</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/1.png" alt="image"></p>
+<p><code>transitionPropertyValueException</code> 的錯誤是因為</p>
+<p>在Post中又有個PostPart , 這時候hibernate會認定 應該要有<code>@Transactional</code> , 不然可能</p>
+<p>資料完整性會出現問題.</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/2.png" alt="image"></p>
+<h1 id="relationship_1">relationship 1</h1>
+<p>Post —-&gt; PostPart (unidirectional)</p>
+<p>@JoinColumn =&gt; 表示是foreign key =&gt; 指向某table的primary key</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/5.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/6.png" alt="image"></p>
+<h1 id="relationship_2">relationship 2</h1>
+<p>Post &lt;—-&gt; PostPart (bidirectional)</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/3.png" alt="image"></p>
+<p><code>@JoinColumn</code> 表示這是foreign key 去指向 另一個table的primary key</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/4.png" alt="image"></p>
+<p><code>mappedBy=&quot;postPart&quot;</code> 指向被指定的原本field </p>
+<h1 id="relationship_3">relationship 3</h1>
+<p>Post —-&gt; Comment (unidirectional)</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/7.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/8.png" alt="image"></p>
+<p>可是這時候 <code>commentRepository.save(comment);</code> 失敗了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/9.png" alt="image"></p>
+<p>為什麼?</p>
+<p>先來看一下<a href="http://webdesign.kerthis.com/sql/sql_foreign_key" target="_blank">foreign key的定義</a></p>
+<p>從這網址的範例了解到foreign key 1.可以參考到另外一個table 2.確定資料的完整性 </p>
+<p>第二點的意義就是 foreign key refer 到的 field 必須是具有值的 . </p>
+<p>這可以確保Order 內的 Customer 是一定存在的!</p>
+<p>所以Post —-&gt; Comment 這邊的關係是設錯的 , 因為Comment,若是Post不存在時 是沒有意義的, 所以應該是Comment設上<code>@JoinColumn(foreign key)</code> refer to Post , 這樣才對 , </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/11.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/12.png" alt="image"></p>
+<p><code>@OneToMany(mappedBy=&quot;post&quot;,cascade=CascadeType.ALL)</code></p>
+<p>加上這句 表示變成bidirectional , 並且! 當POST被delete , update等動作時 , 會連帶去改變Comment , 也就是說 當Comment對應到的Post被刪除時 , Comment也要被同時刪除!</p>
+<h1 id="在這樣的定義下_我認為relationship_1,_2_是錯的_!">在這樣的定義下 我認為relationship 1, 2 是錯的 !</h1>
+<p>Post —-&gt; PostPart </p>
+<p>因為PostPart 是不能夠獨立存在的 , 若 Post 不存在 又怎麼會有PostPart呢? </p>
+<p>所以<code>@JoinColumn(foreign key)</code> 應該是設在PostPart中才對</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/13.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/14.png" alt="image"></p>
+<h1 id="加強_sql_概念">加強 sql 概念</h1>
+<p><a href="http://code.tutsplus.com/tutorials/sql-for-beginners--net-8200" target="_blank">link</a></p>
+<p>PRIMARY KEY : a way to identify each row of data in a table.</p>
+<p><a href="https://www.youtube.com/channel/UCkuzGLn9nxFwlS0lY2ruuJg" target="_blank">link</a></p>
+<p><a href="https://www.youtube.com/user/CalebTheVideoMaker2" target="_blank">link</a></p>
+<h1 id="mysql_workbench">mysql workbench</h1>
+<p><a href="http://www.mysql.com/products/workbench/" target="_blank">裝上mysql workbench</a> 出現無法以root登入的問題 , 其實我用homebrew安裝mysql時 <a href="http://stackoverflow.com/questions/9695362/macosx-homebrew-mysql-root-password" target="_blank">根本沒設定root password ?</a> , </p>
+<p>啟動mysql workbench 後 在 terminal 變得也不能啟動<code>mysqld</code> , 似乎是<a href="http://serverfault.com/questions/477448/mysql-keeps-crashing-innodb-unable-to-lock-ibdata1-error-11" target="_blank">mysql workbench 已經使用了?</a> , 最後用<code>lsof -i:3306</code> 找到哪個process正在使用它 , 然後把它刪掉 <code>kill -9 PROCESS</code> .</p>
+<p>終於關掉<code>mysqld</code> 後 , <a href="http://dev.mysql.com/doc/refman/5.0/en/resetting-permissions.html" target="_blank">像辦法重設root password</a> , 我用的是其中 <code>Resetting the Root Password: Generic Instructions</code> 的方法</p>
+<p><code>mysql --skip-grant-tables --skip-networking</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/1.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/2.png" alt="image"></p>
+<p><code>mysqld</code> =&gt; 無法正常關掉 mysql server =&gt; kill -9 mysqldProcess 還會自己再次自動產生…</p>
+<p><a href="http://linux.vbird.org/linux_basic/0440processcontrol.php" target="_blank">kill -15 mysqldProcess</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/3.png" alt="image"></p>
+<p><code>mysql.server start</code> , <code>mysql.server stop</code> 比較好用</p>
+<h1 id="EER(Enhanced_Entity-relationship)_Diagram">EER(Enhanced Entity-relationship) Diagram</h1>
+<p>聽到這名字就覺得好熟悉呀… </p>
+<p>基礎教學<a href="http://www.youtube.com/watch?v=-fQ-bRllhXc" target="_blank">link</a></p>
+<p><a href="http://blog.wu-boy.com/2012/11/innodb-as-the-default-mysql-storage-engine/" target="_blank">InnoDb Storage Engine</a></p>
+<h1 id="crow’s_foot_notation">crow’s foot notation</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/4.png" alt="image"></p>
+<h1 id="Join_?_foreign_key_?">Join ? foreign key ?</h1>
+<h2 id="sql中">sql中</h2>
+<p>雖然有用foreign key , 但要同時抓customer &amp; order 還是得要用join(inner join) .</p>
+<p>所以我們知道 join 跟 foreign key 沒關係 .</p>
+<h3 id="customer">customer</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/5.png" alt="image"></p>
+<h3 id="order_(有建立foreign_key到customer)">order (有建立foreign key到customer)</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/6.png" alt="image"></p>
+<h3 id="customer_join_order">customer join order</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/7.png" alt="image"></p>
+<h2 id="jpa中">jpa中</h2>
+<h3 id="post">post</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/13.png" alt="image"></p>
+<h3 id="postPart">postPart</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/14.png" alt="image"></p>
+<p>要做類似join的方式 其實是因為在一個domain object中有另外一個domain object , 跟foreign key 也沒關係 .</p>
+<p>也就是說在這邊指定的@OneToOne , @JoinColumn(的確是表示foreign key) , 也跟抓不抓的到另外的domain object(table) 沒關係 . 這幾個Annotation 都是hibernate用來讓你清楚定義domain object constraint的方式 . </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/15.png" alt="image"></p>
+<h1 id="foreign_key_constraint">foreign key constraint</h1>
+<p>要注意的是它是一個constraint , 對於資料表間的對應 作限制 以達到資料完整性的目標.</p>
+<p>什麼叫做資料完整性? 以上述為例 PostPart必須要有Post對應 , 才有意義, 當Post被刪除 , PostPart單獨存在時,留在資料庫中,永遠不會被找到(不會被使用) , 所以它變成一個沒有用的資料 留在資料庫當中 .</p>
+<h1 id="relationship_4">relationship 4</h1>
+<p>Post —-&gt; Tag (ManyToMany)</p>
+<p>因為要做到ManyToMany 表示 這兩個Tag間 還需要有一個<code>bridge table</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/16.png" alt="image"></p>
+<p><code>@JoinTable(name=&quot;POST_TAG&quot;,joinColumns={@JoinColumn(name=&quot;POST_ID&quot;)},
+        inverseJoinColumns={@JoinColumn(name=&quot;TAG_ID&quot;)})</code></p>
+<p>這段程式碼 就是在製作一個<code>bridge table</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/17.png" alt="image"></p>
+<p>產生了一個 Post_Tag的bridge table</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/18.png" alt="image"></p>
+<h1 id="unidirectional_&amp;_bidirectional">unidirectional &amp; bidirectional</h1>
+<p>邏輯上 只要在對方內有自己的id , 或 自己的id在對方那 , 應該是都可以互相找到的 ,</p>
+<p>所以說為什麼可以輕易在domain object中做到 bidirectional 是因為jpa已經幫你做好了!</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/blog/">blog</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/spring data jpa/">spring data jpa</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jackmew.github.io/2014/09/30/20140930/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

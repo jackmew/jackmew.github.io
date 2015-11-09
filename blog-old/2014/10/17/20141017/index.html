@@ -1,0 +1,413 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2014/10/17 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  <meta name="description" content="GWT retrieving Json
+link
+首先 這一支JsonStockData程式 是在做Servlet的事情
+由Deployment Descriptor (web.xml) 來定義 如何從url mapping到哪一支程式
+
+因此當發出Get request 到 http://loca">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="2014/10/17"/>
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-17T01:32:59.000Z"><a href="/2014/10/17/20141017/">Oct 17 2014</a></time>
+      
+      
+  
+    <h1 class="title">2014/10/17</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="GWT_retrieving_Json">GWT retrieving Json</h1>
+<p><a href="http://www.gwtproject.org/doc/latest/tutorial/JSON.html" target="_blank">link</a></p>
+<p>首先 這一支JsonStockData程式 是在做Servlet的事情</p>
+<p>由Deployment Descriptor (web.xml) 來定義 如何從url mapping到哪一支程式</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/2/7.png" alt="image"></p>
+<p>因此當發出Get request 到 <code>http://localhost:8888/stockwatcher/stockPrices?q=ABC+DEF</code> 這個url時</p>
+<p>就會對應到 這個class</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/2/8.png" alt="image"></p>
+<p>PrintWriter out.println =&gt; 寫出HTML(or plain text ?) 做出response .</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/2/9.png" alt="image"></p>
+<p>回傳的文字 包在HTML裡面</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/2/10.png" alt="image"></p>
+<h1 id="JSONUtils-safeEval()">JSONUtils.safeEval()</h1>
+<p><code>convert the JSON string into JavaScript objects</code></p>
+<p>還有另一個方式 <code>JSONParser.parse(String)</code> <a href="http://www.gwtproject.org/doc/latest/DevGuideCodingBasics.html#DevGuideJSON" target="_blank">link</a></p>
+<h1 id="JSNI_(JavaScript_Native_Interface)">JSNI (JavaScript Native Interface)</h1>
+<p><a href="http://pt2club.blogspot.tw/2010/02/gwt-part-1jsni.html" target="_blank">link</a></p>
+<p><code>把一個 Java method 宣告成「native」然後用另一個語言來實做內容。在 JSNI 當中，就是用 JavaScript 來實做內容。</code></p>
+<h1 id="Overlay_type">Overlay type</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/2/11.png" alt="image"></p>
+<p><code>StockData extends JavaScriptObject</code>  也就是說StockData支援Javascript object</p>
+<p>透過JSNI method 抓到Javascript object , 再來用隱藏的方式(opaque)轉成Java Object.</p>
+<p>綜合上述幾點 </p>
+<ol>
+<li>先用<code>JSONUtils.safeEval()</code>將JSON string 變成 Javascript objects</li>
+</ol>
+<ol>
+<li><p>接著用JSNI寫法(也就是說 用Javascript) 去抓Javascript object </p>
+<p>   / JSNI methods to get stock data.<br>   public final native String getSymbol() /<em>-{ return this.symbol; }-</em>/;<br>   public final native double getPrice() /<em>-{ return this.price; }-</em>/;<br>   public final native double getChange() /<em>-{ return this.change; }-</em>/;</p>
+</li>
+<li><p>StockData extends JavaScriptObject =&gt; JSON -&gt; Javascript object -&gt; Java object </p>
+</li>
+</ol>
+<h1 id="workflow">workflow</h1>
+<p><code>ArrayList&lt;String&gt; stocks</code> 裡面會放有[‘stock1’,’stock2’]</p>
+<p><code>String JSON_URL = GWT.getModuleBaseURL() + &quot;stockPrices?q=&quot;;</code></p>
+<p> GWT.getModuleBaseURL() 會自動去幫你抓 <a href="http://xxx/moduleName" target="_blank">http://xxx/moduleName</a> =&gt; <code>http://localhost:8888/stockGwt/</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/2/12.png" alt="image"></p>
+<p><code>url = URL.encode(url);</code> 會組出<code>http://localhost:8888/stockwatcher/stockPrices?q=stock1+stock2</code></p>
+<p>+似乎是空白的意思?</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/2/14.png" alt="image"></p>
+<p><code>RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url);</code></p>
+<p>是一個可以組出Request object的物件 =&gt; 參數(request type , url)</p>
+<p>builder.sendRequest是一個Asynchronous Http request(AJAX) , 是一個callback function , 當成功就會執行<code>onResponseReceived</code> , 失敗就會執行<code>onError</code></p>
+<p>成功時 : </p>
+<p>updateTable(JsonUtils.<JsArray<StockData>&gt;safeEval(response.getText()));</p>
+<ol>
+<li><p>response.getText() =&gt; 抓到JSON String </p>
+</li>
+<li><p>JsonUtils.safeEval(JSON string) =&gt; JSON String  轉成 Javascript Object</p>
+</li>
+<li><p><JsArray<StockData>&gt; =&gt; Javascript Object 轉成 Java Object</p>
+</li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/2/13.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/blog/">blog</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/gwt/">gwt</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jackmew.github.io/2014/10/17/20141017/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

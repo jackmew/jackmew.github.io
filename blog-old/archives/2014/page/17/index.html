@@ -1,0 +1,1229 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 17 | Archives: 2014 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title">2014</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-14T01:50:16.000Z"><a href="/2014/04/14/20140414/">Apr 14 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/04/14/20140414/">2014/04/14</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Cursor">Cursor</h2>
+<p><a href="http://stackoverflow.com/questions/11661545/how-to-get-a-callback-on-mongodb-collection-find" target="_blank">How to get a callback on MongoDB collection.find()</a></p>
+<p>find提供給callback的是Cursor,必須經過toArray()才會抓到資料</p>
+<p><a href="http://mongodb.github.io/node-mongodb-native/api-generated/cursor.html" target="_blank">Constructor for a cursor object that handles all the operations on query result using find.</a></p>
+<p>也就是說cursor是find資料後 可以再對資料進行sort,skit,limit等options</p>
+<p><a href="http://mongodb.github.io/node-mongodb-native/api-generated/collection.html#" target="_blank">collection CRUD操作</a></p>
+<p><a href="http://stackoverflow.com/questions/14226410/node-js-noob-cannot-fine-module-mongodb" target="_blank">cannot fine module ‘mongodb’</a></p>
+<p>之前mongodb已經裝在global了 所以我選擇下<code>npm link mongodb</code> </p>
+<p>就會多了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo17.png" alt="mongo"></p>
+<p><a href="http://stackoverflow.com/questions/14495975/why-is-it-recommended-not-to-close-a-mongodb-connection-anywhere-in-node-js-code" target="_blank">Why is it recommended not to close a MongoDB connection anywhere in Node.js code?</a></p>
+<p><a href="http://stackoverflow.com/questions/9232562/mongoose-vs-mongodb-nodejs-modules-extensions-which-better-and-why" target="_blank">mongoose vs mongodb</a></p>
+<h2 id="mongoDB">mongoDB</h2>
+<p>mongo module:</p>
+<ol>
+<li><p>native mongo driver for node</p>
+</li>
+<li><p>mongoskin -&gt; monk</p>
+</li>
+<li><p>mongoose(ODM)</p>
+</li>
+</ol>
+<p>以下這兩個例子都是實作mongoose</p>
+<p><a href="http://dreamerslab.com/blog/tw/write-a-todo-list-with-express-and-mongodb/" target="_blank">todoList</a> </p>
+<p><a href="http://loutilities.wordpress.com/2012/08/10/dogtag-app-in-30-minutes-part-1-node-js-and-mongodb/" target="_blank">Mobile GeoLocaion App</a></p>
+<p>決定之後要繼續做這個 但這頂多算自己想做的 並不是公司想做的..只好想做別的</p>
+<h2 id="Sencha_JsonP">Sencha JsonP</h2>
+<p>目的 call之前wbase寫好的controller 來抓資料</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha21.png" alt="image"></p>
+<p>這是sencha抓local json資料的方式</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha20.png" alt="sencha"></p>
+<p><a href="http://docs.sencha.com/touch/2.0.2/#!/guide/ajax" target="_blank">Using Ajax</a></p>
+<p><a href="http://stackoverflow.com/questions/10172134/how-to-retrieve-value-from-json-data-in-sencha-touch-2" target="_blank">可能沒有移掉</a><code>[]</code></p>
+<p><a href="http://www.ozzysun.com/2012/07/sencha-touch-2-store_18.html" target="_blank">可能挺有用</a></p>
+<p><a href="http://stackoverflow.com/questions/15108464/sencha-load-a-store-on-demand-after-login" target="_blank">好像就是要這個?</a></p>
+<p><code>sencha store listeners load</code> 這關鍵字好像比較有用</p>
+<p>…還是無法成功</p>
+<h2 id="differnece_between_JSON_,_JSONP">differnece between JSON , JSONP</h2>
+<p>先來看到header</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/protocol/protocal1.png" alt="protocal"></p>
+<p><a href="http://192.168.26.37/wbase-web/rest/uid/queryOnePage" target="_blank">http://192.168.26.37/wbase-web/rest/uid/queryOnePage</a></p>
+<p>是對應到wbase的query controller </p>
+<p>由sencha發出的request URL:最後有加上<code>Ext.data.JsonP.callback5&amp;_dc=1397526629742</code></p>
+<p>需要注意的還有</p>
+<p><code>Content-Type:application/json;charset=UTF-8</code></p>
+<p>是在哪個時候定義了回傳json?!?!</p>
+<p>Response:</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/protocol/protocal3.png" alt="protocal"></p>
+<p>json格式的資料</p>
+<p>接著對另個網站發出request</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/protocol/protocal2.png" alt="protocal"></p>
+<p>到了這網站<a href="http://ws.audioscrobbler.com/2.0/不知道抓了啥" target="_blank">http://ws.audioscrobbler.com/2.0/不知道抓了啥</a></p>
+<p>但response 會自動包上</p>
+<p><code>Ext.data.JsonP.callback5({&quot;error&quot;:30,&quot;message&quot;:The test API….});</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/protocol/protocal4.png" alt="protocal"></p>
+<p>這樣包回來表示他是一個javascript裡面包了json格式的資料</p>
+<p><code>Content-Type:text/javascript; charset=utf-8;</code></p>
+<p>這樣才是一個JSONP的處理方式</p>
+<p>因為JSONP本身就是javascript</p>
+<p>包的動作 似乎是server回傳的方式 造成的結果 跟client端發出什麼樣的request沒有關係 ???</p>
+<p>Wbase , ResponseEntity 回傳到網頁上會是JSON的資料格式,其實在這之前已經有用</p>
+<p>些library來包資料了 才透過ResponseEntity傳回server</p>
+<h2 id="Device_不同">Device 不同</h2>
+<ol>
+<li><p>Apache server(現在的情況) 去call 別的server =&gt;cross-side =&gt;一定要JSONP</p>
+</li>
+<li><p>Mobile app 去call 別的server =&gt;不是cross-sdie =&gt;可能只要JSON就好?</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-11T02:01:29.000Z"><a href="/2014/04/11/20140411/">Apr 11 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/04/11/20140411/">2014/04/11</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Express_guide">Express guide</h2>
+<p><a href="http://expressjs.com/2x/guide.html" target="_blank">link</a></p>
+<h2 id="Express_next()?_middleware?">Express next()? middleware?</h2>
+<p><a href="http://stackoverflow.com/questions/13133071/express-next-function-what-is-it-really-for" target="_blank">這篇stackoverflow講得很好</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node4.png" alt="express"></p>
+<p><a href="http://stackoverflow.com/questions/7151487/error-handling-principles-for-nodejs-express-apps/7151775#7151775" target="_blank">error middleware</a></p>
+<p><a href="http://expressjs.com/2x/guide.html" target="_blank">link</a></p>
+<p>建立靜態檔伺服器 為何會套用CSS的原因<br><code>app.use(express.static(path.join(__dirname, &#39;public&#39;)));</code></p>
+<p>路徑比對?<br>url可以設定沒有預設的路徑</p>
+<p>可以用<strong>curl</strong>去抓</p>
+<p>我一直覺得express 的path設定有點不一樣的原因:<br><a href="http://stackoverflow.com/questions/13541948/node-js-cant-open-files-error-enoent-stat-path-to-file" target="_blank">Paths specified with a . are relative to the current working directory, not relative to the script file.</a></p>
+<p>因為有出現favicon的錯誤 似乎原本express建立專案的時候 就有預設favicon位置 但那位置卻其實沒有東西,<br>下載一個像海賊的icon放到/guide/public/images/裡</p>
+<p><code>app.use(express.favicon(__dirname + &#39;/public/images/icon.ico&#39;));</code><br><a href="http://stackoverflow.com/questions/11658035/unable-to-change-favicon-with-express-js" target="_blank">在chrome中無法顯示</a><br>但用safari馬上就看到有改變了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node5.png" alt="express"></p>
+<h2 id="Express_bodyparser">Express bodyparser</h2>
+<p><a href="http://cnodejs.org/topic/4f94efda407edba21446fc1c" target="_blank">解析</a>似乎是來處理json的middleware</p>
+<p>新版的似乎不再用了,另外出現<code>app.use(express.json());</code></p>
+<h2 id="Passing_Route_Control">Passing Route Control</h2>
+<p>路由規則(Route Control)</p>
+<ol>
+<li><p>同一條規則(同一個function宣告or使用) 會只用先比對到的function</p>
+<pre><code>     app.<span class="keyword">get</span>(<span class="string">'/users/:id?'</span>, <span class="function"><span class="keyword">function</span><span class="params">(req, res, next)</span>{</span>
+         <span class="keyword">var</span> id = req.params.id;
+         <span class="keyword">if</span> (id) {
+             <span class="comment">// do something</span>
+         } <span class="keyword">else</span> {
+             next();
+         }
+     });
+
+     app.<span class="keyword">get</span>(<span class="string">'/users'</span>, <span class="function"><span class="keyword">function</span><span class="params">(req, res)</span>{</span>
+         <span class="comment">// do something else</span>
+     });
+</code></pre></li>
+</ol>
+<p>function的部分可以:</p>
+<p>one : 兩個參數 =&gt; function(req,res) =&gt;不產生callback next()</p>
+<p>two : 三個參數 =&gt; function(req,res,next) =&gt;有callback next() 可以passing route control</p>
+<p>three : 四個參數 =&gt; function(err,req,res,next) =&gt;特別處理errorHandling使用</p>
+<h2 id="express">express</h2>
+<p>express:web application framework for node</p>
+<p>express應該是一個處理server端事情的web application framework,也就是說本身應該比較偏向處理HTTP request,HTTP response問題,所以還提供了處理session,cookie的方法.</p>
+<p>可是我好像混了太多client的的思考模式放入server端express內,有點混在一起..?</p>
+<p>routes(controller)如何處理轉頁面問題 已經理解清楚了,但當按下button之後 怎麼樣處理事件?</p>
+<p>server端如何接收資料? 似乎是用按下button後 發出post 所以app.post()會接收到..但好像有點怪怪的.?</p>
+<p>之前寫java的時候 也是採用RESTful架構 url mapping到controller上 接下來controller決定使用哪個service去dao抓資料(service+dao = model)</p>
+<p>恩..也就是說在使用spring＋hibernate架構時 基本上不太去考慮server端session幹嘛的..?</p>
+<p>但nodeJS本身就算是server 所以有更高的彈性去設定server運作方式? 但相對使用起來也比較麻煩..?</p>
+<h2 id="JSONP">JSONP</h2>
+<p><a href="http://zh.wikipedia.org/wiki/JSONP" target="_blank">wiki: json with padding</a></p>
+<pre><code><span class="tag">proxy</span>: <span class="rules">{
+    <span class="rule"><span class="attribute">type</span>:<span class="value"> <span class="string">'jsonp'</span>,
+    url: <span class="string">'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&amp;q=http://rss.slashdot.org/Slashdot/slashdot '</span>,
+    reader: {
+      type: <span class="string">'json'</span>,
+      rootProperty: <span class="string">'responseData.feed.entries'</span>
+           </span></span></span>}
+}
+</code></pre><p>這樣表示我可以直接去用這樣的方式去抓之前wbase寫的function 因為那也是用RESTful方式實現,直接用url去call controller 再去抓資料,所以我用sencha touch</p>
+<p>寫一個app 前端 就可以直接抓之前寫好的後端！！！</p>
+<p>所以最後我發現要結合sencha touch跟node根本不用express…</p>
+<p>只要用node + mongo 做server端 可以抓資料 存資料 有個RESTful url可以去給sencha touch model call 就可以了</p>
+<p>/routes/index.js :</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node6.png" alt="mongo"></p>
+<p>/models/user.js :<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node7.png" alt="mongo"></p>
+<p>terminal證實有抓到資料 :<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node8.png" alt="mongo"></p>
+<p>確實有用find抓到mongo資料 但是callback似乎還是沒寫好 不知道為啥資料傳不回來</p>
+<p><a href="http://runnable.com/UW3vaGTkq498AACC/query-for-records-in-mongodb-using-mongodb-native-for-node-js" target="_blank">find each()的寫法是看</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-10T01:26:51.000Z"><a href="/2014/04/10/20140410/">Apr 10 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/04/10/20140410/">2014/04/10</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Template_Engines">Template Engines</h2>
+<p>Jade — Haml inspired template engine<br>Haml.js — Haml implementation<br>EJS — Embedded JavaScript template engine<br>hbs — adapter for Handlebars.js, an extension of Mustache.js template engine<br>hulk-hogan — adapter for Twitter’s Hogan.js (Mustache syntax), with support for Partials<br>combyne.js — A template engine that hopefully works the way you’d expect.<br>swig — fast, Django-like template engine<br>whiskers — small, fast, mustachioed<br>Blade — HTML Template Compiler, inspired by Jade &amp; Haml<br>Haml-Coffee — Haml templates where you can write inline CoffeeScript.</p>
+<p>Webfiller — plain-html5 dual-side rendering, self-configuring routes, organized source tree, 100% js.</p>
+<h2 id="install_mongodb">install mongodb</h2>
+<p><code>brew install mongodb</code></p>
+<p><code>mongod</code> =&gt;出現一些資訊 要設定一些startup options</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo9.png" alt="mongodb"></p>
+<p><code>which mongod</code> =&gt; /usr/local/bin/mongod</p>
+<p>solution for **WARNING: <a href="http://stackoverflow.com/questions/16621763/mongod-mac-os-x-rlimits-warning" target="_blank">soft rlimits too low</a></p>
+<p>solution for <a href="http://stackoverflow.com/questions/8029064/new-to-mongodb-can-not-run-command-mongo" target="_blank">exception in initAndListen: 10296 dbpath (/data/db) does not exist, terminating</a> :<code>mkdir -p /data/db/</code> 會放上一個隱藏資料夾在root </p>
+<p>solution for <a href="http://stackoverflow.com/questions/7948789/mongodb-mongod-complains-that-there-is-no-data-db-folder" target="_blank">http://stackoverflow.com/questions/7948789/mongodb-mongod-complains-that-there-is-no-data-db-folder</a> 這表示那個資料夾權限不夠 <code>sudo chown ``id -u`` /data/db</code></p>
+<p>接下來再次執行<code>mongod</code> 依然會會出現很多資訊 但已經不再有error or exception</p>
+<p>發現直接執行<code>mongo</code>會無法開啓mongo shell </p>
+<p>solution for <a href="http://stackoverflow.com/questions/20383440/connect-failed-mongo-db-on-mac-osx" target="_blank">Error: couldn’t connect to server 127.0.0.1:27017 (127.0.0.1)</a></p>
+<p>所以最直接的安裝步驟 應該直接照著<a href="http://stackoverflow.com/users/1175235/ali-emre-cakmakoglu" target="_blank">Ali Emre Çakmakoğlu</a>的回應</p>
+<p><code>brew install mongodb</code></p>
+<p>create main db directory<br><code>sudo mkdir -p /data/db</code></p>
+<p>Make sure that you have a read and write permission on that directory<br><code>sudo chown ``id -u`` /data/db</code></p>
+<p>isten to default port<br><code>mongod</code></p>
+<p>Terminal會顯示listening <code>Cmd + T</code> 再開啓一個terminal </p>
+<p>輸入</p>
+<p><code>mongo</code> 就可以正常開啓mongo shell…</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo10.png" alt="mongo"></p>
+<h2 id="manage_mongodb">manage mongodb</h2>
+<p><a href="http://docs.mongodb.org/manual/tutorial/getting-started/" target="_blank">Getting Started with MongoDB</a></p>
+<p>之前wbase的案子已經有用過mongodb了 不過都沒有實際在本機上安裝過 現在來測試看看本機執行</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo11.png" alt="mongo"></p>
+<p>我們可以看到mongo初始是連接到localhost, port:27017</p>
+<p>在成功連進去mongo以後 會自動產生檔案 journal,mongod.lock</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo12.png" alt="mongo"></p>
+<p><code>db</code> 看你現在正用哪個db default:test</p>
+<p><code>use mydb</code> 轉到mydb</p>
+<p><code>show dbs</code> 看有哪些db 此時會發現沒有mydb 因為你還沒塞資料進去mydb</p>
+<p>產生兩筆資料</p>
+<p><code>j = { name : &quot;mongo&quot; }</code><br><code>k = { x : 3 }</code></p>
+<p>填入db裡面的testData(collection)</p>
+<p><code>db.testData.insert( j )</code><br><code>db.testData.insert( k )</code></p>
+<p><code>show collections</code> 看當前db(mydb)有哪些collection</p>
+<p>看collection:testData裡面有哪些資料(document)</p>
+<p><code>db.testData.find()</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo13.png" alt="mongo"></p>
+<p><a href="http://docs.mongodb.org/manual/tutorial/generate-test-data/" target="_blank">generate test data</a></p>
+<p>比較特別的事<a href="http://docs.mongodb.org/manual/tutorial/generate-test-data/" target="_blank">.mongorc.js</a></p>
+<p>你可以定義你的javascript放在home 也就是<code>~/.mongorc.js</code> 有點怪的是 丟很多東西在home 好像不好</p>
+<p>可是我放在別的folder時 mongo就找不到mongorc.js 先暫且放在home執行後 果然可以call自定義的javascript </p>
+<p>還滿酷的</p>
+<h2 id="Express_+_Mongodb">Express + Mongodb</h2>
+<p>發現一堆人在練習microblog 還滿有趣的 哈哈</p>
+<p>不過也因此可以很快找到解決怪問題的方法</p>
+<p>solution for <a href="http://cnodejs.org/topic/4f8698c1827290275d51511f" target="_blank">TypeError:Connot read property ‘Store’ of undefined</a></p>
+<p>似乎是connect-mongo版本更新後 寫法要改掉</p>
+<p><code>var MongoStore = require(&#39;connect-mongo&#39;);</code></p>
+<p>改成</p>
+<p><code>var MongoStore = require(&#39;connect-mongo&#39;)(express);</code></p>
+<p>solution for <a href="http://stackoverflow.com/questions/17490808/nodejsexpressmongodb-error-connecting-to-database" target="_blank">error connecting to database</a></p>
+<p>跟之前<code>mongo shell</code> 無法啓動一樣</p>
+<p>需要先<code>mongod</code>啓動listening 再下<code>node app.js</code></p>
+<p>啓動microblog後 進行註冊</p>
+<p>account:jackmew</p>
+<p>password:1234</p>
+<p>那要怎樣才能確定有insert進資料庫?</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo16.png" alt="mongo"></p>
+<p>但這方式很麻煩</p>
+<p>直接使用</p>
+<p><strong>Robomongo</strong>:mongo GUI tool</p>
+<p>設定</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo14.png" alt="mongo"></p>
+<p>很容易的就連進去了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo15.png" alt="mongo"></p>
+<p>可以看到密碼被加密了</p>
+<p>產生collection:sessions 紀錄使用資料</p>
+<h2 id="How_express_manipulate_mongo?">How express manipulate mongo?</h2>
+<p>接下來找到底express跟mongo到底是怎麼合在一起操作的?</p>
+<p>想想之前Java在Spring+Hibernate的架構下 Hibernate設定好 準備好JavaBean 接著就可以操作資料</p>
+<p>那express跟mongo連接的那一層是什麼?</p>
+<p>一堆資訊都在這:<br><a href="http://docs.mongodb.org/ecosystem/drivers/node-js/#node-js-language-center" target="_blank">mongoDB Node.js Language Center</a></p>
+<p><a href="http://runnable.com/node-mongodb-native" target="_blank">node-mongodb-native</a> 有實際demo的code</p>
+<p>The <strong>MongoDB Node.js driver</strong> is the officially supported node.js driver for MongoDB. 這個driver是由Christian Kvalheim寫的node-mongodb-native ,後來mongo跟他一起合作?</p>
+<p>這個driver也可以當成底層來support實現object mapping,比如<a href="http://mongoosejs.com/" target="_blank">Mongoose</a>(ODM :Object-Document_Mapper)</p>
+<p>還有<a href="http://mongoosejs.com/docs/index.html" target="_blank">mongoose tutorial</a></p>
+<p><code>npm install mongoose</code></p>
+<p>我用homebrew安裝mongodb,<code>brew install mongodb</code> </p>
+<p>不知道跟用npm安裝會不會不一樣….<code>npm install mongodb</code></p>
+<p>因為之後mongoose也是用<code>npm install mongoose</code> 路徑上的設定不知道會不會有問題?!</p>
+<p>應該說是NodeJS跟Mongo中間有個實現的driver,Express只是個架構?</p>
+<p>而且為了實現NodeJS+Mongo 不止require mongodb 還有require connect-mongo</p>
+<h2 id="Express_feature">Express feature</h2>
+<p><strong>RESTful</strong> : 表示它在轉換url的時候 就會去做相對應url的事情</p>
+<hr>
+<p>|HTTP Request | Express function|</p>
+<hr>
+<p>GET|app.get(path,callback)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">HTTP Request</th>
+<th style="text-align:right">Express function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">GET</td>
+<td style="text-align:right">app.get(path,callback)</td>
+</tr>
+<tr>
+<td style="text-align:left">POST</td>
+<td style="text-align:right">app.post(path,callback)</td>
+</tr>
+<tr>
+<td style="text-align:left">PUT</td>
+<td style="text-align:right">app.put(path,callback)</td>
+</tr>
+<tr>
+<td style="text-align:left">DELETE</td>
+<td style="text-align:right">app.delete(path,callback)</td>
+</tr>
+<tr>
+<td style="text-align:left">PATCH</td>
+<td style="text-align:right">app.patch(path,callback)</td>
+</tr>
+<tr>
+<td style="text-align:left">TRACE</td>
+<td style="text-align:right">app.trace(path,callback)</td>
+</tr>
+<tr>
+<td style="text-align:left">CONNECT</td>
+<td style="text-align:right">app.connect(path,callback)</td>
+</tr>
+<tr>
+<td style="text-align:left">OPTION</td>
+<td style="text-align:right">app.options(path,callback)</td>
+</tr>
+<tr>
+<td style="text-align:left">all method</td>
+<td style="text-align:right">app.all(path,callback)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>event-driven</strong> : 觸發事件的時候才會去做事情</p>
+<h2 id="node-inspector">node-inspector</h2>
+<p>我發現我好像不能在node server那邊debug</p>
+<p>還是要裝<a href="https://www.youtube.com/watch?v=03qGA-GJXjI" target="_blank">node-inspector</a></p>
+<p><code>sudo npm install node-inspector</code></p>
+<p>啓動node-inspector</p>
+<p><code>cmd + t</code>開啓另一個terminal 輸入 <code>node-inspector</code></p>
+<p>顯示<br>Node Inspector v0.7.3<br>Visit <a href="http://127.0.0.1:8080/debug?port=5858" target="_blank">http://127.0.0.1:8080/debug?port=5858</a> to start debugging. </p>
+<p>在另一個terminal啓動你的app</p>
+<p>cd到你要啓動的app位置</p>
+<p><code>node --debug app.js</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node3.png" alt="node-inspector"></p>
+<p><code>node --debug-brk app.js</code> 一開始就停住app</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-09T02:38:30.000Z"><a href="/2014/04/09/20140409/">Apr 9 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/04/09/20140409/">2014/04/09</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="node_in_sublime">node in sublime</h2>
+<p><a href="http://www.wikihow.com/Create-a-Javascript-Console-in-Sublime-Text" target="_blank">how to create a JavaScript Console in Sublime Text</a></p>
+<p>Javascript:</p>
+<p>JSC.sublime-build<br><code>{
+&quot;cmd&quot;: [&quot;/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc&quot;, &quot;$file&quot;],
+&quot;selector&quot;: &quot;source.js&quot;
+}</code></p>
+<p>Node:</p>
+<p>node.sublime-build</p>
+<p>terminal key <code>which node</code> node路徑<br><code>{
+&quot;cmd&quot;: [&quot;/usr/local/bin/node&quot;, &quot;$file&quot;],
+&quot;selector&quot;: &quot;source.js&quot;
+}</code></p>
+<p>Tool -&gt; build system 選擇你要用的</p>
+<p>cmd + B 執行</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node1.png" alt="node"></p>
+<h2 id="Node-js_事件迴圈">Node.js 事件迴圈</h2>
+<p>要達到Asynchronous I/O的特性,必要有一個監聽者的角色來處理非同步發出的請求,像callback開始後 要花一點時間完成 所以先執行了後面的程式,那誰來接收callback回來的結果呢,是因為有個監聽者一直在不斷的迴圈,看有沒有任何事件,請求,回應會突然出現,這監聽者的角色就是 <strong>libev</strong> </p>
+<h2 id="CommandJS">CommandJS</h2>
+<p>用來定義Javascript API,規範,模組(module),套件(package)的一種標準</p>
+<h2 id="RequireJS">RequireJS</h2>
+<p>JavaScript本身就具備Require指令來載入模組,然而我們發現並不是所以模組都要在一開始就載入好的</p>
+<p>RequireJs可以做到當下需要的模組再載入的這個想法也就是Asynchrnous Module<br>Defintion(AMD),並且確保所以相依(dependency)當載入才會執行</p>
+<p><a href="http://www.arthurtoday.com/2012/01/commonjs-requirejs.html#.U0S4h62SyHY" target="_blank">CommandJS和RequireJS有什麼不同</a></p>
+<h2 id="module_&amp;_package">module &amp; package</h2>
+<p>package比較像是組合一堆module之後的完成品</p>
+<p><strong>export</strong>  : 公開模組</p>
+<p><strong>require</strong> : 取得模組</p>
+<p>有點類似於java的class</p>
+<pre><code><span class="comment">//hello.js</span>
+
+<span class="function"><span class="keyword">function</span> <span class="title">Hello</span><span class="params">()</span> {</span>
+ <span class="keyword">var</span> name;
+
+ <span class="keyword">this</span>.setName = <span class="function"><span class="keyword">function</span><span class="params">(thyName)</span> {</span>
+   name = thyName;
+ };
+
+ <span class="keyword">this</span>.sayHello = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+   console.log(<span class="string">'Hello '</span> + name);
+ };
+};
+
+module.exports = Hello;
+</code></pre><p>有點類似於java new 實體</p>
+<pre><code><span class="comment">//gethello.js</span>
+
+<span class="keyword">var</span> Hello = <span class="built_in">require</span>(<span class="string">'./hello'</span>);
+
+hello = <span class="keyword">new</span> Hello();
+hello.setName(<span class="string">'BYVoid'</span>);
+hello.sayHello();
+</code></pre><p>Javascript是函數式程式設計語言,並沒有class概念,function本身就是物件,在node又叫做module,module可以藉由export公開,require引用</p>
+<h2 id="package-json">package.json</h2>
+<p>CommonJS規定用來描述套件(package)的檔案</p>
+<p>Node.js會先去找package.json裡面的main 決定要先執行哪個js 若是沒有package.json就會去找index.js or index.node</p>
+<h2 id="npm_update_npm_-g">npm update npm -g</h2>
+<p>npm無法自動update自己…</p>
+<p>似乎是因為brew install node的時候 就同時安裝了npm</p>
+<p>由於<a href="https://github.com/npm/npm/issues/3794" target="_blank">brew , npm上安裝模組的方式有異 所以產生某些衝突</a> </p>
+<p>elgs提出的方式是<br>brew install node —without-npm<br>curl <a href="https://www.npmjs.org/install.sh" target="_blank">https://www.npmjs.org/install.sh</a>    /    curl -L <a href="https://npmjs.org/install.sh" target="_blank">https://npmjs.org/install.sh</a> | sh</p>
+<p>因為homebrew是套件管理 npm也是套件管理 這樣的做法就讓各自管理自己套件 </p>
+<p>不過我還得要刪除再重新安裝..</p>
+<p>另外的方式</p>
+<p>npm install -gf npm   =&gt; -f是force的意思 好像會有一些link的問題</p>
+<p>的確是成功update npm成1.4.6 不知道之後會不會有問題產生…</p>
+<p>有些人說加上這句 </p>
+<p>brew unlink node &amp;&amp; brew link —overwrite node</p>
+<p>但是我加上去後 就變回原來npm 1.4.3</p>
+<p>現在node , npm都是最新版本 之後有問題 就用elgs的方式重新安裝</p>
+<h2 id="sublime_web_inspector">sublime web inspector</h2>
+<p><a href="http://sokolovstas.github.io/SublimeWebInspector/" target="_blank">web inspector</a></p>
+<p>搞定一樣的測試環境來試試看</p>
+<p>幾乎所以所有的功能都是透過<code>shift + cmd + R</code> 開始debug 下中斷點等..</p>
+<p>但好像也沒有比chrome web developer方便?</p>
+<p>也可能還是我不會用</p>
+<h2 id="Express">Express</h2>
+<p>為了在Terminal使用很多Quick start 工具 ,我們將Express裝在全域模式下</p>
+<p><code>npm install -g express</code></p>
+<p>安裝後的位置是在<code>/usr/local/lib/node_modules/express</code></p>
+<p>模版引擎1.Jade 2.ejs</p>
+<p>使用ejs(Embeded JavaScript)</p>
+<p>~/jackho/node/</p>
+<p><code>express -t ejs jackmewNodeBlog</code></p>
+<p>產生~/jackho/node/jackmewNodeBlog</p>
+<p><code>cd jackmewNodeBlog</code></p>
+<p><code>npm install</code> 它會根據產生的package.json dependency產生需要的檔案</p>
+<p><code>node app.js</code> =&gt;Express server listening on port 3000 in development mode</p>
+<p>在browser輸入localhost:3000</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node2.png" alt="express"></p>
+<p>我想要關掉node時 按下<code>ctr+Z</code> 顯示stop 但好像還會佔用 導致我後來無法再次開啓node</p>
+<p><a href="http://stackoverflow.com/questions/4473229/rails-server-says-port-already-used-how-to-kill-that-process" target="_blank">砍掉的方式</a></p>
+<p><code>lsof -wni tcp:3000</code> 去找誰佔用了port:3000 記住PID</p>
+<p><code>kill -9 PID</code> </p>
+<p>之後就可以再次啓動<code>node app.js</code> or <code>supervisor app.js</code> 後者可以在你改了code後馬上refresh</p>
+<p>之後要確實關閉node 按<code>ctr + C</code></p>
+<h2 id="EJS_,_Jade">EJS , Jade</h2>
+<p><a href="http://embeddedjs.com/" target="_blank">EJS - JavaScript Templates</a></p>
+<p><a href="http://jade-lang.com/" target="_blank">Jade - Template Engine</a></p>
+<p>感覺這跟Java的JSP有點像 , 應該是主要分區格化程式 不要在程式變大時 產生太大的耦合性</p>
+<p>所以用Express跟Template就可以建立全部都用好了耶 應該還要加Bootstrap</p>
+<p>而我其實是想結合NoteJS+Mongoe+Sencha Touch的 所以應該先暫緩去看Template的部分..</p>
+<p>而且還真的找到有人整合了這些東西！</p>
+<h2 id="Cool">Cool</h2>
+<p><a href="http://loutilities.wordpress.com/2012/08/10/dogtag-app-in-30-minutes-part-1-node-js-and-mongodb/" target="_blank">Sencha touch+NodeJS(Express)+Mongo(Mongoose)</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-08T01:24:06.000Z"><a href="/2014/04/08/20140408/">Apr 8 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/04/08/20140408/">2014/04/08</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="WARN">WARN</h2>
+<p><a href="http://book.51cto.com/art/201209/356675.htm" target="_blank">solution:</a></p>
+<p><a href="http://tech.chitgoks.com/tag/sencha/" target="_blank">同樣的解釋</a></p>
+<p>Sencha提供兩種載入模組的方式:</p>
+<ol>
+<li>Synchronously loading 不需要先require(類似宣告)</li>
+<li>Anonymous loading 需先在app.js require模組 , 非同步的載入方式可以增進app效能</li>
+</ol>
+<p>我猜Sencha預設是Anonymous loading,但沒有先require這個動作,所以自動變成Synchronously loading 也因此產生WARN</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha15.png" alt="sencha"></p>
+<p>接下來是<a href="http://www.sencha.com/forum/showthread.php?177337-refs-is-deprecated-as-a-property-directly-on-the-Ext.app.Controller-prototype." target="_blank">refs</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha16.png" alt="sencha"></p>
+<p>refs的warn可以藉由將refs放在config:{}裡就可以解決 可是同時this.getContactForm()就抓不到了….?</p>
+<p>搞不懂 來看一下<a href="http://docs.sencha.com/touch/2.3.1/#!/guide/controllers-section-refs-and-control" target="_blank">Controller</a></p>
+<h2 id="Controller">Controller</h2>
+<p><a href="http://docs.sencha.com/touch/2.3.1/#!/guide/controllers" target="_blank">link</a></p>
+<ol>
+<li><p>refs       : 定義,抓selector</p>
+</li>
+<li><p>control : 寫function , 要做的事情</p>
+</li>
+</ol>
+<p>Jackmew_MVC.controller.Main</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha17.png" alt="sencha"></p>
+<h2 id="Profile">Profile</h2>
+<p><a href="http://docs.sencha.com/touch/2.3.1/#!/api/Ext.app.Profile" target="_blank">link</a></p>
+<p>決定設備上的screen size , phone profile,Tablet profile…..</p>
+<p>可以決定load哪些modules,views,controllers,stores</p>
+<p>甚至有Launch</p>
+<p>Launch,init order :</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha18.png" alt="image"></p>
+<h2 id="Component">Component</h2>
+<p>產生元件(<a href="http://docs.sencha.com/touch/2.3.1/#!/guide/components" target="_blank">Component</a>)</p>
+<ol>
+<li><p>Ext.create</p>
+</li>
+<li><p>xtype :Xtype is an easy way to create Components without having to use the full class name.</p>
+</li>
+</ol>
+<h2 id="Layout">Layout</h2>
+<p><a href="http://docs.sencha.com/touch/2.3.1/#!/guide/layouts" target="_blank">link</a></p>
+<ol>
+<li><p>auto(default)</p>
+</li>
+<li><p>fit =&gt; single component</p>
+</li>
+<li><p>card(使用者不能控制) 只能透過TestComponet.container.setActiveItem(1)控制</p>
+<p>=&gt; 1.TabPanel , 2. Carousel =&gt;multi Component</p>
+</li>
+<li><p>vbox(vertical box)</p>
+</li>
+<li><p>hbox(horizontal box)</p>
+</li>
+<li><p>Mix &amp; Match</p>
+</li>
+</ol>
+<p>pack:左右移動(start,center,end)<br>align:上下移動(start,center,end,stretch)</p>
+<h2 id="Class_System">Class System</h2>
+<p><a href="http://docs.sencha.com/touch/2.3.1/#!/guide/class_system" target="_blank">class System</a></p>
+<p>Ext.define =&gt; 宣告class</p>
+<p>Ext.create =&gt; instantiate class </p>
+<pre><code><span class="class"> <span class="keyword">class</span> system automatically give you:
+ 1.getter  =&gt; getName<span class="container">()</span>
+ 2.setter  =&gt; setName<span class="container">()</span>
+ update and apply methods get called on component instantiation
+ 3.applier =&gt; applyName<span class="container">()</span>
+ 4.updater =&gt; updateName<span class="container">()</span></span>
+</code></pre><p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha19.png" alt="sencha"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-07T02:58:28.000Z"><a href="/2014/04/07/20140407/">Apr 7 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/04/07/20140407/">2014/04/07</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="MVC">MVC</h2>
+<p><a href="http://docs.sencha.com/touch/2.2.1/#!/video/mvc-part-1" target="_blank">MVC in Depth Part1</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha11.png" alt="sencha"></p>
+<p>一直找不到定義在view的xtype , 影片中是不用在app.js 宣告view的存在</p>
+<p>不知道是不是改版的關係 一定要加上<code>view: &#39;Home&#39;</code> xtype才能抓到</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha13.png" alt="sencha"></p>
+<p>從這裡可以得知 加入<code>view: &#39;Home&#39;</code>會去先load檔案 之後xtype才能知道如何對應</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha12.png" alt="sencha"></p>
+<p>最後是發現多引用script =&gt; touch/sencha-touch-all-debug.js 就必須要在app.js定義好view</p>
+<p>不加的話就可以在controller定義view就好了</p>
+<p>form submit資料 </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/sencha/sencha14.png" alt="sencha"></p>
+<p>最後決定要將之前看的影片<a href="http://www.youtube.com/watch?v=JC1k0myM_50" target="_blank">Robert Lara Sencha Touch</a></p>
+<p>和今天<a href="http://docs.sencha.com/touch/2.2.1/#!/video/mvc-part-1" target="_blank">MVC in Depth Part1</a></p>
+<p>結合在一起 當成basic MVC project 之後要開發都從這邊開始</p>
+<p><a href="git@github.com:jackmew/sencha_basicMVC.git">jackmew github</a></p>
+<h2 id="Asynchronous_Module_Definition(AMD)">Asynchronous Module Definition(AMD)</h2>
+<p><a href="http://www.dotblogs.com.tw/kirkchen/archive/2012/06/20/javascript_amd_introduction.aspx" target="_blank">AMD簡單介紹</a></p>
+<p><a href="http://www.dotblogs.com.tw/kirkchen/archive/2012/06/20/javascript_amd_introduction.aspx" target="_blank">backbone.js</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-03T06:01:24.000Z"><a href="/2014/04/03/20140403/">Apr 3 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/04/03/20140403/">2014/04/03</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="Build_Android_App_with_HTML,CSS,JavaScript">Build Android App with HTML,CSS,JavaScript</h3>
+<p>Editor:Jonathan Stark with Brian Jepson</p>
+<p>範例程式放在~/jackho/Sites/androidWithHTMLCSSJavascript/</p>
+<h3 id="CH2">CH2</h3>
+<p>WURFL(Wireless Universal Rescource File) 辨識大量物件設備</p>
+<p>如何用CSS配置成像Android app的樣式</p>
+<p>蠻清楚的解釋</p>
+<p><a href="http://zfly9.blogspot.tw/2012/09/css-font-family.html" target="_blank">font-family</a> </p>
+<p><code>font-family: Arial,MingLiU,sans-serif;</code> 先check Arial適不適合,若是英文就直接套用Arial,若不是到下一個中文的MingLiu字型,若兩個都不是就套用sans-serif</p>
+<p><a href="http://www.1keydata.com/css-tutorial/tw/font.php#style" target="_blank">font-style:italic;</a> 斜體</p>
+<p>非常清楚<br><a href="http://www.w3cplus.com/blog/52.html" target="_blank">text-shadow gradient alphaRGBA border-radius</a></p>
+<h3 id="CH3">CH3</h3>
+<p>XMLHttpRequest 必須要在server上才能發出 所以當使用$.load()之類的 在client端執行沒用</p>
+<p><strong>e.preventDefault(); </strong> 因為a default behavior是導向另外一個頁面,但我們用JavaScript的Ajax方式來處理載入頁面,因此用e.preventDefault()避免default behavior</p>
+<p><strong>處理太長的標題</strong>：<br>p.46</p>
+<p>h1{<br>    max-width:160px;<br>    overflow:hidden;<br>    white-space:nowrap;<br>    text-overflow:ellipsis;<br>}</p>
+<p><strong>捲至最上</strong> : <a href="http://stackoverflow.com/questions/1144805/how-do-i-scroll-to-the-top-of-the-page-with-jquery" target="_blank">scrollTo(0,0); </a></p>
+<h3 id="設計Back">設計Back</h3>
+<p>p.50</p>
+<p>由於是用Ajax控制換頁 沒有轉換頁面的情況下 沒有記錄上個頁面在cookie中</p>
+<p>所以必須自己去實作Back</p>
+<h3 id="CH4">CH4</h3>
+<p>就用習慣的jQuery Mobile就好了</p>
+<h3 id="CH5_客戶端資料儲存">CH5 客戶端資料儲存</h3>
+<p>Before:server side database , cookie<br>HTML5<br>After:Web Storage ,Web SQL</p>
+<p>Web Storage : localStorage , sessionStorage</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-02T02:02:56.000Z"><a href="/2014/04/02/20140402/">Apr 2 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/04/02/20140402/">2014/04/02</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="install_phoneGap">install phoneGap</h2>
+<p><code>sudo npm install -g phonegap</code></p>
+<h2 id="sencha_app_with_phoneGap_&amp;_cordova">sencha app with phoneGap &amp; cordova</h2>
+<p>~jackho/project/sencha/touch-2.3.1/</p>
+<p><code>sencha generate app yourAppName yourAppDirectory</code></p>
+<p>一開始一直建立失敗 因為我安裝了兩次sencha cmd 移除過後就可以執行</p>
+<p>jackho/project/sencha/touch-2.3.1/appp</p>
+<p><code>sencha cordova init com.sehncha.apppp</code></p>
+<p>會產生幾個檔案</p>
+<p>cordova.local.properties =&gt; 你要轉換的平台</p>
+<p>安裝iphone模擬器</p>
+<p><code>npm install -g ios-sim</code></p>
+<p>模擬器啓動app</p>
+<p><code>sencha app build -run native</code></p>
+<p><strong>PhoneGap</strong></p>
+<p>將前面的cordova部分都用phonegap取代</p>
+<p>加入<code>phonegap.local.properties</code></p>
+<p>設定</p>
+<p>phonegap.build.remote=true</p>
+<p><a href="https://build.phonegap.com/" target="_blank">Adobe PhoneGap Build</a>的帳號密碼</p>
+<p>phonegap.build.remote.username</p>
+<p>phonegap.build.remote.password</p>
+<p>當執行到<code>sencha app build -run native</code></p>
+<p>會先將檔案上傳到<a href="https://build.phonegap.com/" target="_blank">Adobe PhoneGap Build</a>在上面build成ios,android,blackburry等平台app檔案</p>
+<p>我是成功在上面build android apk檔案 但其他都失敗</p>
+<p>note3直接掃條碼 下載後 安裝就可以使用了！</p>
+<p>後來要再放一個app上去的時候就失敗了 可能是因為private檔案只能放一個?</p>
+<p>或免費用戶只能放幾個上去<a href="https://build.phonegap.com/" target="_blank">Adobe PhoneGap Build</a>的問題</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-01T06:42:08.000Z"><a href="/2014/04/01/20140401/">Apr 1 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/04/01/20140401/">2014/04/01</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><code>sudo gem update --system</code>升級RubyGems的版本<br><code>sudo gem install compass</code><br><code>ruby -v</code><br><code>compass -v</code><br><code>gem</code></p>
+<p><a href="http://ant.apache.org/bindownload.cgi" target="_blank">apache ant</a><br><code>ant --version</code></p>
+<p>SuperAnt</p>
+<p>in sublime-text<br><code>shift + command + p</code><br>key superant 安裝</p>
+<p>preferences -&gt; browse packages =&gt;會出現Super Ant資料夾<br>tools -&gt; build system =&gt;會出現Super Ant選項</p>
+<p>SenchaAntBuild</p>
+<ol>
+<li>app.properties</li>
+<li>build.properties</li>
+<li>build.xml</li>
+</ol>
+<p>在terminal中 ~jackho/Desktop/TestSenchaAntBuild<br><code>touch app.properties</code><br><code>build.properties</code></p>
+<p>SENCHA_SDK_HOME : /Applications/SenchaSDKTools-2.0.0-beta3</p>
+<p><a href="http://sensai-touch.com/building-an-ios-and-android-app-with-sencha-touch-2-3-and-cordova/" target="_blank">link</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-31T01:40:38.000Z"><a href="/2014/03/31/20140331/">Mar 31 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/31/20140331/">2014/03/31</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="繼續解決jquery_mobile_enhance的問題">繼續解決jquery mobile enhance的問題</h2>
+<h3 id="jQuery_Mobile’s_Auto-initialization">jQuery Mobile’s Auto-initialization</h3>
+<p><a href="http://demos.jquerymobile.com/1.0a3/docs/api/globalconfig.html" target="_blank">link</a></p>
+<p>jQuery Mobile markup enhancements的行為是 當被load完就會套上 在document.ready之前 .</p>
+<p><a href="http://api.jquerymobile.com/mobileinit/" target="_blank">mobileinit</a> 當jQuery Mobile load完的時候,觸發此事件</p>
+<p>但我無法觸發此事件…原因 : <strong>jquery.mobile-1.4.0”</strong> 要放在你引用的js之後</p>
+<p>Order:</p>
+<ol>
+<li>jquery-1.10.2.js”</li>
+<li>UIDWidget.js”</li>
+<li>jquery.mobile-1.4.0.js”</li>
+</ol>
+<p>然而這樣改變順序 會影響你之前設定的變化 也會影響onDocumentReady 和 page’s event的順序</p>
+<h3 id="Working_with_jQuery_Mobile’s_Auto-initialization">Working with jQuery Mobile’s Auto-initialization</h3>
+<p> <a href="http://api.jquerymobile.com/global-config/" target="_blank">link</a></p>
+<h3 id="了解jQuery_Mobile_流程">了解jQuery Mobile 流程</h3>
+<p><a href="http://www.informit.com/articles/article.aspx?p=1924978&amp;seqNum=4" target="_blank">Understanding the Mobile Initialization Event</a> </p>
+<p>jQuery framework  用 $(document).ready() 去規避處理和讀取的問題 當成程式進入點用 ,這在sigle page sites很有用 但是跟jQuery Mobile framework搭在一起會有問題</p>
+<p>jQuery Mobile 用 AJAX 的方式 讀取頁面的內容 ,不是reload整個page ,  </p>
+<p><a href="http://tampungide.blogspot.tw/2013/06/document-on-pageinit-vs-document-ready.html" target="_blank">$(document).ready() will trigger before your first page is loaded</a></p>
+<p><strong>Prevent page transition </strong></p>
+<h2 id="Soving_problem">Soving problem</h2>
+<p>關鍵字 : jquery mobile requirejs</p>
+<p><a href="http://" target="_blank">https://groups.google.com/forum/#!msg/requirejs/LUjOcKxERGU/Rphf0x0jPm4J </a></p>
+<p>first : 我猜測 onDocument 之前還有很多page event  但不知道先後順序 </p>
+<p>second : jquery mobile的include 要在你的custome js 之後 </p>
+<p>改變順序後 onDocumentReady會再page event之前 但其實邏輯上本來就應該是這樣</p>
+<p>首先load jquery , 再load你寫的js 你的js才可以用$ 同時load DOM , 當load完DOM時 才能去對DOM enhance 所以最後是load jquery mobile</p>
+<p>third : requirejs的 非同步動態載入 配置 </p>
+<p>現在mobileinit已經可以call了 但是page event還是不行 </p>
+<p>mpc(mobile page container)   It’s a code that should run after mobile init</p>
+<p><a href="https://gist.github.com/chilversc/5082299" target="_blank">Use jquery mobile with requirejs, delay pageinit function until scripts are loaded</a></p>
+<p><a href="https://github.com/jrburke/requirejs/issues/342" target="_blank">possible conflict with Jquery Mobile “mobileinit” event</a> </p>
+<p>以上的種種 都是library,page的load先後順序問題,表示這個行為 應該是每一個頁面的共同行為  </p>
+<p>用requirejs定義共同load行為 </p>
+<p>‘weaver/domReady!</p>
+<pre><code><span class="keyword">if</span> (isBrowser) {
+        $(document).bind( <span class="string">"mobileinit"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+            <span class="comment">// Switch off autoinitialization of page</span>
+            $.mobile.autoInitializePage = <span class="literal">false</span>;
+        });
+        <span class="built_in">require</span>([<span class="string">"weaver/jquery.mobile"</span>, <span class="string">"weaver/jquery.validate"</span>], <span class="function"><span class="keyword">function</span><span class="params">(jqm, validator)</span> {</span>
+            $(document).ready(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+                jqm.initializePage();
+                pageLoaded();
+                <span class="built_in">require</span>([<span class="string">"weaver/jquery/localization/messages_zh_TW"</span>]);
+                $(document).show();
+            });
+        });
+    }
+</code></pre><h2 id="docReady!">docReady!</h2>
+<p>HTML        =&gt; document Ready<br>jquery        =&gt; document Ready<br>requirejs    =&gt; document Ready!</p>
+<p>是一層層的關係 並不是同一個東西 </p>
+<p>RequireJS </p>
+<ol>
+<li><p>require表示要執行的程式</p>
+</li>
+<li><p>define表示包成模組 </p>
+</li>
+</ol>
+<p>entry point: </p>
+<ol>
+<li><p>data-main</p>
+</li>
+<li><p>docReady! </p>
+</li>
+</ol>
+<h2 id="display:none_vs_visibility:hidden">display:none vs visibility:hidden</h2>
+<p><a href="http://www.dotblogs.com.tw/kirkchen/archive/2009/12/22/12603.aspx?fid=55891" target="_blank">差別</a></p>
+<p>//display:none         =&gt;<a href="http://stackoverflow.com/questions/3632120/jquery-height-width-and-displaynone" target="_blank">會把height,width設成0</a> , 之後show可能會有點問題 =&gt; $(selector).show()</p>
+<p>//visibility:hidden     =&gt;會佔住位置 , 之後show ok                     =&gt; //$(selector).css(‘visibility’,’visible’)</p>
+<p>雖然最後解決的方法用最簡單的visibility:hidden   //$(‘body’).css(‘visibility’,’visible’)</p>
+<p>但繞遠路之下 果然學到很多東西！！！ </p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+    <a href="/archives/2014/page/16/" class="alignleft prev">Prev</a>
+  
+  
+    <a href="/archives/2014/page/18/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

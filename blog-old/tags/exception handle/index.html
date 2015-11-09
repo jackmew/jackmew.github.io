@@ -1,0 +1,385 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>exception handle | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title tag">exception handle</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-03T01:08:04.000Z"><a href="/2014/10/03/20141003/">Oct 3 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/10/03/20141003/">2014/10/03</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Validating_Form_Input">Validating Form Input</h1>
+<p>基本上傳上去的資料 都可以當作是傳form</p>
+<p><a href="http://docs.oracle.com/javaee/6/tutorial/doc/gircz.html" target="_blank">validator 參考</a></p>
+<h1 id="JAX-WS_&amp;_JAX-RS">JAX-WS &amp; JAX-RS</h1>
+<p><a href="http://www.codedata.com.tw/java/java-restful-1-jersey-and-jax-rs" target="_blank">codedata</a></p>
+<p>提供技術標準</p>
+<h2 id="JAX-WS(Java_API_for_XML_Web_Services-JSR224)">JAX-WS(Java API for XML Web Services-JSR224)</h2>
+<h2 id="JAX-RS(Java_API_for_RESTful_Web_Services-JSR311)">JAX-RS(Java API for RESTful Web Services-JSR311)</h2>
+<h2 id="Jersey">Jersey</h2>
+<p>是JAX-RS的reference implementation .  有一些Annotatin 方便加入在spring中 , 可以快速地寫好RESTful .</p>
+<h1 id="workflow">workflow</h1>
+<p>所以當要使用bean validation , 要先include hibernate validation</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/2/10.png" alt="image"></p>
+<p>接下來 當碰到@Valid, 就會trigger 去 驗證 某個 bean 的 validator</p>
+<p>錯誤訊息 會存在BindingResult </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/2/11.png" alt="image"></p>
+<h1 id="problem">problem</h1>
+<p>@Valid validate person 時 , 如何知道傳進來的資料 是怎麼對應Person的attribute ? </p>
+<p>在jsp &amp; thymeleaf 中 , 有將一個 bean 傳到 view , 並傳回來 , 但是在rest架構下呢 ?</p>
+<p>這幾篇是一樣的做法 用Exception Handler <a href="http://blog.codeleak.pl/2013/09/request-body-validation-in-spring-mvc-3.2.html" target="_blank">link</a> <a href="http://fruzenshtein.com/spring-rest-exception-handling-1/" target="_blank">link</a></p>
+<p><a href="http://www.petrikainulainen.net/programming/spring-framework/spring-from-the-trenches-adding-validation-to-a-rest-api/" target="_blank">這篇講的非常清楚</a> 可以仔細看之下 , 實作上有點麻煩 , 但可以理解細節 還是很好 , spring boot 應該有不同處理方式 .</p>
+<p>可以run sample : <a href="https://github.com/pkainulainen/spring-from-the-trenches/tree/master/rest-validation-3.2" target="_blank">link</a></p>
+<h2 id="controller">controller</h2>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/2/12.png" alt="image"></p>
+<h2 id="domain_object_&amp;_validator">domain object &amp; validator</h2>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/2/13.png" alt="image"></p>
+<h2 id="啟動">啟動</h2>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/2/14.png" alt="image"></p>
+<h2 id="curl">curl</h2>
+<p><a href="https://spring.io/guides/gs/accessing-data-rest/" target="_blank">參考</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/2/15.png" alt="image"></p>
+<p>但是回應 404 not found</p>
+<p>我發現是因為 firstName =&gt; text</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/2/16.png" alt="image"></p>
+<p>成功 回傳text</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/2/17.png" alt="image"></p>
+<p>成功 回傳<code>@NotEmtpy</code>錯誤訊息</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/2/18.png" alt="image"></p>
+<p>成功 回傳<code>@Length(max = 140)</code>錯誤訊息</p>
+<p>麻煩的是 必須要對錯誤訊息處理 對Exception處理</p>
+<p>FieldErrorDTO =&gt; 包bean錯誤訊息的data transfer object</p>
+<p>ValidationErrorDTO =&gt; 包所有的FiledError =&gt; 所有錯誤訊息DTO的收集</p>
+<p>RestErrorHandler =&gt; 當ruquest產生錯誤 handler的class , 處理錯誤訊息 處理localizatoin .</p>
+<h1 id="exception-handling-in-spring-mvc">exception-handling-in-spring-mvc</h1>
+<p><a href="http://spring.io/blog/2013/11/01/exception-handling-in-spring-mvc" target="_blank">link</a> , 這裡面包含了一個<a href="https://github.com/paulc4/mvc-exceptions" target="_blank">spring boot sample</a></p>
+<p>原來一切的根據 都是從這個文章 重要!!!</p>
+<h3 id="Handling_Exception">Handling Exception</h3>
+<ol>
+<li><p>per exception =&gt; <code>@ResponseStatus</code> =&gt; 自定義exception class,可以在任何時候 你throw exception 讓此class接收 . </p>
+</li>
+<li><p>per controller  =&gt; conroller based exception handling =&gt; <code>@RequestMapping</code>-&gt; throw exception -&gt; <code>@ExceptionHanlder(xxx.class)</code>接收</p>
+</li>
+<li><p>globally =&gt; <code>@ControllerAdvice</code> =&gt; 一個exception handling 給全系統使用 =&gt; annotation driven interceptor</p>
+</li>
+</ol>
+<p>Unhandled exception =&gt; HTTP 500 </p>
+<h3 id="default_exception_happened_where_to_dispatch">default exception happened where to dispatch</h3>
+<ol>
+<li>spring mvc =&gt; <code>simpleMappingExceptionResolver</code> manage it .</li>
+</ol>
+<ol>
+<li>spring boot =&gt;  default -&gt; /error . customize -&gt; <code>ErrorMVCAutoConfiguration</code>-<code>defaultErrorView</code> . <code>InternalResourceViewResolver</code>-&gt; Thymeleaf/JSP</li>
+</ol>
+<h1 id="stackoverflow">stackoverflow</h1>
+<p>有個人跟我一樣的想法  <a href="http://stackoverflow.com/questions/20707485/spring-boot-validation-respond-with-json" target="_blank">link</a></p>
+<h1 id="Spring-boot_and_Scala">Spring-boot and Scala</h1>
+<p>靠!!! 怎麼有點酷！！！ <a href="http://www.java-allandsundry.com/2014/03/spring-boot-and-scala.html" target="_blank">link</a>  這一個也是用scala 寫 spring boot <a href="http://plainoldobjects.com/2014/04/01/building-microservices-with-spring-boot-part1/" target="_blank">link</a></p>
+<h1 id="spring_boot_改寫_petrikainulainen_trenches">spring boot 改寫 petrikainulainen trenches</h1>
+<p><code>mvn archetype:create -DgroupId=org.jackho.sbRestValidate -DartifactId=sbRestValidate</code></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

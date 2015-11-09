@@ -1,0 +1,1035 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 4 | vaadin | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title tag">vaadin</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-29T01:38:35.000Z"><a href="/2014/10/29/20141029/">Oct 29 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/10/29/20141029/">2014/10/29</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="vaadin_CDI(Context_and_Dependency_Injection_(JSR-299)">vaadin CDI(Context and Dependency Injection (JSR-299)</h1>
+<p><a href="https://vaadin.com/wiki/-/wiki/Main/Vaadin-CDI-integration" target="_blank">link</a></p>
+<p><a href="https://vaadin.com/wiki?p_p_id=36&amp;p_p_lifecycle=0&amp;p_p_state=normal&amp;p_p_mode=view&amp;p_p_col_id=row-1&amp;p_p_col_pos=1&amp;p_p_col_count=3&amp;p_r_p_185834411_title=I+-+Getting+started+with+Vaadin+CDI&amp;p_r_p_185834411_nodeName=vaadin.com+wiki&amp;_36_struts_action=%2Fwiki%2Fview" target="_blank">tutorials</a></p>
+<h1 id="TodoMVC">TodoMVC</h1>
+<p><a href="http://todomvc.com/" target="_blank">好像很厲害</a></p>
+<h1 id="vaadin_&amp;_gwt">vaadin &amp; gwt</h1>
+<p><a href="https://vaadin.com/gwt" target="_blank">原來vaadin跟gwt是密不可分的</a></p>
+<p><a href="https://github.com/jounik/TodoMVC" target="_blank">vaadin ToDoMVC</a></p>
+<h1 id="footer">footer</h1>
+<ol>
+<li>status bar</li>
+<li>power by …</li>
+</ol>
+<h1 id="header">header</h1>
+<p>左上logo<br>右上icon</p>
+<h1 id="widget_vs_gadget">widget vs gadget</h1>
+<p>widget : textField … reuse</p>
+<p>gadget : 已經組合好的功能 </p>
+<h1 id="inner_class">inner class</h1>
+<p>private !!! =&gt; 只有某class 會用到這個class , 所以只要是private就好了 </p>
+<h1 id="multi_window">multi window</h1>
+<p>視窗保留 , 非頁籤做法 非換頁做法 , 非single page , 像是eclipse藏起來一些gadget的做法 . </p>
+<h1 id="SASS"><a href="https://www.youtube.com/watch?v=yNIQOfOwDGM&amp;list=PLcRrh9hGNalnmA1mbDS0NBuq6N3Mnw2u1" target="_blank">SASS</a></h1>
+<ol>
+<li><p>可以解決Repeat code(redundancy)</p>
+</li>
+<li><p>cross browser code produce</p>
+</li>
+</ol>
+<h1 id="vaadin_SCSS">vaadin SCSS</h1>
+<p>style.scss =&gt; entry point</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/29.png" alt="image"></p>
+<p><code>@include todomvc</code> 會去抓定義的<code>@mixin todomvc</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/30.png" alt="image"></p>
+<p>todomvc 裡面又去抓 <code>@mixin reset</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/31.png" alt="image"></p>
+<p>而reset 在這邊叫做 fixed mixin , 用來改變apearance在各個browser正常顯示 或 要怎麼樣顯示 </p>
+<p>因此可以只改一個地方 就整個都可以改掉 -&gt; maintainable</p>
+<h1 id="怎麼樣解決redundancy?">怎麼樣解決redundancy?</h1>
+<h3 id="css_ex1">css ex1</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/33.png" alt="image"></p>
+<h3 id="scss_nesting_ex1">scss nesting ex1</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/34.png" alt="image"></p>
+<h3 id="css_ex2">css ex2</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/35.png" alt="image"></p>
+<h3 id="scss_nesting_ex2_=&gt;_&amp;_parent_selector">scss nesting ex2 =&gt; &amp; parent selector</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/36.png" alt="image"></p>
+<h3 id="css_ex3_勾勾">css ex3 勾勾</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/37.png" alt="image"></p>
+<h3 id="scss_nesting_ex3_=&gt;_unicode_產生勾勾">scss nesting ex3 =&gt; unicode 產生勾勾</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/38.png" alt="image"></p>
+<p><code>.todo-row .v-checkbox input:after</code> =&gt; <code>&amp;:after</code></p>
+<h3 id="scss_variable_=&gt;_maintainable">scss variable =&gt; maintainable</h3>
+<p>variable :</p>
+<ol>
+<li><p>定義在自己的scss裡 :  local variable</p>
+</li>
+<li><p>定義在外面 被import進來 : global variable</p>
+</li>
+</ol>
+<p>定義global variable : <code>_variables.scss</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/1.png" alt="image"></p>
+<p>main scss : todomvc.scss ==&gt; import <code>_variables.scss</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/4.png" alt="image"></p>
+<p>使用variable</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/3.png" alt="image"></p>
+<p>scss compile 到 css 的結果</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/2.png" alt="image"></p>
+<h1 id="_todomvc-scss_same_todomvc-scss">_todomvc.scss same todomvc.scss</h1>
+<p>convention that it is a partial scss , 表示他是partial , import時不用加底線</p>
+<h1 id="scss全部都compile到一個css">scss全部都compile到一個css</h1>
+<h1 id="@extend">@extend</h1>
+<p>reusable , 並加上東西</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/5.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/6.png" alt="image"></p>
+<h1 id="imformatica">imformatica</h1>
+<p>Informatica 為全球市佔率第一名的資料轉置工具 (ETL)，其功<br>能上可以讓企業內部各種異質系統資料庫進行合併整合，成為中<br>央集中的資料倉儲系統，並且在資料轉置的過程中，進行資料淨<br>化、資料對應、資料轉化的工作，並可以提供相關運算功能，<br>使得資料在透過 ETL 流程後，可以由單純的明細資料，轉換成<br>為有效用的資訊，除此之外，為了因應企業中龐大的交易資料，<br>Informatica 亦提供大量資料傳輸的功能，可以快速的轉換大量<br>資料，以期達成 Near Real Time 的分析目標。</p>
+<p>ETL(Extract, transform, load)</p>
+<h1 id="bootstrap-for-vaadin">bootstrap-for-vaadin</h1>
+<p>抓下bootstrap的.scss , 並且取出部分要用到的.scss(@extend來取)</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/5.png" alt="image"></p>
+<p>所以當我們使用<code>.v-widget</code> 就會用到bootstrap內body寫的屬性</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/6.png" alt="image"></p>
+<p>下面這個例子是<code>.v-button</code> 就會用到bootstrap內的.btn ….</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/7.png" alt="image"></p>
+<p>使用實例</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/8.png" alt="image"></p>
+<h1 id="他沒有build_-scss_就可以改變畫面了!?!?">他沒有build .scss 就可以改變畫面了!?!?</h1>
+<p>ivy , 不會產生style.css<br>maven 會產生style.css , 需要手動去compile =&gt; <code>mvn vaadin:compile-theme</code></p>
+<p>其實他是說 在development mode , scss 就會automaticallby be translated into css</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/9.png" alt="image"></p>
+<p>這是在web.xml設定production mode = false(development mode) 的方法</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/ㄅ10.png" alt="image"></p>
+<p>新的annotation做法(預設)</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/11.png" alt="image"></p>
+<p>但在maven就是無法auto compile…</p>
+<p>加上這個也沒用…</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/12.png" alt="image"></p>
+<h1 id="valo_位置_是在jar裏面">valo 位置 是在jar裏面</h1>
+<p><a href="http://vaadin.com/download/prerelease/7.3/7.3.0/7.3.0.alpha2/release-notes.html" target="_blank">link</a></p>
+<p><code>Java-based Sass compiler</code></p>
+<p>接下來我想到他的valo theme到底放在哪裡 , 最後發現是放在jar</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/13.png" alt="image"></p>
+<p><code>jar xr filename</code> 解開 </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/14.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/15.png" alt="image"></p>
+<p>哈哈 好酷</p>
+<h1 id="sass">sass</h1>
+<p>problem</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/16.png" alt="image"></p>
+<p><a href="https://github.com/csswizardry/inuit.css/issues/270" target="_blank">solve</a></p>
+<p><code>sass --watch style.scss:style.min.css --style compressed -E &quot;UTF-8&quot;</code></p>
+<p>後來更新gem</p>
+<p>更新sass </p>
+<p>終於可以用sass watch了!!!</p>
+<p>但是都沒問題之下 出現更奇怪的問題…</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/17.png" alt="image"></p>
+<p>我認為是vaadin裡 又加了什麼東西…</p>
+<h1 id="跟我想一樣的事情">跟我想一樣的事情</h1>
+<p><a href="https://github.com/mstahv/moresass" target="_blank">link</a></p>
+<p>但我覺得可能會失敗 …</p>
+<p>不想玩了 搞那麼複雜 好像也不會比較好用 = =</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-28T01:42:12.000Z"><a href="/2014/10/28/20141028/">Oct 28 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/10/28/20141028/">2014/10/28</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="css">css</h1>
+<h1 id="bootstrap_modal">bootstrap modal</h1>
+<p><a href="http://stackoverflow.com/questions/19178224/bootstrap-modal-not-showing-only-backgroud-becomes-black" target="_blank">remove hide</a></p>
+<p><a href="http://jschr.github.io/bootstrap-modal/" target="_blank">sample</a></p>
+<p><a href="http://getbootstrap.com/javascript/#fat" target="_blank">bootstrap javascript lib</a></p>
+<h1 id="social_icon_for_bootstrap">social icon for bootstrap</h1>
+<p><a href="http://lipis.github.io/bootstrap-social/" target="_blank">link</a></p>
+<h1 id="bootstrap_tutorial_republic">bootstrap tutorial republic</h1>
+<p><a href="http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-icons.php" target="_blank">link</a></p>
+<h1 id="vaadin_valo_theme">vaadin valo theme</h1>
+<p><a href="http://demo.vaadin.com/valo-theme/#!textfields" target="_blank">demo</a></p>
+<p><a href="https://vaadin.com/valo" target="_blank">source code</a></p>
+<h1 id="sass">sass</h1>
+<p><a href="https://vaadin.com/wiki/-/wiki/Main/Creating+a+theme+using+sass" target="_blank">link</a></p>
+<p><a href="https://www.youtube.com/watch?v=yNIQOfOwDGM&amp;list=PLcRrh9hGNalnmA1mbDS0NBuq6N3Mnw2u1" target="_blank">link</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-27T01:55:49.000Z"><a href="/2014/10/27/20141027/">Oct 27 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/10/27/20141027/">2014/10/27</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="dashboard">dashboard</h1>
+<p><a href="https://github.com/vaadin/dashboard-demo" target="_blank">source</a></p>
+<p><a href="https://vaadin.com/forum/#!/thread/2489265/2489264?_19_delta=20&amp;_19_keywords=&amp;_19_advancedSearch=false&amp;_19_andOperator=true&amp;cur=1" target="_blank">forum</a></p>
+<h1 id="UI01">UI01</h1>
+<p><code>mvn archetype:generate -DarchetypeGroupId=com.vaadin -DarchetypeArtifactId=vaadin-archetype-application -DarchetypeVersion=LATEST -DgroupId=org.jackho -DartifactId=UI01 -Dversion=1.0 -Dpackaging=war</code></p>
+<h1 id="jetty">jetty</h1>
+<p>用jetty<a href="http://jackmew.github.io/2014/10/24/20141024/">link</a></p>
+<p>在pom要加入四段</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/18.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/19.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/20.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/21.png" alt="image"></p>
+<h1 id="import">import</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/22.png" alt="image"></p>
+<h1 id="run_&amp;_debug">run &amp; debug</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/23.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/24.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/25.png" alt="image"></p>
+<h1 id="原來一開始的code_可以改成這樣">原來一開始的code 可以改成這樣</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/26.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/27.png" alt="image"></p>
+<h1 id="widgetset_setting">widgetset setting</h1>
+<pre><code><span class="comment">&lt;!-- widgetset compile --&gt;</span>
+<span class="tag">&lt;<span class="title">plugin</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.codehaus.mojo<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>gwt-maven-plugin<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">version</span>&gt;</span>2.3.0-1<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">configuration</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">webappDirectory</span>&gt;</span>src/main/webapp/VAADIN/widgetsets<span class="tag">&lt;/<span class="title">webappDirectory</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">extraJvmArgs</span>&gt;</span>-Xmx512M -Xss1024k<span class="tag">&lt;/<span class="title">extraJvmArgs</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">runTarget</span>&gt;</span>clean<span class="tag">&lt;/<span class="title">runTarget</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">hostedWebapp</span>&gt;</span>${project.build.directory}/${project.build.finalName}<span class="tag">&lt;/<span class="title">hostedWebapp</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">noServer</span>&gt;</span>true<span class="tag">&lt;/<span class="title">noServer</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">port</span>&gt;</span>8080<span class="tag">&lt;/<span class="title">port</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">soyc</span>&gt;</span>false<span class="tag">&lt;/<span class="title">soyc</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">configuration</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">executions</span>&gt;</span>
+     <span class="tag">&lt;<span class="title">execution</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">goals</span>&gt;</span>
+              <span class="tag">&lt;<span class="title">goal</span>&gt;</span>resources<span class="tag">&lt;/<span class="title">goal</span>&gt;</span>
+              <span class="tag">&lt;<span class="title">goal</span>&gt;</span>compile<span class="tag">&lt;/<span class="title">goal</span>&gt;</span>
+          <span class="tag">&lt;/<span class="title">goals</span>&gt;</span>
+      <span class="tag">&lt;/<span class="title">execution</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">executions</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">plugin</span>&gt;</span>
+
+
+
+    <span class="comment">&lt;!-- widgetset compile --&gt;</span>
+    <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>com.vaadin<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>vaadin-client-compiler<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">version</span>&gt;</span>${vaadin.version}<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="title">scope</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+</code></pre><p>Vaadin plugin-in for Eclipse</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/28.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-23T01:40:44.000Z"><a href="/2014/10/23/20141023/">Oct 23 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/10/23/20141023/">2014/10/23</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="deign">deign</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/8.png" alt="image"></p>
+<h1 id="vaadin_FieldGroup">vaadin FieldGroup</h1>
+<p><a href="https://www.youtube.com/watch?v=aq_OXCVqvFI" target="_blank">link</a></p>
+<p>fieldgroup </p>
+<h1 id="產生jpacontainer_vaadin_project">產生jpacontainer vaadin project</h1>
+<p><code>mvn archetype:generate -DarchetypeGroupId=com.vaadin -DarchetypeArtifactId=vaadin-archetype-jpacontainer -DarchetypeVersion=LATEST -DgroupId=org.jackho -DartifactId=jpaTest -Dversion=1.0 -Dpackaging=war</code></p>
+<p>提供了jpacontainer 在 maven 中是怎麼設定pom的</p>
+<p>mvn 的一些指令</p>
+<h1 id="jpacontainer_demo">jpacontainer demo</h1>
+<p><a href="https://www.youtube.com/watch?v=6hz630Oz2Q0" target="_blank">link</a></p>
+<p>但是不是很細節的講解 但是</p>
+<h1 id="vaadin_directory">vaadin directory</h1>
+<p><a href="https://vaadin.com/directory" target="_blank">vaadin add-on</a>又點像是maven repository的地方 </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/9.png" alt="image"></p>
+<p>右邊有設定方式</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/10.png" alt="image"></p>
+<h1 id="work">work</h1>
+<p>先產生基本的vaadin maven project</p>
+<p><code>mvn archetype:generate -DarchetypeGroupId=com.vaadin -DarchetypeArtifactId=vaadin-archetype-application -DarchetypeVersion=LATEST -DgroupId=org.jackho -DartifactId=Playground -Dversion=1.0 -Dpackaging=war</code></p>
+<p>先確定可以正確執行</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/11.png" alt="image"></p>
+<p>pom.xml</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/12.png" alt="image"></p>
+<p>然後就可以用JSR-303的hibernate-validator2的annotation</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/13.png" alt="image"></p>
+<h1 id="開始">開始</h1>
+<p>定義一個Person persistence</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/14.png" alt="image"></p>
+<p>Person has an address</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/15.png" alt="image"></p>
+<p>定義person form view -&gt; GridLayout</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/16.png" alt="image"></p>
+<p>然後mainUI 設計persistence &amp; view </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/17.png" alt="image"></p>
+<p>出現</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/18.png" alt="image"></p>
+<h1 id="FieldGroup_(是一個binder)">FieldGroup (是一個binder)</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/19.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/20.png" alt="image"></p>
+<p>因為這邊是這樣設定<code>BeanItem&lt;Person&gt; item = new BeanItem&lt;Person&gt;(person);</code> </p>
+<p>所以person object has reference , 但是address沒有！ 要怎麼辦 ? </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/21.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/22.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/23.png" alt="image"></p>
+<h1 id="commit">commit</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/24.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/25.png" alt="image"></p>
+<h1 id="真正要validate時候出現錯誤！">真正要validate時候出現錯誤！</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/26.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/27.png" alt="image"></p>
+<p>操考<a href="http://stackoverflow.com/questions/16163162/vaadin-7-bean-validation" target="_blank">link</a> &amp; <a href="http://stackoverflow.com/questions/4302358/javax-validation" target="_blank">link</a></p>
+<p>我決定加上</p>
+<pre><code>    <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.hibernate<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>hibernate-validator<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">version</span>&gt;</span>4.2.0.Final<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+</code></pre><p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/28.png" alt="image"></p>
+<p>成功 ！</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/29.png" alt="image"></p>
+<p>但是出現sf4j fail 目前沒啥太大影響 就先不管了</p>
+<p><img src="![image](https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/30.png" alt="image">)</p>
+<p>而且這時候就可以加上<code>@Email</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/31.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/32.png" alt="image"></p>
+<p>還有個問題</p>
+<p>當用FieldGroup bind form &amp; source(Person) , 會自動show person資料<br>什麼時候execute validation ?</p>
+<ol>
+<li>field value change</li>
+<li>binder.commit</li>
+</ol>
+<p>若一開始person null , 進入畫面時 因為form bind person 所以顯示出null ,<br>此時field value從空白變成null-&gt;field change -&gt; validate ?! 如何改善?</p>
+<p>一開始就讓validation not visible : <code>xxx.setValidationVisible(false);</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/33.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/34.png" alt="image"></p>
+<p>button按下去以後 再讓validation visible : <code>enableValidationMessages()</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/35.png" alt="image"></p>
+<h1 id="dynamic_create_layout">dynamic create layout</h1>
+<p>use fieldGroup : create field for us</p>
+<p>將form都給取消掉</p>
+<p>comment :</p>
+<p>//        final PersonForm form  = new PersonForm();<br>//        layout.addComponent(form);</p>
+<p>//          binder.bindMemberFields(form); =&gt; 也就是說bind已存在的東西</p>
+<p>//form.enableValidationMessages();</p>
+<pre><code>Field field = binder<span class="preprocessor">.buildAndBind</span>(<span class="string">"firstname"</span>)<span class="comment">;</span>
+layout<span class="preprocessor">.addComponent</span>(field)<span class="comment">;</span>
+</code></pre><p>buildAndBind =&gt; <code>動態建立</code>一個field 然後bind person field : firstname</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/1.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/2.png" alt="image"></p>
+<h1 id="think_FieldGroup">think FieldGroup</h1>
+<p>其實就是個binder 負責bind persistence(Person) &amp; view(form)</p>
+<p>因此這樣也可以做到</p>
+<pre><code>    //Binding <span class="keyword">property</span> into field
+    final FieldGroup binder = <span class="keyword">new</span> FieldGroup();
+    //what fieldgroup take <span class="keyword">to</span> argument <span class="keyword">is</span> an item -&gt; 
+    BeanItem&lt;Person&gt; item = <span class="keyword">new</span> BeanItem&lt;Person&gt;(person);
+    binder.setItemDataSource(item);
+
+    Field field = binder.buildAndBind(<span class="string">"firstname"</span>);
+    layout.addComponent(field);
+
+    TextField <span class="keyword">select</span> = <span class="keyword">new</span> TextField();
+    binder.bind(<span class="keyword">select</span>, <span class="string">"lastname"</span>);
+    layout.addComponent(<span class="keyword">select</span>);
+</code></pre><h1 id="dynamic_create_advance">dynamic create advance</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/3.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/4.png" alt="image"></p>
+<p>even include <code>address properties</code> in <code>person</code> !!!</p>
+<h1 id="提到spring_boot_!?">提到spring boot !?</h1>
+<p><a href="https://www.youtube.com/watch?v=aq_OXCVqvFI" target="_blank">25m</a></p>
+<p>multiple page for diffent data</p>
+<p>how to show different type of validation</p>
+<p>找到<a href="https://github.com/vaadin-kim/fieldgroup-demo" target="_blank">source code</a>了 !!</p>
+<p>但是mvm package失敗.. 少了一個jar</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/5.png" alt="image"></p>
+<p>但是<a href="http://grepcode.com/snapshot/repo1.maven.org$maven2@org.vaadin.spring$spring-boot-vaadin@0.0.2" target="_blank">我似乎找到這個jar了</a>?  要怎麼放進去maven dependency裡?</p>
+<p>找到<a href="https://github.com/peholmst/vaadin4spring" target="_blank">關於spring boot的東西</a></p>
+<h1 id="vaadin_book_&amp;_source_code">vaadin book &amp; source code</h1>
+<p><a href="http://it-ebooks.info/book/2397/" target="_blank">book</a></p>
+<p><a href="https://github.com/nfrankel/More-Vaadin" target="_blank">source code</a></p>
+<h1 id="似乎可以快速重啟vaadin_!">似乎可以快速重啟vaadin !</h1>
+<p><a href="http://stackoverflow.com/questions/2615386/how-to-integrate-maven-generated-vaadin-project-into-eclipse-vaadin-plugin" target="_blank">link</a></p>
+<p>這篇似乎也在講這個<a href="http://bluegulf.wordpress.com/2012/10/18/tutorial-of-setting-up-eclipsemavenvaadinjetty-project-ide-2/" target="_blank">link</a></p>
+<h1 id="vaadin-maven-plugin_這到底是殺小？">vaadin-maven-plugin 這到底是殺小？</h1>
+<p><a href="http://www.java2s.com/Code/Jar/v/Downloadvaadinmavenplugin717jar.htm" target="_blank">link</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-22T07:05:05.000Z"><a href="/2014/10/22/20141022/">Oct 22 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/10/22/20141022/">2014/10/22</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="serial_version_id">serial version id</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/7.png" alt="image"></p>
+<p>為什麼要<a href="https://vaadin.com/forum/#!/thread/1056757/1653458" target="_blank">serial version id</a></p>
+<h1 id="navigator_init???_有一些問題">navigator init??? 有一些問題</h1>
+<p><a href="https://vaadin.com/forum#!/thread/2386776" target="_blank">link</a></p>
+<h1 id="vaadin_form_validation…-=_=">vaadin form validation….= =</h1>
+<p><a href="https://www.youtube.com/watch?v=aq_OXCVqvFI" target="_blank">link</a></p>
+<h1 id="eCard">eCard</h1>
+<p>用kinecticjs 這個library 來實現畫面的物件 和物件處理(rotate,scale,drag)</p>
+<p>提供使用者界面 有點像視窗程式設計 實現小畫家一樣 , 這種GUI 提供使用者互動的程式 常用<a href="http://www.ibm.com/developerworks/cn/opensource/os-cn-swt-pm/" target="_blank">Presentation model pattern</a> , 太複雜了… 記住某些特性即可 .</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/canvas/kineticjs/1/3.png" alt="image"> </p>
+<p>=&gt; UI組建 —&gt; Presentation . 狀態 邏輯 數據 —&gt; View Model</p>
+<p>p -&gt; 完全知道 粘合 -&gt; M</p>
+<p>M -&gt; 不知道(不需要知道) -&gt; P</p>
+<h2 id="行為?_動作?">行為? 動作?</h2>
+<p>按下Add 增加Text,Image等物件 , 這些物件 有各自的屬性 , 提供UI去操作(rotate,scale,drag)這些物件 , 當然也可以remove(destroy)這些物件 . </p>
+<h1 id="物件(Text,Image)_:">物件(Text,Image) :</h1>
+<ol>
+<li>狀態 : 被選擇狀態(selected) , 被隱藏狀態(invisible) ,  無狀態</li>
+</ol>
+<p>=&gt; 當物件click -&gt; selected (要存在某個地方?) , 隱藏的物件(操作物件的小widget) -&gt; 當selected -&gt; UI 再決定 接下來此widget的動作(但是只有UI可以操作Model , model不知道UI存在)</p>
+<ol>
+<li>邏輯??? 指操作? 動作? : rotate的邏輯(旋轉中心點) , drag的邏輯(中心點? 移動後位置? offset?) , scale的邏輯(從中心點開始放大) =&gt;跟offset脫離不了關係 , 更進一步:group… 相對位置更困難… </li>
+</ol>
+<p>=&gt; function處理offset , function處理add , function 處理rotate , function 處理 scale</p>
+<ol>
+<li>數據 : 產生的物件(Text,Image), 存在一個Array中? 同時存進去位置? layer? , 現在是哪個物件被抓到(selected)? </li>
+</ol>
+<p>=&gt; 好像有個api可以call 看stage or layer上有幾個component , 所以不用特別存在array中?</p>
+<h1 id="UI">UI</h1>
+<p>list : 列出text , 列出 image . </p>
+<p>add : 增加Text , Image .</p>
+<p>scale : Text , Image 變大 變小 .</p>
+<p>drag : 拖拉Text , Image 改變位置 .</p>
+<p>rotate : 旋轉Text , Image .</p>
+<p>save : 儲存所有物件??????</p>
+<p>remove : destroy 某 物件 .</p>
+<p>attribue : 控制物件基本屬性  .</p>
+<h1 id="根據Presentation_Model_pattern_定義">根據Presentation Model pattern 定義</h1>
+<p>model不知道Presentation , 只是自己運作 , 自己存狀態(selected or something)</p>
+<p>presentation完全知道model ! 但是究竟是怎麼樣知道 ??? the point -&gt; selected !?!?</p>
+<p>P -&gt; Model的selected -&gt; 去存取widget ….. 應該是stage的click event 每一次都去抓整個畫面 , 監看整個系統狀況 , 因此 selected改變 , P就可以知道 然後對model操作 .</p>
+<h1 id="stage的click跟widget(text,image)的click有什麼差別???">stage的click跟widget(text,image)的click有什麼差別???</h1>
+<p>widget(text,image) click 只會看自身狀態的改變 設定自己的狀態 .</p>
+<p>stage click 是監看整個system.</p>
+<h1 id="p_-&gt;_產生_-&gt;_m_!?">p -&gt; 產生 -&gt; m !?</h1>
+<p>m 是管理自身狀態 邏輯 數據 , 那m是怎麼被產生的? 只可能是p產生的了 ! 也就是說p 完全可以access(存取)m !!!</p>
+<p>p -&gt; list(去資料庫抓text , image) , p -&gt; add …model的widget??? =&gt; p has m 所以p想add時 叫 m 去add , m不會自己add .</p>
+<h1 id="因此_P-&gt;Presenter_,_M_-&gt;_Model">因此   P-&gt;Presenter , M -&gt; Model</h1>
+<p>合理!</p>
+<h1 id="MVP_Pattern_vs_Presentation_Model_Pattern_???">MVP Pattern vs Presentation Model Pattern ???</h1>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-21T01:44:59.000Z"><a href="/2014/10/21/20141020/">Oct 21 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/10/21/20141020/">2014/10/20</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="maven_scm_(Software_Configuration_Management)">maven scm (Software Configuration Management)</h1>
+<h1 id="vaadin_maven_project">vaadin maven project</h1>
+<p>vaddin 也可以是 maven project ?</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/1.png" alt="image"></p>
+<h1 id="server-side_development">server-side development</h1>
+<h1 id="client-side_development_=&gt;_choose_this_one-">client-side development =&gt; choose this one.</h1>
+<p>Java -&gt; vaadin client compiler -&gt; Javascript (run in the web browser)</p>
+<ol>
+<li><p>是server-side的 component or add-ons</p>
+</li>
+<li><p>pure client-side GWT application -&gt; vaadin 相容於 GWT</p>
+</li>
+</ol>
+<p><a href="http://www.educity.cn/wenda/117318.html" target="_blank">link</a></p>
+<h1 id="結論就是看server-side就好">結論就是看server-side就好</h1>
+<h1 id="vaadin_是framework_,_不是library_!!!">vaadin 是framework , 不是library !!!</h1>
+<p>如果在只寫client-side 可能只能算是library ???</p>
+<p>framework : <a href="http://echo.nextapp.com/site/" target="_blank">echo</a>(類似)</p>
+<p>想法是 server &lt;—- ajax —-&gt; client(其實是server , Java code產生的javascript)</p>
+<p>client , click —&gt; server會收到(可能是用某種ajax的超快方式傳送?) , 所以click後的處理也是在server做 , 做完以後才又publish到client(client實際上只是一個顯示?) , vaadin是個framework , 所以說, vaadin處理data , 抓data也是用自己的方法(實際上也是用JPA?) .</p>
+<p><a href="http://www.educity.cn/wenda/117318.html" target="_blank">不錯的圖</a></p>
+<h1 id="而且更大的問題是server-side寫法_和client-side寫法不同_!">而且更大的問題是server-side寫法 和client-side寫法不同 !</h1>
+<h1 id="address_book_ui">address book ui</h1>
+<ol>
+<li><p>class UI : starting point .</p>
+</li>
+<li><p>user interface component 被存在session裡!?</p>
+</li>
+<li><p>UI.init() : 當component都created就會呼叫</p>
+</li>
+</ol>
+<h1 id="jpa_container">jpa container</h1>
+<p><a href="jpacontainer-tutorial/">jpacontainer-tutorial</a></p>
+<p><a href="https://vaadin.com/book/-/page/jpacontainer.usage.html" target="_blank">參考</a></p>
+<h1 id="execute_example">execute example</h1>
+<p><a href="http://demo.vaadin.com/book-examples-vaadin7/book/#application.eventlistener.classlistener" target="_blank">link</a></p>
+<p>是搭配這本<a href="https://vaadin.com/book/-/page/advanced.navigator.html" target="_blank">書</a></p>
+<h1 id="Apache_Ivy">Apache Ivy</h1>
+<p><a href="http://stackoverflow.com/questions/15561322/maven-or-ivy-which-one-is-better-with-a-system-already-in-production-and-the-o" target="_blank">ivy vs maven</a></p>
+<p>簡而言之 , <a href="http://ant.apache.org/ivy/" target="_blank">Ivy</a>可以視為Ant的延伸(Ivy adds dependency management functionality to Ant) , 所以若是你一開始就是用Ant 那你之後轉為用Ivy 就比較輕鬆 但是Maven就算是比較不一樣的做法了!</p>
+<h1 id="用maven_產生_vaadin_project">用maven 產生 vaadin project</h1>
+<p><a href="https://vaadin.com/book/-/page/getting-started.maven.html" target="_blank">link</a></p>
+<p>generate vaadin maven project : </p>
+<p><code>mvn archetype:generate -DarchetypeGroupId=com.vaadin -DarchetypeArtifactId=vaadin-archetype-application -DarchetypeVersion=LATEST -DgroupId=org.jackho -DartifactId=vaadinMaven2 -Dversion=1.0 -Dpackaging=war</code></p>
+<p><code>mvn package</code></p>
+<p><code>mvn jetty:run</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/1/2.png" alt="image"></p>
+<p><code>mvn clean</code> 時會把某theme , web.xml等東西砍掉 …  , <code>mvn package</code> 才會重新產生 很花時間！ , 而且我在eclipse 按下clean 好像沒有package 只有build? ,所以沒有產生theme,web.xml , 出現錯誤! ===&gt; 改成只用<code>mvn package</code></p>
+<h1 id="在eclipse中_無法package_…">在eclipse中 無法package …</h1>
+<h1 id="Navigator_管理多個page">Navigator 管理多個page</h1>
+<h1 id="Error_indicator">Error indicator</h1>
+<p>All components have a built-in error indicator</p>
+<h1 id="layout_,_vaadin_composition">layout , vaadin composition</h1>
+<h1 id="login_view">login view</h1>
+<h1 id="kineticjs">kineticjs</h1>
+<h1 id="how_it_work">how it work</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/canvas/kineticjs/1/1.png" alt="image"></p>
+<h1 id="example">example</h1>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/" target="_blank">link</a></p>
+<p><a href="http://stackoverflow.com/questions/19326365/paint-brush-on-html5-canvas-with-kineticjs-inconsistent" target="_blank">paint</a></p>
+<h1 id="Doc_/_API">Doc / API</h1>
+<p><a href="http://kineticjs.com/docs/" target="_blank">link</a></p>
+<h1 id="rectangle">rectangle</h1>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-kineticjs-rect-tutorial/" target="_blank">link</a></p>
+<h1 id="circle">circle</h1>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-kineticjs-circle-tutorial/" target="_blank">link</a></p>
+<h1 id="line">line</h1>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-kineticjs-line-tutorial/" target="_blank">link</a></p>
+<h1 id="rotate">rotate</h1>
+<p><a href="http://stackoverflow.com/questions/14949628/kinetic-js-rotating-image-on-touch" target="_blank">link</a></p>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-kineticjs-rotation-animation-tutorial/" target="_blank">link</a></p>
+<h1 id="drag_and_drop">drag and drop</h1>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-drag-and-drop-the-stage-with-kineticjs/" target="_blank">link</a></p>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-drag-and-drop-bounds-tutorial-with-kineticjs/" target="_blank">link</a></p>
+<h1 id="layer">layer</h1>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-layer-management-with-kineticjs/" target="_blank">link</a></p>
+<h1 id="shape_layer">shape layer</h1>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-shape-layering-with-kineticjs/" target="_blank">link</a></p>
+<h1 id="tooltip">tooltip</h1>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-kineticjs-label-tutorial/" target="_blank">link</a></p>
+<h1 id="game">game</h1>
+<p><a href="http://www.creativebloq.com/create-game-kineticjs-9134437" target="_blank">link</a></p>
+<h1 id="Reference">Reference</h1>
+<p><a href="http://ecardcanvas.com/edit#edit" target="_blank">link</a></p>
+<h1 id="script_defer=defer">script defer=defer</h1>
+<p><a href="http://stackoverflow.com/questions/5250412/how-exactly-does-script-defer-defer-work" target="_blank">link</a></p>
+<h1 id="draw_&amp;_drawScene_&amp;_drawHit">draw &amp; drawScene &amp; drawHit</h1>
+<p><a href="http://stackoverflow.com/questions/14722787/what-is-the-difference-between-kineticjs-draw-methods" target="_blank">link</a></p>
+<h1 id="line_setPosition_&amp;_setPoints">line setPosition &amp; setPoints</h1>
+<p><a href="http://stackoverflow.com/questions/15556509/kineticjs-difference-between-setpoints-and-setposition" target="_blank">link</a></p>
+<pre><code>    redLine<span class="preprocessor">.getPoints</span>() : [<span class="number">73</span>, <span class="number">70</span>, <span class="number">340</span>, <span class="number">23</span>] 
+    redLine<span class="preprocessor">.getPoints</span>()[<span class="number">0</span>] : <span class="number">73</span>
+    redLine<span class="preprocessor">.getPoints</span>()[<span class="number">0</span>]<span class="preprocessor">.x</span> : undefined 
+</code></pre><h1 id="diagram_&amp;_diagram_drag">diagram &amp; diagram drag</h1>
+<p><a href="http://stackoverflow.com/questions/18705587/diagram-creater-using-kineticjs" target="_blank">link</a></p>
+<h1 id="colorpicker_:_spectrum">colorpicker : spectrum</h1>
+<p><a href="http://bgrins.github.io/spectrum/" target="_blank">link</a></p>
+<h1 id="stage_size">stage size</h1>
+<p><a href="http://stackoverflow.com/questions/19644529/scale-kineticjs-stage-with-browser-resize" target="_blank">link</a></p>
+<p><code>stage.setWidth , stage.setHeight</code></p>
+<p><code>stage.setScaleX , stage.setScaleY</code></p>
+<h1 id="全部widget都bind_event">全部widget都bind event</h1>
+<p>bind在layer上 , </p>
+<pre><code>  layer.on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span><span class="params">(evt)</span> {</span>
+    <span class="keyword">var</span> shape = evt.target;
+    alert(shape.getName());
+  });
+</code></pre><p><code>evt.target</code>抓到特定widget</p>
+<h1 id="text_in_rectangle">text in rectangle</h1>
+<p><a href="http://stackoverflow.com/questions/15747390/fill-border-not-working-for-kineticjs-text-object-on-chrome" target="_blank">原本的text是有長方形的border的</a>改版以後變成沒有,新的做法是在<a href="http://stackoverflow.com/questions/15747390/fill-border-not-working-for-kineticjs-text-object-on-chrome" target="_blank">text後面再放一個rectangle</a></p>
+<p>text 超麻煩 :</p>
+<ol>
+<li><p>要用rectangle包上 變成border</p>
+</li>
+<li><p>此時drag時 只移動text , rectangle(border) , 沒有被移動 , 應該要包成group.</p>
+</li>
+</ol>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-drag-and-drop-a-group-with-kineticjs/" target="_blank">link</a></p>
+<p>我覺得這樣做法比較好,不管怎樣 先reset全部 都變成沒有border , 然後讓focus那一個有border .</p>
+<h1 id="selector">selector</h1>
+<p><a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-select-shapes-by-name-with-kineticjs/" target="_blank">link</a></p>
+<p><code>stage.get(&#39;#id&#39;)[0].method();</code></p>
+<p><code>stage.find(&#39;#id&#39;)[0].method();</code></p>
+<h1 id="remove_&amp;_destroy">remove &amp; destroy</h1>
+<p><a href="http://stackoverflow.com/questions/17316918/what-is-the-difference-between-remove-and-destroy-in-kinetic-js" target="_blank">link</a></p>
+<h1 id="不用remove_or_destroy_,_用hide_,_unhide就好啦!">不用remove or destroy , 用hide , unhide就好啦!</h1>
+<p><a href="http://stackoverflow.com/questions/14075859/kineticjs-add-rect-remove-rect-then-add-again-not-working-mouseover" target="_blank">link</a></p>
+<h1 id="加anchor到角落">加anchor到角落</h1>
+<p><a href="http://jsfiddle.net/m1erickson/4V9vs/" target="_blank">link</a></p>
+<h1 id="很棒的範例">很棒的範例</h1>
+<p><a href="http://www.html5canvastutorials.com/labs/html5-canvas-drag-and-drop-resize-and-invert-images/" target="_blank">主要</a></p>
+<ol>
+<li><p>laodImages =&gt; 讀取image , 設定image {} ,計算幾個image</p>
+</li>
+<li><p>callback function: initStage =&gt; set stage , group(image,anchor)</p>
+</li>
+<li><p>addAnchor -&gt; anchor的位置是手動給的 直接給角落的position</p>
+</li>
+<li><p>update</p>
+</li>
+</ol>
+<h1 id="image_onload">image onload</h1>
+<p>image 載入完成後 會執行的事件</p>
+<p><a href="http://jsfiddle.net/projeqht/kLnxK/" target="_blank">會隱藏四個角的Anchor</a></p>
+<p><a href="http://stackoverflow.com/questions/17530496/kinetic-js-problems-trying-to-resize-images" target="_blank">link</a></p>
+<h1 id="resize_/_rotate_image">resize / rotate image</h1>
+<p><a href="http://stackoverflow.com/questions/18023366/zooming-a-group-with-kineticjs" target="_blank">link</a></p>
+<p>從簡單的開始看吧…image &amp; group scale or rotate .</p>
+<h1 id="UI_reference">UI reference</h1>
+<p><a href="http://192.241.236.31/themes/preview/smartadmin/1.4.1/ajaxversion/#ajax/dashboard.html" target="_blank">link</a></p>
+<p><a href="http://wrapbootstrap.com/preview/WB00U99JJ" target="_blank">link</a></p>
+<h1 id="image_/_video">image / video</h1>
+<p>是存在資料庫中的儲存的 , 當按下某button , 列出 image 列表(query image all)  , 當按下某button , 列出 video 列表(query video all)</p>
+<p>這時候 點選某一個想要的檔案 , 先抓出url or binary ??? , 都可以放上src , 那暫存的時候 , 就是直接將 src後面那串儲存在某個.txt , or 某file就好！ 有道理！ , 可能要有個file儲存 , 所有widget的位置??? 還是儲存這個狀態的整個HTML ? (此狀態會顯示在HTML???)</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pass%20data/1.png" alt="image"></p>
+<h1 id="video">video</h1>
+<p>problem: 影片格式</p>
+<p><a href="http://www.w3schools.com/html/html5_video.asp" target="_blank">HTML5 <video></a> 只支援:MP4 WebM Ogg</p>
+<p>用<a href="http://www.w3schools.com/html/html_youtube.asp" target="_blank">youtube內嵌 </a>比較不會有這問題?</p>
+<p>那原系統是提供什麼樣的影片格式？ 若不符合 就要每次都需要先轉???</p>
+<h1 id="kineticjs_+_video">kineticjs + video</h1>
+<p><a href="http://stackoverflow.com/questions/13397655/kineticjs-how-to-play-video" target="_blank">link</a></p>
+<p><a href="http://html5doctor.com/video-canvas-magic/" target="_blank">link</a> 這個link是在解釋上面那個link的做法,首先一個canvas,一個video , 當video按下play時 , canvas同步去抓video此時的frame畫面,所以就可以達到canvas上播放影片的效果.</p>
+<p>因此在kinecticjs沒有提供video widget時 , 要怎麼做呢? 用image widget 同步去抓video frame畫面, 來達到video效果(video可能要藏在off screem的地方)！</p>
+<p>為什麼要這樣呢?因為kineticjs的widget有提供drag的功能,image也有 , 所以video若只用html5 tag的方式做 , 就無法drag了!</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/canvas/kineticjs/1/2.png" alt="image"></p>
+<p>靠背 根本不清楚？ 而且如果多放幾個video , 要一直去copy圖片 一直refresh video會不會有問題???</p>
+<p>還是說先用假的image,有drag方法 ,當最後preview 時候 , 才能播放video .</p>
+<h1 id="scale">scale</h1>
+<ol>
+<li><p>image/video 一組 , 基準點:center , 縮放 長寬比例不變 , rotate跟著中心點轉</p>
+</li>
+<li><p>文字一組 , 基準點:左上 , 縮放 只能左右 夾文字 , rotate跟著左上角</p>
+</li>
+<li><p>draw一組 , 根本很難儲存?</p>
+</li>
+</ol>
+<h1 id="bootstrap_list">bootstrap list</h1>
+<p><a href="http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-lists.php" target="_blank">link</a></p>
+<h1 id="bootstrap_非常有用">bootstrap 非常有用</h1>
+<p><a href="http://www.tutorialspoint.com/bootstrap/bootstrap_collapse_plugin.htm" target="_blank">link</a></p>
+<h1 id="todo">todo</h1>
+<p>以右上角和中心為基準點 , 在每次dragmove時 都計算其他三點.</p>
+<h1 id="circular_slider">circular slider</h1>
+<p><a href="http://stackoverflow.com/questions/4613261/get-and-set-position-with-jquery-offset" target="_blank">link</a></p>
+<p><a href="https://github.com/princejwesley/circular-slider" target="_blank">source code</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+    <a href="/tags/vaadin/page/3/" class="alignleft prev">Prev</a>
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

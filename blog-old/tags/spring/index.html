@@ -1,0 +1,482 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>spring | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title tag">spring</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-08-18T01:12:23.000Z"><a href="/2014/08/18/20140818/">Aug 18 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/08/18/20140818/">2014/08/18</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Java_DataBase_Connection_(JDBC)">Java DataBase Connection (JDBC)</h1>
+<p>在Java語言中，JDBC（Java DataBase CONnection）是應用程序與數據庫溝通的橋梁</p>
+<p><a href="http://www.autooo.net/utf8-classid124-id56542.html" target="_blank">講解了為何會出現Connection Pool</a></p>
+<h1 id="DriverManager_vs_DataSource">DriverManager vs DataSource</h1>
+<p><a href="http://www.coderanch.com/t/499766/JDBC/databases/difference-Driver-Manager-Data-Source" target="_blank">link</a></p>
+<p>DriverManager 基於JDBC建立一次性資料庫連線 .</p>
+<p>Datasource : 儲存連接資料庫的相關資訊,標示與描述其所代表真實世界中的database 屬性 ex:database path(url) , database name , 連接時與server的協議 . </p>
+<p>建立connection pool(內有多條connection , 可控管connection數目) , distributed technology</p>
+<p><a href="http://muscle-liu.iteye.com/blog/391916" target="_blank">connection pool 的開發問題</a></p>
+<h1 id="Java_Naming_and_Directory_Interfacae_(JNDI)">Java Naming and Directory Interfacae (JNDI)</h1>
+<h1 id="realize_JDBC_and_JNDI">realize JDBC and JNDI</h1>
+<p><a href="http://my.oschina.net/lyzg/blog/55176" target="_blank">link</a></p>
+<p>其實這兩者之間沒有什麼關係 , JNDI 跟 Datasource比較有關係</p>
+<p>JNDI : 為了存取 連接兩個不同service(而這service的命名方式和目錄名稱 可能會不同) , 所定義的規範. </p>
+<p>是一個<a href="http://publib.boulder.ibm.com/wasce/V3.0.0/zh_TW/jndi.html" target="_blank">連線儲存區介面</a>。 在執行時期，開發人員可以利用這個介面來間接存取所有 Java 資源。 JNDI 有助於解決程式碼和外部資源之間，緊密連結的問題。 </p>
+<h1 id="JNDI_-&gt;_Datasource_-&gt;_JDBC">JNDI -&gt; Datasource -&gt; JDBC</h1>
+<p><a href="http://www.mpinfo.com.tw/TechnologyColumnFiles/JavaAPsvr_T_200606.htm" target="_blank">這篇很清楚的 講了之間的關係</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/3/2.png" alt="JDBC"></p>
+<p>這個jar檔 就做好了JDBC的事情</p>
+<h1 id="Java_Persistence_API_(JPA)">Java Persistence API (JPA)</h1>
+<p><a href="http://www.cnblogs.com/holbrook/archive/2012/12/30/2839842.html" target="_blank">寫的挺好的</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/3/1.png" alt="JPA vs Hibernate"></p>
+<h1 id="JPA_vs_Hibernate">JPA vs Hibernate</h1>
+<p><a href="http://stackoverflow.com/questions/9881611/whats-the-difference-between-jpa-and-hibernate" target="_blank">link</a></p>
+<h1 id="Hibernate">Hibernate</h1>
+<p><a href="http://openhome.cc/Gossip/HibernateGossip/" target="_blank">link</a></p>
+<p>所以說Hibernate比較重要的是ORM(Object/Relational Mapping)</p>
+<p>Hibernate is just one <strong>persistence provider</strong> which is a fine choice. On top of that there is JPA which is a specification. I would choose this over hibernate specific code. <a href="http://www.coderanch.com/t/587275/Spring/Choosing-Spring-JDBC-Template-Spring" target="_blank">Spring data</a> is another project which abstracts things even more and is definitely worthwhile if you choose the ORM route. </p>
+<h1 id="Spring_Data_JPA">Spring Data JPA</h1>
+<p>jpaRepository extends PaginAndSoringRepository extends CrudRepository </p>
+<p><a href="http://blogs.isostech.com/database/jpa-spring-data-awesomeness/" target="_blank">非常精辟的講解</a></p>
+<p>Spring Data JPA 不再需要DAO層</p>
+<p><a href="http://www.ibm.com/developerworks/cn/opensource/os-cn-spring-jpa/" target="_blank">使用 Spring Data JPA 簡化 JPA 開發</a></p>
+<p>当你看到 UserDao.findUserById() 这样一个方法声明，大致应该能判断出这是根据给定条件的 ID 查询出满足条件的 User 对象。Spring Data JPA 做的便是规范方法的名字，根据符合规范的名字来确定方法需要实现什么样的逻辑。</p>
+<p>==&gt; </p>
+<p>通过解析方法名创建查询</p>
+<h1 id="EJB_vs_Spring">EJB vs Spring</h1>
+<p><a href="http://www.infoq.com/cn/articles/ejb3-spring-compare" target="_blank">link</a></p>
+<p><a href="http://www.360doc.com/content/10/0526/16/284485_29633270.shtml" target="_blank">link</a></p>
+<p>很多人認為 , EJB 3 中 通過使用@PersistenceContext 註釋 提供的entityManager對象 來獲得JPA的數據訪問  =&gt; EJB使用JPA操作數據對象</p>
+<p>而在Spring中 通過對SessionFactory對象的注入(injection),獲得Hibernate數據訪問   =&gt; Spring使用Hibernate來操作數據對象</p>
+<h1 id="EntityManger">EntityManger</h1>
+<p>在JPA:</p>
+<p>EntityManagerFactory -&gt; EntityManager -&gt; PersistenceContext(管理一堆Entity)</p>
+<p>在Hibernate:</p>
+<p>SessionFactory -&gt; currentSession </p>
+<h1 id="EntityManager_vs_Hibernate">EntityManager vs Hibernate</h1>
+<p><a href="http://www.theserverside.com/news/2240186700/The-JPA-20-EntityManager-vs-the-Hibernate-Session-Which-one-to-use" target="_blank">link</a></p>
+<p>Hibernate ORM provides CRUD-based interaction . </p>
+<p>EntityManager is part of the Java Persistence API .</p>
+<p>所以說無論有沒有使用Hibernate , 只要使用Relational database , 都會使用到EntityManager ?</p>
+<h1 id="Hibernate_Entity_Manager_Reference_Guide">Hibernate Entity Manager Reference Guide</h1>
+<p><a href="https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Web_Platform/5/html/Hibernate_Entity_Manager_Reference_Guide/" target="_blank">link</a>ㄌ</p>
+<p>EJB 3 提供的方式 , EntityManager滿足JPA .</p>
+<h1 id="MJORM(mongo-java-orm)">MJORM(mongo-java-orm)</h1>
+<p>Hibernate/JPA/Spring Data JPA ==&gt; Relational database</p>
+<p>MJORM/Spring Data Mongo ==&gt; Document database</p>
+<h1 id="Histroy">Histroy</h1>
+<p>Hibernate —&gt; JPA —&gt; Spring Data JPA</p>
+<h1 id="Spring_Boot_embeded_database_support">Spring Boot embeded database support</h1>
+<p><a href="http://docs.spring.io/spring-boot/docs/1.2.0.BUILD-SNAPSHOT/reference/htmlsingle/#boot-features-embedded-database-support" target="_blank">link</a></p>
+<h1 id="Spring_Data_JPA-1">Spring Data JPA</h1>
+<p> You can create concrete repositories by creating repository interfaces and letting Spring Data JPA do all the heavy lifting.</p>
+<p><a href="http://www.petrikainulainen.net/spring-data-jpa-tutorial/" target="_blank">Spring Data JPA Tutorial</a></p>
+<p>using Hibernate as your JPA provider</p>
+<p>jpaRepository findAll() 回傳的就是List&lt;?&gt;</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/3/3.png" alt="image"></p>
+<p><a href="http://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/CrudRepository.html" target="_blank">CrudRepository</a></p>
+<p><a href="http://docs.spring.io/spring-data/data-commons/docs/1.7.0.RELEASE/api//org/springframework/data/repository/PagingAndSortingRepository.html" target="_blank">PagingAndSortingRepository</a></p>
+<p><a href="http://docs.spring.io/spring-data/jpa/docs/current/api/org/springframework/data/jpa/repository/JpaRepository.html" target="_blank">JpaRepository</a></p>
+<h1 id="Spring_Data_JPA_三種Query">Spring Data JPA 三種Query</h1>
+<p><a href="http://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-three-custom-queries-with-query-methods/" target="_blank">link</a></p>
+<h3 id="1-_Query_Creation_from_Method_Name">1. Query Creation from Method Name</h3>
+<p>根據method Name 轉換成相對應的sql query</p>
+<p><a href="http://docs.spring.io/spring-data/data-jpa/docs/current/reference/html/jpa.repositories.html#jpa.query-methods.query-creation" target="_blank">function名稱 對應方式</a></p>
+<h3 id="2-_JPA_Named_Queries">2. JPA Named Queries</h3>
+<p>在Entity上 寫下sql query , </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/3/4.png" alt="image"></p>
+<p>去對應到repository</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/3/5.png" alt="image"></p>
+<p>很特別的做法 但感覺一點都不實用</p>
+<h3 id="3-_@Query_Annotation">3. @Query Annotation</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/3/6.png" alt="image"></p>
+<p>挺正常的做法</p>
+<p>我覺得用1 , 3 就很夠用了</p>
+<p>接下來做 like 還有 date</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-12T01:13:07.000Z"><a href="/2014/05/12/20140512/">May 12 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/12/20140512/">2014/05/12</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="GDB_=&gt;_node-inspector">GDB =&gt; node-inspector</h1>
+<h1 id="VA_run_in_the_chrome">VA run in the chrome</h1>
+<h1 id="Node-js_MongoDB_Tutorial_using_Mongoose">Node.js MongoDB Tutorial using Mongoose</h1>
+<p><a href="https://www.youtube.com/watch?v=5e1NEdfs4is&amp;src_vid=FqMIyTH9wSg&amp;feature=iv&amp;annotation_id=annotation_419083267" target="_blank">simple</a></p>
+<p><a href="https://www.youtube.com/watch?v=CIPbmPUKyMI" target="_blank">mongo 101</a></p>
+<p><a href="https://www.youtube.com/watch?v=rt3VUVPa6W4" target="_blank">green</a></p>
+<p><a href="https://www.youtube.com/watch?v=D7ymgAvbjF0" target="_blank">實作聊天室</a></p>
+<h1 id="ServiceConfig">ServiceConfig</h1>
+<p>設定spring與mongo的連接</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc1.png" alt="image"></p>
+<p>Environment去抓 連接相關資訊 變數 從app.properties</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc2.png" alt="image"></p>
+<p><code>app.properties</code>放了db.name host.name</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc3.png" alt="image"></p>
+<h1 id="i18n">i18n</h1>
+<p>需要提到的是 使用了require.js 區分模組 所以不管要用哪個東西 都需要先定義模組位置,要使用時先include進來</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc4.png" alt="image"></p>
+<p>接下來就像是給予include進來的物件名字</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc5.png" alt="image"></p>
+<p>使用方法 就是用給予的物件名稱 去.出來</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc6.png" alt="image"></p>
+<p>資料在<code>label.UIDWidget.js</code> 意料之外的是i18n也是js檔</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc7.png" alt="image"></p>
+<h1 id="express">express</h1>
+<p><code>npm update</code> 可以update之前由npm安裝的套件 , 可是無法update自己</p>
+<p>express3.0.0  =&gt; express4.0.0</p>
+<p><code>express --hogan -c less exp2014_ex4.0.0</code> 產生template engine:hogan template , 俱有less功能 的專案 名稱:exp2014_ex4.0.0</p>
+<p><code>cd exp2014_ex4.0.0</code></p>
+<p><code>npm install</code> 根據package.json產生檔案</p>
+<p>啟動server方式也改變了 我用supervisor來自動refresh node</p>
+<p><code>supervisor bin/www</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/4.png" alt="image"></p>
+<p>app.js:</p>
+<p>先require(import) 某個routes(用來對應url 達到rest)<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/1.png" alt="image"></p>
+<p>在express4.0.0 router才有get function</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/5.png" alt="image"></p>
+<p>開啟瀏覽器</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/6.png" alt="image"></p>
+<p>我們可以看到name:’Jack’ , age:24 被render到template上了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/2.png" alt="image"></p>
+<p>res.send只是傳資料的行為 就像是之前的ResponseEntity </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/3.png" alt="image"></p>
+<h2 id="query_string">query string</h2>
+<p>可以很容易取得url上的query string</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/7.png" alt="image"></p>
+<p>另外一種奇怪的方式 取得參數</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/8.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/9.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

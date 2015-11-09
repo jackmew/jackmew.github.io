@@ -1,0 +1,1094 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archives: 2014/9 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title">2014/9</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-30T01:10:27.000Z"><a href="/2014/09/30/20140930/">Sep 30 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/09/30/20140930/">2014/09/30</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="spring_data_jpa">spring data jpa</h1>
+<p><a href="http://www.petrikainulainen.net/spring-data-jpa-tutorial/" target="_blank">petrikainulainen</a></p>
+<p><a href="http://blog-tothought.rhcloud.com/blog/tag/30/page/2" target="_blank">tothought</a></p>
+<p><a href="https://github.com/spring-projects/spring-boot" target="_blank">很多example</a></p>
+<p><a href="http://www.jayway.com/2014/07/04/integration-testing-a-spring-boot-application/" target="_blank">簡單清楚的test</a></p>
+<h1 id="spring_test">spring test</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/1.png" alt="image"></p>
+<p><code>transitionPropertyValueException</code> 的錯誤是因為</p>
+<p>在Post中又有個PostPart , 這時候hibernate會認定 應該要有<code>@Transactional</code> , 不然可能</p>
+<p>資料完整性會出現問題.</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/2.png" alt="image"></p>
+<h1 id="relationship_1">relationship 1</h1>
+<p>Post —-&gt; PostPart (unidirectional)</p>
+<p>@JoinColumn =&gt; 表示是foreign key =&gt; 指向某table的primary key</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/5.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/6.png" alt="image"></p>
+<h1 id="relationship_2">relationship 2</h1>
+<p>Post &lt;—-&gt; PostPart (bidirectional)</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/3.png" alt="image"></p>
+<p><code>@JoinColumn</code> 表示這是foreign key 去指向 另一個table的primary key</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/4.png" alt="image"></p>
+<p><code>mappedBy=&quot;postPart&quot;</code> 指向被指定的原本field </p>
+<h1 id="relationship_3">relationship 3</h1>
+<p>Post —-&gt; Comment (unidirectional)</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/7.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/8.png" alt="image"></p>
+<p>可是這時候 <code>commentRepository.save(comment);</code> 失敗了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/jpa/1/9.png" alt="image"></p>
+<p>為什麼?</p>
+<p>先來看一下<a href="http://webdesign.kerthis.com/sql/sql_foreign_key" target="_blank">foreign key的定義</a></p>
+<p>從這網址的範例了解到foreign key 1.可以參考到另外一個table 2.確定資料的完整性 </p>
+<p>第二點的意義就是 foreign key refer 到的 field 必須是具有值的 . </p>
+<p>這可以確保Order 內的 Customer 是一定存在的!</p>
+<p>所以Post —-&gt; Comment 這邊的關係是設錯的 , 因為Comment,若是Post不存在時 是沒有意義的, 所以應該是Comment設上<code>@JoinColumn(foreign key)</code> refer to Post , 這樣才對 , </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/11.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/12.png" alt="image"></p>
+<p><code>@OneToMany(mappedBy=&quot;post&quot;,cascade=CascadeType.ALL)</code></p>
+<p>加上這句 表示變成bidirectional , 並且! 當POST被delete , update等動作時 , 會連帶去改變Comment , 也就是說 當Comment對應到的Post被刪除時 , Comment也要被同時刪除!</p>
+<h1 id="在這樣的定義下_我認為relationship_1,_2_是錯的_!">在這樣的定義下 我認為relationship 1, 2 是錯的 !</h1>
+<p>Post —-&gt; PostPart </p>
+<p>因為PostPart 是不能夠獨立存在的 , 若 Post 不存在 又怎麼會有PostPart呢? </p>
+<p>所以<code>@JoinColumn(foreign key)</code> 應該是設在PostPart中才對</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/13.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/14.png" alt="image"></p>
+<h1 id="加強_sql_概念">加強 sql 概念</h1>
+<p><a href="http://code.tutsplus.com/tutorials/sql-for-beginners--net-8200" target="_blank">link</a></p>
+<p>PRIMARY KEY : a way to identify each row of data in a table.</p>
+<p><a href="https://www.youtube.com/channel/UCkuzGLn9nxFwlS0lY2ruuJg" target="_blank">link</a></p>
+<p><a href="https://www.youtube.com/user/CalebTheVideoMaker2" target="_blank">link</a></p>
+<h1 id="mysql_workbench">mysql workbench</h1>
+<p><a href="http://www.mysql.com/products/workbench/" target="_blank">裝上mysql workbench</a> 出現無法以root登入的問題 , 其實我用homebrew安裝mysql時 <a href="http://stackoverflow.com/questions/9695362/macosx-homebrew-mysql-root-password" target="_blank">根本沒設定root password ?</a> , </p>
+<p>啟動mysql workbench 後 在 terminal 變得也不能啟動<code>mysqld</code> , 似乎是<a href="http://serverfault.com/questions/477448/mysql-keeps-crashing-innodb-unable-to-lock-ibdata1-error-11" target="_blank">mysql workbench 已經使用了?</a> , 最後用<code>lsof -i:3306</code> 找到哪個process正在使用它 , 然後把它刪掉 <code>kill -9 PROCESS</code> .</p>
+<p>終於關掉<code>mysqld</code> 後 , <a href="http://dev.mysql.com/doc/refman/5.0/en/resetting-permissions.html" target="_blank">像辦法重設root password</a> , 我用的是其中 <code>Resetting the Root Password: Generic Instructions</code> 的方法</p>
+<p><code>mysql --skip-grant-tables --skip-networking</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/1.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/2.png" alt="image"></p>
+<p><code>mysqld</code> =&gt; 無法正常關掉 mysql server =&gt; kill -9 mysqldProcess 還會自己再次自動產生…</p>
+<p><a href="http://linux.vbird.org/linux_basic/0440processcontrol.php" target="_blank">kill -15 mysqldProcess</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/3.png" alt="image"></p>
+<p><code>mysql.server start</code> , <code>mysql.server stop</code> 比較好用</p>
+<h1 id="EER(Enhanced_Entity-relationship)_Diagram">EER(Enhanced Entity-relationship) Diagram</h1>
+<p>聽到這名字就覺得好熟悉呀… </p>
+<p>基礎教學<a href="http://www.youtube.com/watch?v=-fQ-bRllhXc" target="_blank">link</a></p>
+<p><a href="http://blog.wu-boy.com/2012/11/innodb-as-the-default-mysql-storage-engine/" target="_blank">InnoDb Storage Engine</a></p>
+<h1 id="crow’s_foot_notation">crow’s foot notation</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/4.png" alt="image"></p>
+<h1 id="Join_?_foreign_key_?">Join ? foreign key ?</h1>
+<h2 id="sql中">sql中</h2>
+<p>雖然有用foreign key , 但要同時抓customer &amp; order 還是得要用join(inner join) .</p>
+<p>所以我們知道 join 跟 foreign key 沒關係 .</p>
+<h3 id="customer">customer</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/5.png" alt="image"></p>
+<h3 id="order_(有建立foreign_key到customer)">order (有建立foreign key到customer)</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/6.png" alt="image"></p>
+<h3 id="customer_join_order">customer join order</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/7.png" alt="image"></p>
+<h2 id="jpa中">jpa中</h2>
+<h3 id="post">post</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/13.png" alt="image"></p>
+<h3 id="postPart">postPart</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/14.png" alt="image"></p>
+<p>要做類似join的方式 其實是因為在一個domain object中有另外一個domain object , 跟foreign key 也沒關係 .</p>
+<p>也就是說在這邊指定的@OneToOne , @JoinColumn(的確是表示foreign key) , 也跟抓不抓的到另外的domain object(table) 沒關係 . 這幾個Annotation 都是hibernate用來讓你清楚定義domain object constraint的方式 . </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/15.png" alt="image"></p>
+<h1 id="foreign_key_constraint">foreign key constraint</h1>
+<p>要注意的是它是一個constraint , 對於資料表間的對應 作限制 以達到資料完整性的目標.</p>
+<p>什麼叫做資料完整性? 以上述為例 PostPart必須要有Post對應 , 才有意義, 當Post被刪除 , PostPart單獨存在時,留在資料庫中,永遠不會被找到(不會被使用) , 所以它變成一個沒有用的資料 留在資料庫當中 .</p>
+<h1 id="relationship_4">relationship 4</h1>
+<p>Post —-&gt; Tag (ManyToMany)</p>
+<p>因為要做到ManyToMany 表示 這兩個Tag間 還需要有一個<code>bridge table</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/16.png" alt="image"></p>
+<p><code>@JoinTable(name=&quot;POST_TAG&quot;,joinColumns={@JoinColumn(name=&quot;POST_ID&quot;)},
+        inverseJoinColumns={@JoinColumn(name=&quot;TAG_ID&quot;)})</code></p>
+<p>這段程式碼 就是在製作一個<code>bridge table</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/17.png" alt="image"></p>
+<p>產生了一個 Post_Tag的bridge table</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mysql/1/18.png" alt="image"></p>
+<h1 id="unidirectional_&amp;_bidirectional">unidirectional &amp; bidirectional</h1>
+<p>邏輯上 只要在對方內有自己的id , 或 自己的id在對方那 , 應該是都可以互相找到的 ,</p>
+<p>所以說為什麼可以輕易在domain object中做到 bidirectional 是因為jpa已經幫你做好了!</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-29T01:53:37.000Z"><a href="/2014/09/29/20140929/">Sep 29 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/09/29/20140929/">2014/09/29</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="TAF_example">TAF example</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/TAF/7.png" alt="image"></p>
+<p>其實範例都差不多了 但是希望在Json的部分 加上實際運用 . 既然如此 我將calendar的eventObject,存入資料庫 . </p>
+<p><a href="http://stackoverflow.com/questions/14138532/h2-database-string-to-timestamp" target="_blank">H2 date</a></p>
+<p><a href="http://stackoverflow.com/questions/17987647/moment-js-transform-to-date-object" target="_blank">moment long to date format</a></p>
+<p><a href="http://stackoverflow.com/questions/4772425/format-date-in-java" target="_blank">format date string to date</a> </p>
+<p><a href="http://stackoverflow.com/questions/12409600/error-request-header-field-content-type-is-not-allowed-by-access-control-allow" target="_blank">allow contentType: “application/json</a></p>
+<p><a href="http://stackoverflow.com/questions/24603721/spring-boot-application-with-h2-file-database" target="_blank">data.sql</a></p>
+<h1 id="fullcalendar">fullcalendar</h1>
+<p><a href="http://stackoverflow.com/questions/23743441/fullcalendar-cannot-read-property-getday-of-undefined" target="_blank">Cannot read property ‘day’ of null</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-25T03:40:21.000Z"><a href="/2014/09/25/20140925/">Sep 25 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/09/25/20140925/">2014/09/25</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Ubuntu(server)">Ubuntu(server)</h1>
+<p>/home -&gt;1mgr /home<br>      -&gt;2mgr /home<br>      -&gt;3emgr /home</p>
+<p>各自的project由不同使用者帳號密碼登入,進入後的project有各自的/home(/root).</p>
+<h1 id="speed_up_ecilpse_&amp;_tomcat">speed up ecilpse &amp; tomcat</h1>
+<p>查code 改code 不是最困難的地方 , 反而是eclipse &amp; tomcat 開的速度很慢 , 超慢 …接下來就是要找怎麼樣提升速度!</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-23T02:39:31.000Z"><a href="/2014/09/23/20140923/">Sep 23 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/09/23/20140923/">2014/09/23</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Tbs_import_module">Tbs import module</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/3.png" alt="image"><br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/4.png" alt="image"><br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/5.png" alt="image"><br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/6.png" alt="image"><br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/7.png" alt="image"></p>
+<p>啟動成功</p>
+<p>接下來import到eclipse</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/8.png" alt="image"><br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/9.png" alt="image"><br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/10.png" alt="image"></p>
+<p>remove module<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/11.png" alt="image"></p>
+<p>add module<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/12.png" alt="image"><br>看一下api module有沒有depend on 其他module<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/13.png" alt="image"></p>
+<p>接下來deploy也要設定 remove xxx.jar , add project<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/29.png" alt="image"></p>
+<p>然後clean , deploy 沒問題</p>
+<p>接下來是fmt module , 做法就跟api一樣</p>
+<p>fmt 有depend on com,api</p>
+<p>remove<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/14.png" alt="image"></p>
+<p>add</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/15.png" alt="image"></p>
+<p>接下來deploy也要設定 remove xxx.jar , add project<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/tbs/FMT-023/29.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-22T01:46:43.000Z"><a href="/2014/09/22/20140922/">Sep 22 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/09/22/20140922/">2014/09/22</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="TAF">TAF</h1>
+<p>老實說一開始May要我做的時候,我整個突然有點空白,因為快一個月沒碰phonegap,jquery,一開始就開啟上次做的pdf,看之前是怎麼下phongap command 包括建立新專案 , 加入不同平台的支援 , build , 然後怎麼樣dubg , 最麻煩的的是要怎麼include phonegap or jquery mobile libraray , 似乎有個先後順序!? 然後我發現我有準備一個start project , 太棒了! , 所以我就直接用這個start 開始TAF專案 .</p>
+<h1 id="start">start</h1>
+<p><a href="https://github.com/jackmew/phonegap-JQM-start" target="_blank">phonegap-JQM-start</a></p>
+<p>這專案只是單純include library , 並且會等待到都ready以後 才會去執行main 這樣的概念 .</p>
+<p>但一開始真的也不太知道要做什麼 現在也不知道 ? 就快速的先拉出畫面再說 !</p>
+<p>所以我很快就做出基本的樣子</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/1.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/ㄉ2.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/3.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/4.png" alt="image"></p>
+<h1 id="工作日誌">工作日誌</h1>
+<h1 id="datepicker">datepicker</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/5.png" alt="image"></p>
+<p>基本上拉出這樣的畫面 很快就解決了 , 因為聽說需要抓時間 所以很直覺得就用了datepicker ! 但這時候的第一個問題就出現了 , 因為jquery mobile 所提供的方法 也是去使用jquery ui的datepicker , 然後再套上自己的jquery mobile ui(.css) 但是底子裡還是jquery ui , 所以我不得不多include了 jquery ui , 但我無法確定這樣子include會不會有問題…. , 總之 我先直接一個個用.css 手動override 原本的setting , 讓畫面看起來一致.</p>
+<h1 id="multidatespickr">multidatespickr</h1>
+<p>接下來 我發現 datepicker 無法一次選取多個時間 … 所以我找到了<a href="http://multidatespickr.sourceforge.net/" target="_blank">multidatespickr</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/6.png" alt="image"></p>
+<p>我發現 它預設的樣子 很好看 我很喜歡 , 就馬上測試如何使用 ,</p>
+<p>我寫了一些code來滿足需求</p>
+<p>並且自己加上一個input type=’text’ 偷藏起來 多選的結果 並放入array 中 , 但是這樣無法去除重複選取的內容 , 所以又寫了一些判斷式 remove 重複的部分 ,  後來我有模擬寫一個Set 來移除掉重複結果</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/8.png" alt="image"></p>
+<h1 id="$-each();">$.each();</h1>
+<p><a href="http://api.jquery.com/each/" target="_blank">link</a></p>
+<p>非常常用<a href="http://api.jquery.com/each/" target="_blank">$.each()</a>; 這個function非常好用!</p>
+<p>需要注意的是 它不像java 用break 中斷迴圈  ,  是用return false; 中斷迴圈</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/21.png" alt="image"></p>
+<h1 id="fullcalendar">fullcalendar</h1>
+<p>最後我發現我是需要calender 而不是datepicker </p>
+<p><a href="http://fullcalendar.io/docs/usage/" target="_blank">fullcalendar</a> , 這套library 似乎也是google 建立他們行事曆使用的library , 然後發現到fullcalender裡面又包了一個<a href="http://momentjs.com/" target="_blank">moment.js</a>,這個library 幫你迅速處理好時間方面的問題 , 你可以去call它的function來處你的時間上的需求.</p>
+<p>fullcalendar 非常的完善 document也寫得很好 , 但我還是花了很多時間去查如何使用這個library</p>
+<h1 id="center">center</h1>
+<p>最常用的是 <code>style=&quot;text-align:center&quot;</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/10.png" alt="image"></p>
+<p>通常我會在data-role=”content” 的內部再加上一個div 當作container來 center某部分 因為並不是全部都會需要center</p>
+<h1 id="討論室">討論室</h1>
+<h1 id="panel_with_listview">panel with listview</h1>
+<p>這個問題我花了非常多時間解決 , 問題在於jquery mobile 的版本很多 , 網路上找到的說法也很多,所以只得一個一個試試 , 最後還是回到了官方的解法<a href="http://demos.jquerymobile.com/1.3.0/docs/examples/panels/panel-styling.html" target="_blank">panel-styling</a> , 我發現這個code 完全沒這問題 , 所以就刪刪剪剪的把不需要的部分去除</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/9.png" alt="image"></p>
+<p>當我要使用的時候 只要加上 <code>class=&quot;modify_listview_panel&quot;</code> 就可以解決這問題.</p>
+<p><code>&lt;div data-role=&quot;panel&quot; id=&quot;fileListPanel&quot; class=&quot;modify_listview_panel&quot; data-display=&quot;overlay&quot;&gt;</code></p>
+<p>這個例子有點不明顯 , 在其他狀況 , 畫面話變得很醜 , 上下間距擠在一起 不然就是拉得很遠.<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/3/34.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/3/34.png" alt="image"></p>
+<h1 id="enhance_widget">enhance widget</h1>
+<p>在某些情況下 動態加入一段程式碼到畫面 , 這個畫面不會自動render , 所以畫面變得很醜 , 這時候只好自己去refresh這個widget (這時候又有一堆版本的不同問題…)</p>
+<p>ex: </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/13.png" alt="image"></p>
+<p><code>selector.append(&quot;xxx&quot;).collapsibleset(&quot;refresh&quot;),trigger(&quot;create&quot;);</code></p>
+<p>方法其實不止一種 , 但都是要加上跟邏輯沒關的部分 , 你會覺得自己在處理麻煩的小事 , 但又要花很多時間…</p>
+<p>這邊是幾種widget的refresh方式整理 <a href="http://andymatthews.net/read/2011/12/14/Refreshing-jQuery-Mobile-listviews,-buttons,-select-dropdowns,-and-input-fields" target="_blank">buttons,-select-dropdowns,-and-input-fields</a> , 有些方法已經太舊了..</p>
+<h1 id="bind_event的問題">bind event的問題</h1>
+<p>要記住 在widget產生之後 bind event才有用 , 這時候javascript的問題就出現了 , 在編寫的時候不會出現問題 , 一定要執行才會出現問題 , 有時候比較難去查 問題出在哪裡…</p>
+<h1 id="collapsible_open_and_close">collapsible open and close</h1>
+<p><a href="http://stackoverflow.com/questions/23566967/jquerymobile-1-4-2-animate-collapsible" target="_blank">animate-collapsible</a></p>
+<h1 id="local_notification">local notification</h1>
+<h1 id="jquery_mobile_page">jquery mobile page</h1>
+<p><a href="http://jackmew.github.io/2014/08/28/20140828/">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/2/33.png" alt="image"></p>
+<h1 id="refactor">refactor</h1>
+<h1 id="theme">theme</h1>
+<h1 id="icon_color">icon color</h1>
+<p><a href="http://www.bar54.de/2014/02/jquery-mobile-change-color-of-svg-icons/" target="_blank">link</a></p>
+<p>原本jquery.mobile.css </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/3/36.png" alt="image"></p>
+<p>override掉</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/3/37.png" alt="image"></p>
+<p>fff10a =&gt; 黃色</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/3/38.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/3/39.png" alt="image"></p>
+<p>原本的<code>Cpolygon%20fill%3D%22%23FFF</code></p>
+<p>加上三碼<code>Cpolygon%20fill%3D%22%23FFF10a</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/3/40.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/3/41.png" alt="image"></p>
+<h1 id="未讀_已讀_已加入重要訊息_排序">未讀 已讀 已加入重要訊息 排序</h1>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-19T01:41:50.000Z"><a href="/2014/09/19/20140919/">Sep 19 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/09/19/20140919/">2014/09/19</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="eclipse_import_module">eclipse import module</h1>
+<h2 id="首先在terminal_啟動成功">首先在terminal 啟動成功</h2>
+<h3 id="分析結構">分析結構</h3>
+<p>source-&gt; 有很多module , main:web . 而且竟然有個pom.xml!?</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/15.png" alt="image"></p>
+<h3 id="pom">pom</h3>
+<p>maven的設定檔:</p>
+<ol>
+<li><p>表示要使用哪些repository , 依賴哪些dependencis</p>
+</li>
+<li><p>設定repository的path</p>
+</li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/16.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/17.png" alt="image"></p>
+<p>結論: 當需要dependency時 都是去repository抓.</p>
+<h3 id="build整個模組">build整個模組</h3>
+<p>設定目前terminal環境 <code>. ~/project/tbs/bin/stetenv.sh</code></p>
+<ol>
+<li><p>然後在<code>~/project/tbs/svn/impl/trunk/souce</code> <code>mvn -o install</code></p>
+</li>
+</ol>
+<p>就會用source的pom去build整個模組</p>
+<ol>
+<li>web module(main module) , 裡面設定了需要依賴哪些我們自己寫的module</li>
+</ol>
+<p>所以直接在<code>~/project/tbs/svn/impl/trunk/souce/web</code> <code>mvn -o install</code></p>
+<p>也是build整個模組</p>
+<h3 id="mvn_clean_vs_compile_vs_package_vs_install">mvn clean vs compile vs package vs install</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/18.png" alt="image"></p>
+<p>所以說 只要build bat module的 最少指令應該是</p>
+<p><code>~/project/tbs/svn/impl/trunk/source/bat --&gt; mvn clean install</code></p>
+<p><code>~/project/tbs/svn/impl/trunk/source/web --&gt; mvn clean install</code></p>
+<p>因為web是build成 war 檔 , war 包了其他所有module jar , 所以web 每一次都必須install</p>
+<h3 id="tomcat">tomcat</h3>
+<p>將war複製貼上到 tomcat/apache-tomcat-5.5.35/webapps/</p>
+<p>啟動</p>
+<p><code>~/project/tbs/usr/tomcat/apache-tomcat-5.5.35/bin/ --&gt;sh startup.sh</code></p>
+<p>看log</p>
+<p><code>~/project/tbs/usr/tomcat/apache-tomcat-5.5.35/bin/ --&gt;tail -f ../logs/catalina.out</code></p>
+<p>關閉</p>
+<p><code>~/project/tbs/usr/tomcat/apache-tomcat-5.5.35/bin/ --&gt;sh shutdown.sh</code></p>
+<h3 id="module_import_to_eclipse">module import to eclipse</h3>
+<p>首先 以上動作做完以後 , 先impor main class =&gt; web</p>
+<p><code>~/project/tbs/svn/impl/trunk/source/web --&gt; mvn eclipse:eclipse</code></p>
+<p><a href="http://maven.apache.org/guides/mini/guide-ide-eclipse.html" target="_blank">link</a></p>
+<p>接下來就是一般的import動作 沒什麼問題 </p>
+<p>有問題的是之後的module</p>
+<p>一樣需要先下</p>
+<p><code>~/project/tbs/svn/impl/trunk/source/com --&gt; mvn eclipse:eclipse</code></p>
+<p>我們知道web 內 depend on 其他的module , 所以要改變原本的depend on<br>local repository =&gt; 改成 depend on local</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/19.png" alt="image"></p>
+<p>remove depending on local repository</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/20.png" alt="image"></p>
+<p>add depending on local</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/21.png" alt="image"></p>
+<p>另外 其他module間 可能會互相depend</p>
+<p>ex: bat depend on com</p>
+<p>一樣 要改變depend on what</p>
+<p>remove </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/23.png" alt="image"></p>
+<p>add</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/22.png" alt="image"></p>
+<h1 id="final">final</h1>
+<p>在IDE中 ex: eclipse , sts =&gt; clean build 產生的檔案 都找不到 , 但環境設定好後 是可以執行的.</p>
+<h1 id="trace_tbs">trace tbs</h1>
+<p>這次的問題是 <code>Batch</code></p>
+<p>問題流程</p>
+<p>一個xxx.ctr 會去執行 xxx.txt/xxx.csv<br>將此txt/csv 轉成 pdf檔</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/1.png" alt="image"></p>
+<p>執行這個測試程式 就會執行這個狀況</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/2.png" alt="image"></p>
+<p>接著這個查詢頁面 就可以看到執行成功的訊息!<br>但是 bug 就是 一次只能成功一個.ctr</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/3.png" alt="image"></p>
+<p>問題就是 為何產生一筆之後 就會錯誤? 再次執行 就可以再執行一次<br>答案 Thread 問題 沒有搬移 舊的log問題…聽不懂…</p>
+<p>May給的提示 : 1. Job Id : RPT-020-1 2. AutomailRPTServiceImpl.java</p>
+<p>所以我必須先去update tbs source</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/4.png" alt="image"></p>
+<p>然後搜尋<code>AutomailRPTServiceImpl.java</code> ,找到屬於是bat module , 所以要import bat module 才能夠debug .</p>
+<p>import 成功後</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/5.png" alt="image"></p>
+<p>找個地方下中斷點! 開始找問題</p>
+<p>但是 若是May給的提示只有Job Id呢?</p>
+<p>用file search</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/6.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/7.png" alt="image"></p>
+<p>原來通常一個Job Id 代表的是一個batchTask , 也就是batch裡面的某一支程式</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/8.png" alt="image"></p>
+<p>找到了某一個bean  再次去找相對應的class 名稱</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/9.png" alt="image"></p>
+<p>再次搜尋</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/11.png" alt="image"></p>
+<p>找到後 下中斷點</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/12.png" alt="image"></p>
+<p>開始一步步trace</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/13.png" alt="image"></p>
+<p>再不然 沒有提示的話 只好從這邊找到提示</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/leandev/tbs/14.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-18T01:04:04.000Z"><a href="/2014/09/18/20140918/">Sep 18 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/09/18/20140918/">2014/09/18</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Maven_by_Example">Maven by Example</h1>
+<p><a href="http://books.sonatype.com/mvnex-book/reference/index.html" target="_blank">link</a></p>
+<h2 id="A_Multi-module_Project">A Multi-module Project</h2>
+<p><a href="http://books.sonatype.com/mvnex-book/reference/multimodule.html" target="_blank">link</a></p>
+<p>Convention Over Configuration</p>
+<h1 id="simple_maven_project">simple maven project</h1>
+<p><code>mvn archetype:generate -DgroupId=org.sonatype.mavenbook -DartifactId=simple</code></p>
+<p>可選擇各種不同的basic project , 選擇不同版本</p>
+<p>當不要選的時候 直接用這個就可以了</p>
+<p><code>mvn archetype:create -DgroupId=org.jack.first -DartifactId=first</code></p>
+<h3 id="build_project">build project</h3>
+<p><code>cd simple</code></p>
+<p><code>mvn install</code></p>
+<p><code>java -cp target/simple-1.jar org.sonatype.mavenbook.App</code></p>
+<p>印出 Hello World!</p>
+<h1 id="yahoo_weather_developer">yahoo weather developer</h1>
+<p><a href="https://developer.yahoo.com/weather/" target="_blank">link</a></p>
+<p><a href="https://weather.yahoo.com/united-states/california/los-angeles-2442047/" target="_blank">search zip code </a></p>
+<p>taipei weather api : <code>http://weather.yahooapis.com/forecastrss?w=2306179</code></p>
+<p>執行</p>
+<h1 id="maven_command">maven command</h1>
+<p><code>mvn install</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/1/1.png" alt="image"></p>
+<p><code>mvn exec:java -Dexec.mainClass=org.sonatype.mavenbook.weather.Main</code> 會自動load dependency 並執行main</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/1/2.png" alt="image"></p>
+<p><code>mvn help:describe -Dplugin=exec -Dfull</code> =&gt; 告訴你exec plugin全部的goals</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/1/3.png" alt="image"></p>
+<p><code>mvn dependency:resolve</code> =&gt; 印出所有在classpath 的 jar</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/1/4.png" alt="image"></p>
+<p><code>mvn dependency:tree</code> =&gt; 印出並加上樹狀結構</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/1/5.png" alt="image"></p>
+<p><code>mvn install -X</code> =&gt; 在install時 印出debug訊息</p>
+<h1 id="在_pom_加入_Organizationl_,_legal_developer_information">在 pom 加入 Organizationl , legal developer information</h1>
+<h1 id="tbs">tbs</h1>
+<p>Java Build Path</p>
+<p>Deployment Assenbly</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-17T00:42:35.000Z"><a href="/2014/09/17/20140917/">Sep 17 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/09/17/20140917/">2014/09/17</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Sort">Sort</h1>
+<p><a href="http://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-part-six-sorting/" target="_blank">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/17.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/18.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/19.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/20.png" alt="image"></p>
+<h1 id="pagination">pagination</h1>
+<p><a href="http://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-part-seven-pagination/" target="_blank">原本</a>一直在看的,但是在使用page上 寫的很困難</p>
+<p><a href="http://spring.io/blog/2011/02/10/getting-started-with-spring-data-jpa/" target="_blank">spring 官方</a></p>
+<h3 id="Spring_Data_repository_support">Spring Data repository support</h3>
+<p><code>public interface AccountRepository extends JpaRepository&lt;Account, Long&gt; { … }</code></p>
+<p>Two purpose :</p>
+<ol>
+<li><p>provide CRUD , save , delete mothod.</p>
+</li>
+<li><p>scan the classpath for this interface and create a <code>Spring bean</code>for it.</p>
+</li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/26.png" alt="image"></p>
+<p>這就解釋了為何也好method name 就可以實作query , 因為當寫好method name後 他去parse 你的method name , 並改成<a href="http://openhome.cc/Gossip/EJB3Gossip/JPQLABC.html" target="_blank">JPQL</a>(Java Persistence Query Language) , 在內部時做好sql了.</p>
+<h3 id="Page">Page</h3>
+<p>Page ==&gt; 強化的List =&gt; 加入了page Number , page size , 和一些method可以call</p>
+<p>所以 Page == 1. List + 2. PageRequest(Pageable)</p>
+<p><a href="http://grepcode.com/file/repo1.maven.org/maven2/org.springframework.data/spring-data-commons-core/1.0.0.RELEASE/org/springframework/data/domain/PageRequest.java" target="_blank">PageRequest implements Pageable</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/27.png" alt="image"></p>
+<p>我們可以看到PageRequest是由1.page(第幾頁) 2. size(每一頁佔多少比資料) 3.Sort</p>
+<p>repository 還是很簡單 ：</p>
+<p><code>public interface PersonRepository extends JpaRepository&lt;Person,Long&gt;</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/29.png" alt="image"></p>
+<p>在這邊可以看到findAll回傳了兩種型別 1.List<T> 2. Page<Person></p>
+<p><code>PAGE_SIZE = 2;</code> 定義 每一頁含有兩筆資料</p>
+<p>Service :</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/30.png" alt="image"></p>
+<p>Controller : </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/31.png" alt="image"></p>
+<p>藉由pageNumber 決定要抓哪一頁 , 從第0頁開始 .</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/32.png" alt="image"></p>
+<p>由於Page只是加強版的List , 所以我猜測可以跟List一樣的call法 然後就成功了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/34.png" alt="image"></p>
+<p>沒有find條件的做法 和有find條件的做法</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/33.png" alt="image"></p>
+<h1 id="h2_console">h2 console</h1>
+<p><a href="http://stackoverflow.com/questions/24655684/spring-boot-default-h2-jdbc-connection-and-h2-console" target="_blank">link</a></p>
+<p>突然覺得要用h2 console(gui) 界面比較好 , 確定資料到底有沒有CRUD , 不可或缺呀 </p>
+<p>首先改變h2 dependency </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/21.png" alt="image"></p>
+<p>原本的<code>org.hsqldb</code> 是不需要configuration的 就可直接連線 , 但是當要使用h2 console 時 會缺少 <code>org.h2.server.web.WebServlet;</code></p>
+<p>所以改成<code>com.h2database</code> </p>
+<p>application.properties 增加h2 連線資訊</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/22.png" alt="image"></p>
+<p>設定WebServlet 給h2 console 使用 並且指定路徑</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/23.png" alt="image"></p>
+<p>登入畫面</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/24.png" alt="image"></p>
+<p>使用畫面</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/25.png" alt="image"></p>
+<h1 id="Webinar:_Building_REST-ful_services_with_Spring">Webinar: Building REST-ful services with Spring</h1>
+<p>好像是很棒的<a href="http://www.youtube.com/watch?v=SC0FPuDKei0" target="_blank">教學 </a></p>
+<p>但是<a href="https://github.com/joshlong/the-spring-rest-stack" target="_blank">code</a>跑不起來</p>
+<p><a href="http://patrickgrimard.com/2014/05/16/pagination-with-spring-data-and-hateoas-in-an-angularjs-app/" target="_blank">link</a></p>
+<p><a href="http://stackoverflow.com/questions/21346387/how-to-correctly-use-pagedresourcesassembler-from-spring-data" target="_blank">how-to-correctly-use-pagedresourcesassembler-from-spring-data</a></p>
+<h1 id="module">module</h1>
+<p>分成兩個module </p>
+<ol>
+<li><p>service</p>
+</li>
+<li><p>rest </p>
+</li>
+</ol>
+<p>這兩個module怎麼合起來?</p>
+<h1 id="spring_boot_multi_module">spring boot multi module</h1>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-16T01:05:44.000Z"><a href="/2014/09/16/20140916/">Sep 16 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/09/16/20140916/">2014/09/16</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="sbJpa_(spring_boot_data_jpa)">sbJpa (spring boot data jpa)</h1>
+<h1 id="sbhateous_(spring_hateous)">sbhateous (spring hateous)</h1>
+<h1 id="sdr_(spring_data_rest)">sdr (spring data rest)</h1>
+<p>我發現在放入.html到src/main/resources/static 時 , 畫面無法refresh</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/1.png" alt="image"></p>
+<p>當放入WEB-INF 才可以refresh畫面</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/2.png" alt="image"></p>
+<h1 id="上傳檔案?">上傳檔案?</h1>
+<p><a href="http://stackoverflow.com/questions/166221/how-can-i-upload-files-asynchronously-with-jquery" target="_blank">link</a></p>
+<p>這時候又要牽扯到多個browser有沒有支援的情況 , 而且哪個方法寫出來 , 效率好不好? 可不可以同時用在個不同檔案格式?  恩…</p>
+<p><a href="http://hmkcode.com/spring-mvc-upload-file-ajax-jquery-formdata/" target="_blank">link</a></p>
+<p><a href="http://stackoverflow.com/questions/10292382/html-5-formdata-and-java-servlets" target="_blank">link</a></p>
+<h1 id="@ResponseBody">@ResponseBody</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/3.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/4/4.png" alt="image"></p>
+<p><a href="http://stackoverflow.com/questions/20654227/spring-controller-ajax-return-string" target="_blank">link</a> </p>
+<p>@ReponseBody 會自動轉成String 回傳</p>
+<p>所以要去決定回傳的資料形態是text </p>
+<p><a href="http://stackoverflow.com/questions/21852978/bootstrap-3-using-img-circle-how-to-get-circle-from-non-square-image" target="_blank">img-circle</a></p>
+<h1 id="java_read_file">java read file</h1>
+<p><a href="http://stackoverflow.com/questions/5146570/load-a-static-file-in-a-spring-controller" target="_blank">link</a></p>
+<p><a href="http://stackoverflow.com/questions/8656085/how-to-send-an-image-from-web-service-in-spring" target="_blank">link</a></p>
+<h1 id="java_string_split">java string split</h1>
+<p><a href="http://pydoing.blogspot.tw/2011/01/java-split.html" target="_blank">link</a></p>
+<p><a href="http://stackoverflow.com/questions/14833008/java-string-split-with-dot" target="_blank">link</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-15T01:05:26.000Z"><a href="/2014/09/15/20140915/">Sep 15 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/09/15/20140915/">2014/09/15</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="webapp">webapp</h1>
+<ol>
+<li>html </li>
+</ol>
+<p>Just expose resources(lib,img ,html) , and we can use html with css , javascript to do something.</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/3/28.png" alt="image"></p>
+<p>Html and lib are exposed in the same time .</p>
+<p>Now we can redirect to .html</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/3/29.png" alt="image"></p>
+<ol>
+<li>template engine : thymeleaf or jsp or…</li>
+</ol>
+<p>When Using template engine , we need decide where to put XXX.html/XXX.jsp.</p>
+<p>setting 1:<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/3/24.png" alt="image"></p>
+<p>setting 2:</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/3/25.png" alt="image"></p>
+<p>and these two way both need to expose resources(lib,img …) for including them .<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/3/26.png" alt="image"></p>
+<p>so we find that template engine does not need to be exposed .</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/3/27.png" alt="image"></p>
+<h1 id="Spring_HATEOAS-compliant_REST_shell">Spring HATEOAS-compliant REST shell</h1>
+<p><a href="https://github.com/spring-projects/rest-shell" target="_blank">link</a></p>
+<p><a href="https://github.com/spring-projects/rest-shell/wiki/Getting-Started" target="_blank">Getting-Started 有用</a></p>
+<h1 id="sublime_-&gt;_command_line_tool">sublime -&gt; command line tool</h1>
+<p><a href="http://docs.sublimetext.tw/others/" target="_blank">link</a></p>
+<h1 id="我發現幾個該死的問題">我發現幾個該死的問題</h1>
+<p><a href="http://stackoverflow.com/questions/23767233/spring-data-rest-post-new-entity-with-relationships" target="_blank">link</a></p>
+<p><a href="https://github.com/spring-projects/spring-data-rest/wiki/Embedded-Entity-references-in-complex-object-graphs" target="_blank">重要</a></p>
+<p><a href="https://github.com/spring-projects/spring-data-rest/wiki/Example-API-usage-with-curl" target="_blank">又一個重要</a></p>
+<p><a href="http://www.javacodegeeks.com/2013/08/spring-data-rest-in-action.html" target="_blank">link</a></p>
+<p><a href="https://github.com/spring-projects/rest-shell/issues/43" target="_blank">link</a></p>
+<p><a href="http://stackoverflow.com/questions/15425446/how-to-put-a-json-object-with-an-array-using-curl" target="_blank">link</a></p>
+<p><a href="http://stackoverflow.com/questions/5658510/curl-json-post-request-via-terminal-to-a-rails-app" target="_blank">link</a></p>
+<h1 id="思考">思考</h1>
+<p>首先 instance mapping (JPA) ==&gt;</p>
+<p>person 1—-&gt;x email  單邊的一對多</p>
+<p>type x—-&gt;1 article 單邊的多對一</p>
+<p>class x—-&gt;x student 雙邊的多對多</p>
+<p>………..</p>
+<p>在 java 中 主要是x擁有y , x屬於y 這種關係</p>
+<p>然而在database中 其實只是x table(primary key) ——&gt; y table(foreign) , 某個key值之間的對應 .</p>
+<p>再更往前想 , 其實也不用分成兩個x , y table , x y 合在一起也可以 , 非常簡單 ！ </p>
+<p>但這樣會有問題: 1. inaccurate 2. slow 3. inefficient =&gt; <a href="http://sqlmag.com/database-performance-tuning/sql-design-why-you-need-database-normalization" target="_blank">why-you-need-database-normalization</a></p>
+<p>結論就是 複雜的table集合 , 其實可以是最簡單的一個table , 但經由normalization , 變成atomicity的table , 然後再用key值 連結.</p>
+<p>Spring Data JPA : </p>
+<p>CrudRepository —&gt; PagingAndSortRepository —&gt; JpaRepository </p>
+<p>提供許多程度不同的API , 讓你可以快速建立好data access layer . </p>
+<p>而HATEOUS在做什麼呢?</p>
+<p>在Rest的架構上 HATEOUS是屬於最上層,也就是最嚴格的規定了Rest的架構.</p>
+<p>有些時候Rest被當成API來call , 或者是去call server的某個function , 然而HATEOUS認為當你要call過來時 都應該表示你需要資源, 每一次call server 都是抓資源 , 非API , 定義一個 Resouce Driven 的架構 , 到達這種程度才叫做 RESTful .</p>
+<p>當進行到這個階段後 , client端可以透過server端回傳的訊息 , 看到所有可以取用的資源路徑,server端完全將資料處理的過程包起來,expose各個資源的路徑到url .</p>
+<p>理解到現在感覺是,當需求不清楚 或者需求一直在變的專案,要實作HATEOUS , 也太困難了吧 ???</p>
+<p>RESTful是一種design pattern , 當然 HATEOUS也是(包含在REST中) , 所謂的Design pattern 就是 強烈優化 某些工作目的/需求 的實作方式 , 因此需要根據不同需求來決定要不要使用這個Design pattern , 或者可以視情況而定 , 來決定要多嚴謹使用design pattern ? 或者只要部分實現就好? 為了同時具備彈性和具備效率 , 維持這之間的平衡.</p>
+<p>最後Spring Data Rest 是 組合了 Spring Hateous &amp; Spring Data Jpa</p>
+<p>所以不了解這兩個 就直接去玩Spring Data Rest , 當然搞不清楚 , Spring Data Rest 的目的是 簡化這兩個project的實作 將需要寫的code都包起來 , 包成某種一定上的規格 規則 , 可以很簡單 , 但相對改起來也很困難 .</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+  
+    <a href="/archives/2014/09/page/2/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,984 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 4 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-18T02:55:26.000Z"><a href="/2014/11/18/20141118/">Nov 18 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/18/20141118/">2014/11/18</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="image_slideshow">image slideshow</h1>
+<p>看了好幾個jquery image slideshow的plugin , 覺得要選簡單一點的 , 就決定挑了這一個<a href="http://tympanus.net/codrops/2011/09/12/elastislide-responsive-carousel/" target="_blank">link</a> , 但發現他image都是有一個相對應的thumbnail… 那這個thumbnail 要在何時產生呢? 新增圖片的時候 ? Java 處理? 都可以 但是很麻煩呀… 想一想之後 決定用最基本的bootstrap carousel來處理就好<a href="http://getbootstrap.com/javascript/#carousel" target="_blank">link</a></p>
+<h1 id="selection">selection</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/canvas/kineticjs/2/15.png" alt="image"></p>
+<ol>
+<li><p>add to canvas </p>
+</li>
+<li><p>add to carousel</p>
+</li>
+</ol>
+<p>因此每張圖片都要有可以勾選 -&gt; 多選  -&gt; <a href="http://getbootstrap.com/css/" target="_blank">checkbox</a> , option單選 .</p>
+<h1 id="font_測試import_scss">font 測試import scss</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/canvas/kineticjs/2/16.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/canvas/kineticjs/2/17.png" alt="image"></p>
+<p>成功加入Happy Monkey字型</p>
+<h1 id="Animate-css">Animate.css</h1>
+<p>接下來我想要加入 特效 , 但是我不確定可不可以import css</p>
+<p>反白的部分 是一開始測試成功的方式</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/canvas/kineticjs/2/18.png" alt="image"></p>
+<p>接下來就是測試在scss 中 import css</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/canvas/kineticjs/2/19.png" alt="image"></p>
+<p>成功 ! 接下來在vaadin中import</p>
+<h1 id="vaadin_import_animate-css">vaadin import animate.css</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/canvas/kineticjs/2/20.png" alt="image"></p>
+<p>奇怪的事 似乎要把檔名改變 <code>animate.css -&gt; _animate.scss</code> <a href="http://stackoverflow.com/questions/7111610/import-regular-css-file-in-scss-file" target="_blank">link</a></p>
+<h1 id="主城市就是畫面_UI_?">主城市就是畫面 UI ?</h1>
+<p>constructor 只是用來設定參數</p>
+<p>主要做事情是在init -&gt; build();</p>
+<p>browser-&gt;page </p>
+<p>setExpandRatio 剩下空間的比例</p>
+<p>Launcher -&gt; dataSource -&gt; hierarchialContainer</p>
+<p>indexContainer -&gt; 另外的資料組合 內有index support你去抓資料</p>
+<p>FontAwesmo.BARS -&gt; enum -&gt; constructor塞進變數(String)抓 </p>
+<p>JMS MessageQ 跨系統 -&gt; publish , subscribe 底下的東西 -&gt; domain level(business level)</p>
+<p>setChildrenAllowed =&gt; 快速處理UI</p>
+<p>SuppressWarnings =&gt; classs 寫進 storage , serializable -&gt; reCompile的時候 會存進去JVM裏面 拿出來 就發現version不同 所以出現Error 可是還是可以動?!</p>
+<h1 id="我們有兩種event">我們有兩種event</h1>
+<ol>
+<li>select選 -&gt; itemSelectEvent</li>
+</ol>
+<ol>
+<li>command Event -&gt; 表示user要執行某一個指令 -&gt; 某區域的每一個button都發出同一個command event , 可是攜帶不同參數</li>
+<li></li>
+</ol>
+<p>addStyleName(“lancher”)</p>
+<p>group -&gt; section -&gt; shortcut</p>
+<p>ItemEvent -&gt; SelectEvent , Listener -&gt; pair ! 這兩個是同等階層 , ItemEvent有點像是package </p>
+<p>listing -&gt; 1. 一般table , 2. Mac finder顯示方式</p>
+<p>listing &amp; paging 用同一個dataSource</p>
+<p>Viewer 就是 editor</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-17T04:02:07.000Z"><a href="/2014/11/17/20141117/">Nov 17 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/17/20141117/">2014/11/17</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="css_hiddent_social_buttons">css hiddent social buttons</h1>
+<p>終於找到我想要的特效</p>
+<p><a href="http://scotch.io/tutorials/css/css3-hidden-social-buttons" target="_blank">link</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-14T06:42:47.000Z"><a href="/2014/11/14/20141114/">Nov 14 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/14/20141114/">2014/11/14</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="bitbucket_&amp;_sourceTree">bitbucket &amp; sourceTree</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/canvas/kineticjs/2/13.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/canvas/kineticjs/2/14.png" alt="image"></p>
+<h1 id="vaadin_data_binding">vaadin data binding</h1>
+<p><a href="https://vaadin.com/download/jpacontainer-tutorial/" target="_blank">link</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-13T02:26:12.000Z"><a href="/2014/11/13/20141113/">Nov 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/13/20141113/">2014/11/13</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="fork_/_pull_request">fork / pull request</h1>
+<p><a href="https://www.youtube.com/watch?v=NTLAfy6lcdQ" target="_blank">link</a></p>
+<h1 id="branch">branch</h1>
+<p>終於知道branch是什麼了<a href="https://github.com/doggy8088/Learn-Git-in-30-days/blob/master/docs/08%20%E9%97%9C%E6%96%BC%E5%88%86%E6%94%AF%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A7%80%E5%BF%B5%E8%88%87%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F.markdown" target="_blank">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/git/1/1.png" alt="image"></p>
+<p>太酷了~</p>
+<h1 id="Angularjs">Angularjs</h1>
+<p><a href="http://blog.miniasp.com/post/2013/04/24/Front-end-Engineering-Fineart-An-Introduction-to-AngularJS.aspx" target="_blank">link</a></p>
+<p>angular expression<br>angular filter<br>data binding : angular會監控model的任何變化</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jqm/angular/1/1.png" alt="image"></p>
+<p>保哥講解都簡單易懂！ </p>
+<p>code school , w3c 都有講.. 資料超多呀！</p>
+<p>core elemenet : easy to test , </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jqm/angular/1/2.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jqm/angular/1/3.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jqm/angular/1/4.png" alt="image"></p>
+<p>expression : allow you to insert dynamic valus into your html.</p>
+<p>filter : </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jqm/angular/1/5.png" alt="image"></p>
+<p>ng-src :</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jqm/angular/1/6.png" alt="image"></p>
+<p>ng-model :</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jqm/angular/1/7.png" alt="image"></p>
+<p>看到這邊 感覺directory吃的挺重的 , 所以html是會繼續使用的 , 不會像extjs 幾乎沒有html . 對於scope觀念 可能scope一個div or xx tag , ng-click對我來說比較怪 , 一般處理event都是這樣？ 應該不是吧</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-12T01:39:25.000Z"><a href="/2014/11/12/20141112/">Nov 12 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/12/20141112/">2014/11/12</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="design">design</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/1/28.png" alt="image"></p>
+<h1 id="concept">concept</h1>
+<ol>
+<li>extends </li>
+</ol>
+<p>A extends B</p>
+<p>在一般的狀況下 A都會有default constructor 去呼叫B的constructor</p>
+<pre><code><span class="keyword">public</span> <span class="title">A</span>(){
+    <span class="keyword">super</span>();
+}
+</code></pre><p>但是當你要自定義呼叫B的constructor時(constructor可以無參數 有參數 , 兩個參數) , default constructor就不會動作！ 因此若是你有定義一個參數的construtor  , 你就應該去呼叫無參數的constructor ! 不然就會無呼叫 B的東西可能就會少 </p>
+<ol>
+<li>vaadin UI</li>
+</ol>
+<p>在建構vaadin ui component時 , 你可以在兩個地方建構 :  </p>
+<ol>
+<li>constructor -&gt; 當我們使用此component時 都會new , 因此都會呼叫到constructor.</li>
+<li>init -&gt; constructor 之後 就會執行init , 這時候會發現一個問題 , 若是有些人在constructor時 就去呼叫別的class , 而此class可能又會去call其他class ,那我們要怎麼保證  class 已經construct 完成 ? init就像是$(“document”).ready 一樣 , 會在整個元件都準備好才載入 , 因此可以保證 , 所以我們的constructor儘量沒東西 ,都放在init裏面 .</li>
+</ol>
+<h1 id="button">button</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/1/29.png" alt="image"> 這個button 按下後 會出現框框 , 取消花超多時間</p>
+<ol>
+<li><p><a href="http://www.w3schools.com/css/css_pseudo_classes.asp" target="_blank">css pseudo</a> 有好多種 一開始先入為主 以為是<code>:active</code></p>
+</li>
+<li><p>取消邊框 1.outline:none; 2. border:none; 最多是這種情況 . 看debugger突然發現box-shadow….終於成功…</p>
+</li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/1/30.png" alt="image"></p>
+<h1 id="accordion">accordion</h1>
+<p>調超久… 莫名奇妙的border一堆</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/1/32.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/1/31.png" alt="image"></p>
+<h1 id="bitbucket">bitbucket</h1>
+<h1 id="sourceTree">sourceTree</h1>
+<h1 id="git_30_day">git 30 day</h1>
+<p><a href="https://github.com/doggy8088/Learn-Git-in-30-days" target="_blank">link</a></p>
+<h1 id="yeoman">yeoman</h1>
+<p><a href="http://blog.miniasp.com/post/2013/08/12/Yeoman-1-0-Installation-and-Usage-on-Windows.aspx" target="_blank">will哥 連yeoman都有講</a></p>
+<h1 id="各式Web前端工具!">各式Web前端工具!</h1>
+<p><a href="https://github.com/doggy8088/frontend-tools" target="_blank">link</a></p>
+<h1 id="fieldset">fieldset</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/4/8.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-11T03:07:19.000Z"><a href="/2014/11/11/20141111/">Nov 11 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/11/20141111/">2014/11/11</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="resize_event">resize event</h1>
+<p><a href="https://vaadin.com/wiki/-/wiki/Main/Finding+the+current+UI+and+Page+and+VaadinSession" target="_blank">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/42.png" alt="image"></p>
+<h1 id="button_長相_間距_調超久！">button 長相 間距 調超久！</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/4/1.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/4/2.png" alt="image"></p>
+<p><a href="https://vaadin.com/forum/#!/thread/976202" target="_blank">換行</a></p>
+<p><a href="http://www.puritys.me/docs-blog/article-31-CSS-%E8%AA%9E%E6%B3%95%EF%BC%8C%E6%96%87%E5%AD%97%E6%8F%9B%E8%A1%8C%EF%BC%8C%E5%BC%B7%E8%BF%AB%E4%B8%8D%E6%8F%9B%E8%A1%8C%E3%80%82.html" target="_blank">換行方式</a></p>
+<p><a href="https://vaadin.com/api/valo/#mixin-valo-button-icon-align-top-style" target="_blank">依然是非常有用的參考</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/4/7.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/4/3.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/4/4.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/4/5.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/4/6.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-06T01:42:48.000Z"><a href="/2014/11/06/20141106/">Nov 6 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/06/20141106/">2014/11/06</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Layout">Layout</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/34.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/35.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/36.png" alt="image"></p>
+<p>做法是</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/37.png" alt="image"></p>
+<p>基本上是用CSSLayout做排版 , 因為若是要隱藏sidebar 就表示它是浮動的 <code>position:absolute</code> , header,footer <code>position:fixed</code> , 我希望可以套這幾個屬性 所以都設定為CSSLayout .</p>
+<p>Button , Label 在 Vaadin 中 都被Div包起來 , 所以都會佔據一行 , 但是！ 加上HorizontalLayout後 Button , Label , 就可以排成一行! 可能是有加上<code>display:inline;</code>? 總之 雖然跟在HTML做法有點像 但部分還是會有差距 , 但HTML的觀念很重要!</p>
+<h1 id="Layout_&amp;_expandRatio">Layout &amp; expandRatio</h1>
+<p><a href="http://www.lokalisointi.org/~magi/itmill/book/polish/book-pl/layout.components.orderedlayout.html" target="_blank">相當重要</a></p>
+<h1 id="Button_image">Button image</h1>
+<p>跟之前bootstrap在做的事情一樣 把button 變大 , 圖在上面 , 文字在下面 .</p>
+<p>意外發現超有用東西！ <code>SASS API</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/38.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/39.png" alt="image"></p>
+<h1 id="Navigator">Navigator</h1>
+<p>the most important -&gt; history &amp; bookmark .</p>
+<p>but -&gt; CRUD -&gt; 做到一半 -&gt; 回上一頁??? -&gt; 資料可能已經被刪除? 在某些情況 Navigator變得多餘.</p>
+<h1 id="Component">Component</h1>
+<p>其實在Vaadin(Java)中 所有東西都是component , 我們可以很輕易的定義customComponent(extends) .</p>
+<h1 id="event_bus">event bus</h1>
+<p>這方法(design) , 可以讓各個component , 獨立 , publish event ,  subscribe event , 再不需要知道其他component 的情況下 可以動作 .</p>
+<h1 id="CssLayout">CssLayout</h1>
+<p><a href="http://stackoverflow.com/questions/25663006/vaadin-floatingdynamic-layout" target="_blank">link</a></p>
+<p>在程式中set的attribute會覆蓋掉css</p>
+<p>還不錯吧</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/40.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/41.png" alt="image"></p>
+<h1 id="servlet">servlet</h1>
+<p>記憶空間 </p>
+<h1 id="VaadinRequest">VaadinRequest</h1>
+<p>記憶空間 + UI </p>
+<p>代表瀏覽器??? </p>
+<p>init =&gt; 有點類似document ready =&gt; publish event , subscribe event =&gt; 這時候widget還沒有產生？ =&gt; 沒差</p>
+<p>UI.getCurrent() -&gt; session </p>
+<p>Page.getCurrent() =&gt; browser windwo</p>
+<p>jason -&gt; init取代 constructor , consturctor 只init 存放UI的data</p>
+<p>server push -&gt; websocket -&gt; tomcat 8 才支援</p>
+<p>touch-kit -&gt; off-line mode ?</p>
+<p>lifecycle -&gt; session expire 設定</p>
+<h1 id="問題">問題</h1>
+<ol>
+<li><p>Ivy , maven -&gt; build widgetset</p>
+</li>
+<li><p>gwt.xml -&gt; UiBinder -&gt;comile widgetset的設定檔</p>
+</li>
+<li><p>sasss , sass-compiler , vaadin-theme</p>
+</li>
+<li><p>Luna -&gt; 因為widgetset 砍掉了 所以沒問題</p>
+</li>
+<li><p>init =&gt; 有點類似document ready =&gt; publish event , subscribe event =&gt; 這時候widget還沒有產生？ =&gt; 沒差 </p>
+</li>
+</ol>
+<h1 id="SVG">SVG</h1>
+<p>其實是儲存了某種程式碼 , browser有提供開啟的方式 開啟後的呈現方式 … 突然覺得跟我現在要做的save , load 有點像 , 所以說這些png,jpg… 也是寫好的 根據某種protocal or something 去制定規則 , 儲存方式 , 然後load 開啟檔案的時候經過一些演算 決定如何呈現的方式.</p>
+<h1 id="接下來SASS_佔據的比例會非常大">接下來SASS 佔據的比例會非常大</h1>
+<p>需要去研究detail的部分 , 剛好我對這部分也很有興趣.</p>
+<h1 id="maven_&amp;_eclipse">maven &amp; eclipse</h1>
+<p>當maven在teminal可以下指令 執行時 , 表示pom已經設好 , maven根據pom去決定用什麼library來compile/build project , 那為什麼在eclipse不行? 當import maven project 到 eclipse時 , 需要elicpse-maven-plugin , 去決定如何在eclipse配置maven project , 所以說問題是出在這裡,eclipse-maven-plugin沒有正常吃pom , 沒有將需要的library吃進來 或完整的link library , 所以常常需要手動執行…</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-03T06:31:00.000Z"><a href="/2014/11/03/20141103/">Nov 3 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/03/20141103/">2014/11/03</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="compass">compass</h1>
+<p><code>compass create projectName</code></p>
+<p><code>compass install complass</code> =&gt; 產生print.css,ie.css,screen.css 不一定要</p>
+<p><code>compass watch</code> </p>
+<p>在編寫你的.scss 前 要先放上 @import ‘compass’;</p>
+<h1 id="font">font</h1>
+<p><a href="http://webdesign.about.com/od/fonts/a/aa080204.htm" target="_blank">link</a></p>
+<p>放入css中<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/canvas/kineticjs/1/9.png" alt="image"></p>
+<p>根據名字 就可以使用<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/canvas/kineticjs/1/10.png" alt="image"></p>
+<p>成功<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/canvas/kineticjs/1/11.png" alt="image"></p>
+<h1 id="ttc_ttf_…">ttc ttf …</h1>
+<p><a href="https://tw.knowledge.yahoo.com/question/question?qid=1406080904777" target="_blank">link</a></p>
+<p><a href="http://123.briian.com/forum.php?mod=viewthread&amp;tid=2152" target="_blank">王漢宗</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-30T02:43:26.000Z"><a href="/2014/10/30/20141030/">Oct 30 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/10/30/20141030/">2014/10/30</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="static">static</h1>
+<p><a href="http://www.oreilly.com.tw/column_sleepless.php?id=j021" target="_blank">概念非常清晰</a></p>
+<p>所以知道冠上static後 會是共用同一塊記憶體 , 所以<a href="http://blog.kenyang.net/2011/03/java-staticfinal.html" target="_blank">這邊</a>說的就可以理解, 為什麼text1.value跟text2.value 會變成都是10 .</p>
+<h1 id="static_initialization_block">static initialization block</h1>
+<p>也是<a href="http://stackoverflow.com/questions/2420389/static-initialization-blocks" target="_blank">非常清晰的解釋</a></p>
+<p><code>{}</code> ==&gt; This gets called everytime the class is constructed. </p>
+<p><code>static</code> ==&gt; The static block only gets called once, no matter how many objects of that type you create.</p>
+<p>我自己的解釋是說 , 因為static是共用一塊記憶體 , 所以當值一set進去後 就存在那裡了 , 之後沒有比要再次initialize , 相對的當然就不會因為class instantiate就改變值, 應該說 如果是這情形 就用原本的<code>{}</code> 就好啦 , static的作用 就在於不會變化 , 容易access .</p>
+<h1 id="vaadin_themeVariants">vaadin themeVariants</h1>
+<p>因此就解釋了 為什麼vaadin set themeVariants 要用static .</p>
+<p>在StartUI 第一次被instantiate時 就執行static initialization block , 將值存入共用記憶體 . </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/18.png" alt="image"></p>
+<p>取出來的方式 就跟取出Hashmap一樣 , <a href="http://mmqzlj.blog.51cto.com/2092359/550631" target="_blank">LinkedHashMap</a> 就先暫時認為是有排序的HashMap .</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/19.png" alt="image"></p>
+<p>因此會用很多個Label顯示theme name</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/20.png" alt="image"></p>
+<h1 id="又發現_Jouni_!">又發現 Jouni !</h1>
+<p><a href="https://www.youtube.com/watch?v=YGar0pVeiz4" target="_blank">link</a></p>
+<h1 id="Mac_裡面可以裝_很多tool_!?!?">Mac 裡面可以裝 很多tool !?!?</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/22.png" alt="image"></p>
+<h1 id="LiveReload_??!!">LiveReload ??!!</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/23.png" alt="image"></p>
+<h1 id="work_basic_workshop">work basic workshop</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/24.png" alt="image"></p>
+<pre><code>    <span class="class">.v-button</span> <span class="rules">{
+        <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;
+    <span class="rule">}</span></span>
+</code></pre><p>button會變成直的排</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/25.png" alt="image"></p>
+<h1 id="微調">微調</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/26.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/27.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/28.png" alt="image"></p>
+<h1 id="menu_加上_buttom:0;_就佔據一整條!">menu 加上 buttom:0; 就佔據一整條!</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/29.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/30.png" alt="image"></p>
+<h1 id="Responsive">Responsive</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/31.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/32.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/33.png" alt="image"></p>
+<pre><code>.v-ui[width-range~=<span class="string">"0-1000px"</span>] {
+    .<span class="keyword">menu</span> {
+        width: <span class="variable">$v</span>-<span class="keyword">unit</span>-<span class="keyword">size</span><span class="variable">*1</span><span class="number">.5</span>;
+        <span class="keyword">color</span>:red;
+    }
+}
+</code></pre><p>注意 0-1000 是<code>-</code> 不是<code>~</code></p>
+<p>…… 又出現怪問題 無法解決 我覺得我在css這一塊 顯得能力不足 , 無法前進的感覺 可能要從基本回來看..</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-29T01:38:35.000Z"><a href="/2014/10/29/20141029/">Oct 29 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/10/29/20141029/">2014/10/29</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="vaadin_CDI(Context_and_Dependency_Injection_(JSR-299)">vaadin CDI(Context and Dependency Injection (JSR-299)</h1>
+<p><a href="https://vaadin.com/wiki/-/wiki/Main/Vaadin-CDI-integration" target="_blank">link</a></p>
+<p><a href="https://vaadin.com/wiki?p_p_id=36&amp;p_p_lifecycle=0&amp;p_p_state=normal&amp;p_p_mode=view&amp;p_p_col_id=row-1&amp;p_p_col_pos=1&amp;p_p_col_count=3&amp;p_r_p_185834411_title=I+-+Getting+started+with+Vaadin+CDI&amp;p_r_p_185834411_nodeName=vaadin.com+wiki&amp;_36_struts_action=%2Fwiki%2Fview" target="_blank">tutorials</a></p>
+<h1 id="TodoMVC">TodoMVC</h1>
+<p><a href="http://todomvc.com/" target="_blank">好像很厲害</a></p>
+<h1 id="vaadin_&amp;_gwt">vaadin &amp; gwt</h1>
+<p><a href="https://vaadin.com/gwt" target="_blank">原來vaadin跟gwt是密不可分的</a></p>
+<p><a href="https://github.com/jounik/TodoMVC" target="_blank">vaadin ToDoMVC</a></p>
+<h1 id="footer">footer</h1>
+<ol>
+<li>status bar</li>
+<li>power by …</li>
+</ol>
+<h1 id="header">header</h1>
+<p>左上logo<br>右上icon</p>
+<h1 id="widget_vs_gadget">widget vs gadget</h1>
+<p>widget : textField … reuse</p>
+<p>gadget : 已經組合好的功能 </p>
+<h1 id="inner_class">inner class</h1>
+<p>private !!! =&gt; 只有某class 會用到這個class , 所以只要是private就好了 </p>
+<h1 id="multi_window">multi window</h1>
+<p>視窗保留 , 非頁籤做法 非換頁做法 , 非single page , 像是eclipse藏起來一些gadget的做法 . </p>
+<h1 id="SASS"><a href="https://www.youtube.com/watch?v=yNIQOfOwDGM&amp;list=PLcRrh9hGNalnmA1mbDS0NBuq6N3Mnw2u1" target="_blank">SASS</a></h1>
+<ol>
+<li><p>可以解決Repeat code(redundancy)</p>
+</li>
+<li><p>cross browser code produce</p>
+</li>
+</ol>
+<h1 id="vaadin_SCSS">vaadin SCSS</h1>
+<p>style.scss =&gt; entry point</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/29.png" alt="image"></p>
+<p><code>@include todomvc</code> 會去抓定義的<code>@mixin todomvc</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/30.png" alt="image"></p>
+<p>todomvc 裡面又去抓 <code>@mixin reset</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/31.png" alt="image"></p>
+<p>而reset 在這邊叫做 fixed mixin , 用來改變apearance在各個browser正常顯示 或 要怎麼樣顯示 </p>
+<p>因此可以只改一個地方 就整個都可以改掉 -&gt; maintainable</p>
+<h1 id="怎麼樣解決redundancy?">怎麼樣解決redundancy?</h1>
+<h3 id="css_ex1">css ex1</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/33.png" alt="image"></p>
+<h3 id="scss_nesting_ex1">scss nesting ex1</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/34.png" alt="image"></p>
+<h3 id="css_ex2">css ex2</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/35.png" alt="image"></p>
+<h3 id="scss_nesting_ex2_=&gt;_&amp;_parent_selector">scss nesting ex2 =&gt; &amp; parent selector</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/36.png" alt="image"></p>
+<h3 id="css_ex3_勾勾">css ex3 勾勾</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/37.png" alt="image"></p>
+<h3 id="scss_nesting_ex3_=&gt;_unicode_產生勾勾">scss nesting ex3 =&gt; unicode 產生勾勾</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/2/38.png" alt="image"></p>
+<p><code>.todo-row .v-checkbox input:after</code> =&gt; <code>&amp;:after</code></p>
+<h3 id="scss_variable_=&gt;_maintainable">scss variable =&gt; maintainable</h3>
+<p>variable :</p>
+<ol>
+<li><p>定義在自己的scss裡 :  local variable</p>
+</li>
+<li><p>定義在外面 被import進來 : global variable</p>
+</li>
+</ol>
+<p>定義global variable : <code>_variables.scss</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/1.png" alt="image"></p>
+<p>main scss : todomvc.scss ==&gt; import <code>_variables.scss</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/4.png" alt="image"></p>
+<p>使用variable</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/3.png" alt="image"></p>
+<p>scss compile 到 css 的結果</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/2.png" alt="image"></p>
+<h1 id="_todomvc-scss_same_todomvc-scss">_todomvc.scss same todomvc.scss</h1>
+<p>convention that it is a partial scss , 表示他是partial , import時不用加底線</p>
+<h1 id="scss全部都compile到一個css">scss全部都compile到一個css</h1>
+<h1 id="@extend">@extend</h1>
+<p>reusable , 並加上東西</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/5.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/6.png" alt="image"></p>
+<h1 id="imformatica">imformatica</h1>
+<p>Informatica 為全球市佔率第一名的資料轉置工具 (ETL)，其功<br>能上可以讓企業內部各種異質系統資料庫進行合併整合，成為中<br>央集中的資料倉儲系統，並且在資料轉置的過程中，進行資料淨<br>化、資料對應、資料轉化的工作，並可以提供相關運算功能，<br>使得資料在透過 ETL 流程後，可以由單純的明細資料，轉換成<br>為有效用的資訊，除此之外，為了因應企業中龐大的交易資料，<br>Informatica 亦提供大量資料傳輸的功能，可以快速的轉換大量<br>資料，以期達成 Near Real Time 的分析目標。</p>
+<p>ETL(Extract, transform, load)</p>
+<h1 id="bootstrap-for-vaadin">bootstrap-for-vaadin</h1>
+<p>抓下bootstrap的.scss , 並且取出部分要用到的.scss(@extend來取)</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/5.png" alt="image"></p>
+<p>所以當我們使用<code>.v-widget</code> 就會用到bootstrap內body寫的屬性</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/6.png" alt="image"></p>
+<p>下面這個例子是<code>.v-button</code> 就會用到bootstrap內的.btn ….</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/7.png" alt="image"></p>
+<p>使用實例</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/8.png" alt="image"></p>
+<h1 id="他沒有build_-scss_就可以改變畫面了!?!?">他沒有build .scss 就可以改變畫面了!?!?</h1>
+<p>ivy , 不會產生style.css<br>maven 會產生style.css , 需要手動去compile =&gt; <code>mvn vaadin:compile-theme</code></p>
+<p>其實他是說 在development mode , scss 就會automaticallby be translated into css</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/9.png" alt="image"></p>
+<p>這是在web.xml設定production mode = false(development mode) 的方法</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/ㄅ10.png" alt="image"></p>
+<p>新的annotation做法(預設)</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/11.png" alt="image"></p>
+<p>但在maven就是無法auto compile…</p>
+<p>加上這個也沒用…</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/12.png" alt="image"></p>
+<h1 id="valo_位置_是在jar裏面">valo 位置 是在jar裏面</h1>
+<p><a href="http://vaadin.com/download/prerelease/7.3/7.3.0/7.3.0.alpha2/release-notes.html" target="_blank">link</a></p>
+<p><code>Java-based Sass compiler</code></p>
+<p>接下來我想到他的valo theme到底放在哪裡 , 最後發現是放在jar</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/13.png" alt="image"></p>
+<p><code>jar xr filename</code> 解開 </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/14.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/15.png" alt="image"></p>
+<p>哈哈 好酷</p>
+<h1 id="sass">sass</h1>
+<p>problem</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/16.png" alt="image"></p>
+<p><a href="https://github.com/csswizardry/inuit.css/issues/270" target="_blank">solve</a></p>
+<p><code>sass --watch style.scss:style.min.css --style compressed -E &quot;UTF-8&quot;</code></p>
+<p>後來更新gem</p>
+<p>更新sass </p>
+<p>終於可以用sass watch了!!!</p>
+<p>但是都沒問題之下 出現更奇怪的問題…</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/vaadin/3/17.png" alt="image"></p>
+<p>我認為是vaadin裡 又加了什麼東西…</p>
+<h1 id="跟我想一樣的事情">跟我想一樣的事情</h1>
+<p><a href="https://github.com/mstahv/moresass" target="_blank">link</a></p>
+<p>但我覺得可能會失敗 …</p>
+<p>不想玩了 搞那麼複雜 好像也不會比較好用 = =</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/page/3/" class="alignleft prev">Prev</a>
+  
+  
+    <a href="/page/5/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

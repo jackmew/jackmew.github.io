@@ -1,0 +1,396 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>spring data rest | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title tag">spring data rest</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-12T01:46:45.000Z"><a href="/2014/09/12/20140912/">Sep 12 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/09/12/20140912/">2014/09/12</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="thymeleaf_?_rest">thymeleaf ? rest</h1>
+<p>我覺得想一想 還是覺得用template engine來render畫面 , 負責dispatch 畫面是在controller , 然後<br>之前的做法 dispatch畫面 主要是在view本身 , controller比較像是web service , 因此這兩個設計概念就不同了了!</p>
+<p>所以我還是決定採用之前的做法 , 比較跟真正的RESTful有關 , 而且這樣才真的可以設計出web/app 同時使用的web service . </p>
+<p>所以這時候應該去看 如何架構rest in java</p>
+<h1 id="spring_data_rest_"><a href="http://projects.spring.io/spring-data-rest/" target="_blank">spring data rest </a></h1>
+<p>突然發現還有這個project …</p>
+<p>那這個project跟spring hateous 有啥不同…</p>
+<p><a href="http://stackoverflow.com/questions/19514131/spring-hateoas-versus-spring-data-rest" target="_blank">spring-hateoas-versus-spring-data-rest</a></p>
+<p><a href="http://stackoverflow.com/questions/23697547/spring-data-rest-integration-with-spring-hateoas" target="_blank">spring-data-rest-integration-with-spring-hateoa</a></p>
+<p>根據以上答案 可以知道 spring data rest包了部分spring hateous , 可以很輕易地讓你expose你的rest url 回應 hateous格式 , 但是你無法去更改內部細節的回應方式 .</p>
+<p>spring hateous 可以讓你自定義 你要回傳的格式 . </p>
+<p><a href="http://azagorneanu.blogspot.tw/2013/06/hateoas-using-spring-framework.html" target="_blank">範例</a></p>
+<p><a href="https://github.com/olivergierke/spring-restbucks" target="_blank">看來是個精華範例</a></p>
+<h3 id="先從_基本看起">先從 基本看起</h3>
+<p><a href="https://spring.io/guides/gs/accessing-data-rest/" target="_blank">accessing-data-rest </a></p>
+<p><code>Spring Data REST takes the features of Spring HATEOAS and Spring Data JPA and combines them together automatically.</code></p>
+<p>昨天再看spring hateous , 覺得有點麻煩 , 為了一個個resource 要自己去定義怎麼expose resource, expose link .</p>
+<p>但是spring data rest 將 spring hateous 包在裡面後 , resouce的expose方式都定義好了 , 在加上spring data 也包含在spring data rest 中 , 因此CRUD也是很輕易的就做到! 靠 太酷了 ！</p>
+<h1 id="curl">curl</h1>
+<p>而且還教了 要怎麼使用curl 做 CRUD , 還是很酷啊！ </p>
+<p><a href="http://docs.spring.io/spring-data/rest/docs/2.2.0.RELEASE/reference/html/" target="_blank">spring data rest reference</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/rest/1/4.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/rest/1/3.png" alt="image"></p>
+<p>從這邊我們知道 spring data rest , 會根據class名稱 , 在這邊是person </p>
+<p>將Order : 1.Uncapitalized =&gt; person 2.pluralized =&gt; persons </p>
+<p>並且具備兩種格式 :</p>
+<p>1.collection resources (關於全部的Order資源) : <code>http://localhost:8080/persons</code></p>
+<p>2.item resources(特定Order資源) : <code>http://localhost:8080/persons/1</code></p>
+<h3 id="在root時_會expose所有資源(path)">在root時 會expose所有資源(path)</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/rest/1/5.png" alt="image"></p>
+<h3 id="insert_一筆person">insert 一筆person</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/rest/1/9.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/rest/1/6.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/rest/1/7.png" alt="image"></p>
+<h3 id="改變_collection_resources_/_item_resources">改變 collection resources / item resources</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/rest/1/10.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/rest/1/11.png" alt="image"></p>
+<h1 id="接下來是repositroy_要怎麼跟_controller_,_service_分開呢？">接下來是repositroy 要怎麼跟 controller , service 分開呢？</h1>
+<p>…..無法分開</p>
+<p><a href="http://stackoverflow.com/questions/25604081/what-are-the-advantages-of-using-spring-data-rest-over-spring-data-jpa" target="_blank">link</a></p>
+<p>也就是說 spring data jpa , spring data rest , 都有各自的目的 為了簡化某部分的開發,或者減少</p>
+<p>部分code不需要重複寫 , 恩…不過果然還是很棒的東西!</p>
+<h1 id="實作jquery_ajax去抓person">實作jquery ajax去抓person</h1>
+<ol>
+<li><p>getUsers</p>
+</li>
+<li><p>insertUSer</p>
+</li>
+</ol>
+<p><a href="http://stackoverflow.com/questions/14322984/differences-between-contenttype-and-datatype-in-jquery-ajax-function" target="_blank">link</a></p>
+<p>也就是說contentType 是指定傳過去的data形態</p>
+<p>dataType是回傳過來的data形態 , </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/rest/1/12.png" alt="image"></p>
+<p>從這篇可以看出POST回傳的並不是json格式 所以剛剛我一直出現錯誤 , 移除掉這<code>dataType:&#39;json&#39;</code> 就沒問題了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/rest/1/13.png" alt="image"></p>
+<p>我受不了每次STS 都不能快速refresh html/javascript…</p>
+<p>所以我決定用CORS 來讓我的server跟client分離,所以我每次要測試client時候 不需要重開server,而且只要refresh就好</p>
+<p>因此我加上這個filter</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/rest/1/14.png" alt="image"></p>
+<p>GET沒有問題 , 但是POST就出現問題了</p>
+<p>Error :Request header field Content-Type is not allowed by Access-Control-Allow-Headers</p>
+<p>在<code>Access-Control-Allow-Headers</code> 內多加上Content-Type</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/rest/1/15.png" alt="image"></p>
+<p>就成功了</p>
+<p>完成jquery ajax 去抓所有的CRUD</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/rest/1/21.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/rest/1/22.png" alt="image"></p>
+<p>我發現我挺需要id , 但是不知道為什麼spring data rest , 沒有return id </p>
+<p><a href="http://tommyziegler.com/how-to-expose-the-resourceid-with-spring-data-rest/" target="_blank">解決方法</a></p>
+<p>首先要override <code>RepositoryRestMvcConfiguration</code> 的 setting</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/rest/1/16.png" alt="image"></p>
+<p>原本import configuration的部分</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/rest/1/17.png" alt="image"></p>
+<p>改成</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/rest/1/18.png" alt="image"></p>
+<p>domain object : id 要加上getter &amp; setter</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/rest/1/19.png" alt="image"></p>
+<p>成功了 !</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/rest/1/20.png" alt="image"></p>
+<h1 id="接下來要解決的是:_OneToMany_,_ManyToMany_,_page_,sort_…-">接下來要解決的是: OneToMany , ManyToMany , page ,sort ….</h1>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

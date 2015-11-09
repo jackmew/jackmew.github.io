@@ -1,0 +1,419 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>jsonp | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title tag">jsonp</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-21T01:44:01.000Z"><a href="/2014/04/21/20140421/">Apr 21 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/04/21/20140421/">2014/04/21</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="jsonp_,_json">jsonp , json</h2>
+<p>[14/4/18 下午8:47:37] Jason Lin: 很好。多筆不會是問題。<br>[14/4/18 下午8:48:07] Jason Lin: 測試過一定要用jsonp嗎？</p>
+<p>jsonp實作出cross-domain抓資料了</p>
+<p>現在的問題是mobile上執行 一定要用jsonp抓嗎？</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/20140421/sencha1.png" alt="sencha"><br>call local ajax json是去抓local端的json資料<br>call remote ajax json 是去抓資料庫裡的資料</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/20140421/sencha2.png" alt="sencha"></p>
+<p>同樣的這兩段程式 我run在瀏覽器上時 login就失敗了</p>
+<p>出現 <code>No &#39;Access-Control-Allow-Origin&#39; header is present on the requested resource. Origin &#39;http://localhost:1841&#39; is therefore not allowed access.</code></p>
+<p>但run在模擬器上 可以成功</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/20140421/sencha3.png" alt="sencha"></p>
+<p>抓到很多object</p>
+<p>然而run在模擬器上 卻無法抓到local json 資料.. , build成apk後的資料路徑有變?</p>
+<h2 id="HTTP_access_control(CORS)">HTTP access control(CORS)</h2>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS" target="_blank">link</a></p>
+<p>又是之前寫的很好的同一個人<a href="http://blog.yslin.tw/2013/08/sencha-touch-ajax-cross-domain-request.html" target="_blank">sencha touch AJAX 跨網域存取</a></p>
+<h2 id="選股程式">選股程式</h2>
+<p><a href="http://urconsultant.pixnet.net/blog/post/171557246-%E6%8A%80%E8%A1%93%E5%88%86%E6%9E%90--%E6%AD%BB%E4%BA%A1%E4%BA%A4%E5%8F%89%26%E9%BB%83%E9%87%91%E4%BA%A4%E5%8F%89" target="_blank">黃金 死亡交叉</a></p>
+<p><a href="http://www.gummy-stuff.org/Yahoo-data.htm" target="_blank">yahoo data</a></p>
+<p><a href="https://www.npmjs.org/package/yahoo-finance" target="_blank">node,yahoo-finance</a></p>
+<p><a href="https://www.youtube.com/watch?v=iSlBE3CWg5Q" target="_blank">Excel VBA - Get Stock Quotes from Yahoo Finance API</a></p>
+<p><a href="http://kuanming-style.blogspot.tw/2013/02/excelvbayahoo-finance-apis.html" target="_blank">Excel運用VBA抓取Yahoo Finance APIs股票資料</a></p>
+<p><a href="https://developer.yahoo.com/search/rest.html" target="_blank">Yahoo Developer Network</a></p>
+<p>實作方法:?</p>
+<p>1.Excel(Yahoo Finance API)</p>
+<p>2.Java(Yahoo Finance API) + <a href="http://dev.sencha.com/deploy/touch-charts-beta/examples/Combo/" target="_blank">Sencha(Line Chart)</a></p>
+<p>3.NodeJS(Yahoo Finance API) + <a href="http://dev.sencha.com/deploy/touch-charts-beta/examples/Combo/" target="_blank">Sencha(Line Chart) </a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-15T02:37:15.000Z"><a href="/2014/04/15/20140415/">Apr 15 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/04/15/20140415/">2014/04/15</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="說說JSON,JSONP">說說JSON,JSONP</h2>
+<p><a href="http://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html" target="_blank">講得非常清楚</a> 大陸人越來越厲害</p>
+<p>其實<a href="http://zh.wikipedia.org/wiki/JSONP" target="_blank">wiki</a>也講得不錯,但之前看不懂 </p>
+<p><a href="http://design2u.me/blog/936/cross-domain-ajax-cross-domain-data-has-been-retrieved-jsonp" target="_blank">實際執行的範例 </a></p>
+<p>用$.getJson()</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/protocol/protocal5.png" alt="jsonp"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/protocol/protocal6.png" alt="jsonp"></p>
+<p><a href="http://stackoverflow.com/questions/20504436/testing-jsonp-request-from-hybrid-mobile-app-sencha-touch-on-localhost" target="_blank">mobile app果然可以 但是要設定config.xml</a></p>
+<p><a href="http://www.sencha.com/forum/showthread.php?247422-jsonp-and-callback1" target="_blank">須研究</a></p>
+<p>終於看懂了！ </p>
+<p><a href="https://dl.dropboxusercontent.com/u/47510080/markdown/protocol/protocal7.png" target="_blank">jsonp</a></p>
+<p>server side必須要實作jsonp</p>
+<p>當有設定<code>callbackName:&#39;callback&#39;</code>的時候</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/protocol/protocal8.png" alt="jsonp"></p>
+<p>server side 檢驗到有設定這參數 幫你加上</p>
+<pre><code><span class="built_in">String</span> callbackName=<span class="built_in">request</span>.getParameter(callbackKey);
+<span class="keyword">if</span>(callbackName){
+    <span class="built_in">response</span>.write(callbackName+<span class="string">"("</span>+ jsonData+ <span class="string">")"</span>);
+</code></pre><p>這時候return回來的東西 才可以接收到…</p>
+<p>看超久！</p>
+<p>再來<a href="http://simcoder.wordpress.com/2012/01/03/info-regarding-flickr-jsonp-in-sencha-touch/" target="_blank">jsonp call flickr API</a></p>
+<p>同時查到要改成<code>callbackKey:&#39;jsoncallback&#39;</code> 才能call到flickr</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/protocol/protocal9.png" alt="jsonp"></p>
+<p>終於理解jsonp到底是怎麼做出來的了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/protocol/protocal10.png" alt="jasonp"></p>
+<p>抓到圖片！</p>
+<p><a href="http://ilee.co.uk/jsonp-in-express-nodejs/" target="_blank">JSONP in Express/Node.js</a></p>
+<p>好像挺容易的?</p>
+<p><a href="http://prakashgavade.blogspot.tw/2012/10/sencha-touch-callbacks-successcallback.html" target="_blank">layout可以直接加width , height之類的</a></p>
+<h2 id="成功jsonp_到spring取資料">成功jsonp 到spring取資料</h2>
+<p>參考<a href="http://java-success.blogspot.tw/2012/11/jsonp-and-jquery-with-spring-mvc.html" target="_blank">JSONP and jQuery with Spring MVC</a> </p>
+<p>app.js Launch:</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/protocol/protocal11.png" alt="jsonp"></p>
+<p>去call wbase 裡面的controller</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/protocol/protocal12.png" alt="jsonp"></p>
+<p>包成javascript</p>
+<pre><code><span class="keyword">if</span> (callback != null &amp;&amp; callback.trim().<span class="property">length</span>() &gt; <span class="number">0</span>) {
+                        <span class="constant">result</span> = callback + <span class="string">"("</span> + <span class="constant">result</span> + <span class="string">")"</span>;
+                       }
+</code></pre><p>成功抓到了！</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/protocol/protocal13.png" alt="jsonp"></p>
+<p>沒有注意到回傳的content-Type是(text-plainText)</p>
+<p><a href="[http://](http://stackoverflow.com/questions/7655975/jsonp-with-spring-3-0-and-jackson">link</a>)</p>
+<p>另外再加上這行設定content-Type</p>
+<p><code>responseHeaders.setContentType(new MediaType( &quot;application&quot;, &quot;javascript&quot; ));</code></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2014/10/06 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  <meta name="description" content="Set up jsp
+link
+pom.xml
+
+internalViewResolver -&amp;gt; application.properties
+
+要注意的是@RestController 會自動把object轉成json , 所以model轉到jsp 就失效了 , 必須用@Controller">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="2014/10/06"/>
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-06T01:31:05.000Z"><a href="/2014/10/06/20141006/">Oct 6 2014</a></time>
+      
+      
+  
+    <h1 class="title">2014/10/06</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Set_up_jsp">Set up jsp</h1>
+<p><a href="https://github.com/spring-projects/spring-boot/tree/master/spring-boot-samples/spring-boot-sample-web-jsp" target="_blank">link</a></p>
+<p>pom.xml</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/1.png" alt="image"></p>
+<p>internalViewResolver -&gt; application.properties</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/7.png" alt="image"></p>
+<p>要注意的是@RestController 會自動把object轉成json , 所以model轉到jsp 就失效了 , 必須用@Controller</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/2.png" alt="image"></p>
+<h1 id="rest">rest</h1>
+<p>localhost:8080/simple/xxx</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/3.png" alt="image"></p>
+<p>可以直接抓後面的xxx String</p>
+<h1 id="@ExceptionHandler">@ExceptionHandler</h1>
+<p>當<code>throw xxxException</code> 時 , 會去找到<code>@ExceptionHandler(xxxException.class)</code>的function . </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/4.png" alt="image"></p>
+<h1 id="custom_exception">custom exception</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/5.png" alt="image"></p>
+<p>而customeGenericException 只是繼承 Exception or RuntimeException , 並且改寫成你需要的效果.</p>
+<h1 id="@ControllerAdvice">@ControllerAdvice</h1>
+<p>The above <code>@ExceptionHandler</code> example is only apply to a single controller, to apply it globally (all controllers), annotate a class with <code>@ControllerAdvice</code>.</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/6.png" alt="image"></p>
+<p>將關於error handle setting 都放到另外一個class , 這個class有標記 @ControllerAdvice , 表示所有的controller 都可以throw exception , 然後這個class的某個function 接 .</p>
+<h1 id="reference">reference</h1>
+<p><a href="http://www.mkyong.com/spring-mvc/spring-mvc-exceptionhandler-example/" target="_blank">mkyong</a></p>
+<h1 id="validate_+_thymeleaf">validate + thymeleaf</h1>
+<p>change template engine jsp to thymeleaf</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/8.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/9.png" alt="image"></p>
+<h3 id="person_(domain_object)">person (domain object)</h3>
+<p>add validator</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/13.png" alt="image"></p>
+<h3 id="controller">controller</h3>
+<p>根據validator of person , 傳送不符合資料後的訊息給BindingResult .</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/10.png" alt="image"></p>
+<h3 id="thymeleaf">thymeleaf</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/11.png" alt="image"></p>
+<h3 id="result">result</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/12.png" alt="image"></p>
+<h1 id="html_,_ajax">html , ajax</h1>
+<p>application.properties</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/14.png" alt="image"></p>
+<p>pom.xml</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/15.png" alt="image"></p>
+<p>configuration </p>
+<p>因為/WEB-INF 會隱藏底下的檔案 所以要選擇哪些檔案可以當作是資源來使用</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/16.png" alt="image"></p>
+<p>redirect</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/17.png" alt="image"></p>
+<p>Comment - text </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/18.png" alt="image"></p>
+<p>當我要用ajax call rest  時 一直失敗 </p>
+<p>後來解決了 要注意兩點</p>
+<ol>
+<li><p>接收的是Comment (object) </p>
+</li>
+<li><p>Comment的attribute 也要對到 :text</p>
+</li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/19.png" alt="image"></p>
+<p>將外邊的array , 移除</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/20.png" alt="image"></p>
+<p>最後才成功</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/21.png" alt="image"></p>
+<p>其實只要用一個object就好了 , 原本是array包object .</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/22.png" alt="image"></p>
+<h1 id="HTTP_status">HTTP status</h1>
+<p>ajax 在判定非200 ok時 都會出現error , 就算這個http status 是自己丟出來的也是一樣 . 但我覺得他的確應該出錯error , 那error接下來要怎麼判斷是什麼樣子的error呢?</p>
+<p><a href="http://stackoverflow.com/questions/3290182/rest-http-status-codes-for-failed-validation-or-invalid-duplicate" target="_blank">REST HTTP status codes for failed validation or invalid duplicate</a> </p>
+<p><a href="http://www.vijaywebsolutions.com/about-handling-errors-in-restful-applications/" target="_blank">有不同的想法</a></p>
+<p><a href="http://stackoverflow.com/questions/18534478/how-to-set-response-header-in-spring-mvc" target="_blank">response.setHeader</a></p>
+<h3 id="首先_@ResponseStatus(HttpStatus-BAD_REQUEST)_決定了HttpStatus">首先  @ResponseStatus(HttpStatus.BAD_REQUEST) 決定了HttpStatus</h3>
+<h3 id="加入_response-setHeader(“X-Status-Reason”,”Validation_failed”);">加入 response.setHeader(“X-Status-Reason”,”Validation failed”);</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/26.png" alt="image"></p>
+<h3 id="ajax_error">ajax error</h3>
+<p>可以藉由看error的HttpStatus code ,決定下一步要怎麼做</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/27.png" alt="image"></p>
+<p>console</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/28.png" alt="image"></p>
+<h1 id="tangocard_的response標準">tangocard 的response標準</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/23.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/24.png" alt="image"></p>
+<h1 id="vigay_的response標準">vigay 的response標準</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/25.png" alt="image"></p>
+<h3 id="自己訂立標準">自己訂立標準</h3>
+<h1 id="再加上一個attribute">再加上一個attribute</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/31.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/29.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/30.png" alt="image"></p>
+<p>操作</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/32.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/33.png" alt="image"></p>
+<p>很容易就加成功了</p>
+<h1 id="自定義_驗證錯誤_顯示訊息">自定義 驗證錯誤 顯示訊息</h1>
+<p><code>src/main/resources</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/35.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/34.png" alt="image"></p>
+<h1 id="驗證_i18n">驗證 i18n</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/36.png" alt="image"></p>
+<p>change localization</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/38.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pic-record/spring/jsp/1/37.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/blog/">blog</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/validation/">validation</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jackmew.github.io/2014/10/06/20141006/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

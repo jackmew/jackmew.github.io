@@ -1,0 +1,853 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 13 | Archives | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title">Archives</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-06-26T03:46:00.000Z"><a href="/2014/06/26/20140626/">Jun 26 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/06/26/20140626/">2014/06/26</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="hexo">hexo</h1>
+<p>hexo 是用來記錄的blog產生模組</p>
+<p>可以套用一些theme </p>
+<p>直接用markdown 寫記錄</p>
+<p><code>hexo generate</code> 將markdown 轉成html</p>
+<p><code>hexo deploy</code> 部署到github</p>
+<p>問題是我想要有一開始的進入畫面 自我介紹等東西,不完全是blog</p>
+<p>所以我在另外的資料夾建立一個JMC_me 的web project</p>
+<p>寫好後 將web project 轉移到hexo_JackMew資料夾</p>
+<p>將原本的index.html移動到page folder </p>
+<p>用web project的index.html取代</p>
+<p>所以web project是main , 用某個navigator來轉到blog頁面</p>
+<h1 id="shell">shell</h1>
+<p>但是以上這些動作有些複雜 而且是每次都重複的動作</p>
+<p>所以我寫了個shell script來執行這些動作</p>
+<pre><code>#!/bin/bash
+
+#clear ~/hexo_Jackmew , <span class="keyword">and</span> transform markdown <span class="keyword">to</span> html
+cd ~/hexo_JackMew
+hexo generate
+
+#move original <span class="keyword">index</span>.html <span class="keyword">to</span> <span class="keyword">new</span> folder /page/<span class="number">1</span>
+mkdir ~/hexo_JackMew/<span class="keyword">public</span>/page/<span class="number">1</span>
+mv ~/hexo_JackMew/<span class="keyword">public</span>/<span class="keyword">index</span>.html ~/hexo_JackMew/<span class="keyword">public</span>/page/<span class="number">1</span>
+
+#<span class="keyword">copy</span> my personal web site <span class="keyword">to</span> the <span class="keyword">public</span> folder , <span class="keyword">and</span> it <span class="keyword">has</span> <span class="keyword">index</span>.html
+cp -r ~/hexo_JackMew/JMC_me/dist/ ~/hexo_JackMew/<span class="keyword">public</span>/
+
+#deploy
+hexo deploy
+</code></pre><p>就可以用terminal來快速完成啦～</p>
+<h1 id="backbone">backbone</h1>
+<p><a href="https://www.youtube.com/watch?v=_MAjGUsxAdY&amp;index=15&amp;list=PLw2e3dFxewkJMnxGLdAMiqHgwYjUJFnRd" target="_blank">link</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-06-25T01:50:41.000Z"><a href="/2014/06/25/20140625/">Jun 25 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/06/25/20140625/">2014/06/25</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Github_Atom">Github Atom</h1>
+<p>Node 寫的 有點酷 用用看</p>
+<p>shift+cmd+p                    開啟全部指令視窗</p>
+<p>cmd+,                             setting ,theme , keybinding</p>
+<p>shift+cmd+c                    color picker</p>
+<p>cmd+\                             左邊資料夾開關</p>
+<p>ctr+option+M                  open in browser</p>
+<p>fn + f5                             refresh browser </p>
+<p>liveReload                       grunt</p>
+<p>shift+cmd+i                    auto-indent 自動縮排   </p>
+<p>emmet                           快速寫html</p>
+<h1 id="grid_system">grid system</h1>
+<p>predeifned classes : 定義了classes 可以輕鬆定義layout</p>
+<p>mixins : </p>
+<p>Rows 放在.container/.container-fluid 中</p>
+<h1 id="media_queries">media queries</h1>
+<h1 id="grunt_serve_:_Port_35729_is_already_in_use_by_another_process">grunt serve : Port 35729 is already in use by another process</h1>
+<p><code>lsof | grep 35729</code> 抓到 sublime在接聽 port 35727</p>
+<p><code>kill -9 pid</code></p>
+<h1 id="requireJS">requireJS</h1>
+<p>用requireJS 就可以用i18n了</p>
+<p>這樣我就順便測試backbone.js + require.js ,  網頁變成可以選中文和英文.</p>
+<h1 id="disqus">disqus</h1>
+<p>似乎是可以加在網頁上的留言板</p>
+<h1 id="tag_cloud">tag cloud</h1>
+<p><a href="http://www.goat1000.com/tagcanvas-options.php" target="_blank">tagCloud</a></p>
+<p><a href="http://stackoverflow.com/questions/4938346/canvas-width-and-height-in-html5" target="_blank">canvas size</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-06-24T02:20:15.000Z"><a href="/2014/06/24/20140624/">Jun 24 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/06/24/20140624/">2014/06/24</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>java =&gt; jvm</p>
+<p>servlet.jar =&gt; TCP/IP , socket ,</p>
+<p>Node.js =&gt; 執行環境 ！？ </p>
+<h1 id="backbone">backbone</h1>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-06-23T01:09:37.000Z"><a href="/2014/06/23/20140623/">Jun 23 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/06/23/20140623/">2014/06/23</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="master_workflow">master workflow</h1>
+<p><code>npm install -g yo</code><br><code>npm install -g generator-webapp</code><br><code>grunt build</code> minify javascript , html ,css<br><code>bower install backbone -S</code> -S:表示會改變bower.json debpendency</p>
+<h1 id="bower">bower</h1>
+<p><a href="https://www.youtube.com/watch?v=Vs2wduoN9Ws&amp;src_vid=gKiaLSJW5xI&amp;feature=iv&amp;annotation_id=annotation_3849099645" target="_blank">link</a></p>
+<p>package manager for the web</p>
+<p><code>npm install -g bower</code></p>
+<p><code>bower install jquery</code></p>
+<p><code>bower list</code> 列出安裝的package</p>
+<p><code>bower list --paths</code> 並列出路徑</p>
+<p><code>bower init</code> 產生bower.json 列出一堆你需要的dependency 之後你要安裝這些repo的時候 下</p>
+<p><code>bower install</code> 就會下載這些你列出的repo</p>
+<h1 id="WEB_DEVELOPMENT">WEB DEVELOPMENT</h1>
+<p><a href="https://www.youtube.com/watch?v=zXqs6X0lzKI&amp;src_vid=gKiaLSJW5xI&amp;feature=iv&amp;annotation_id=annotation_4076558943" target="_blank">link</a></p>
+<ol>
+<li><p>Basic Front End =&gt; Javascript , HTML , CSS    OK!</p>
+</li>
+<li><p>Base Terminal Usage , Github ,  Webservice APIs/RestFul Services 3:52 OK!</p>
+</li>
+<li><p>How the internet works:Client/Fronted , Backend/Server , Database OK!</p>
+</li>
+<li><p>Front End Developer , javascript framework : Backbone.js , Angular.js</p>
+</li>
+</ol>
+<p>Unit Testing: Jasmine , Karma , jquery 算是第一步的basic front End,</p>
+<ol>
+<li>CSS tools : Precomplents : SASS/LESS/Stylus , CSS framework : bootstrap</li>
+</ol>
+<p>Responsive Design with CSS</p>
+<ol>
+<li><p>Fronted End Build Tools:Bower/package manager , Yeoman.io , 1.Grunt 2.Golp , Browserfy , RequireJS/AMD </p>
+</li>
+<li><p>things to learn: API’s/RESTful services , Security , OAUTH2 login account, Authorization/Authentication </p>
+</li>
+</ol>
+<ol>
+<li>Cacheing : 1.Squid , </li>
+</ol>
+<h1 id="Bootstrap">Bootstrap</h1>
+<p><a href="https://www.youtube.com/watch?v=no-Ntkc836w&amp;src_vid=zXqs6X0lzKI&amp;feature=iv&amp;annotation_id=annotation_1817432241" target="_blank">link</a></p>
+<h1 id="Github_atom">Github atom</h1>
+<p><a href="https://www.youtube.com/watch?v=bo5MM2N_3tw" target="_blank">link</a></p>
+<h1 id="Angular">Angular</h1>
+<p><a href="https://www.youtube.com/watch?v=QETUuZ27N0w&amp;list=UUVTlvUkGslCV_h-nSAId8Sw&amp;src_vid=bo5MM2N_3tw&amp;feature=iv&amp;annotation_id=annotation_476478397" target="_blank">link</a></p>
+<p><a href="https://www.youtube.com/watch?v=0r5QvzjjKDc&amp;list=UUVTlvUkGslCV_h-nSAId8Sw&amp;src_vid=QETUuZ27N0w&amp;feature=iv&amp;annotation_id=annotation_3238277359" target="_blank">link</a></p>
+<p><code>npm install --global generator-angular</code></p>
+<p>用yo產生的angular project會產生error</p>
+<p>可是用yo angular 產生的project就沒問題</p>
+<h1 id="npm_update">npm update</h1>
+<p><code>sudo npm update -g npm</code></p>
+<h1 id="Tab">Tab</h1>
+<p>用tab不太好 因為每一種瀏覽器定義tab的空白格數不同</p>
+<p><a href="http://stackoverflow.com/questions/407929/how-do-i-change-eclipse-to-use-spaces-instead-of-tabs" target="_blank">讓tab變成真的四個space</a></p>
+<h1 id="grunt">grunt</h1>
+<p>task runner </p>
+<p>minify , build , distribute</p>
+<h1 id="backbone">backbone</h1>
+<p>AngularJS &amp; Sencha Touch 這種一體成型的framework ,</p>
+<p>相對具有排他性 , 對於原本的UI樣式很難改變 , 學習難度也較高 , 學這兩個framework , 根本也用不到jquery了 ,</p>
+<p>然而backbonejs or requirejs 這種framework , 你要加上去也可以,</p>
+<p>不加上也可以, 你可以根據你的需求來改變你設計的複雜度 , 頁面的設計依然是用jquery操作, </p>
+<p>只是改變你架構的方式.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-06-20T09:33:31.000Z"><a href="/2014/06/20/20140620/">Jun 20 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/06/20/20140620/">2014/06/20</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="bower">bower</h1>
+<p><a href="[http://](https://www.youtube.com/watch?v=Vs2wduoN9Ws">link</a>)</p>
+<h1 id="yeoman">yeoman</h1>
+<p><a href="https://www.youtube.com/watch?v=gKiaLSJW5xI&amp;src_vid=Vs2wduoN9Ws&amp;feature=iv&amp;annotation_id=annotation_1815289649" target="_blank">link</a></p>
+<h1 id="grunt">grunt</h1>
+<h1 id="bootstrap">bootstrap</h1>
+<h1 id="backbone">backbone</h1>
+<h1 id="underscore">underscore</h1>
+<h1 id="一堆東西_根本沒時間！_平常還在混-_!">一堆東西 根本沒時間！ 平常還在混.. !</h1>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-06-19T01:09:49.000Z"><a href="/2014/06/19/20140619/">Jun 19 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/06/19/20140619/">2014/06/19</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="innerHTML">innerHTML</h1>
+<p><a href="http://azrael6619.iteye.com/blog/767118" target="_blank">link</a></p>
+<p>DOM object 有 innerHTML</p>
+<p>jquery object 沒有innerHTML  用.html()</p>
+<p>var location =  ‘Latitude: ‘           + position.coords.latitude              + ‘<br />‘ +<br>                    ‘Longitude: ‘          + position.coords.longitude             + ‘<br />‘ +<br>                    ‘Altitude: ‘           + position.coords.altitude              + ‘<br />‘ +<br>                    ‘Accuracy: ‘           + position.coords.accuracy              + ‘<br />‘ +<br>                    ‘Altitude Accuracy: ‘  + position.coords.altitudeAccuracy      + ‘<br />‘ +<br>                    ‘Heading: ‘            + position.coords.heading               + ‘<br />‘ +<br>                    ‘Speed: ‘              + position.coords.speed                 + ‘<br />‘ +<br>                    ‘Timestamp: ‘          + position.timestamp                    + ‘<br />‘;</p>
+<ol>
+<li>$(“#geolocation”).html(location); </li>
+<li>var element = document.getElementById(‘geolocation’);<br>element.innerHTML = location;</li>
+</ol>
+<p>沒搞清楚DOM object 和 jquery object!</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-06-18T05:21:54.000Z"><a href="/2014/06/18/20140618/">Jun 18 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/06/18/20140618/">2014/06/18</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="css">css</h1>
+<p><code>table-layout:fixed;</code> : table的寬度不改變</p>
+<p><code>white-space:nowrap;</code>:文字不換行</p>
+<p>兩個用在一起 就可以讓文字超出表格</p>
+<p><code>line-height:0em</code> : 強制td高度 因此字長度比較長時會重疊</p>
+<h1 id="phonegap_+_jquery_mobile">phonegap + jquery mobile</h1>
+<p>ondeviceready</p>
+<p><a href="http://learn.jquery.com/using-jquery-core/document-ready/" target="_blank">$(document).ready</a></p>
+<p>$( document ).ready() 表示DOM都load完 的事件 , 當DOM都load完以後 表示我們用jquery 去處理dom都不會發生問題</p>
+<p>$( window ).load(function() { … }) 表示DOM image iframes 都load完 </p>
+<p><a href="http://api.jquerymobile.com/mobileinit/" target="_blank">$( document ).on( “mobileinit”</a></p>
+<p>jquery mobile 都load完 的事件</p>
+<p>官方推薦的順序是</p>
+<p><link rel="stylesheet"  href="//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" /></p>
+<ol>
+<li><script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+</li>
+<li><p><script><br>// Update configuration to our liking<br>$( document ).on( “mobileinit”, function() {</p>
+<p>// We want popups to cover the page behind them with a dark background<br>$.mobile.popup.prototype.options.overlayTheme = “b”;</p>
+<p>// Set a namespace for jQuery Mobile data attributes<br>$.mobile.ns = “jqm-“;<br>});</p>
+</li>
+</ol>
+<p></script></p>
+<ol>
+<li><script src="//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+
+</li>
+</ol>
+<p>也就是說 </p>
+<ol>
+<li>jquery </li>
+<li>custom.js 你可以定義或更改jquery mobile configuration 和 widget option</li>
+<li>jquery mobile</li>
+</ol>
+<p>我認為接下來4. 就是你真正的程式進入點</p>
+<p><a href="http://stackoverflow.com/questions/12576062/jquery-document-ready-vs-phonegap-deviceready" target="_blank">jquery + phonegap</a>這個方法跟jason寫的方式有點類似</p>
+<p>啟動順序</p>
+<ol>
+<li>phonegap </li>
+<li>jQuery</li>
+<li>jQuery mobile</li>
+</ol>
+<p>雖然概念上是這樣子啟動沒有錯 問題是當DOM的數量變大 , 或 phonegap 要用的硬體裝置越多 那要怎麼確定順序?</p>
+<p><a href="http://stackoverflow.com/questions/10945643/correct-way-of-using-jquery-mobile-phonegap-together" target="_blank">jquery mobile + phonegap</a>用上一個很棒的方式 又加上deferred 變得很完美 決定用這方式</p>
+<h1 id="小東西_node_express_做_json_,_jsonp_測試">小東西 node express 做 json , jsonp 測試</h1>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-06-17T01:07:44.000Z"><a href="/2014/06/17/20140617/">Jun 17 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/06/17/20140617/">2014/06/17</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="bluetooth_workflow">bluetooth workflow</h1>
+<p><a href="http://www.codota.com/android/scenarios/527f77e2da0a8372f954bd1d/android.bluetooth.BluetoothSocket?tag=antelope" target="_blank">link</a></p>
+<h1 id="bluetoothSerical">bluetoothSerical</h1>
+<p>背後是寫android , 中間用javascript溝通, bluetoothSeial.list可以印出pair的裝置,但是bluetoothSerial.connect一直無法連上裝置,找不到錯誤原因</p>
+<p><a href="http://stackoverflow.com/questions/21457175/android-bluetooth-uuid-connecting-app-to-android" target="_blank">android app uuid</a></p>
+<h1 id="javascript_uuid">javascript uuid</h1>
+<p><a href="http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript" target="_blank">link</a></p>
+<h1 id="phonegap_uuid">phonegap uuid</h1>
+<p><a href="https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md" target="_blank">devices</a></p>
+<h1 id="android_bluetooth_api">android bluetooth api</h1>
+<p><a href="http://www.javaworld.com.tw/jute/post/view?bid=26&amp;id=275260" target="_blank">link</a></p>
+<h1 id="no_phonegap_bluetooth">no phonegap bluetooth</h1>
+<p>是可以用android來實作 , 但原本的目的是想用phonegap達到跨平台特性,這樣做成plugin也沒有意義</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-06-16T03:34:09.000Z"><a href="/2014/06/16/20140616/">Jun 16 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/06/16/20140616/">2014/06/16</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="favicon">favicon</h1>
+<p><a href="http://en.wikipedia.org/wiki/Favicon" target="_blank">wiki</a></p>
+<p><code>&lt;link rel=&quot;shortcut icon&quot; type=&quot;image/x-icon&quot; href=&quot;favicon.ico&quot; /&gt;</code></p>
+<p>其實在普通的html 只要加上這一行 就可以了</p>
+<p>但是若是一整個web , 需要開放給外面抓的到,才可以使用</p>
+<p>而在java springMVC 的開放方式是</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc8.png" alt="image"></p>
+<p>首先/WEB-INF/這個folder是不開放的,應該說基本上所有程式都不對外開放,而/WEB-INF/擁有開放的功能,所以我們將/dhtml/對應任一個folder or 檔案 的位置 都dispatch到/WEB-INF/dhtml/ , 並開放/WEB-INF/dhtml/ 這個資料夾, 所以任何人指定路徑到這個folder底下 都可以用瀏覽器抓到.</p>
+<h1 id="Arduino">Arduino</h1>
+<h1 id="css">css</h1>
+<p><a href="http://blog.kidwm.net/390" target="_blank">link</a></p>
+<h1 id="mestsa_puilta">mestsa puilta</h1>
+<p><a href="http://blogit.jamk.fi/metsaapuilta/2013/10/24/bluetooth-for-phonegap/" target="_blank">link</a></p>
+<p>裡面有一些我想學的東西 但一次太多了 不知道要花多少時間</p>
+<h1 id="underscores-js">underscores.js</h1>
+<p><a href="http://underscorejs.org/" target="_blank">link</a></p>
+<p>提供大量的javascript library,提供template 可以跟jQuery和Backbone一起使用</p>
+<h1 id="backbone-js">backbone.js</h1>
+<p>提供web application有效的結構</p>
+<p>model: key-value binding &amp; custom events</p>
+<p>collections: enumerable functions , </p>
+<p>views event handling </p>
+<h1 id="bluetooth_phonegap_plugin">bluetooth phonegap plugin</h1>
+<p><a href="https://github.com/don/BluetoothSerial" target="_blank">BlueToothSerical</a></p>
+<p><a href="https://github.com/don/BluetoothSerial/tree/master/examples/Chat" target="_blank">link</a></p>
+<p><code>cordova plugin add https://github.com/don/BluetoothSerial.git</code></p>
+<h1 id="serial_port_profile_(SPP)">serial port profile (SPP)</h1>
+<p><a href="https://developer.bluetooth.org/TechnologyOverview/Pages/SPP.aspx" target="_blank">link</a></p>
+<p>定義兩個bluetooth 如何連線</p>
+<h1 id="MAC_addrss_(Media_Access_Control_Address)">MAC addrss (Media Access Control Address)</h1>
+<h1 id="workflow">workflow</h1>
+<p>bluetooth devices need to <strong>pair</strong> first , and bluetoothSerial.list 就會印出有對應到裝置</p>
+<p>connect 給 MAC address 抓到裝置 並且連線  , 然後在bluetoothsocket 交換資料</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-06-13T01:13:04.000Z"><a href="/2014/06/13/20140613/">Jun 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/06/13/20140613/">2014/06/13</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="javascript_基本複習">javascript 基本複習</h1>
+<p><a href="http://www.vixual.net/blog/archives/31" target="_blank">link</a></p>
+<h1 id="mongoose_type">mongoose type</h1>
+<p><a href="http://mongoosejs.com/docs/schematypes.html" target="_blank">link</a></p>
+<p>mongoose array or mix 跟 json ,array ,object對應</p>
+<h1 id="json_pretty_print">json pretty print</h1>
+<p><a href="http://stackoverflow.com/questions/4810841/how-can-i-pretty-print-json-using-javascript" target="_blank">link</a></p>
+<p>pre =&gt; pre format </p>
+<h1 id="add_resources_handler">add resources handler</h1>
+<p>to manage the static resources</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+    <a href="/archives/page/12/" class="alignleft prev">Prev</a>
+  
+  
+    <a href="/archives/page/14/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

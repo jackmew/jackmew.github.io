@@ -1,0 +1,957 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 2 | Archives: 2014/5 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title">2014/5</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-16T01:43:04.000Z"><a href="/2014/05/16/20140516/">May 16 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/16/20140516/">2014/05/16</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="java_in_terminal">java in terminal</h1>
+<p>將昨天寫的java程式 在terminal執行</p>
+<p><a href="http://introcs.cs.princeton.edu/java/15inout/mac-cmd.html" target="_blank">mac-cmd</a></p>
+<p><code>javac Hello.java</code> 將java檔 compile成.class</p>
+<p><code>java Hello</code></p>
+<p>但一直出現類似錯誤</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/java/1.png" alt="image"></p>
+<p>後來發現原因是若是在你的Hello.java有定義package<br>ex:package <code>org.ls.test</code><br>你需要到org的上層去執行<code>java org.ls.test.Hello</code></p>
+<p>加入json-simple-1.1.1.jar =&gt;要用JSONObject , JSONParser等..</p>
+<p><a href="http://stackoverflow.com/questions/8949413/how-to-run-java-program-in-terminal-with-external-library-jar" target="_blank">java -cp</a></p>
+<p>執行方式<code>java -cp .:../lib/json-simple-1.1.1.jar com.dl.test.Standalone</code></p>
+<h1 id="json-simple">json-simple</h1>
+<p>查他的api<br><a href="https://code.google.com/p/json-simple/" target="_blank">json-simple</a></p>
+<h1 id="param-properties">param.properties</h1>
+<p>我想把url定成properties<br>rest 也可以定成properties </p>
+<p><a href="http://www.mkyong.com/java/java-getresourceasstream-in-static-method/" target="_blank">java-getresourceasstream-in-static-method</a></p>
+<p><a href="http://www.mkyong.com/java/java-properties-file-examples/" target="_blank">java-properties-file-examples</a></p>
+<p><a href="http://programming.im.ncnu.edu.tw/J_Chapter2.htm" target="_blank">static block</a></p>
+<p><a href="http://www.ewdna.com/2008/12/javautilpropertiessetproperty.html" target="_blank">java.util.Properties</a></p>
+<p>但一直無法成功</p>
+<p>突然發現folder 跟 source folder是不一樣的 </p>
+<p>將url.properties方入source folder就可以抓到了！</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-15T05:37:42.000Z"><a href="/2014/05/15/20140515/">May 15 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/15/20140515/">2014/05/15</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="java-net-url">java.net.url</h1>
+<p><a href="http://www.codedata.com.tw/java/java-restful-1-jersey-and-jax-rs" target="_blank">java-restful</a>這個架構挺像我們wbase-web的方式</p>
+<p><a href="http://stackoverflow.com/questions/11706918/how-do-you-set-session-attributes-with-java-net-urlconnection" target="_blank">how-do-you-set-session-attributes-with-java-net-urlconnection</a> 結論是session是server端的東西 client端無法產生</p>
+<p>當建立連線後 會產生sessionID 之後再次連上去 會因為同樣的sessionID 所以就可以知道你已經登入過了</p>
+<p><a href="http://www.hccp.org/java-net-cookie-how-to.html" target="_blank">如何抓cookie 然後抓sessionID</a> 但是他寫了一個很大的CookieManager 我不需要那麼多功能</p>
+<p><a href="http://rritw.com/a/JAVAbiancheng/JAVAzonghe/20100829/15676.html" target="_blank">Java模擬網站登錄</a> 這個取得sessionID的方式比較適合我</p>
+<p><a href="http://stackoverflow.com/questions/2793150/how-to-use-java-net-urlconnection-to-fire-and-handle-http-requests" target="_blank">java.net.url post 這根本精華篇吧</a></p>
+<p><a href="http://examples.javacodegeeks.com/enterprise-java/rest/restful-java-client-with-java-net-url/" target="_blank">restful-java-client-with-java-net-url</a>借由這篇我才發現寫成這樣<code>&quot;{\&quot;id\&quot;:1,\&quot;firstName\&quot;:\&quot;Liam\&quot;,\&quot;age\&quot;:22,\&quot;lastName\&quot;:\&quot;Marco\&quot;}&quot;</code>就會是JSON格式</p>
+<p>然而我又發現到</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/url1.png" alt="image"></p>
+<p>是先將array 包起資料 然後再變成JSON的</p>
+<p>所以我的JSON資料應該最外層再包一層</p>
+<p><code>&quot;[{\&quot;id\&quot;:1,\&quot;firstName\&quot;:\&quot;Liam\&quot;,\&quot;age\&quot;:22,\&quot;lastName\&quot;:\&quot;Marco\&quot;}]&quot;</code></p>
+<p>就可以傳到</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/url2.png" alt="image"></p>
+<p>requestBody 就可以接收到參數了</p>
+<p><code>conn.getInputStream()</code> 實際產生連線的部分</p>
+<h1 id="java_連rest_api_測試">java 連rest api 測試</h1>
+<p>以java的方式 連上 url 去call rest api 來做測試</p>
+<p>還挺有趣的 而且明顯發現自己的sense變強了 雖然還是要查資料</p>
+<p>但寫比較快了 之後錄上影片</p>
+<p>明天要解決的問題</p>
+<ol>
+<li><p>String抓部分message</p>
+</li>
+<li><p>用Terminal(console) 執行此java code</p>
+</li>
+</ol>
+<h1 id="restClient">restClient</h1>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-14T10:40:25.000Z"><a href="/2014/05/14/20140514/">May 14 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/14/20140514/">2014/05/14</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="comment">comment</h1>
+<p>javadoc 可以自動產生</p>
+<p><a href="http://stackoverflow.com/questions/12708446/loop-focus-of-input-fields-inside-a-form" target="_blank">http://stackoverflow.com/questions/12708446/loop-focus-of-input-fields-inside-a-form</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-13T02:30:52.000Z"><a href="/2014/05/13/20140513/">May 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/13/20140513/">2014/05/13</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="mongolab">mongolab</h1>
+<p><a href="https://mongolab.com/" target="_blank">link</a></p>
+<h1 id="mongoDB">mongoDB</h1>
+<p><a href="http://docs.mongodb.org/manual/tutorial/query-documents" target="_blank">link</a></p>
+<h1 id="mongoose">mongoose</h1>
+<p><a href="http://mongoosejs.com/docs/index.html" target="_blank">Getting Started</a></p>
+<p>在<code>~/jackho/node/em101</code></p>
+<p><code>npm install mongoose</code></p>
+<p>就會在node-module裡面加入mongoose的模組</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/10.png" alt="image"></p>
+<p>基本上都是從Getting started 貼過來的code</p>
+<p><code>~/jackho/node/em101</code><br><code>node script.js</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/11.png" alt="image"></p>
+<p>這樣子就成功了!? 好酷！</p>
+<p>實作find</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/12.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/13.png" alt="image"></p>
+<h1 id="virtual">virtual</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/14.png" alt="image"></p>
+<p>可以做一個中介 的variable 組合不同抓回來的db data</p>
+<h1 id="mongoose_auto_increment">mongoose auto increment</h1>
+<h1 id="Jade_重視縮排">Jade 重視縮排</h1>
+<p>只要縮排一錯誤 就產生問題..</p>
+<p>input(type=”submit”) 按下去就會發送request</p>
+<h1 id="mongoose-simpledb">mongoose-simpledb</h1>
+<p><a href="https://github.com/codetunnel/mongoose-simpledb" target="_blank">Chevex</a></p>
+<p><code>~/jackho/node/em101_simpledb</code></p>
+<p><code>install mongoose-simpledb</code> </p>
+<p>mongoose要定義的schema 和 model的動作 區分開 減少複雜度</p>
+<p>建立dbmodels , mongoose-simpledb會自動將此folder裡面的js檔 視為model</p>
+<p><code>var db = simpledb.init(&#39;mongodb://localhost/test&#39;);</code> 建立資料庫連線</p>
+<p><code>`db.Kitten(model).findOne..</code> 而且不管你命名kitten.js or Kitten.js 在用db.Kitten時 都要是大寫..不知道為什麼 可能是作者定義的吧</p>
+<p>find , findById .. update等 都跟mongo原本的操作方式很像 可以去查mongo官網</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/15.png" alt="image"></p>
+<h1 id="html_jquery_in_express">html jquery in express</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/16.png" alt="image"></p>
+<p><a href="http://www.hacksparrow.com/how-to-server-static-html-files-in-express-js.html" target="_blank">將html放在public folder底下</a> 並且可以用jquery call ajax抓資料</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/17.png" alt="image"></p>
+<p>成功抓到資料了! 實現前端 後端 都是javascript</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-12T01:13:07.000Z"><a href="/2014/05/12/20140512/">May 12 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/12/20140512/">2014/05/12</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="GDB_=&gt;_node-inspector">GDB =&gt; node-inspector</h1>
+<h1 id="VA_run_in_the_chrome">VA run in the chrome</h1>
+<h1 id="Node-js_MongoDB_Tutorial_using_Mongoose">Node.js MongoDB Tutorial using Mongoose</h1>
+<p><a href="https://www.youtube.com/watch?v=5e1NEdfs4is&amp;src_vid=FqMIyTH9wSg&amp;feature=iv&amp;annotation_id=annotation_419083267" target="_blank">simple</a></p>
+<p><a href="https://www.youtube.com/watch?v=CIPbmPUKyMI" target="_blank">mongo 101</a></p>
+<p><a href="https://www.youtube.com/watch?v=rt3VUVPa6W4" target="_blank">green</a></p>
+<p><a href="https://www.youtube.com/watch?v=D7ymgAvbjF0" target="_blank">實作聊天室</a></p>
+<h1 id="ServiceConfig">ServiceConfig</h1>
+<p>設定spring與mongo的連接</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc1.png" alt="image"></p>
+<p>Environment去抓 連接相關資訊 變數 從app.properties</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc2.png" alt="image"></p>
+<p><code>app.properties</code>放了db.name host.name</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc3.png" alt="image"></p>
+<h1 id="i18n">i18n</h1>
+<p>需要提到的是 使用了require.js 區分模組 所以不管要用哪個東西 都需要先定義模組位置,要使用時先include進來</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc4.png" alt="image"></p>
+<p>接下來就像是給予include進來的物件名字</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc5.png" alt="image"></p>
+<p>使用方法 就是用給予的物件名稱 去.出來</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc6.png" alt="image"></p>
+<p>資料在<code>label.UIDWidget.js</code> 意料之外的是i18n也是js檔</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc7.png" alt="image"></p>
+<h1 id="express">express</h1>
+<p><code>npm update</code> 可以update之前由npm安裝的套件 , 可是無法update自己</p>
+<p>express3.0.0  =&gt; express4.0.0</p>
+<p><code>express --hogan -c less exp2014_ex4.0.0</code> 產生template engine:hogan template , 俱有less功能 的專案 名稱:exp2014_ex4.0.0</p>
+<p><code>cd exp2014_ex4.0.0</code></p>
+<p><code>npm install</code> 根據package.json產生檔案</p>
+<p>啟動server方式也改變了 我用supervisor來自動refresh node</p>
+<p><code>supervisor bin/www</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/4.png" alt="image"></p>
+<p>app.js:</p>
+<p>先require(import) 某個routes(用來對應url 達到rest)<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/1.png" alt="image"></p>
+<p>在express4.0.0 router才有get function</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/5.png" alt="image"></p>
+<p>開啟瀏覽器</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/6.png" alt="image"></p>
+<p>我們可以看到name:’Jack’ , age:24 被render到template上了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/2.png" alt="image"></p>
+<p>res.send只是傳資料的行為 就像是之前的ResponseEntity </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/3.png" alt="image"></p>
+<h2 id="query_string">query string</h2>
+<p>可以很容易取得url上的query string</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/7.png" alt="image"></p>
+<p>另外一種奇怪的方式 取得參數</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/8.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/9.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-09T02:48:33.000Z"><a href="/2014/05/09/20140509/">May 9 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/09/20140509/">2014/05/09</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="introduce_node_2">introduce node 2</h1>
+<p><a href="http://www.youtube.com/watch?v=jo_B4LTHi3I" target="_blank">link</a></p>
+<p>最基本的tcp-server.js</p>
+<pre><code>var net = <span class="keyword">require</span>(<span class="string">'net'</span>);
+
+var server = net.createServer(function(<span class="keyword">socket</span>){
+    <span class="keyword">socket</span>.<span class="keyword">write</span>(<span class="string">'hello\n'</span>);
+    <span class="keyword">socket</span>.<span class="keyword">write</span>(<span class="string">'world\n'</span>);
+
+    <span class="keyword">socket</span>.on(<span class="string">'data'</span>,function(data){
+        <span class="keyword">socket</span>.<span class="keyword">write</span>(data);
+    });
+})
+
+server.<span class="keyword">listen</span>(<span class="number">8000</span>);
+</code></pre><p>只能自己的terminal回傳自己key在console的資料</p>
+<pre><code>net = <span class="built_in">require</span>(<span class="string">'net'</span>);
+
+<span class="keyword">var</span> sockets = [];
+
+<span class="keyword">var</span> s = net.Server(<span class="function"><span class="keyword">function</span><span class="params">(socket)</span>{</span>
+    sockets.push(socket);
+
+    socket.on(<span class="string">'data'</span>,<span class="function"><span class="keyword">function</span><span class="params">(d)</span>{</span>
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;sockets.length;i++)
+            sockets[i].write(d);
+    });
+});
+
+s.listen(<span class="number">8000</span>);
+</code></pre><p>new 一個array ,將大家的socket放在裡面    </p>
+<p>此時在另一個terminal就可以讀到共同的sockets data 然後data被write出來</p>
+<p>在結束後 remove dead socket    </p>
+<pre><code><span class="keyword">var</span> sockets = [];
+
+<span class="keyword">var</span> s = net.Server(<span class="function"><span class="keyword">function</span><span class="params">(socket)</span>{</span>
+    sockets.push(socket);
+
+    socket.on(<span class="string">'data'</span>,<span class="function"><span class="keyword">function</span><span class="params">(d)</span>{</span>
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;sockets.length;i++){
+            sockets[i].write(d);
+        }
+    });
+    <span class="comment">//remove dead socket</span>
+    socket.on(<span class="string">'end'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+        <span class="keyword">var</span> i = sockets.indexOf(socket);
+        sockets.splice(i,<span class="number">1</span>);
+    });
+});
+
+s.listen(<span class="number">8000</span>);    
+</code></pre><p>最後加上if (sockets[i] == socket) continue ;<br>來判斷若是自己的socket回應的資料 就skip掉 這樣就可以解決重複看到自己<br>打的文字的問題    </p>
+<pre><code>net = <span class="built_in">require</span>(<span class="string">'net'</span>);
+
+<span class="keyword">var</span> sockets = [];
+
+<span class="keyword">var</span> s = net.Server(<span class="function"><span class="keyword">function</span><span class="params">(socket)</span>{</span>
+    sockets.push(socket);
+
+    socket.on(<span class="string">'data'</span>,<span class="function"><span class="keyword">function</span><span class="params">(d)</span>{</span>
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;sockets.length;i++){
+            <span class="keyword">if</span> (sockets[i] == socket) <span class="keyword">continue</span>;
+            sockets[i].write(d);
+        }
+    });
+    <span class="comment">//remove dead socket</span>
+    socket.on(<span class="string">'end'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+        <span class="keyword">var</span> i = sockets.indexOf(socket);
+        sockets.splice(i,<span class="number">1</span>);
+    });
+});
+
+s.listen(<span class="number">8000</span>);    
+</code></pre><p>這樣就是個極小型的聊天室?!    </p>
+<h1 id="mongo_index">mongo index</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo18.png" alt="mongo">    </p>
+<p>ensureIndex 加上後就query很快了    </p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-08T04:04:08.000Z"><a href="/2014/05/08/20140508/">May 8 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/08/20140508/">2014/05/08</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="cornerstone">cornerstone</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/cornerstone/cs1.png" alt="cornerstone"></p>
+<p>在commit前 按下 <code>cmd+enter</code> 可以看你這次要commit和上一版本有什麼不一樣</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/cornerstone/cs2.png" alt="cornerstone"></p>
+<h1 id="根據視窗大小改變">根據視窗大小改變</h1>
+<p>原本是完全沒有根據視窗調整了 但還是很奇怪<br>而且之前看了 某些文章 調整layout部分根據視窗大小改變 需用% 或 em</p>
+<p>嘗試用div測試%</p>
+<p>用table排版 因為我不並不想整個div會動 只要左右縮排就好</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css25.png" alt="css"></p>
+<p>控制每一個td占有的寬度 並設定此table 寬度占有100%畫面</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css26.png" alt="css"></p>
+<p>較大</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css27.png" alt="css"></p>
+<p>較小</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css28.png" alt="css"></p>
+<p>比較特別的是div內 有東西時會根據內容物調整最小限度 若沒有東西 可以一直縮小</p>
+<h1 id="introduce_Node_,_Ryan_Dahl">introduce Node , Ryan Dahl</h1>
+<p><a href="http://www.youtube.com/watch?v=jo_B4LTHi3I" target="_blank">Introduction to NodeJS with Ryan Dahl</a></p>
+<p>本身就具備shell的功能</p>
+<p>可以看到global variable </p>
+<p>可以自己建立variable</p>
+<p>define function</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node9.png" alt="node"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node10.png" alt="node"></p>
+<p>Node(javascript) setTimeout or setInterval 的function是很特別的,在其他語言php , java並沒有 ,其他語言的方式通常是sleep or stop 2秒 , 程式是被block住的,然而Node setTimeout雖然也是延遲2秒鐘 但在這中間的2秒鐘還是有在監聽其他事件 能同時處理其它事情 並沒有被block住 ,所以常聽到Node是non-blocking,也因此被認為效率比較好,但code比較難寫?</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node11.png" alt="node"></p>
+<p>一般:</p>
+<p><code>java,php &lt;--&gt; apache,IIS &lt;--&gt;browser</code></p>
+<p>node:</p>
+<p><code>Node &lt;--&gt; browser</code></p>
+<p>Node本身就包了Server功能 包括HTTP server &amp; TCP server</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node12.png" alt="node"></p>
+<p>只要簡單幾行code就包辦了server功能?</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node13.png" alt="node"></p>
+<p>可以看到write Header的訊息</p>
+<p>keep-alive : persisting connection ,  you can call request<br>every time</p>
+<p>transfer-encoding : chunked =&gt; streaming</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node14.png" alt="node"></p>
+<p>加入setTimeout , 此時同時開多個terminal curl 同一個localhost:8000 </p>
+<p>都可以Hello 等 兩秒 World,證明node可以處理兩個以上的request</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node15.png" alt="node"></p>
+<p>產生n 100 個reqesut c 100 concurrency同行進行的request , 測試Node可否支援</p>
+<p>接下來是tcp-server.js</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node16.png" alt="node"></p>
+<p>可用telnet , nc(netcat?)去測試</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node17.png" alt="node"></p>
+<p>這表示你可在console輸入資料 並且server抓到 並回應</p>
+<p>開始實做chat.js</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node18.png" alt="node"></p>
+<p>看到34.12分鐘</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-07T02:28:01.000Z"><a href="/2014/05/07/20140507/">May 7 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/07/20140507/">2014/05/07</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="express_node_回憶操作流程">express node 回憶操作流程</h1>
+<p><code>~/node/microblog_mongo</code> 已經訂立好mongo連接的express project</p>
+<p><code>cd ~/node/microblog_mongo</code></p>
+<p><code>node app.js</code> 啟動node server後就可以在browser瀏覽</p>
+<p><code>mongod</code> local mongodb才會被啟動 </p>
+<p><strong>server debugging , node-inspector</strong></p>
+<p><code>npm install -g node-inspector</code></p>
+<p>啟動 <code>node-inspector --web-port={8081}</code> </p>
+<p>然後啟動node server <code>node --debug app.js</code></p>
+<p><strong>auto refresh , supervisor</strong></p>
+<p><code>npm install -g supervisor</code></p>
+<p><code>supervisor app.js</code> 此時你的code有變動 儲存後 會自動refresh</p>
+<p><strong>可以同時啟動</strong></p>
+<p><code>supervisor --debug app.js</code></p>
+<h1 id="pass_data">pass data</h1>
+<p>前端用javascript</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pass%20data/pd1.png" alt="pass"></p>
+<p>call jquery ajax的方式來傳data </p>
+<p>並先用JSON.stringify 將物件轉成Json才傳出去</p>
+<p>後端java,spring</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pass%20data/pd2.png" alt="pass"></p>
+<p>用List<Map>來接 JSON格式的資料</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/pass%20data/pd3.png" alt="image"></p>
+<p>回傳用ResponseEnity 將List傳出</p>
+<p>而ajax的callback funtion =&gt; success 可以直接接住 ???</p>
+<h1 id="express_request_twice">express request twice</h1>
+<p><a href="https://gist.github.com/kentbrew/763822" target="_blank">How to short-circuit those annoying favicon requests in node.js</a></p>
+<p>好像不是request favicon的問題</p>
+<pre><code>collection.find().each(<span class="reserved">function</span>(err, doc) {
+          <span class="keyword">if</span>(doc != <span class="literal">null</span>) <span class="built_in">console</span>.log(<span class="string">"Doc from Each "</span>);
+          <span class="built_in">console</span>.log(doc);
+          <span class="built_in">console</span>.log(<span class="string">"end find"</span>)
+          <span class="regexp">//</span> <span class="reserved">var</span> user = <span class="keyword">new</span> User(doc);
+          callback(err,doc);
+          mongodb.close();
+        });  
+    });
+</code></pre><p>因為只有重新執行這段 並不是request全部 可能是<strong>each</strong>?</p>
+<h1 id="JavaDoc">JavaDoc</h1>
+<p>下註解 下註釋 而且還可以滑鼠移過去還會跳出解釋視窗</p>
+<h1 id="莫名其妙popup不會跟著變大">莫名其妙popup不會跟著變大</h1>
+<p>在沒有調form height的時候</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css20.png" alt="css"></p>
+<p>運作正常</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css23.png" alt="css"></p>
+<p>但一加上</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css21.png" alt="css"></p>
+<p>慘… 而且這問題還很難找出是什麼原因</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css22.png" alt="css"></p>
+<h1 id="textarea_height">textarea height</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css24.png" alt="css"></p>
+<p>一定要加上<code>!important</code>才能改變textarea height</p>
+<p>並且限制高度以後 就不能<code>resize textarea</code> 就是你不能用滑鼠去拖大textarea</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-06T02:35:47.000Z"><a href="/2014/05/06/20140506/">May 6 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/06/20140506/">2014/05/06</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="模組化">模組化</h1>
+<p>jquery mobile 調整某些屬性 可以用整體共用元素 .ui-btn , .ui-page之類的<br>但是這樣很容易 調整到沒預想到的部分 所以還是分成小單位各次調整比較穩當  </p>
+<p>而且同樣的問題 看起來可以用一樣的方法解決 卻其實不一定可以達到 如果無法一次調整 就要<br>冷靜下來 各個慢慢分析 擊破</p>
+<h1 id="加上隱藏屬性">加上隱藏屬性</h1>
+<p><code>$(&quot;#btnAddUID&quot;).css(&quot;visibility&quot;, &quot;hidden&quot;);</code></p>
+<h1 id="捲到最上層">捲到最上層</h1>
+<p>scroll to top</p>
+<p><a href="https://api.jquerymobile.com/jQuery.mobile.silentScroll/" target="_blank">link</a></p>
+<p><a href="http://stackoverflow.com/questions/9783442/back-to-top-with-jquery-mobile" target="_blank">link</a></p>
+<p>一定要加上easing才有用</p>
+<p><code>$(&#39;html, body&#39;).animate( {scrollTop: &quot;400px&quot;}, {easing: &quot;swing&quot;, duration: 1600});</code></p>
+<h1 id="jquery_mobile_draggable_popup">jquery mobile draggable popup</h1>
+<p><a href="http://stackoverflow.com/questions/17811200/draggable-non-modal-popup-jquery-mobile" target="_blank">link</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-05T01:26:51.000Z"><a href="/2014/05/05/20140505/">May 5 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/05/20140505/">2014/05/05</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="jquery_mobile_table_屬性">jquery mobile table 屬性</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css16.png" alt="css"></p>
+<p>改變row的長寬</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css17.png" alt="css"></p>
+<h1 id="jquery_mobile_theme_gradient">jquery mobile theme gradient</h1>
+<p>ThemeRoller 1.4版本移<a href="http://blog.jquerymobile.com/2013/10/24/jquery-mobile-1-4-0-rc1-released/" target="_blank">除了gradient的效果</a>,必須要<a href="https://github.com/jquery/themeroller.jquerymobile.com/issues/149" target="_blank">手動加上</a><code>background-image</code>,這樣的方式跟我們現在做的方式差不多</p>
+<h1 id="jquery_mobile_popup">jquery mobile popup</h1>
+<p><a href="http://stackoverflow.com/questions/10514906/jquery-mobile-how-to-place-a-solid-border-round-the-page" target="_blank">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css18.png" alt="css"></p>
+<p>加上了外框</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css19.png" alt="css"></p>
+<h1 id="漸層工具">漸層工具</h1>
+<p><a href="http://www.colorzilla.com/gradient-editor/" target="_blank">link</a></p>
+<h1 id="java_,_node-js_deploy">java , node.js deploy</h1>
+<p>我希望可以隨時有個測試server , 可以隨時測試抓東西 ,隨時存東西</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+    <a href="/archives/2014/05/" class="alignleft prev">Prev</a>
+  
+  
+    <a href="/archives/2014/05/page/3/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

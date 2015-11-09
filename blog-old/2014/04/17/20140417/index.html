@@ -1,0 +1,480 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2014/04/17 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  <meta name="description" content="前端工程師F2E
+經由這篇phonegap UIWebView果然前端工程師能做的事情超多,而且這還是兩年前的文章,Javascript難學,代表很少人能夠精進,雖然我也挺弱…
+webview
+好像是可以將網頁直接嵌入你的app中?
+phonegap 似乎透過webview &amp;amp; javasc">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="2014/04/17"/>
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-17T02:40:35.000Z"><a href="/2014/04/17/20140417/">Apr 17 2014</a></time>
+      
+      
+  
+    <h1 class="title">2014/04/17</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="前端工程師F2E">前端工程師F2E</h2>
+<p>經由這篇<a href="http://blog.devtang.com/blog/2012/03/24/talk-about-uiwebview-and-phonegap/" target="_blank">phonegap UIWebView</a>果然前端工程師能做的事情超多,而且這還是兩年前的文章,Javascript難學,代表很少人能夠精進,雖然我也挺弱…</p>
+<h2 id="webview">webview</h2>
+<p><a href="http://androidbiancheng.blogspot.tw/2010/01/webview.html" target="_blank">好像是可以將網頁直接嵌入你的app中?</a></p>
+<p>phonegap 似乎透過webview &amp; javascript 去轉成各平台的app</p>
+<p>phonegap(api) =&gt; control your phone(camera,console…)</p>
+<h2 id="Sencha_+_phonegap">Sencha + phonegap</h2>
+<p>這3篇寫得相當好</p>
+<p><a href="http://blog.yslin.tw/2013/08/phonegap-sencha-touch-quickstart-part-i.html" target="_blank">PhoneGap + Sencha Touch QuickStart1</a></p>
+<p><a href="http://blog.yslin.tw/2013/08/phonegap-sencha-touch-quickstart-part-ii.html" target="_blank">PhoneGap + Sencha Touch QuickStart2</a></p>
+<p><a href="http://blog.yslin.tw/2013/08/phonegap-sencha-touch-quickstart-part.html" target="_blank">PhoneGap + Sencha Touch QuickStart3</a></p>
+<p><code>我們可以把 PhoneGap 想像成一個載體 (webview)，上面運行著 Sencha Touch web page，而透過 javascript 可以和底層的 device 溝通。</code></p>
+<p>這作者還找到方法<a href="http://blog.yslin.tw/2013/08/embedded-sencha-touch-demo-code-in-my.html" target="_blank">Embedded Sencha Touch Demo Code in My Blog</a></p>
+<p>好厲害..</p>
+<h2 id="Weinre">Weinre</h2>
+<p>從<a href="http://www.youtube.com/watch?v=4nL6xey13fE" target="_blank">youtube:Intro to Weinre: Remote Debugger for Mobile Web Apps</a>和<a href="http://www.appnovation.com/blog/weinre-how-remotely-debug-webkit-based-app-mobile-device" target="_blank">link</a>和<a href="http://www.youtube.com/watch?v=nODxzfAec68" target="_blank">youtube:Using Weinre to remote Debug an Icenium App</a></p>
+<p>都可以看出 的確是apk安裝到手機上 然後還可以debug!?</p>
+<p>sencha寫出的是純html,css,javascript的code 經由phonegap中介,可以轉為各式apk,pmg等平台安裝檔,但其實內容還是html,css,javascript,所以還是可以debug,是有可能的,</p>
+<p><a href="http://www.youtube.com/watch?v=HEqwnpLYnI0" target="_blank">Debug Phonegap/Cordova application with Weinre</a>有一些weinre的注意事項</p>
+<h2 id="Todo">Todo</h2>
+<p>phonegap自己本身就可以建立專案 build成apk到手機上安裝執行</p>
+<p>sencha app 轉 phoneap build apk 到手機上執行</p>
+<p>weinre 可以debug phonegap/cordova application</p>
+<p>所以現在要做的第一件事情是做一個最基本的phonegap app ,安裝到手機上,只要產生alert() 或一些可以改變顏色的部分,然後經由weinre 到 remote device(你的手機) 更改顏色 更改alert資訊 看console</p>
+<p><a href="http://sagittech.blogspot.tw/2012/06/using-weinre-to-debug-mobile-javascript.html" target="_blank">http://sagittech.blogspot.tw/2012/06/using-weinre-to-debug-mobile-javascript.html</a></p>
+<p>如果成功 再去做sencha app 安裝到手機 debug…</p>
+<p>根據這篇之前有做過<a href="http://jackmew.github.io/2014/03/28/20140328/">cordova build</a>但最後無法在模擬器上run…發生HAX抓不到的問題</p>
+<p>terminal:</p>
+<p><code>android</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/emulator/em1.png" alt="emulator"></p>
+<p>找到Emulator Accelerator 安裝</p>
+<p>結果還是不行！！！</p>
+<p>快氣死….</p>
+<p>結果發現剛剛的那個安裝 <a href="http://stackoverflow.com/questions/10761696/running-the-new-intel-emulator-for-android/10772162#10772162" target="_blank">並不是安裝 只是下載下來而已</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/emulator/em2.png" alt="emulator"></p>
+<p>找到路徑 找到dmg檔 安裝…</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/emulator/em3.png" alt="emulator"></p>
+<p>總算可以囉！</p>
+<p><code>android avd</code></p>
+<p>new一個模擬器</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/emulator/em4.png" alt="emulator"></p>
+<p><code>Use Host GPU</code> 打勾</p>
+<p>選擇模擬器後按下start</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/emulator/em5.png" alt="emulator"></p>
+<p>總算可以了 大哭…</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/emulator/em6.png" alt="emulator"></p>
+<p><a href="http://docs.phonegap.com/en/1.0.0/phonegap_events_events.md.html" target="_blank">deviceready</a></p>
+<p>ios-emulator簡單得多</p>
+<p><a href="http://docs.phonegap.com/en/edge/guide_platforms_ios_tools.md.html#iOS%20Command-line%20Tools" target="_blank">ios-emulator</a> run的部分改成emulator</p>
+<p>甚至只要點擊兩下</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/emulator/em7.png" alt="image"></p>
+<p>但也是因為我是用mac啦</p>
+<p><a href="http://style77125tech.pixnet.net/blog/post/17556680-%5Bandroid%5D-%E4%BD%BF%E7%94%A8adb%E6%8C%87%E4%BB%A4" target="_blank">android的一些指令</a> 好像挺實用</p>
+<p><a href="http://stackoverflow.com/questions/4974568/how-do-i-launch-the-android-emulator-from-the-command-line" target="_blank">emulator操作過程</a></p>
+<h2 id="YourAvdName-ini">YourAvdName.ini</h2>
+<p>開啓過avd後 關掉 無法再開第二次 也無法刪除</p>
+<p>其實也猜到應該是沒有完全shut down產生的問題 但找解決方法也找超久</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/emulator/em8.png" alt="emulator"></p>
+<p><a href="http://timvoet.com/2013/01/04/avd-emulator-crashes-on-mac/" target="_blank">其實很快就找到問題解答</a></p>
+<p>但我terminal下<code>ls -a</code> 找不到~/.android資料…?</p>
+<p><a href="http://stackoverflow.com/questions/8296599/virtual-device-can-not-be-deleted" target="_blank">直到看到這篇</a><code>cmd+shift+G</code> enter ~/.android</p>
+<p>我想說這招我早就會了 亂試一下 就出現了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/emulator/em9.png" alt="emulator"></p>
+<p>為啥termial<code>ls -a</code>看不到~/.android???</p>
+<p>把.ini和.avd都刪掉</p>
+<p>可是這樣就要重新new一次avd了..</p>
+<p>google一下how to close avd 才發現大家都有這問題…到底..</p>
+<p><a href="http://stackoverflow.com/questions/7690917/android-eclipse-avd-window-wont-close" target="_blank">稍微解釋</a></p>
+<p>或許只要開啓一次就要刪除一次..</p>
+<p>只要確實在termial上按下<code>ctrl+c</code>關閉avd就可以確實關閉</p>
+<p>terminal</p>
+<p><code>android avd</code> prompt GUI 手動start avd</p>
+<p>terminal cmd+t 開啓另外一個termial</p>
+<p><code>adb devices</code> 會看到你start avd有attached到 </p>
+<p>找到你要安裝的apk路徑 我的例子是在~/phonegap/hello/platforms/android/bin/HelloWorld-debug.apk</p>
+<p>我先<code>cd ~/phonegap/hello/platforms/android/bin</code></p>
+<p><code>adb -s emulator-5554 install HelloWorld-debug.apk</code></p>
+<p>此時就可以在emulator上看到你的app了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/emulator/em10.png" alt="emulaotr"></p>
+<p>此時環境已經確定都ok了</p>
+<p>再次重新做一次phonegap project到emulator</p>
+<h2 id="phonegap_project_install_to_emulator">phonegap project install to emulator</h2>
+<p>~/phonegap</p>
+<p><code>phonegap create pg com.example.pg PGProject</code></p>
+<p>產生最基本的phonegap project</p>
+<p><code>cd pg/</code> </p>
+<p><code>phonegap build android</code>產生支援android project</p>
+<p><code>cd platforms/android/</code></p>
+<p><code>ant debug</code> 編譯android project</p>
+<p>產生要安裝的apk在~/phonegap/pg3/platforms/android/bin/HelloWorld-debug.apk</p>
+<p>打開emulator</p>
+<p><code>android avd</code> start 你要啓動的emulator</p>
+<p>cmd + t 開啓新的terminal</p>
+<p><code>adb devices</code></p>
+<p>output:</p>
+<p>List of devices attached<br><strong>emulator-5554</strong>    device</p>
+<p>找到emulator名稱</p>
+<p><code>adb -s emulator-5554 install ~/phonegap/pg3/platforms/android/bin/HelloWorld-debug.apk</code></p>
+<h2 id="sencha_to_phonegap_to_emulator">sencha to phonegap to emulator</h2>
+<p><code>cd phonegap</code></p>
+<p><code>sencha -sdk ~/sencha/touch-2.3.1/ generate app spg ./spg</code></p>
+<p>產生好最基本的sencha project</p>
+<p><code>cd spg/</code></p>
+<p><code>sencha -sdk ~/sencha/touch-2.3.1/ phonegap init com.sencha spg</code> 包成phonegap</p>
+<p>修改<br>spg/phonegap.local.properties</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/emulator/em11.png" alt="em11"></p>
+<p>phonegap.platform可以決定你要build成哪種平台</p>
+<p>phonegap.build.remote決定要不要遠端build並放上<a href="https://build.phonegap.com/" target="_blank">phonegap.build雲端上</a></p>
+<p>你註冊的賬號密碼<br>phonegap.build.remote.username<br>phonegap.build.password</p>
+<p><code>sencha app build -run native</code></p>
+<p>我是在已經啓動android avd的情況下 下達這句指令 然後就直接安裝並啓動sencha app了！</p>
+<p>所以應該是先啓動android avd再做之後build的動作</p>
+<p>在build的時候產生了~/phonegap/spg/phonegap/platforms/android/ant-build/<strong>HelloWorld-debug.apk
+</strong></p>
+<p><code>adb -s emulator-5554 logcat</code> 看emulator的log</p>
+<p>但裡面超多log的 很不清楚…</p>
+<h2 id="實作Weinre">實作Weinre</h2>
+<p>Java compile後變成war ,deploy到tomcat上,雖然已經被包在war裡面了,還是可以debug</p>
+<p>所以雖然sencha最後被包成apk,當然也可以debug</p>
+<p>安裝weinre</p>
+<p><code>npm -g install weinre</code></p>
+<p><code>weinre --boundHost -all-</code> 這樣就可以啓動debug server</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/emulator/em12.png" alt="emulator"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/blog/">blog</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/phonegap/">phonegap</a>, <a href="/tags/sencha/">sencha</a>, <a href="/tags/android/">android</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jackmew.github.io/2014/04/17/20140417/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

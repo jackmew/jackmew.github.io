@@ -1,0 +1,449 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2014/09/11 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  <meta name="description" content="Heroku Postgresql
+link
+buildpacks : what compiles your application into a runnable entity on Heroku.
+postgresql command
+\l =&amp;gt; list all database\d =">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="2014/09/11"/>
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-12T01:38:44.000Z"><a href="/2014/09/12/20140911/">Sep 12 2014</a></time>
+      
+      
+  
+    <h1 class="title">2014/09/11</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Heroku_Postgresql">Heroku Postgresql</h1>
+<p><a href="https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-the-add-on" target="_blank">link</a></p>
+<p>buildpacks : what compiles your application into a runnable entity on Heroku.</p>
+<h1 id="postgresql_command">postgresql command</h1>
+<p><code>\l</code> =&gt; list all database<br><code>\d</code> =&gt; list all table<br><code>\du</code> =&gt; list all user</p>
+<p>解決一開始登入postgres.app時 沒有自動建立database的問題 <a href="https://github.com/PostgresApp/PostgresApp/issues/139" target="_blank">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/1.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/2.png" alt="image"></p>
+<p>create db新增資料庫 , create user , grant user <a href="http://postgresguide.com/setup/users.html#adding-a-user" target="_blank">link</a></p>
+<p>CRUD <a href="https://www.digitalocean.com/community/tutorials/how-to-create-remove-manage-tables-in-postgresql-on-a-cloud-server" target="_blank">How To Create, Remove, &amp; Manage Tables in PostgreSQL on a Cloud Server</a></p>
+<p>select 查詢  <a href="http://postgresguide.com/SQL/select.html" target="_blank">link</a></p>
+<h1 id="workflow">workflow</h1>
+<p>登入 並且列出database / table</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/3.png" alt="image"></p>
+<p>建立 新的使用者</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/4.png" alt="image"></p>
+<p><code>\du</code> 列出所有使用者</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/5.png" alt="image"></p>
+<p>建立資料庫 並給予使用者權限</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/6.png" alt="image"></p>
+<p>建立table</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/7.png" alt="image"></p>
+<p>insert 資料 , select</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/8.png" alt="image"></p>
+<p>where , update </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/9.png" alt="image"></p>
+<h1 id="在spring_boot_連上_postgres_database">在spring boot 連上 postgres database</h1>
+<p>原本用mysql實作的部分 改成postgres database</p>
+<p>建立Monster table  </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/12.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/13.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/14.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/11.png" alt="image"></p>
+<p>spring boot 連線到postgres</p>
+<p><a href="http://stackoverflow.com/questions/23287462/spring-boot-fails-to-load-datasource-using-postgresql-driver" target="_blank">spring-boot-fails-to-load-datasource-using-postgresql-driver</a></p>
+<p>首先去maven repository 找到postgresql drive</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/15.png" alt="image"></p>
+<p>加到pom.xml</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/16.png" alt="image"></p>
+<p>application.properties 原本mysql的部分改成postgresql</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/17.png" alt="image"></p>
+<p>用pgadmin 看 postgresql</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/18.png" alt="image"></p>
+<p>成功抓到!</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/19.png" alt="image"></p>
+<h1 id="接下來要嘗試去抓heroku_提供的postgresql">接下來要嘗試去抓heroku 提供的postgresql</h1>
+<p>從~/spring/ptf/.git 檔案 所以heroku可以去抓到ptf 這個專案的相關資料</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/20.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/21.png" alt="image"></p>
+<p>接下來這個就跟<code>psql</code> 下達指令在我們termial情形一樣 , 但前面都加了<code>heroku pg:psql</code> 就可以連上這個project 提供的 postgres database , 太酷了 !!!</p>
+<p>重複將建立monster table ,並塞入資料</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/22.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/23.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/24.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/25.png" alt="image"></p>
+<h1 id="pgadmin_link_to_heroku_postgres_database">pgadmin link to heroku postgres database</h1>
+<p><code>heroku pg:credentials HEROKU_POSTGRESQL_VIOLET_URL</code></p>
+<p>會印出登入需要的資訊</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/26.png" alt="image"></p>
+<p><a href="http://stackoverflow.com/questions/11769860/connect-to-a-heroku-database-with-pgadmin" target="_blank">Maintenance  DB 其實是這邊的dbname</a></p>
+<p>成功了!!! </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/27.png" alt="image"></p>
+<h1 id="接下來就是spring_boot_連連看!">接下來就是spring boot 連連看!</h1>
+<p>將database_url 改掉</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/28.png" alt="image"></p>
+<p>但這時候出現的一個問題</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/29.png" alt="image"> </p>
+<p>知道是要<a href="https://devcenter.heroku.com/articles/connecting-to-relational-databases-on-heroku-with-java" target="_blank">加上ssl , sslfactory</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/32.png" alt="image"></p>
+<p>但是要怎麼加?<a href="http://stackoverflow.com/questions/23041164/how-to-do-i-deploy-a-spring-app-using-postgresql-to-heroku-using-spring-boot" target="_blank">link</a> , 這是用xml設定的方式</p>
+<p>但在spring boot 都是設定在applicaiton.properties才對呀</p>
+<p>隨便亂試試看…</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/30.png" alt="image"></p>
+<p>就成功了!!!</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/31.png" alt="image"></p>
+<p>唯一的問題是建立連線速度超慢<code>Started App in 152.321 seconds JVM running for 153.307</code></p>
+<p><code>git status</code></p>
+<p><code>git add</code></p>
+<p><code>git commit -m &quot;xxxx&quot;</code></p>
+<p><code>git push heroku master</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/33.png" alt="image"></p>
+<p>成功啦!</p>
+<p>證明git 可以同時push到 好幾個地方 <a href="http://stackoverflow.com/questions/12708716/link-heroku-app-to-github-repo-for-what" target="_blank">link</a></p>
+<p>所以我將這個project 也push到github</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/34.png" alt="image"></p>
+<h1 id="開始實作User_login">開始實作User login</h1>
+<p>出現奇怪問題<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/1/9.png" alt="image"><br><a href="http://stackoverflow.com/questions/10628099/hibernate-could-not-get-next-sequence-value" target="_blank">link</a></p>
+<p>似乎是postgres 產生serial id的方式 不同</p>
+<p>要把</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/1/10.png" alt="image"></p>
+<p>換成</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/1/11.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/blog/">blog</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/heroku/">heroku</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jackmew.github.io/2014/09/12/20140911/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

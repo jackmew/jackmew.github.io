@@ -1,0 +1,434 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2014/4/16 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  <meta name="description" content="phonegap build
+刪除你放在phonegap build上的app
+
+點選你的app
+setting 滑到最下面
+找到刪除按鈕 刪除
+
+sencha -sdk /SDK/sencha/touch-2.3.1 generate app TestCloud ./TestCloud
+~/jac">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="2014/4/16"/>
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-16T02:14:56.000Z"><a href="/2014/04/16/20140416/">Apr 16 2014</a></time>
+      
+      
+  
+    <h1 class="title">2014/4/16</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="phonegap_build">phonegap build</h2>
+<p>刪除你放在phonegap build上的app</p>
+<ol>
+<li>點選你的app</li>
+<li>setting 滑到最下面</li>
+<li>找到刪除按鈕 刪除</li>
+</ol>
+<p><code>sencha -sdk /SDK/sencha/touch-2.3.1 generate app TestCloud ./TestCloud</code></p>
+<p>~/jacho/project/sencha/Jackmew_MVC</p>
+<p><code>sencha -sdk ../touch2.3.1/ phonegap init com.sencha.jackemw</code></p>
+<p><code>sencha app build -run native</code></p>
+<p>應該只要<code>sencha app build</code> ?</p>
+<p>一定要下<code>sencha app build -run native</code>才會到phonegap remote build</p>
+<h2 id="workspace">workspace</h2>
+<p><a href="http://www.sencha.com/forum/showthread.php?269261-Creating-Workspace-Applications-and-Themes-with-Sencha-Cmd-Video" target="_blank">http://www.sencha.com/forum/showthread.php?269261-Creating-Workspace-Applications-and-Themes-with-Sencha-Cmd-Video</a></p>
+<h2 id="sencha_generate_app_problem">sencha generate app problem</h2>
+<p>problem:<code>is already a configured application named</code></p>
+<p><a href="http://www.sencha.com/forum/showthread.php?260626-Sencha-Architect-error" target="_blank">solution</a>:<code>rm -f .sencha</code> 把產生app到一半的資訊刪除</p>
+<h2 id="在手機上發出Ajax_or_jsonp">在手機上發出Ajax or jsonp</h2>
+<p>應該會碰到<a href="http://stackoverflow.com/questions/8068557/phonegap-sencha-android-ajax-request-with-a-basic-access-authentication-fa" target="_blank">HTTP authenticatoin problem</a></p>
+<p>看了一下<a href="https://www.google.com.tw/search?q=http+authentication&amp;oq=HTTP+&amp;aqs=chrome.1.69i57j69i59j69i65l2j69i60l2.9542j0j7&amp;sourceid=chrome&amp;es_sm=91&amp;ie=UTF-8" target="_blank">HTTP Authentication</a> 好像其實沒有關係耶? 而是用別的方式先登入 才行..</p>
+<h2 id="登入_wbase">登入 wbase</h2>
+<p>又發現 回傳的是json 不是javascript</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/protocol/protocal14.png" alt="image"></p>
+<p>接下來要試試看 將回傳的payload 包成javascript</p>
+<p><code>return new ResponseEntity&lt;Payload&gt;(payload, HttpStatus.OK);</code></p>
+<p>回傳的會是json</p>
+<p>我要在回傳之前將payload包起來 變成javascript</p>
+<p>那要怎麼把payload這個java bean convert to json ?</p>
+<p>我們用來處理json的jar是用這個</p>
+<pre><code> <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>jackson-core<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">version</span>&gt;</span>2.2.3<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>jackson-databind<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">version</span>&gt;</span>2.2.3<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+</code></pre><p><a href="http://www.journaldev.com/2324/jackson-json-processing-api-in-java-example-tutorial" target="_blank">http://www.journaldev.com/2324/jackson-json-processing-api-in-java-example-tutorial</a></p>
+<p><a href="http://www.mkyong.com/java/how-to-convert-java-object-to-from-json-jackson/" target="_blank">www.mkyong.com</a></p>
+<p>jackson jar中有個ObjectMapper 可以拿來轉換javaBean to json</p>
+<p><code>mapper.writeValue(System.out,payload);</code></p>
+<p>會直接將payload輸出成json到System.out(console)</p>
+<p><code>String s  = mapper.writeValueAsString(payload);</code></p>
+<p>將javaBean 轉成json string</p>
+<p>output s : <code>{&quot;status&quot;:&quot;Y&quot;,&quot;code&quot;:null,&quot;message&quot;:null,&quot;items&quot;:[{&quot;role&quot;:&quot;S&quot;}]}</code></p>
+<p>成功包成javascript了！</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/protocol/protocal15.png" alt="jsonp"></p>
+<p><strong>好像不能連用Ext.Msg.alert() , 可是可以連用alert()</strong></p>
+<p>那登入功能就完成了 success之後 再次去call jsonpAgain(), 去要資料</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/protocol/protocal16.png" alt="jsonp"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/protocol/protocal17.png" alt="jsonp"></p>
+<p>成功抓到資料！</p>
+<h2 id="Remote_Debug">Remote Debug</h2>
+<p>安裝在手機上 ajax就直接失敗</p>
+<p>不知道是不是因為改</p>
+<p>config.xml裡的<code>&lt;access origin=&quot;*&quot; /&gt;</code></p>
+<p>還是不行…到底要怎樣在手機上debug? =&gt;<a href="https://www.sencha.com/blog/remote-javascript-debugging-on-android/" target="_blank">remote debug</a>!</p>
+<p><code>sencha app upgrade</code>會失敗 </p>
+<p>直接再generate一次sencha project 然後將app資料夾等資料複製取代過去</p>
+<p>就等於upgrade了</p>
+<p>測試call external的google api在手機上call</p>
+<p>如果沒有改<code>&lt;access origin=&quot;*&quot; /&gt;</code>  就call不到</p>
+<p>然而抓 local的json data 卻竟然抓不到?</p>
+<p>ajax 也一樣不能call…</p>
+<h2 id="weinre">weinre</h2>
+<p><a href="http://www.youtube.com/watch?v=4nL6xey13fE" target="_blank">超酷！</a></p>
+<p>可以直接控制手機耶畫面耶 太屌了吧?!?!</p>
+<p><a href="http://www.sencha.com/forum/showthread.php?245969-Debug-an-app-with-weinre" target="_blank">sencha+weinre</a></p>
+<p>用成功 超強！</p>
+<p><a href="http://miliwo.com/w/1113/20329" target="_blank">似乎有很多有用東西</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/blog/">blog</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/sencha/">sencha</a>, <a href="/tags/phonegap/">phonegap</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jackmew.github.io/2014/04/16/20140416/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1527 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 10 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-08-08T01:25:59.000Z"><a href="/2014/08/08/20140808/">Aug 8 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/08/08/20140808/">2014/08/08</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="command_object">command object</h1>
+<p><a href="http://stackoverflow.com/questions/7583577/what-is-the-command-object-in-spring-framework" target="_blank">link</a></p>
+<p><a href="http://docs.spring.io/spring-framework/docs/2.0.8/reference/mvc.html" target="_blank">link</a></p>
+<p>大概就是Spring 拿來傳送data 的 object吧</p>
+<h1 id="@MappedSuperclass">@MappedSuperclass</h1>
+<p><a href="http://ynp.iteye.com/blog/781097" target="_blank">link</a></p>
+<h1 id="override_hashCode()_&amp;_equals">override hashCode() &amp; equals</h1>
+<p><a href="http://dtr-trading.blogspot.tw/2014/02/spring-mvc-4-bootstrap-and-validation.html" target="_blank">link</a></p>
+<p>必須去復習一下 , 似乎是很basic 卻很重要的基礎</p>
+<p><a href="http://www.halyph.com/2013/05/equals-hashcode-and-tostring-in-java.html" target="_blank">Equals, HashCode and toString in Java</a></p>
+<p>作者認為IDE產生的equals , hashCode , toString 很難 maintenance .</p>
+<p>認為用Apache Commons Langs or Google Guave 實作的 equals,hashCode,toString比較好 , 但是在文章最後也說如果你只需要equals,hashcode,toString的話 , 那還是不要另外加上library吧…</p>
+<p>所以我決定用IDE產生的就好</p>
+<h1 id="serializable">serializable</h1>
+<p><a href="http://stackoverflow.com/questions/2020904/when-and-why-jpa-entities-should-implement-serializable-interface" target="_blank">spring entity serializable</a></p>
+<h1 id="SerialVersionUID">SerialVersionUID</h1>
+<p><a href="http://www.mkyong.com/java-best-practices/understand-the-serialversionuid/" target="_blank">mkyong</a> </p>
+<h1 id="RedirectAttributes:_addAttribute_vs_addFlashAttribute">RedirectAttributes: addAttribute vs addFlashAttribute</h1>
+<p><a href="http://stackoverflow.com/questions/14470111/spring-redirectattributes-addattribute-vs-addflashattribute" target="_blank">link</a></p>
+<p>addAttribute : 存在session中 而且可以加上或取得request param</p>
+<p>addFlashAttribute : 只要到下一次redirect request 就會被清除</p>
+<h1 id="Thymeleaf_:_Validation_&amp;_error_message">Thymeleaf : Validation &amp; error message</h1>
+<p><a href="http://www.thymeleaf.org/doc/thymeleafspring.html#validation-and-error-messages" target="_blank">Validation and Error Messages</a></p>
+<p>在Entity 先設定 validation(條件)<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/validation/1.png" alt="image"></p>
+<p>在controller 加入@Valid 去驗證條件 , BindingResult 會存入錯誤訊息 還有錯誤訊息數量 , BindingResult 會被塞入 model 傳到html</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/validation/3.png" alt="image"></p>
+<p>field.hasErrors(“xxx”) =&gt; 會判斷xxx欄位有沒有錯誤<br>有的就會顯示error , 而這個錯誤訊息bind到Entity </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/validation/4.png" alt="image"></p>
+<p>然後再去抓這個Entity錯誤訊息 bind到哪個validationMessage的key/value</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/validation/6.png" alt="image"></p>
+<p>接著就可以顯示啦~  紅色的字是因為 class=”text-danger”</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/validation/5.png" alt="image"></p>
+<p>接下來將錯誤訊息 也改為internalization</p>
+<p>首先我們知道<a href="http://stackoverflow.com/questions/6261858/internationalization-in-hibernate-validators" target="_blank">By default messages are retrieved from a resource bundle named “ValidationMessages”.</a> , 所以可以猜測其他國家的錯誤訊息格式應該是這樣<a href="http://www.javacodegeeks.com/2012/12/jax-rs-bean-validation-error-message-internationalization.html" target="_blank">ValidationMessages_XX.properties</a></p>
+<p>把Locale改成台灣</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/validation/7.png" alt="image"></p>
+<p>加入ValidationMessages_zh_TW.properties</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/validation/8.png" alt="image"></p>
+<p>成功！</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/validation/9.png" alt="image"></p>
+<h1 id="bootsrap_theme">bootsrap theme</h1>
+<p>當我想要使用bootsrap theme 時 要加入一些css , font ,js ,可是我用webjar , 把boostrap , jquery 放在其它folder , 其實還是可以做 , 可是更大的問題是 , 如果之後要加入更多.js , .css ,那不是變得更複雜？ 而且放置的位置就不能一致 , 挺怪的… 決定放棄只用webjar</p>
+<h1 id="完成frament">完成frament</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/validation/10.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/validation/11.png" alt="image"></p>
+<h1 id="login_and_basic_security">login and basic security</h1>
+<p>需要加上<code>spring-boot-starter-security</code></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-08-07T01:28:19.000Z"><a href="/2014/08/07/20140807/">Aug 7 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/08/07/20140807/">2014/08/07</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="spring_boot_log">spring boot log</h1>
+<p>我在pom.xml加入slf4j &amp; log4j 出現問題</p>
+<p><a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-logging" target="_blank">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/logger/2.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/logger/3.png" alt="image"></p>
+<p>原來spring boot start poms 就已經有包括slf4j &amp; log4j</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/logger/4.png" alt="image"></p>
+<p>在application.properties 中加入.log檔案產生的位置,log level , 但log level要注意的是 最後面還要有一個點 <a href="http://stackoverflow.com/questions/20485059/spring-boot-how-can-i-set-the-logging-level-with-application-properties" target="_blank">logging.level.=DEUBG</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/logger/5.png" alt="image"></p>
+<p>但level設到debug 會多出一堆的訊息= =</p>
+<h1 id="接下來要完成thymeleaf_CRUD">接下來要完成thymeleaf CRUD</h1>
+<h1 id="Thymeleaf_model">Thymeleaf model</h1>
+<p>當我要做Add的時候 需要傳一個object 回去給controller</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/34.png" alt="image"></p>
+<p>可是出現一個問題</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/33.png" alt="image"></p>
+<p>現在終於看懂為什麼要加Strategy object</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/35.png" alt="image"></p>
+<p>多加上Strategy object 到 html頁面 用以在需要add strategy 時 拿來封裝的object</p>
+<h1 id="button_send_parameter">button send parameter</h1>
+<p>可否按下不同button 抓到不同訊息?</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/22.png" alt="image"></p>
+<p>按下update or 按下 cancel =&gt; controller可以接到不同訊息</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/21.png" alt="image"></p>
+<p>接下來controller 可以接到參數名稱為action value=save/cancel</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/20.png" alt="image"></p>
+<h1 id="send_query_string">send query string</h1>
+<p>send one variable and one string</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/23.png" alt="image"></p>
+<p>and controller use @RequestParam receive these two parameter.</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/24.png" alt="image"></p>
+<h1 id="Use_webjar_to_add_Bootstrap">Use webjar to add Bootstrap</h1>
+<p><a href="http://spring.io/blog/2014/01/03/utilizing-webjars-in-spring-boot" target="_blank">webjars-in-spring-boot</a></p>
+<p><a href="http://www.webjars.org/" target="_blank">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/30.png" alt="image"></p>
+<h4 id="在pom-xml加入">在pom.xml加入</h4>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/32.png" alt="image"></p>
+<h4 id="html_include_jquery_,_bootstrap">html include jquery , bootstrap</h4>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/31.png" alt="image"></p>
+<h1 id="&nbsp;">&nbsp;</h1>
+<p>控制項之間加入空白</p>
+<h1 id="form-group">form-group</h1>
+<p><a href="http://getbootstrap.com/css/" target="_blank">link</a></p>
+<p>bootstrap 用來滿足原本grid system的方式 用在table</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-08-06T01:37:14.000Z"><a href="/2014/08/06/20140806/">Aug 6 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/08/06/20140806/">2014/08/06</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="設定DatabaseConfig_,_用dataSource建立連現時_一直出現問題">設定DatabaseConfig , 用dataSource建立連現時 一直出現問題</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/10.png" alt="image"></p>
+<p>結果只是mysql server 還沒啟動</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/11.png" alt="image"></p>
+<p>再次<code>spring-boot:run</code></p>
+<p>就成功了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/12.png" alt="image"></p>
+<h1 id="No_Session_found_for_current_thread">No Session found for current thread</h1>
+<p><a href="http://www.mkyong.com/spring/spring-hibernate-no-session-found-for-current-thread/" target="_blank">Spring + Hibernate : No Session Found For Current Thread , mkyong</a></p>
+<p>The sessionFactory needs transaction to work, to solve it, declare a transaction manager in Spring.</p>
+<p>所以我在ServieImple 加上 @Transactional 就可以了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/13.png" alt="image"></p>
+<h1 id="java-lang-IllegalStateException:_Neither_BindingResult_nor_plain_target_object_for_bean_name_‘strategyDTO’_available_as_request_attribute">java.lang.IllegalStateException: Neither BindingResult nor plain target object for bean name ‘strategyDTO’ available as request attribute</h1>
+<p>很奇怪的問題 </p>
+<p>我在controller 傳資料 根本沒有傳StrategyDTO , 為啥會出現這問題？</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/16.png" alt="image"></p>
+<p>打算傳List<Strategy> 到Strategy-list.html </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/17.png" alt="image"></p>
+<p>卻一直出現Exeption</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/18.png" alt="image"></p>
+<p>原來是Strategy-list.html 下面還有一個</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/19.png" alt="image"></p>
+<p>把他刪除 就可以了</p>
+<p>我一直以為Thymeleaf在找不到相對應的參數時 就會不理會 抓不到而已, 原來在request發出後 就會去檢查 相對應的參數…</p>
+<p>Thymeleaf果然是Server-side 程式 </p>
+<h1 id="Thymeleaf_send_object_/_receive_object">Thymeleaf send object / receive object</h1>
+<p><a href="http://stackoverflow.com/questions/17669212/send-datas-from-html-to-controller-in-thymeleaf" target="_blank">簡單明瞭的講解</a></p>
+<p><a href="http://www.thymeleaf.org/doc/thymeleafspring.html" target="_blank">thymeleaf + spring</a></p>
+<p><a href="https://github.com/jackmew/ThymeleafPassing" target="_blank">我寫成可以執行的Thymeleaf範例程式</a></p>
+<h1 id="log">log</h1>
+<p><a href="http://singleant.iteye.com/blog/934593" target="_blank">slf4j + log4j</a></p>
+<p>有各種方式的方式的搭配方法 , 但我看了Jason和DTR的log配置 竟然一模一樣! </p>
+<pre><code><span class="comment">&lt;!-- ** Logging ** --&gt;</span>
+    <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>slf4j-api<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">version</span>&gt;</span>${org.slf4j-version}<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>jcl-over-slf4j<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">version</span>&gt;</span>${org.slf4j-version}<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="title">scope</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>slf4j-log4j12<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">version</span>&gt;</span>${org.slf4j-version}<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="title">scope</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+        <span class="comment">&lt;!-- exclude missing libraries in central Maven repository because of license issues --&gt;</span>
+        <span class="tag">&lt;<span class="title">exclusions</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">exclusion</span>&gt;</span>
+                <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>javax.mail<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+                <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>mail<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+            <span class="tag">&lt;/<span class="title">exclusion</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">exclusion</span>&gt;</span>
+                <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>javax.jms<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+                <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>jms<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+            <span class="tag">&lt;/<span class="title">exclusion</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">exclusion</span>&gt;</span>
+                <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>com.sun.jdmk<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+                <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>jmxtools<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+            <span class="tag">&lt;/<span class="title">exclusion</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">exclusion</span>&gt;</span>
+                <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>com.sun.jmx<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+                <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>jmxri<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+            <span class="tag">&lt;/<span class="title">exclusion</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">exclusions</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="title">scope</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+</code></pre><p>這應該也是slf4j + log4j的配置 並且排除掉 一些不需要的功能 , 既然如此 我也這樣配置</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-08-05T01:34:32.000Z"><a href="/2014/08/05/20140805/">Aug 5 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/08/05/20140805/">2014/08/05</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="mysql">mysql</h1>
+<p><a href="http://blog.wu-boy.com/2012/11/innodb-as-the-default-mysql-storage-engine/" target="_blank">InnoDB</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/7.png" alt="image"></p>
+<p>預設已經是InnoDB,好像有很多優點 就用吧 比較要注意的是 作者說在最好在每個table都要有Primary key ,因為有Primary key InnoDB就會自動優化效能.</p>
+<p><a href="http://www.dotblogs.com.tw/jimmyyu/archive/2009/08/30/10320.aspx" target="_blank">Collation</a> : 定序指的就是決定資料被排序與比對的規則</p>
+<p><a href="http://www.codedata.com.tw/database/mysql-tutorial-13-stored-routines/" target="_blank"> Stored Procedures</a> : 就是一種預存程式 , 將原本很長的程式 包在Procedures裡面 並給予名稱 , 所以下次當要執行這個很長的程式 , 只要呼叫Procedures就行了</p>
+<p><a href="http://stackoverflow.com/questions/733349/list-of-stored-procedures-functions-mysql-command-line" target="_blank">show function/procedure status</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/8.png" alt="show procedure status"></p>
+<p>受不了每次要看database , table , 就要一直下指令 有夠麻煩 試試看 <a href="http://www.sequelpro.com/" target="_blank">Sequal pro</a></p>
+<h1 id="Users,_Roles,_Permissions">Users, Roles, Permissions</h1>
+<p><a href="http://dtr-trading.blogspot.tw/2014/04/spring-security-32-users-roles.html" target="_blank">link</a></p>
+<p>user has role , role has permission .</p>
+<p>Permissoin implements <code>GrantedAuthority</code> =&gt; Spring Security consider it’s authorities .</p>
+<p>@JoinTable 是在描述 連接兩個table中間的那個foreign table.</p>
+<p><a href="http://openhome.cc/Gossip/EJB3Gossip/OneToMany.html" target="_blank">fetch=FetchType.EAGER</a></p>
+<h1 id="Spring_Thymeleaf_CRUD_User_Maintenance">Spring Thymeleaf CRUD User Maintenance</h1>
+<p><a href="http://dtr-trading.blogspot.tw/2014/04/spring-thymeleaf-crud-user-maintenance.html" target="_blank">link</a></p>
+<p>接下來都是CRUD部分了 … 看太久了 ..開始自己吧!!!</p>
+<h1 id="Spring_Web_Initialization">Spring Web Initialization</h1>
+<p><a href="http://www.kubrynski.com/2014/01/understanding-spring-web-initialization.html" target="_blank">link</a></p>
+<p>JavaEE =&gt; ServletContainerInitializer interface =&gt; 當 Web application startup 時 需要的libraries會被通知 </p>
+<p>Spring 3.1 =&gt; SpringServletContainerInitializer =&gt; handle WebApplicationInitializer =&gt; Sorting then basing on @Order  onStartup 就會啟動Web application</p>
+<p>Spring 3.2 =&gt; AbstractContextLoaderInitializer implements WebApplicationInitializer =&gt; </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/9.png" alt="image"></p>
+<p>createRootApplicationContext() =&gt; 可以create applicatoin context(AnnotationConfigWebApplicationContext) , application context register xxxConfig.class到ServletContext =&gt; 為了想要自動register =&gt; AbstractContextLoaderInitializer </p>
+<p>最新 =&gt; AbstractAnnotationConfigDispatcherServletInitializer : simplifying Spring initialization - we don’t need to manually create contexts but just set appropriate config classes , …真是歷史悠久的感覺</p>
+<p>啟動 當作entry point :</p>
+<ol>
+<li><p>Spring 3.1 =&gt; WebApplicationInitializer</p>
+</li>
+<li><p>Spring 3.2 =&gt; AbstractAnnotationConfigDispatcherServletInitializer</p>
+</li>
+<li><p>Spring Boot =&gt; SpringApplication.run</p>
+</li>
+</ol>
+<h1 id="spring_boot_vs_spring_roo">spring boot vs spring roo</h1>
+<p><a href="http://stackoverflow.com/questions/20576843/is-spring-boot-meant-to-replace-spring-roo" target="_blank">link</a></p>
+<p>spring roo is about code generation.</p>
+<h1 id="Conclusion">Conclusion</h1>
+<ol>
+<li>Security =&gt; 登入帳號密碼(user) 一.in-memeory 二.UserService with database</li>
+<li>Authority=&gt; 根據role來決定要進入那個頁面,決定哪些role可以進去某個url ex:<code>/strategy/**</code> , 因此不同role可以操作的部分 會不同 , 當不具有權限時 試著進入會出現403 Access denied =&gt; 實作 AccessDeniedHandler 來custom 錯誤訊息畫面</li>
+<li>Permission =&gt;</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-08-04T01:10:28.000Z"><a href="/2014/08/04/20140804/">Aug 4 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/08/04/20140804/">2014/08/04</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Problem">Problem</h1>
+<p>再次列出想知道的問題 再加上其他的問題</p>
+<ol>
+<li>cglib,jar  &amp; asm.jar 這兩個必須要加入才能夠使用@Configuration , 那可以使用Maven加入嗎? <a href="http://stackoverflow.com/questions/18224365/cglib-is-required-to-process-configuration-classes" target="_blank">當然可以</a> , 可是在後來的專案中 都沒有特別加入這兩個.jar檔 所以猜測應該是被合起來到別的.jar中 ==&gt; <a href="http://stackoverflow.com/questions/19800004/why-is-there-no-spring-asm-3-2-4-release-jar" target="_blank">合到spring-core中</a></li>
+<li>突然看到spring裡面有個.jar叫做 com.springsource.org.aspectj.weaver  ? weaver是什麼意思 ? 之前Jason做的檔案 or 檔案名稱 <a href="http://www.eclipse.org/aspectj/doc/released/devguide/ltw.html" target="_blank">也有叫做weaber的 </a> ==&gt;  <code>The AspectJ weaver takes class files as input and produces class files as output.</code> 大概就是把某些檔案包起來處理 再把他包起來拿出去 這種概念吧</li>
+<li>原本對Bean的做法是bean tag處理的就是要放入IoC 等待被ApplicatoinContext取出來使用(原本是Beanfactory).   那  springmvc是在什麼時候將@Bean @Controller @Repository 這些class , 或者說這些configuration是什麼時候放入IoC , 又在什麼時候取出來使用呢?  ==&gt; 在使用@Configuration &amp; @Bean 就會 register 到 IoC中 , @Autowired 就會取出來使用 .</li>
+<li>可是以上並沒有解釋到@Controller , @Service ,@Repository,@Component 他們是怎麼register到IoC中 ==&gt; <a href="http://www.mkyong.com/spring/spring-auto-scanning-components/" target="_blank">Spring Auto Scanning Components</a> ==&gt; 原來他們會自動register到IoC , 而他們之間有什麼差別呢？ ==&gt;<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/22.png" alt="image"> 其實沒什麼差別 , 可以全部用@Component取代 但為了Readibility 所以才分成很多種</li>
+<li>這時候又碰到一個問題,一定要加上Component Scan嗎? 明明是說Auto Scanning Component了 , 還要再加上Component Scan ? 這邊有一個<a href="http://stackoverflow.com/questions/7414794/difference-between-contextannotation-config-vs-contextcomponent-scan" target="_blank">context:annotation- config vs context:component-scan的問題</a> , 可是這並不是java config的方式 , 它一半還是用.xml設定….. ==&gt; 查資料的過程中 發現很多.xml設定的寫法 , 一半.xml 一半java config的寫法 , 全部java config的寫法 … 這是一種演進過程 !? , 而且往往會發現 在演進的過程中, 一些必用或常用的東西, 會直接納入default的設定 , 也就是說為什麼@Controller 不需要 @ComponentScan 就可以直接@RequestMapping的原因就是 在Springmvc的架構下 , controller就是要拿來mapping url的呀 那為啥還要每次都Component scan ? …當然這目前還是我的猜測. </li>
+</ol>
+<p><a href="http://www.luckyryan.com/2013/02/07/migrate-spring-mvc-servlet-xml-to-ja va-config/" target="_blank">migrate-spring-mvc-servlet-xml-to-java-config</a> 這篇裡面寫到一些東西 ==&gt;</p>
+<p><code>@EnableWebMVC, this is the same as &lt;mvc:annotation-driven/&gt;</code></p>
+<p><code>ComponentScan(basePackages = {“com.luckyryan.sample”}), this is the same as &lt;context:component-scan base-package=”com.luckyryan.sample”/&gt;</code></p>
+<p><code>Extend the class to use WebMvcConfigurerAdapter. This adds stub implementations from the WebMvcConfigurer interface which is used by @EnableWebMVC. It also gives us a chance to override resources and the default handler.</code> 這段很明確地說了 非常常用到的WebMvcConfigurerAdapter 是用來override resources/servelet handler 和 override viewResolver , 並且是跟@EnableWebMVC 搭配使用 , 這邊有個問題就是 , 就算不加入@EnableWebMVC 一樣可以使用WebMvcConfigurerAdapter , 所以說 可能是已經常常都是搭配使用的 既然如此 何必要每次都要加上@EnableWebMVC , 把他變成default設定就好啦! …當然是我的猜測 , 猜測是對的? ==&gt;  <a href="http://stackoverflow.com/questions/3977973/whats-the-difference-between-mvcannotation-driven-and-contextannotation" target="_blank">You don’t need to use it unless you need one or more of the features outlined in the aforementioned section of the docs.</a></p>
+<ol>
+<li><a href="http://stackoverflow.com/questions/9881611/whats-the-difference-between-jpa-and-hibernate" target="_blank">JPA vs Hibernate</a> ==&gt; JPA定義的是一種規格 , Hibernate的一種ORM的實作方式 並且你也可以實作JPA規格 , 接下來jdbc , jdbcTemplate , datasource , hibernate 之間的關係 ??? 有點複雜呀 , <a href="http://openhome.cc/Gossip/SpringGossip/" target="_blank">持久層</a> , 大概可以總結的就是, 有非常多的技術,裡面各有優缺點 , 但是目前所要使用的功能都太簡單,所以無法去分辨哪種情況要使用哪種東西…</li>
+</ol>
+<h1 id="重新回到Spring_Security">重新回到Spring Security</h1>
+<h1 id="spring-ex08-security">spring-ex08-security</h1>
+<p>in-memory的 security實作</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/security/3.png" alt="image"></p>
+<p>帳號密碼直接放在程式碼中,這表示也不能動態加入新的使用者</p>
+<h1 id="spring-ex09-security">spring-ex09-security</h1>
+<p><a href="http://dtr-trading.blogspot.tw/2014/04/spring-mvc-4-security-part-2.html" target="_blank">link</a></p>
+<p>改成從database資料進行帳號密碼驗證 , 抓USERS(domain object:User) , 比對帳號密碼,</p>
+<p>Spring Security database schema &amp; UserDetailsService</p>
+<p>Spring Security’s UserDetails</p>
+<p>@SuppressWarnings :<a href="http://openhome.cc/Gossip/JavaGossip-V2/AnnotationSuppressWarnings.htm" target="_blank">不在編譯完成後出現警告</a></p>
+<h1 id="spring-ex10-security">spring-ex10-security</h1>
+<p><a href="http://dtr-trading.blogspot.tw/2014/04/spring-mvc-4-spring-security-32-part-3.html" target="_blank">link</a></p>
+<p>再加入ROLES(domain object:Role) ,USERS/ROLES 都有Primary key 指到 USER/ROLES這個table , User has Role</p>
+<p>ROLES會決定你可以操作哪些東西: add authorization to the controllers and methods.</p>
+<h1 id="spring-ex11-auth">spring-ex11-auth</h1>
+<p><a href="http://dtr-trading.blogspot.tw/2014/04/spring-security-32-authorization-part-1.html" target="_blank">link</a></p>
+<p>add role based authorization to the CRUD application we’ve been building.</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/security/4.png" alt="image"></p>
+<p>只有role:admin 才能進入strategy/後面的頁面 或者CRUD操作</p>
+<h1 id="spring-ex12-auth">spring-ex12-auth</h1>
+<p><a href="http://dtr-trading.blogspot.tw/2014/04/spring-security-32-authorization-part-2.html" target="_blank">link</a></p>
+<ol>
+<li>add a custom access denied (403) page =&gt; WEB-INF/views/error</li>
+<li><p>create class to handle the access denied exception =&gt; implements AccessDeniedHandler</p>
+</li>
+<li><p>在DatabaseConfig加入@Bean AccessDeniedExceptionHandler =&gt; 很怪 為什麼會加在DatabaseConfig…?</p>
+</li>
+<li><p>SecurityConfig去@Autowired這個bean,並且設定頁面error權限</p>
+</li>
+<li><p>Error controller 導到/error/accessDeniedPage</p>
+</li>
+</ol>
+<p>必須先讓頁面出現Access deny 的頁面 , 才能夠用AccessDeniedHandler這class去處理.</p>
+<h1 id="spring-ex13-auth">spring-ex13-auth</h1>
+<p>用兩個Annotation取代 .antMatchers(“/strategy/**”).hasRole(“ADMIN”) </p>
+<ol>
+<li>SecurityConfig : @EnableGlobalMethodSecurity(prePostEnabled=true) //enable global method security </li>
+</ol>
+<ol>
+<li>StrategyController : @PreAuthorize(“hasRole(‘ROLE_ADMIN’)”)</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-08-01T01:17:44.000Z"><a href="/2014/08/01/20140801/">Aug 1 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/08/01/20140801/">2014/08/01</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Spring-ex08-security">Spring-ex08-security</h1>
+<p>基本的登入帳號密碼驗證 之前就看過類似做法 但看了幾遍後 還是無法理解怎麼來的 怎麼會這樣子寫 文件在哪查？</p>
+<p>只好怒研究作者提供的連結:</p>
+<p>Rob Spring-security-3.2 <a href="http://spring.io/blog/2014/01/21/webinar-replay-spring-security-3-2" target="_blank">presentation </a> &amp; <a href="https://github.com/rwinch/gs-spring-security-3.2" target="_blank">github repository</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/security/1.png" alt="image"></p>
+<p>Spring.io 是 一個platform , 提供各式各式各樣服務的整合</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/security/2.png" alt="image"></p>
+<p>inMemoryAuthentication =&gt; jdbcAuthenticatoin</p>
+<h1 id="CSRF(Cross-site_request_forgery)_Protection">CSRF(Cross-site request forgery) Protection</h1>
+<p>=&gt; one-click attack or session riding</p>
+<p><a href="http://www.dotblogs.com.tw/joysdw12/archive/2013/09/16/asp-net-cross-site-request-forgery.aspx" target="_blank">寫得很詳細</a></p>
+<h1 id="XSS(Cross-site_Scripting)">XSS(Cross-site Scripting)</h1>
+<p><a href="http://jax-work-archive.blogspot.tw/2010/05/xss.html" target="_blank">link</a></p>
+<h1 id="gs-spring-security-3-2">gs-spring-security-3.2</h1>
+<p><a href="https://github.com/rwinch/gs-spring-security-3.2" target="_blank">link</a></p>
+<p>已經加上Security了 , 把功能很簡單的程式寫得很複雜…</p>
+<h1 id="等等？！_Spring_Security_都有這麼精緻的教學了_那Spring_annotation呢?">等等？！ Spring Security 都有這麼精緻的教學了 那Spring annotation呢?</h1>
+<p>結果還真的查詢spring annotation tutorials 就有了…怎麼之前都沒想到 , 越看越覺得annotation的細節不理解 然後security又用一堆annotation… 要看的東西又變多了！</p>
+<p><a href="http://simplespringtutorial.com/index.html" target="_blank">spring tutorial</a></p>
+<h1 id="spring_tutorial">spring tutorial</h1>
+<p><a href="http://simplespringtutorial.com/" target="_blank">link</a></p>
+<h3 id="spring_dependency_injection">spring dependency injection</h3>
+<p>設定Bean</p>
+<ol>
+<li>XML files 2. Properties </li>
+</ol>
+<p>然後Spring幫你inject你要的Bean</p>
+<p>普通的java程式 , 比較像domain object , 接著你希望可以用這些object</p>
+<p> <img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/1.png" alt="image"></p>
+<p>將這些object 設成bean</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/2.png" alt="image"></p>
+<p>接著讓Spring 使用這些bean</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/3.png" alt="image"></p>
+<p>ClassPathXmlApplicationContext 設定路徑去抓bean的設定xxx.xml </p>
+<h3 id="spring_resource_injection">spring resource injection</h3>
+<p>我們常需要去讀某個在System or network 上的file,ex:取得某些設定的參數,i18n , 因此Spring提供了<code>Resource</code> 這個interface</p>
+<h5 id="Read_a_file_from_…">Read a file from …</h5>
+<ol>
+<li><p>current working directory =&gt; <code>FileSystemResource</code></p>
+</li>
+<li><p>access using the url protocal =&gt; <code>UrlReource</code></p>
+</li>
+<li><p>on your classpath =&gt; <code>ClassPathResource</code></p>
+</li>
+</ol>
+<h5 id="Injecting_Resources">Injecting Resources</h5>
+<ol>
+<li><p>Resource injection =&gt; loading <code>static</code> resources</p>
+</li>
+<li><p>Using ResourceLoader =&gt; loading <code>dynamic</code> resources ex:based on some business logic</p>
+</li>
+</ol>
+<h3 id="spring_annotation">spring annotation</h3>
+<p><a href="http://simplespringtutorial.com/annotations.html" target="_blank">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/4.png" alt="image"></p>
+<p>用.xml來設定bean</p>
+<p>要注意的是<code>&lt;context:annotation-config /&gt;</code> 要加上這一行才能被@Autowired or @Resource 抓到</p>
+<p>內容定義了三個bean</p>
+<p>兩個是同一個Foo class 但不同id , 其中一個還定義了qualifier</p>
+<p>一個是Bar class</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/5.png" alt="image"></p>
+<p><code>@PostConstruct</code>  — 在contruct 之後—&gt; 表示這個function會在bean建立好之後直接執行</p>
+<p><code>@PreDestroy</code> —&gt; 表示這個function會在bean destroy前 執行</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/6.png" alt="image"></p>
+<p><code>@Autowired</code> 會去對應<code>型別 type</code>去抓bean , 根據Foo 去抓型別為Foo這個bean , 這是在.xml設定了兩個型別為Foo的bean , 這時候會出現<code>有兩個type 是Foo的bean</code> 的錯誤訊息 , 因此再加上<code>@Qualifer</code>  qualifer tag 的value</p>
+<p><code>Resource</code> 去對應bean tag的id</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/7.png" alt="image"></p>
+<p>執行成功 </p>
+<p>問題是我不想要用.xml設定bean啊 , 想要用 <code>@Bean</code> 設定 要怎麼做?</p>
+<h1 id="@Configuration_&amp;_@Bean_Annotations">@Configuration &amp; @Bean Annotations</h1>
+<p><a href="http://www.tutorialspoint.com/spring/spring_java_based_configuration.htm" target="_blank">link</a></p>
+<p>Annotating a class with the @Configuration indicates that the class can be used by the <code>Spring IoC container</code> as a source of bean definitions. </p>
+<p>什麼事Spring Ioc Container ? 又出現看不懂的東西…</p>
+<h1 id="spring_IoC(Inverse_of_Control)">spring IoC(Inverse of Control)</h1>
+<p><a href="http://www.tutorialspoint.com/spring/spring_java_based_configuration.htm" target="_blank">簡單明瞭的解釋</a></p>
+<ol>
+<li>origin</li>
+</ol>
+<p>main —&gt; 抓參數 建立connection —&gt; 操作資料庫</p>
+<p>所以說當我們要對資料庫操作時 都一定要執行一堆的程式 然後建立connection ?</p>
+<p>那這樣這個程式 不就不能分開執行 也就是說藕合度很高!</p>
+<ol>
+<li>spring IoC</li>
+</ol>
+<p>所有的class都會登記在spring中  , 所以當要用的時候只要跟spring要就行了</p>
+<p>main —&gt; annotation取得 connection —&gt; 操作資料庫</p>
+<p>所以說可以拆得更散 當要某些東西時 跟spring要就好了(當然在這之間他就先執行完了 放在spring中等待人來使用) , 降低了藕合度</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/8.png" alt="image"></p>
+<h1 id="回到@Configuration_&amp;_@Bean_Annotations">回到@Configuration &amp; @Bean Annotations</h1>
+<p>我要把原本用.xml設定bean得例子 改成 java config </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/9.png" alt="image"></p>
+<p>.xml -&gt; Config.java</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/10.png" alt="image"></p>
+<p>取得Configuration</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/11.png" alt="image"></p>
+<p>console 表示 似乎有抓到bean的設定 但是@Configuration 需要CGLIB.jar , ASM.jar</p>
+<p>跟另一邊的教學 說的是一樣的事情</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/12.png" alt="image"></p>
+<p><a href="http://www.java2s.com/Code/Jar/a/Downloadasm31jar.htm" target="_blank">download ASM.jar</a></p>
+<p><a href="http://www.java2s.com/Code/Jar/c/Downloadcglib22jar.htm" target="_blank">download cglib.jar</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/13.png" alt="image"></p>
+<p>出現的錯誤訊息 表示他不知道怎麼抓@Qualifier 定義個bean Foo</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/14.png" alt="image"></p>
+<p>我先把Config bean Bar 註解掉 就成功了!!!</p>
+<p>接下來<a href="http://stackoverflow.com/questions/9182805/spring-attaching-qualifer-to-java-configured-beans" target="_blank">解決@Qualifier的問題</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/15.png" alt="image"></p>
+<p>之前的.xml 被Config.java取代 , 而Qualifier tag 改成@Qualifier(“secondaryFoo”) 就可以了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/16.png" alt="image"></p>
+<p><code>Foo foo = ctx.getBean(&quot;foo&quot;, Foo.class);</code> 表示Bean type:Foo , id:foo 的這個Bean</p>
+<p>console出現的Null表示 Bar autowired的兩個foo 都有instantiate ,但其中之一 我沒有asign值給name 所以顯示null</p>
+<h1 id="Springmvc_Configuration">Springmvc Configuration</h1>
+<p>完成以上範例後 就知道 為什麼在Springmvc 或 SpringBoot 裡面 有一堆@Configuration class 一堆</p>
+<p>@Bean , @Controller , @Service , @Repository ,而不知道他們是什麼時候去執行的 , 所以說這算是某種標記 , 當有這些標記的 就會被register 到 Spring IoC container 中 等待執行 , 當需要使用的時候 才被@Autowired等方式 Inject到你需要的地方</p>
+<h1 id="@import">@import</h1>
+<p>將config 分成兩個 ConfigF (config foo) , ConfigB (config bar)</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/17.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/18.png" alt="image"></p>
+<p>因為Bar 需要用到 Foo 所以在ConfigB中import ConfigF</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/19.png" alt="image"></p>
+<p>當抓到ConfigB.class 同時會 抓到ConfigF 因為已經import到ConfigB了</p>
+<h1 id="Spring_Internationalization">Spring Internationalization</h1>
+<p><a href="http://simplespringtutorial.com/i18n.html" target="_blank">i18n</a></p>
+<p>Spring 中 處理多國語言的方法 : <code>ResourceBundleMessageSource</code></p>
+<p>範例中用.xml設定bean處理</p>
+<p>我改為java config</p>
+<p>在這邊只列出跟原本寫法不同的地方</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/20.png" alt="image"></p>
+<p>要注意的是<code>source.setBasename(&quot;i18n.javaConfig/messages&quot;);</code></p>
+<p>你要給他對的路徑去抓message</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/21.png" alt="image"></p>
+<p><code>ApplicationContext ctx = 
+                  new AnnotationConfigApplicationContext(MessageConfig.class);</code></p>
+<p>抓configuration</p>
+<p>成功了!  原來如此 <code>ResourceBundleMessageResource</code> 就只是負責抓message的事情</p>
+<h1 id="Spring_jdbc">Spring jdbc</h1>
+<p><a href="http://simplespringtutorial.com/springjdbc.html" target="_blank">Spring jdbc</a></p>
+<p><a href="http://jackmew.github.io/2014/07/22/20140722/">mysql ddl(Database Definition Language)</a></p>
+<p>突然有一些問題產生:</p>
+<ol>
+<li><p>Autowired 沒辦法在main function中使用 ??? <a href="http://stackoverflow.com/questions/3659720/using-spring-3-autowire-in-a-standalone-java-application" target="_blank">解決方式</a></p>
+</li>
+<li><p>jdbcTemplate vs hibernate.sessionFactory ???</p>
+</li>
+<li><p>jdbcTemplate vs hibernate.sessionFactory vs CrudRepository ???</p>
+</li>
+<li><p>JPA vs Hibernate ???</p>
+</li>
+<li><p>@Controller @Service @Repository @Component 不用像@Bean 一樣設在@Configuration中 ??? 而且不用@Autowired or ApplicationContext去抓 就可以使用 ???</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-07-31T01:17:44.000Z"><a href="/2014/07/31/20140731/">Jul 31 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/07/31/20140731/">2014/07/31</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Google_Analytics">Google Analytics</h1>
+<p>又是從<a href="http://zespia.tw/blog/2014/07/28/use-google-analytics-api-on-server/" target="_blank">SkyArrow</a>這小子知道的東西, 他在講如何安裝使用,<a href="http://sofree.cc/google-analytics/" target="_blank">香腸魷魚</a>比較明確解釋了這是拿來做什麼的:提供訪客瀏覽人次、網頁瀏覽人次、用戶的瀏覽器、作業系統、螢幕解析度、網站熱門文章、熱門關鍵字、訪客來自於何處等等資料</p>
+<h1 id="完全用application-properties_建立project">完全用application.properties 建立project</h1>
+<p>mvn archetype:create -DgroupId=org.jmc.sbProperty -DartifactId=sbProperty</p>
+<p>@RestController 才可以return String</p>
+<p>@Controller 試用於return model 到 並導向某個頁面</p>
+<p>錄製影片=&gt;po youtube</p>
+<h1 id="EnableAutoConfiguration">EnableAutoConfiguration</h1>
+<p><a href="http://stackoverflow.com/questions/20685042/why-does-the-addition-of-enableautoconfiguration-cause-spring-boot-to-fail-with" target="_blank">link</a></p>
+<h1 id="Thymleaf怪問題">Thymleaf怪問題</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/18.png" alt="image"></p>
+<p>跳出的這個錯誤訊息 好像是 會無法讓Thymeleaf Autowire ?</p>
+<p>所以我用self configuration 解決 </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/21.png" alt="image"></p>
+<p>的確是可以解決 但是我記得之前只設定application.properties 就可以設定Thymeleaf setting才對</p>
+<p>試驗很久才發現 是application.properties設定有問題</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/19.png" alt="image"></p>
+<ol>
+<li><p>路徑的最前面 最後面都缺少/</p>
+</li>
+<li><p>我以為.properties #開頭都會被註解掉 沒發現false後面沒變顏色 其實是沒有註解掉的</p>
+</li>
+</ol>
+<p>…一些白癡問題….</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/20.png" alt="image"></p>
+<h1 id="Iterable">Iterable</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/java/iterable/1.png" alt="image"></p>
+<p>稍微解釋了為什麼List和Set都可以用Iterator來尋訪</p>
+<p>Iterable<Monster> =&gt; List<Monster></p>
+<h1 id="Thymeleaf_抓出資料方法">Thymeleaf 抓出資料方法</h1>
+<ol>
+<li><p>List data : </p>
+<pre><code> <span class="subst">&lt;</span>tr <span class="built_in">data</span><span class="attribute">-th</span><span class="attribute">-each</span><span class="subst">=</span><span class="string">"monster : ${monsterList}"</span><span class="subst">&gt;</span>
+     <span class="subst">&lt;</span>td <span class="built_in">data</span><span class="attribute">-th</span><span class="attribute">-text</span><span class="subst">=</span><span class="string">"${monster.id}"</span><span class="subst">&gt;</span><span class="number">1</span><span class="subst">&lt;</span>/td<span class="subst">&gt;</span>
+     <span class="subst">&lt;</span>td <span class="built_in">data</span><span class="attribute">-th</span><span class="attribute">-text</span><span class="subst">=</span><span class="string">"${monster.name}"</span><span class="subst">&gt;</span>Iron Butterfly<span class="subst">&lt;</span>/td<span class="subst">&gt;</span>
+     <span class="subst">&lt;</span>td <span class="built_in">data</span><span class="attribute">-th</span><span class="attribute">-text</span><span class="subst">=</span><span class="string">"${monster.category}"</span><span class="subst">&gt;</span>Triple Butter<span class="subst">&lt;</span>/td<span class="subst">&gt;</span>
+     <span class="subst">&lt;</span>td <span class="built_in">data</span><span class="attribute">-th</span><span class="attribute">-text</span><span class="subst">=</span><span class="string">"${monster.ability}"</span><span class="subst">&gt;</span>Triple Butter<span class="subst">&lt;</span>/td<span class="subst">&gt;</span>
+ <span class="subst">&lt;</span>/tr<span class="subst">&gt;</span>
+</code></pre></li>
+<li><p>object</p>
+<pre><code> <span class="subst">&lt;</span>tr <span class="built_in">data</span><span class="attribute">-th</span><span class="attribute">-each</span><span class="subst">=</span><span class="string">"${monster}"</span><span class="subst">&gt;</span>
+     <span class="subst">&lt;</span>td <span class="built_in">data</span><span class="attribute">-th</span><span class="attribute">-text</span><span class="subst">=</span><span class="string">"*{id}"</span><span class="subst">&gt;</span><span class="number">1</span><span class="subst">&lt;</span>/td<span class="subst">&gt;</span>
+     <span class="subst">&lt;</span>td <span class="built_in">data</span><span class="attribute">-th</span><span class="attribute">-text</span><span class="subst">=</span><span class="string">"*{name}"</span><span class="subst">&gt;</span>Iron Butterfly<span class="subst">&lt;</span>/td<span class="subst">&gt;</span>
+     <span class="subst">&lt;</span>td <span class="built_in">data</span><span class="attribute">-th</span><span class="attribute">-text</span><span class="subst">=</span><span class="string">"*{category}"</span><span class="subst">&gt;</span>Triple Butter<span class="subst">&lt;</span>/td<span class="subst">&gt;</span>
+     <span class="subst">&lt;</span>td <span class="built_in">data</span><span class="attribute">-th</span><span class="attribute">-text</span><span class="subst">=</span><span class="string">"*{ability}"</span><span class="subst">&gt;</span>Triple Butter<span class="subst">&lt;</span>/td<span class="subst">&gt;</span>
+ <span class="subst">&lt;</span>/tr<span class="subst">&gt;</span>
+</code></pre></li>
+</ol>
+<h1 id="Thymeleaf_傳參數回_Controller的方法">Thymeleaf 傳參數回 Controller的方法</h1>
+<p>1.</p>
+<p>按下button type=”submit” 夾帶value</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/22.png" alt="image"></p>
+<p>當按下save or cancel都會導向 <code>data-th-action=&quot;@{/strategy/edit}&quot;</code></p>
+<p>但</p>
+<p>按下save</p>
+<p><code>&lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot; name=&quot;action&quot; value=&quot;save&quot;</code></p>
+<p>按下cancel</p>
+<p><code>&lt;button type=&quot;submit&quot; class=&quot;btn btn-default active&quot; name=&quot;action&quot; value=&quot;cancel&quot;</code></p>
+<p>會傳不同的參數到controller</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/23.png" alt="image"></p>
+<p><code>@RequestParam(value=&quot;action&quot;, required=true) String action</code></p>
+<p>接住參數! 在用這個參數來做處理 導向不同頁面 or 發出不同message</p>
+<p>2.</p>
+<p>按下anchor</p>
+<p>直接一次夾帶兩個參數</p>
+<pre><code>    <span class="subst">&lt;</span>a href<span class="subst">=</span><span class="string">"#"</span>    <span class="built_in">data</span><span class="attribute">-th</span><span class="attribute">-href</span><span class="subst">=</span><span class="string">"@{/strategy/delete(id=${strategy.id},phase=stage)}"</span><span class="subst">&gt;</span>
+</code></pre><h1 id="JSP_vs_Thymeleaf">JSP vs Thymeleaf</h1>
+<p><a href="http://blog.csdn.net/kingzone_2008/article/details/19034615" target="_blank">link</a></p>
+<p>Thymeleaf win</p>
+<h1 id="spring-ex07-navigation">spring-ex07-navigation</h1>
+<h2 id="using_Thymeleaf_fragment">using Thymeleaf fragment</h2>
+<p><a href="http://startbootstrap.com/template-overviews/sb-admin-2/" target="_blank">SB-Admin theme</a></p>
+<p>主要在講要怎麼加入Bootstrap的theme</p>
+<p>超酷的呀 一堆很漂亮的theme , 用Thymeleaf到現在還沒有覺得有比直接用javascript寫好 , 但是一家上 fragment , 套用template這概念 就變超強</p>
+<h2 id="bootstrap_theme_structure">bootstrap theme structure</h2>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/26.png" alt="image"></p>
+<p>所有.html檔案 都可以點起來看 , 現在目的是要加入vertical bar , horizontal bar ,</p>
+<p>然後原本的部分 卡在中間就好 像這樣</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/27.png" alt="image"></p>
+<p>加入blank.html和所有folder 要照著原本的目錄結構放.</p>
+<h1 id="blank-html_=&gt;_sb-admin-html">blank.html =&gt; sb-admin.html</h1>
+<ol>
+<li><p>horizental nav =&gt;  <code>&lt;nav data-th-fragment=&quot;top-nav&quot;</code></p>
+</li>
+<li><p>vertical nav =&gt;  <code>&lt;nav data-th-fragment=&quot;vert-nav-admin&quot;</code></p>
+</li>
+<li><p>留空 =&gt;</p>
+<pre><code> <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"page-wrapper"</span>&gt;</span>
+     <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"row"</span>&gt;</span>
+         <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"col-lg-12"</span>&gt;</span>
+             <span class="tag">&lt;<span class="title">h1</span> <span class="attribute">class</span>=<span class="value">"page-header"</span>&gt;</span>Blank<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+         <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+         <span class="comment">&lt;!-- /.col-lg-12 --&gt;</span>
+     <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+     <span class="comment">&lt;!-- /.row --&gt;</span>
+ <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre><h1 id="strategy-list-html">strategy-list.html</h1>
+<p> <div id="wrapper">                <!-- /#wrapper --></p>
+<pre><code> <span class="subst">&lt;</span>div <span class="built_in">data</span><span class="attribute">-th</span><span class="attribute">-replace</span><span class="subst">=</span><span class="string">"fragments/sb-admin :: top-nav"</span><span class="subst">&gt;&lt;</span>/div<span class="subst">&gt;</span> <span class="subst">=&gt;</span>用top<span class="attribute">-nav</span>
+
+ <span class="subst">&lt;</span>div <span class="built_in">data</span><span class="attribute">-th</span><span class="attribute">-replace</span><span class="subst">=</span><span class="string">"fragments/sb-admin :: vert-nav-admin"</span><span class="subst">&gt;&lt;</span>/div<span class="subst">&gt;</span> <span class="subst">=&gt;</span> 用vert<span class="attribute">-nav</span><span class="attribute">-admin</span>
+
+ <span class="subst">&lt;</span>div id<span class="subst">=</span><span class="string">"page-wrapper"</span><span class="subst">&gt;</span> <span class="subst">=&gt;</span>用page<span class="attribute">-wrapper</span>
+</code></pre></li>
+</ol>
+<h1 id="Response_timeline">Response timeline</h1>
+<p><a href="http://startbootstrap.com/templates/sb-admin-2/" target="_blank">link</a> </p>
+<p>找到想要用的東西！</p>
+<h1 id="準備開始痛苦的Security之旅">準備開始痛苦的Security之旅</h1>
+<p><a href="http://dtr-trading.blogspot.tw/2014/02/spring-mvc-4-security-part-1.html" target="_blank">Spring MVC 4 &amp; Spring Security 3.2 - Part 1</a></p>
+<p>光作者說要參考的就有四個超多內容的連結!</p>
+<p><a href="http://spring.io/blog/2014/01/21/webinar-replay-spring-security-3-2" target="_blank">Presentation</a></p>
+<p><a href="https://github.com/rwinch/gs-spring-security-3.2" target="_blank">Rob’s GitHub Repository</a></p>
+<p><a href="http://docs.spring.io/spring-security/site/docs/3.2.x/guides/hellomvc.html" target="_blank">Hello Spring MVC Security Java Config</a></p>
+<p><a href="http://docs.spring.io/spring-security/site/docs/3.2.x/guides/form.html" target="_blank">Creating a Custom Login Form</a></p>
+<p>原來security全部的資料 都在這裡<a href="http://docs.spring.io/spring-security/site/docs/3.2.x/" target="_blank">Index of /spring-security/site/docs/3.2.x</a>,內容包含filter</p>
+<h1 id="Spring-ex08-security">Spring-ex08-security</h1>
+<p>基本的1.登入 2.判斷登入帳號密碼是否正確 3.顯示使用者 4.登出 </p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-07-30T00:58:44.000Z"><a href="/2014/07/30/20140730/">Jul 30 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/07/30/20140730/">2014/07/30</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Thymeleaf_Expression_Syntax">Thymeleaf Expression Syntax</h1>
+<p>為了理解form show error message =&gt; ex:</p>
+<p>data-th-if=”${fields.hasErrors(‘type’)}” </p>
+<p>是怎麼運作的 , 只好去看<a href="http://www.thymeleaf.org/doc/usingthymeleaf.html#standard-expression-syntax" target="_blank">Expression Syntax</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/1.png" alt="image"></p>
+<h2 id="Message_Expression_#{…}_:">Message Expression #{…} :</h2>
+<p>負責的部分是去抓message.properties 裡面的key/value</p>
+<p>可以在message裡面加入參數</p>
+<p>hello.first=Nice to meet you, {0} ! ==&gt; java.text.MessageFormat的用法</p>
+<h2 id="Variable_${…}_=&gt;_OGNL(Object-Graph_Naviation_Language)">Variable ${…} =&gt; OGNL(Object-Graph Naviation Language)</h2>
+<p>早期Struct 2 — EL — #{} —&gt; 去抓JSP各種資源</p>
+<p>EL — 被取代 —&gt; <a href="http://commons.apache.org/proper/commons-ognl/" target="_blank">OGNL</a></p>
+<p>是一種操作物件屬性的運算式語言</p>
+<ol>
+<li><p>支援給予值操作和運算式串聯</p>
+</li>
+<li><p>存取OGNL context &amp; ActionContext(所有的Servlet資源)</p>
+</li>
+<li><p>使用 . 當作操作符 person.getCountry.getName() ==同等於=&gt; person.country.name</p>
+</li>
+<li><p>能夠存取物件的方法</p>
+</li>
+</ol>
+<h2 id="Thymeleaf_對_所有Serlet資源作存取:session,locale,_對request傳過來的參數做存取">Thymeleaf 對 所有Serlet資源作存取:session,locale, 對request傳過來的參數做存取</h2>
+<p><a href="http://www.thymeleaf.org/doc/usingthymeleaf.html#appendix-a-expression-basic-objects" target="_blank">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/3.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/4.png" alt="image"></p>
+<h2 id="Expression_Utitity_Object">Expression Utitity Object</h2>
+<p><a href="http://www.thymeleaf.org/doc/usingthymeleaf.html#appendix-b-expression-utility-objects" target="_blank">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/2.png" alt="image"></p>
+<p>這些Utility 對傳過來的Object or request parameter進行操作 處理 , 就像是我們之前jquery.ajax 傳接資料後 , 對資料進行存取一樣</p>
+<h2 id="Expressions_on_selection(asterisk_syntax)_*{…}">Expressions on selection(asterisk syntax) *{…}</h2>
+<p>跟${…} 做類似的事情 都是取variable , 但是*{…} 範圍較小 是已經被選擇(selection)的variable </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/5.png" alt="image"></p>
+<p>比如說 已經確定是抓到session裡面夾了user object , user object中當然也有參數 , 這已經被選擇(selection)的<br>的variable就可以被*{…]存取</p>
+<h2 id="Link_URLs_@{…}">Link URLs @{…}</h2>
+<p><a href="http://www.thymeleaf.org/doc/usingthymeleaf.html#link-urls" target="_blank">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/6.png" alt="image"></p>
+<p>給予url 位置的syntax 並且可以夾帶dynamic variable</p>
+<h2 id="相對路徑_引用bootstrap">相對路徑 引用bootstrap</h2>
+<p><code>&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;../../resources/css/bootstrap-3.1.1.min.css&quot; th:href=&quot;@{/resources/css/bootstrap-3.1.1.min.css}&quot; /&gt;</code></p>
+<h2 id="夾帶參數">夾帶參數</h2>
+<p><code>&lt;a href=&quot;#&quot;    data-th-href=&quot;@{/strategy/edit(id=${strategy.id})}&quot;&gt;</code></p>
+<p>按下Edit</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/7.png" alt="image"></p>
+<p>那裡面的url就包了strategy.id的參數</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/8.png" alt="image"></p>
+<h2 id="一次夾帶多個參數_用,分開">一次夾帶多個參數 用,分開</h2>
+<p><code>&lt;a href=&quot;#&quot;    data-th-href=&quot;@{/strategy/delete(id=${strategy.id},phase=stage)}&quot;&gt;</code></p>
+<p>按下Delete</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/9.png" alt="image"></p>
+<p>夾帶id=9&amp;phase=stage 兩個參數</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/10.png" alt="image"></p>
+<h2 id="th:text">th:text</h2>
+<p>showing text</p>
+<h2 id="th:utext">th:utext</h2>
+<p><a href="http://www.thymeleaf.org/doc/usingthymeleaf.html#unescaped-text" target="_blank">showing unescaped text</a></p>
+<h1 id="data-th-text_—取代—&gt;_th:text">data-th-text —取代—&gt; th:text</h1>
+<p><a href="https://github.com/thymeleaf/thymeleaf/issues/93" target="_blank">因為要符和HTML5 validation</a></p>
+<h1 id="Thymeleaf_local_variable">Thymeleaf local variable</h1>
+<p><a href="http://stackoverflow.com/questions/20728660/setting-up-a-value-for-a-variable-name-in-thymeleaf" target="_blank">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/11.png" alt="image"></p>
+<h1 id="一堆Attribue_th:atti_,_th:text…">一堆Attribue th:atti , th:text…</h1>
+<p><a href="http://www.thymeleaf.org/doc/usingthymeleaf.html#setting-attribute-values" target="_blank">link</a></p>
+<h1 id="這篇值得看一下_springmvc_+_mongo_+_thymeleaf_+_ajax">這篇值得看一下 springmvc + mongo + thymeleaf + ajax</h1>
+<p><a href="http://xpadro.blogspot.tw/2014/02/thymeleaf-integration-with-spring-part-1.html" target="_blank">link</a></p>
+<h1 id="現在的問題是_要怎麼最簡單的設定_Thymeleaf_？">現在的問題是 要怎麼最簡單的設定 Thymeleaf ？</h1>
+<p>其實之前template找不到的問題是可以由<a href="http://docs.spring.io/spring-boot/docs/1.1.4.RELEASE/reference/htmlsingle/#common-application-properties" target="_blank">application.properties</a>設定 </p>
+<h2 id="THYMELEAF_(ThymeleafAutoConfiguration)">THYMELEAF (ThymeleafAutoConfiguration)</h2>
+<p>spring.thymeleaf.prefix=classpath:/templates/</p>
+<p>spring.thymeleaf.suffix=.html</p>
+<p>spring.thymeleaf.mode=HTML5</p>
+<p>spring.thymeleaf.encoding=UTF-8</p>
+<p>spring.thymeleaf.content-type=text/html # ;charset=<encoding> is added</p>
+<p>spring.thymeleaf.cache=true # set to false for hot refresh</p>
+<p>這邊的classpath: 會是src/main/resource</p>
+<p>可以直接改成<code>spring.thymeleaf.prefix=WEB-INF/templates/</code> 就可以改變你template放置的目錄(預設是放在src/main/resources/templates)</p>
+<p>但是在使用#{…} 去抓external message 時 一直抓不到, 我一直以為Thymeleaf的設定哪裡有錯 ,<br>所以就從剛好有找到的資料下手</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/12.png" alt="image"></p>
+<p>但還是一直出現找不到template的錯誤訊息,一定要設定application.properties的參數才行</p>
+<p>直到我找到<a href="http://stackoverflow.com/questions/22899132/thymeleaf-fails-on-gradle-build" target="_blank">link</a> , 根據<a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/thymeleaf/ThymeleafAutoConfiguration.java" target="_blank">ThymeleafAutoConfiguration</a>的內容 此回應者的內容 you need to use the conventional bean name for the template resolver (“defaultTemplateResolver”), so that Boot knows what you are doing. </p>
+<p>而從<a href="http://docs.spring.io/spring-javaconfig/docs/1.0.0.M4/reference/html/ch02s02.html" target="_blank">java bean</a> 知道 By default, the bean name will be the same as the method name .</p>
+<p>所以我嘗試將ThymeleafViewResolver 的function name:thymeleafTemplateResolver 改為 defaultTemplateResolver</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/13.png" alt="image"></p>
+<p>結果就可以了!</p>
+<p>研究發現同樣的bean name 才能去override原本的bean</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/14.png" alt="image"></p>
+<h1 id="完整的Structure">完整的Structure</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/15.png" alt="image"></p>
+<p>我希望主要進入程式點(entry point) 程式越少越好 , 各個不同部分的configuration 由不同的class去負責</p>
+<p>由此圖可以看到 我將Configuration分為三個部分</p>
+<p>1.DatabaseConfig</p>
+<p>2.SpringContext</p>
+<p>3.Thymeleaf</p>
+<h3 id="App">App</h3>
+<p>然而App 自己本身extends WebMvcConfigurerAdapter , 其實SpringContext的部分就是在做WebMvcConfigurerAdatper本身要做的事情,用來override某些設定, 但是就之前所說的 , 我希望儘量將Configuration分散 , 所以另外分成SpringContext</p>
+<h3 id="SpringContext">SpringContext</h3>
+<ol>
+<li><p>控管哪些resources可以被使用,並決定哪個可以被設定成external message(message.properties)</p>
+</li>
+<li><p>設定Locale , 決定defaultLocale ,或根據server決定locale</p>
+</li>
+</ol>
+<h3 id="Thymeleaf">Thymeleaf</h3>
+<ol>
+<li><p>決定Spring的template engine</p>
+</li>
+<li><p>設定template放置的位置prefix:WEB-INF/template , postfix:.html , cacheable : false(讓Thymeleaf可以直接refresh)</p>
+</li>
+</ol>
+<h3 id="DatabaseConfig">DatabaseConfig</h3>
+<ol>
+<li>設定database 連線</li>
+<li>將連線資料包成dataSource</li>
+<li>設定transaction</li>
+</ol>
+<p>其他部分跟以往的設計一樣</p>
+<h3 id="Model_,_Dao_,_Service_,Controller">Model , Dao , Service ,Controller</h3>
+<p>有需要稍微了解請看<a href="http://jackmew.github.io/2014/07/29/20140729/">link</a></p>
+<h3 id="專案結構">專案結構</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/16.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/17.png" alt="image"></p>
+<p>之後還會加入SecurityConfig</p>
+<p>還會再做一個完全用application.properties定義的project</p>
+<p>因為找到<a href="http://docs.spring.io/spring-boot/docs/1.1.4.RELEASE/reference/htmlsingle/#common-application-properties" target="_blank">International</a></p>
+<p>INTERNATIONALIZATION (MessageSourceAutoConfiguration)</p>
+<p>spring.messages.basename=messages</p>
+<p>spring.messages.cacheSeconds=-1</p>
+<p>spring.messages.encoding=UTF-8</p>
+<p>可能可以直接取代SpringContext 內 ResourceBundleMessageSource的部分 .</p>
+<h1 id="Message_Queue">Message Queue</h1>
+<p><a href="http://lab.howie.tw/2012/07/whats-different-between-amqp-and-jms.html" target="_blank">AMQP , JMS</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-07-29T01:31:47.000Z"><a href="/2014/07/29/20140729/">Jul 29 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/07/29/20140729/">2014/07/29</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="bean_scope">bean scope</h1>
+<p><a href="http://docs.spring.io/spring/docs/4.0.1.RELEASE/spring-framework-reference/htmlsingle/#beans-java-specifying-bean-scope" target="_blank">link</a></p>
+<h1 id="especially_around_the_use_of_DTOs_for_the_view_layer,_that_exacly_duplicate_the_fields_and_methods_of_an_entity/model_object">especially around the use of DTOs for the view layer, that exacly duplicate the fields and methods of an entity/model object</h1>
+<p><a href="http://forum.spring.io/forum/other-spring-related/architecture/56753-controller-vs-service-vs-private-method-on-command-object" target="_blank">link</a></p>
+<h1 id="DTR_Trading">DTR Trading</h1>
+<p><a href="http://dtr-trading.blogspot.tw/" target="_blank">link</a></p>
+<p>這個網站中 有一系列教學 全部都是2014年的記錄 </p>
+<p>而且測試是可以run起來的 </p>
+<p>我要把它全部看懂</p>
+<h1 id="spring-ex01">spring-ex01</h1>
+<p><a href="http://dtr-trading.blogspot.tw/2014/02/spring-mvc-4-java-config.html" target="_blank">java-config</a></p>
+<p>將原本的xml檔案全部刪除 改成java config , 使用jsp(後面會改用Thymeleaf)</p>
+<p>建構的方式跟之前的springmvc / springboot 很像</p>
+<p>WebAppConfig extends WebMvcConfigurerAdapter</p>
+<p>就等於 springmvc 中的 <strong>WebAppInitilizer</strong></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/12.png" alt="image"></p>
+<p>也等於 springboot 中的 <strong>App</strong></p>
+<p>但奇特的是多了Initializer.java</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/1.png" alt="image"></p>
+<p>似乎是在做集合所有configuration的動作</p>
+<p>將Initializer刪除後 無法run</p>
+<h1 id="spring-ex02">spring-ex02</h1>
+<p><a href="http://dtr-trading.blogspot.tw/2014/02/spring-mvc-4-and-hibernate-4.html" target="_blank">spring-mvc-4-and-hibernate-4</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/2.png" alt="image"></p>
+<p>用@PropertySource去抓src/main/resources/databases.properties裡面的參數 設定database參數 和 hibernate參數</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/3.png" alt="image"></p>
+<h2 id="DataSource">DataSource</h2>
+<p>設定database connection:</p>
+<ol>
+<li>db.driver</li>
+<li>db.url</li>
+<li>db.username</li>
+<li>db.password</li>
+</ol>
+<p>加上@Bean 之後 就可以@Autowired</p>
+<h2 id="LocalSessionFactoryBean">LocalSessionFactoryBean</h2>
+<p>session我之前的用法是 會將某些data 存在一個很大的scope中 所以程式中大部份地方都可以存取到session中的data , 然後session有個自己的生命週期 , 有timeout.</p>
+<p>所以我猜測LocalSessionFactoryBean 會將database/hibernate的相關資訊 存在某session中 便於快速存取 快速mapping</p>
+<p><a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/orm/hibernate4/LocalSessionFactoryBean.html" target="_blank">LocalSessionFactoryBean</a>:FactoryBean that creates a Hibernate SessionFactory. This is the usual way to set up a shared Hibernate SessionFactory in a Spring application context; the SessionFactory can then be passed to<strong> Hibernate-based data access objects via dependency injection.</strong></p>
+<p>也就是是指sessionFactoryBean.setPackagesToScan(env.getRequiredProperty(PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN));</p>
+<p>它會先去scan com.dtr.oas.model 這個資料夾中的domain object</p>
+<p>最後由HibernateTransactionManager 整合以上設定 , 也就是說 藉由以上 才可以使用sql 中的 Transaction .</p>
+<h2 id="DAO_(Data_Access_Object)">DAO (Data Access Object)</h2>
+<p><a href="http://en.wikipedia.org/wiki/Data_access_object" target="_blank">DAO</a>是指domain object 跟 database 的 mapping 如何實作 並將細節隱藏起來的這個Layer</p>
+<p>所以如何mapping的這個過程 我們不需要去理會 但我們制定對database操作的動作 CRUD</p>
+<h3 id="interface_StrategyDAO">interface StrategyDAO</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/4.png" alt="image"></p>
+<p>這邊只訂定要對database做什麼操作</p>
+<h3 id="StragegyDAOImple">StragegyDAOImple</h3>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/5.png" alt="image"></p>
+<p>實作這些操作</p>
+<p>要注意的是: @Autowired SessionFactory </p>
+<p>=&gt; 也就是我們在DatabaseConfig時的@Bean</p>
+<p>為什麼Hibernate知道要去 1.操作哪個database? 2.操作哪個table?</p>
+<ol>
+<li>建立DataSource時 就已經建立database連線 並選擇連線到哪個database</li>
+<li>LocalSessionFactoryBean setPackagesToScan 時 去scan了Strategy.java</li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/6.png" alt="image"></p>
+<p>可以看到@Entity @Table(name=”strategy”)<br>這告訴Spring 這個object mapping到database裡的名字叫做strategy的table:</p>
+<p>然後在DatabaseConfig時 我們設定了很多細節 所以才可以使用到sql裡面的transaction,在此同時也設定了DAO部分的object mapping</p>
+<p>也就是說當使用到Strategy這個 , 就會自動mapping到database table:strategy</p>
+<p>所以@Autowired SessionFactory 讓我們可以順利的實作DAO CRUD 對database操作 </p>
+<h2 id="Service">Service</h2>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/7.png" alt="image"></p>
+<p>這邊的servcice 沒什麼特別的 就只是去使用DAO 也就是所謂的repository(通常制定如何操作資料庫)</p>
+<p>唯一要注意的就是Annotation : @Service @Transational =&gt; 這個Transatonal表示 當執行Service的某個function<br>進而使用repository去操作資料庫時,若function沒有執行完,就會rollback .</p>
+<h4 id="那為何Transaction是設在Service?">那為何Transaction是設在Service?</h4>
+<p>因為Service不一定只call一次repository , 這個service的某function可能叫做updateUsername() </p>
+<p>內容是去抓某些叫XXX,YYY的user 將他們的名字都update成ZZZ , 所以要使用repository的不止一次query,多次update或save</p>
+<p>ex:</p>
+<ol>
+<li>query XXX</li>
+<li>update XXX to ZZZ</li>
+<li>query YYY</li>
+<li>update YYY to ZZZ</li>
+</ol>
+<p>這幾個動作要一次全部完成 若是執行到中間的某個程式 就突然被中斷 那就要所有程式都被rollback</p>
+<p>這樣database才不會出現 不完整的資料</p>
+<h1 id="Controller">Controller</h1>
+<p>由於@Controller 所以在WebAppConfig時 的@ComponentScan 就會將Controller scan到memory中 ,</p>
+<p>所以Controller 在啟動server時 就有在執行了 , 並等待RequestMapping , 在這個例子中沒有做Security , 所以只要有RequestMapping的url 我們都可以直接去看.</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/8.png" alt="image"></p>
+<p>當啟動server時 localhost:8080/spring-ex02/ </p>
+<p>就會被</p>
+<pre><code>@RequestMapping(<span class="keyword">value</span>=<span class="string">"/"</span>)
+<span class="keyword">public</span> ModelAndView <span class="title">mainPage</span>() {
+    <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"home"</span>);
+}
+</code></pre><p>攔截到 並導向home.html</p>
+<p>StrategyController 在宣告class時 上面就有@RequestMapping(value=”/strategy”)</p>
+<p>這表示它的function 再加一層@RequestMapping(value=”/add”)</p>
+<p>url mapping會變成 : localhost:8080/spring-ex02/strategy/add</p>
+<p>@RequestMapping(value=”/edit/{id}”, method=RequestMethod.GET)</p>
+<p>這個id 表示可以是任一值 並且都會對應到這個function , 並且controller這function可以抓到id這個值</p>
+<p>springmvc + hibernate + mysql + jsp 完成基本的CRUD</p>
+<h1 id="spring-ex03">spring-ex03</h1>
+<p><a href="http://dtr-trading.blogspot.tw/2014/02/spring-mvc-4-thymeleaf-prep-and-mockup.html" target="_blank">link</a></p>
+<p>這章在講準備好Thymeleaf的環境:ThymeleafConfig</p>
+<p>另外Thymeleaf的檔案(suffix)是.html</p>
+<p>在Initializer加入ThymeleafConfig</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/9.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/10.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/11.png" alt="image"></p>
+<p>TemplateResolver 似乎會蓋過 UrlBasedViewResolver 的設定</p>
+<p>因為controller導向的是/WEB-INF/views/home.html</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/12.png" alt="image"></p>
+<p>此時的html是static 沒有加上thymeleaf</p>
+<h1 id="spring-ex04">spring-ex04</h1>
+<p><a href="http://dtr-trading.blogspot.tw/2014/02/spring-mvc-4-thymeleaf-crud-part-1.html" target="_blank">Thymeleaf CRUD - Part 1</a></p>
+<p>加上hibernate-validator</p>
+<p>然後<br>StragtegyDTO(Data Transfer Object)</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/13.png" alt="image"></p>
+<p>就可以加上@NotNull , @NotEmpty 等validator</p>
+<p>StrategyMapper 做Strategy 和 StrategyDTO 之間轉換</p>
+<p>Strategy &lt;—- StrategyMapper —-&gt; StrategyDTO</p>
+<p>StrategyDTO還定義了<a href="http://docs.spring.io/spring/docs/4.0.1.RELEASE/spring-framework-reference/htmlsingle/#beans-java-specifying-bean-scope" target="_blank">scope</a></p>
+<p>controller —- strategys &amp; strategyDTO —-&gt; HTML(Thymeleaf)</p>
+<p>controller &lt;— strategyDTO —- HTML(Thymeleaf)</p>
+<p>其實我覺得根本不需要strategyDTO也可以</p>
+<p>我覺得概念上可能是strategy 是對應 table 的物件 不應該是拿來傳來傳去的</p>
+<p>DTO(Data Transfer Object) 才是拿來傳送的</p>
+<h3 id="delete_phase">delete phase</h3>
+<p>用phase定義delete三個階段</p>
+<p>1.stage</p>
+<p>2.confirm</p>
+<p>3.cancel</p>
+<h1 id="spring-ex05">spring-ex05</h1>
+<p><a href="http://dtr-trading.blogspot.tw/2014/02/spring-mvc-4-thymeleaf-and-bootstrap.html" target="_blank">Thymeleaf and Bootstrap</a></p>
+<p>加上jquery &amp; bootstrap</p>
+<p>之後改用webjar來加入</p>
+<h1 id="spring-ex06">spring-ex06</h1>
+<p><a href="http://dtr-trading.blogspot.tw/2014/02/spring-mvc-4-bootstrap-and-validation.html" target="_blank">Bootstrap and Validation</a></p>
+<p>DTR決定remove DTO了 …我就覺得看不懂DTO和domain object有啥差別…</p>
+<p>BaseEntity =&gt; 加強版的Id設定</p>
+<p>Strategy =&gt; 繼承 BaseEntity =&gt; 就有了Id</p>
+<p><a href="http://www.silverbaytech.com/2013/04/16/custom-messages-in-spring-validation/" target="_blank">Spring Validation</a> in using <a href="http://hibernate.org/validator/" target="_blank">Hibernate Validator</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/15.png" alt="image"></p>
+<p>@NotNull , @Size =&gt; javax.validation</p>
+<p>@NotEmpty =&gt; hibernate.validation</p>
+<p>有以上設定後 在controller就可以用 =&gt; @Valid</p>
+<p>controller =&gt;</p>
+<ol>
+<li>perform validation and pass error message back to the Thymeleaf pages</li>
+<li>logging the controller</li>
+<li>update the controller method to return Strings rather than ModelAndView objects</li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/14.png" alt="image"></p>
+<p>當按下新增後 對應到addStrategy</p>
+<p>會將Stategy object傳到這個function 由Strategy strategy接收</p>
+<p>前面又定義了他是@ModelAttribute 表示是hibernate mapping 到的object</p>
+<p>再加上@Valid 就會去判斷在這個object 有加上哪些validator(@NotNull,NotEmpty…..) , 若是有無法過的validator就會發出訊息給 BindingResult 接收 .</p>
+<ol>
+<li>出現錯誤 : BindingResult + RedirectAttributes</li>
+</ol>
+<p>BindingResult 存有訊息 由RedirectAttributes轉頁面</p>
+<ol>
+<li>正常 : Model =&gt; </li>
+</ol>
+<p>model.addAttribute(“message”, message); =&gt; 存訊息</p>
+<p>return “redirect:/strategy/list”; =&gt; return String 轉頁面</p>
+<p>的確是正常出現錯誤訊息了 </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/16.png" alt="image"></p>
+<p>但是看不懂Thymeleaf data-th-if=”${#fields.hasErrors(‘type’)}”</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/dtr/17.png" alt="image"></p>
+<p>不知道是怎麼接收錯誤訊息 或是怎麼知道錯誤訊息？</p>
+<h1 id="Field_errors">Field errors</h1>
+<p><a href="http://www.thymeleaf.org/doc/thymeleafspring.html#field-errors" target="_blank">link</a></p>
+<p>有了基本概念後 再去看上一張圖片</p>
+<p>Thymelea的form和field一直有和domain object bind在一起</p>
+<p><code>data-th-field=&quot;*{type}&quot;</code></p>
+<p><code>data-th-field=&quot;*{name}&quot;</code></p>
+<p>確定domain objct: strategy的<strong>type </strong>Column bind在此格td</p>
+<p><strong>name</strong>也是做一樣的事情</p>
+<p>當 BindingResult result 存有錯誤訊息 </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/24.png" alt="image"></p>
+<p>看到錯誤訊息：</p>
+<p>Field error in object ‘strategy’ on field ‘name’: </p>
+<p>Field error in object ‘strategy’ on field ‘type’:</p>
+<p>所以</p>
+<pre><code>    <span class="subst">&lt;</span>td class<span class="subst">=</span><span class="string">"col-sm-4 text-danger"</span> <span class="built_in">data</span><span class="attribute">-th</span><span class="attribute">-if</span><span class="subst">=</span><span class="string">"${#fields.hasErrors('type')}"</span> <span class="built_in">data</span><span class="attribute">-th</span><span class="attribute">-errors</span><span class="subst">=</span><span class="string">"*{type}"</span><span class="subst">&gt;</span><span class="keyword">type</span> error<span class="subst">&lt;</span>/td<span class="subst">&gt;</span>
+    <span class="subst">&lt;</span>td class<span class="subst">=</span><span class="string">"col-sm-4 text-danger"</span> <span class="built_in">data</span><span class="attribute">-th</span><span class="attribute">-if</span><span class="subst">=</span><span class="string">"${#fields.hasErrors('name')}"</span> <span class="built_in">data</span><span class="attribute">-th</span><span class="attribute">-errors</span><span class="subst">=</span><span class="string">"*{name}"</span><span class="subst">&gt;</span>name error<span class="subst">&lt;</span>/td<span class="subst">&gt;</span>
+</code></pre><p>就可以抓到有錯誤</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/25.png" alt="image"></p>
+<p><code>data-th-errors</code> 顯示出所有錯誤訊息</p>
+<p>在夾帶button type=submit 的action 參數value時 </p>
+<p>原本<code>if (action.equals(&quot;save&quot;))</code></p>
+<p>改成<code>if (phase.equals( messageSource.getMessage(&quot;button.action.stage&quot;, null, Locale.US) ))</code></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-07-28T00:30:17.000Z"><a href="/2014/07/28/20140728/">Jul 28 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/07/28/20140728/">2014/07/28</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Generic">Generic</h1>
+<p><a href="http://openhome.cc/Gossip/Java/Generics.html" target="_blank">link</a></p>
+<p>總之就是可以讓你自定義要用的同一種類型別</p>
+<h1 id="ArrayList">ArrayList</h1>
+<p>ArrayList —implement—&gt;List interface —child interface of —&gt; Collection</p>
+<h1 id="Hashmap">Hashmap</h1>
+<p>LinkedHashMap —child class of—&gt; Hashmap —implement—&gt;map</p>
+<h1 id="content_assist_in_eclipse">content assist in eclipse</h1>
+<p><a href="https://www.youtube.com/watch?v=JqMxaETAMaA" target="_blank">link</a></p>
+<ol>
+<li>顯示proposal</li>
+<li>快速snippet</li>
+</ol>
+<p>改成 shift+cmd+s</p>
+<p>run java application : shift + cmd + r</p>
+<h1 id="thymeleaf_text_externalizing">thymeleaf text externalizing</h1>
+<p><a href="http://forum.thymeleaf.org/listjoin-use-with-externalizing-text-td4027704.html" target="_blank">link</a></p>
+<p><a href="http://forum.thymeleaf.org/Problem-with-euro-symbol-td3156574.html" target="_blank">link</a></p>
+<p><a href="http://forum.thymeleaf.org/Easy-alternatives-to-text-externalization-td4027207.html#a4027219" target="_blank">link</a></p>
+<p>用不出來 搞不懂為什麼抓不到…</p>
+<p><a href="http://forum.thymeleaf.org/Messages-and-ResourceBundles-td3379900.html" target="_blank">link</a></p>
+<p>最下面有提到為什麼無法抓到</p>
+<h1 id="試試看這tutorial好了">試試看這tutorial好了</h1>
+<p><a href="http://justinrodenbostel.com/tag/spring-boot/" target="_blank">link</a></p>
+<p><code>gradle clean</code><br><code>gradle build</code><br><code>gradle bootRun</code></p>
+<h1 id="form_binding">form binding</h1>
+<p>bind java objects to forms in these views for processing</p>
+<h1 id="validate">validate</h1>
+<p><a href="http://stackoverflow.com/questions/21039483/thymeleaf-and-jquery" target="_blank">client-side validation is not a good idea </a></p>
+<h1 id="thymeleaf_jquery">thymeleaf jquery</h1>
+<p><a href="http://stackoverflow.com/questions/23592456/thymeleaf-send-object-to-ajax" target="_blank">thymeleaf pass object to js variable</a> </p>
+<p><a href="https://github.com/thymeleaf/thymeleaf/issues/207" target="_blank">link</a></p>
+<p><a href="http://stackoverflow.com/questions/14365746/variable-expression-into-javascript-without-using-thinline" target="_blank">link</a></p>
+<p><a href="http://forum.thymeleaf.org/variable-expression-into-javascript-without-using-th-inline-td4025534.html" target="_blank">link</a></p>
+<p><a href="http://stackoverflow.com/questions/24227318/thymeleaf-39-added-on-passing-parameter-to-javascript-function" target="_blank">link</a></p>
+<h1 id="International">International</h1>
+<p><a href="http://justinrodenbostel.com/tag/spring-boot/" target="_blank">Part 4 </a></p>
+<h2 id="ResourceBundleMessageSource">ResourceBundleMessageSource</h2>
+<ol>
+<li>set up a resource bundle for messages</li>
+<li>name them to support locales</li>
+<li>wire a LocaleResolver and LocaleChangeInterceptor into our test application</li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/3.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/4.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/5.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/2/6.png" alt="image"></p>
+<h1 id="Spring_Security">Spring Security</h1>
+<p><a href="http://justinrodenbostel.com/tag/spring-boot/" target="_blank">Part 5</a></p>
+<h1 id="Jasypt">Jasypt</h1>
+<p><a href="http://justinrodenbostel.com/tag/spring-boot/" target="_blank">Part 5A</a></p>
+<p>Jasypt is an encryption tool for Java.</p>
+<p>將application.properties 內的</p>
+<p>spring.datasource.url=jdbc:mysql://localhost/SpringBoot<br>spring.datasource.username=root<br>spring.datasource.password=xxxxxxxx</p>
+<p>都變成密碼</p>
+<h1 id="movie">movie</h1>
+<p><a href="https://github.com/tobiasflohre/movie-database/blob/master/src/main/webapp/resources/js/custom.js" target="_blank">link</a></p>
+<h1 id="reference">reference</h1>
+<p><a href="http://dtr-trading.blogspot.tw/search/label/Thymeleaf" target="_blank">label Thymeleaf</a></p>
+<p><a href="http://dtr-trading.blogspot.tw/2014/04/spring-security-32-users-roles.html" target="_blank">Spring Security 3.2 - Users, Roles, Permissions - Part 1</a></p>
+<p><a href="http://dtr-trading.blogspot.tw/2014/04/spring-thymeleaf-crud-user-maintenance.html" target="_blank">Spring Thymeleaf CRUD User Maintenance - Part 1</a></p>
+<p>watch his April archive</p>
+<h1 id="我覺得thymeleaf_跟_jquery_套在一起好像有點怪？_但應該也可以做">我覺得thymeleaf 跟 jquery  套在一起好像有點怪？ 但應該也可以做</h1>
+<p>不確定Thymeleaf 在填入資料在html中的這個動作</p>
+<p>和jquery documentReady哪個先 ？</p>
+<p>猜測是Thymeleaf快 因為它屬於server-side</p>
+<p>至於jquery只要有id/name啥的 一樣可以執行才對</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/page/9/" class="alignleft prev">Prev</a>
+  
+  
+    <a href="/page/11/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

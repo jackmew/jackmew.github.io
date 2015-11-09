@@ -1,0 +1,439 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2014/10/14 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  <meta name="description" content="UI
+
+要注意的是host page
+// Associate the Main panel with the HTML host page.
+RootPanel.get(&quot;stockList&quot;).add(mainPanel);
+
+Event
+event handler interface mode">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="2014/10/14"/>
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-14T01:27:00.000Z"><a href="/2014/10/14/20141014/">Oct 14 2014</a></time>
+      
+      
+  
+    <h1 class="title">2014/10/14</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="UI">UI</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/12.png" alt="image"></p>
+<p>要注意的是host page</p>
+<pre><code><span class="comment">// Associate the Main panel with the HTML host page.</span>
+RootPanel.<span class="keyword">get</span>(<span class="string">"stockList"</span>).add(mainPanel);
+</code></pre><p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/13.png" alt="image"></p>
+<h1 id="Event">Event</h1>
+<p><code>event handler interface model</code></p>
+<h1 id="Logging">Logging</h1>
+<p><a href="https://code.google.com/p/gwt-log/downloads/detail?name=gwt-log-3.3.0-javadoc.jar&amp;can=2&amp;q=" target="_blank">link</a></p>
+<p><a href="https://code.google.com/p/gwt-examples/" target="_blank">豐富</a></p>
+<p><a href="https://code.google.com/p/gwt-log/wiki/GettingStarted" target="_blank">remote logging</a></p>
+<h1 id="很清楚教學">很清楚教學</h1>
+<p><a href="http://www.tutorialspoint.com/gwt/gwt_logging_framework.htm" target="_blank">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/14.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/15.png" alt="image"></p>
+<h2 id="改變log_level_:_SEVERE-&gt;INFO">改變log level : SEVERE-&gt;INFO</h2>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/16.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/17.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/18.png" alt="image"></p>
+<h2 id="popup_logging">popup logging</h2>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/19.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/20.png" alt="image"></p>
+<h2 id="css_-_gwt_element_set_id">css - gwt element set id</h2>
+<p><a href="http://www.tutorialspoint.com/gwt/gwt_style_with_css.htm" target="_blank">tutorial</a><br>setStyleName:會把原本有的style清掉 只用set的這個.</p>
+<p>addStyleName:保留原本的 再加上更多的style.</p>
+<p><a href="http://stackoverflow.com/questions/7380765/setting-a-gwt-widgets-id" target="_blank">link</a></p>
+<p><code>RootPanel.get(&quot;gwtGreenButton&quot;)</code> 就像是jquery的 <code>$(&quot;#gwtGreenButton&quot;)</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/22.png" alt="image"></p>
+<p>畫面上是剛好排好 其實這樣有點問題 , 上面兩個button是放在div裡面 ,最後一個只是簡單的放到body裡面 </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/23.png" alt="image"></p>
+<p>想要show的是id</p>
+<pre><code><span class="keyword">Button</span> btnWithoutHtml = new <span class="keyword">Button</span>(<span class="string">"Botton without html"</span>);
+btnWithoutHtml.getElement().setId(<span class="string">"btnWithoutHtml"</span>);
+</code></pre><p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/24.png" alt="image"></p>
+<p>使用id來加入css</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/25.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/26.png" alt="image"></p>
+<h1 id="Basic_widget">Basic widget</h1>
+<p><a href="http://www.tutorialspoint.com/gwt/gwt_basic_widgets.htm" target="_blank">link</a></p>
+<p>public abstract class <code>UIObject</code> extends java.lang.Object =&gt;<br>一些object/html tag 的element/attribute 設定 , 設定css ,設定position.</p>
+<p>public class <code>Widget</code> extends UIObject implements EventListener =&gt;</p>
+<p>主要是關於event 如何bind , 如何使用 .</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/27.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/28.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/29.png" alt="image"></p>
+<h1 id="Form_widget">Form widget</h1>
+<p><code>widget.addStyleName(&quot;cssName&quot;);</code></p>
+<p><code>Window.alert(&quot;message&quot;);</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/30.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/31.png" alt="image"></p>
+<h1 id="Event_Handling">Event Handling</h1>
+<p><a href="http://www.tutorialspoint.com/gwt/gwt_event_handling.htm" target="_blank">link</a></p>
+<p>這兩段</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/32.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/33.png" alt="image"></p>
+<p>可以變成下面這一段</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/34.png" alt="image"></p>
+<h1 id="怎麼抓value_?">怎麼抓value ?</h1>
+<ol>
+<li><p>第一個奇怪的方法：<code>(TextBox)event.getSource()).getValue()</code></p>
+</li>
+<li><p><code>String textBoxValue = textBox.getValue();</code> 要注意的是textBox的scope .</p>
+</li>
+</ol>
+<h1 id="UiBinder">UiBinder</h1>
+<p><a href="http://www.tutorialspoint.com/gwt/gwt_uibinder.htm" target="_blank">link</a></p>
+<p><a href="http://gwt-note.psmonkey.org/official/buildUI/With-UiBinder" target="_blank">中文的詳細講解</a></p>
+<p><a href="https://www.youtube.com/watch?v=ddeFZ_Cu6dY" target="_blank">清楚但是太淺了</a></p>
+<p>第一個link的<code>Login.ui.xml</code>有問題 , css一直套不進去</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/35.png" alt="image"></p>
+<p>……</p>
+<p>直到看到這兩個</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/36.png" alt="image"></p>
+<p><a href="http://stackoverflow.com/questions/4183543/uiwith-style-not-showing-up" target="_blank">link</a><br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/37.png" alt="image"></p>
+<p>才改成這樣 </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/38.png" alt="image"></p>
+<p>終於成功了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/gwt/1/39.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/blog/">blog</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/gwt/">gwt</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jackmew.github.io/2014/10/14/20141014/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

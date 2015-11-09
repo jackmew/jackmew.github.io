@@ -1,0 +1,1012 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 13 | blog | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title category">blog</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-22T01:10:00.000Z"><a href="/2014/05/22/20140522/">May 22 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/22/20140522/">2014/05/22</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="mongoose-simpledb">mongoose-simpledb</h1>
+<p><a href="https://github.com/codetunnel/mongoose-simpledb" target="_blank">Chevex</a>製作的一個在express中 模組化使用mongoose的node-module:</p>
+<ol>
+<li>mongoose中的定義: schema -&gt; model -&gt; instance</li>
+</ol>
+<p>Schema</p>
+<p><code>var kittySchema = mongoose.Schema({
+    name: String
+});</code></p>
+<p>Model</p>
+<p><code>var Cat = mongoose.model(&#39;cat&#39;,kittySchema);</code><br>(     var modelName = mongoose.model(‘collectionName’);   )</p>
+<p>Instance</p>
+<p><code>var HelloKitty = new Cat({nam:&#39;HelloKitty&#39;});</code></p>
+<p>通常的用法是</p>
+<p>model -&gt; find,findOne …</p>
+<p><code>db.Cat.findOne({&#39;name&#39;:&#39;HelloKitty&#39;})</code></p>
+<p>Instance -&gt; save…</p>
+<p><code>db.HelloKitty.save()</code></p>
+<ol>
+<li>上面的schema -&gt; model -&gt; instance定義,在mongoose-simpledb中,都定義在dbmodels內,dbmodels的每一個js都是一個model</li>
+</ol>
+<p>ex:dbmodels/Kitten.js</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongoose/1.png" alt="image"></p>
+<p>因此schema,virtual properties,static function 都定義在裡面</p>
+<p>要注意的是kitten.js會自動被變成大寫的Kitten.js,所以引用時也都必須是大寫開頭.</p>
+<p>3.那要怎麼抓到這些model?</p>
+<p><code>var simpledb = require(&#39;mongoose-simpledb&#39;);</code></p>
+<p><code>var db = simpledb.init(&#39;mongodb://localhost/test&#39;);</code></p>
+<p>當simpledb.init連接上資料庫後 會回傳資料庫訊息和自動去抓/dbmodels,這些東西包成db object</p>
+<p>db.Kitten就會指到Kitten model</p>
+<p><code>db.Kitten.findOne({&#39;name.first&#39;:&#39;mew&#39;},function(err,koda){
+        if (err) return console.error(err);
+        console.log(koda);
+ });</code></p>
+<p>自己定義</p>
+<p><a href="http://www.pokemon.com/us/pokedex/charizard" target="_blank">charizard</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongoose/2.png" alt="image"></p>
+<p><a href="https://github.com/codetunnel/mongoose-auto-increment/issues/7ß" target="_blank">autoIncrement.initialize</a></p>
+<p>schema =&gt; pokemon</p>
+<p>model =&gt; fire</p>
+<p>instance =&gt; charizard</p>
+<p>突然想做把噴火龍直接存進mongo , 抓出來show在頁面上</p>
+<h1 id="express_photo_render?_send?">express photo render? send?</h1>
+<p>好像有點複雜</p>
+<p>要考慮upload , contentType , binary的處理 , 然後還有顯示的方式</p>
+<p>應該分成另一個project來做</p>
+<ol>
+<li><a href="https://gist.github.com/aheckmann/2408370" target="_blank">save image</a></li>
+<li>save audio</li>
+<li>save video </li>
+</ol>
+<p>save image最常用</p>
+<h1 id="UML_(Unified_Modeling_Language)">UML (Unified Modeling Language)</h1>
+<p><a href="http://alexdp.free.fr/violetumleditor/page.php?id=en:uml:intro" target="_blank">幫助理解OOP的架構和概念</a></p>
+<p>這是一種有效的方式讓end users和programmers 互相溝通理解的語言</p>
+<h1 id="diagrams">diagrams</h1>
+<ol>
+<li>static view        </li>
+</ol>
+<p>ex: class diagram </p>
+<ol>
+<li>dynamic view</li>
+</ol>
+<p>ex: sequence diagram</p>
+<p>最常用的兩個diagram</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-21T01:34:08.000Z"><a href="/2014/05/21/20140521/">May 21 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/21/20140521/">2014/05/21</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="callback">callback</h1>
+<p>自己多打幾字code , 就會比較有印象 也比較知道為什麼?</p>
+<p>一般的情況,當我們call一個function時,可以傳參數給它,然後這個function可以return值,這個值再拿去call別的function.</p>
+<p>callback 一樣可以傳參數給另個function , 也可以return值回來,<strong>同時自己再次call一次function</strong> .</p>
+<p>也就是說callback 表示你可以同時一次call複數個function</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/gif/callback.gif" alt="callback"></p>
+<h1 id="module">module</h1>
+<ol>
+<li>exports.functionName 包出一個function 給人使用</li>
+<li>module.exports = objectName 包出一個object</li>
+<li>module.exports{properties} 包參數</li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/gif/module.gif" alt="image"></p>
+<h1 id="bootstrap_with_jquery_mobile">bootstrap with jquery mobile</h1>
+<p><a href="http://stackoverflow.com/questions/18636919/can-i-use-bootstrap-3-together-with-jquery-mobile" target="_blank">can-i-use-bootstrap-3-together-with-jquery-mobile</a></p>
+<h1 id="express_with_ejs_template_engine_and_router">express with ejs template engine and router</h1>
+<p><code>express --ejs projectname</code><br><code>cd projectname</code><br><code>npm install</code></p>
+<p>設定route</p>
+<p><a href="http://expressjs.com/3x/api.html#req.params" target="_blank">express req.params</a></p>
+<ol>
+<li>建立一個ejs template engine的 express project</li>
+<li>測試url路徑</li>
+<li>如何抓url參數</li>
+</ol>
+<p>知道如何抓參數 卻還是不知道怎麼傳參數</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/gif/express_first_basicRouter.gif" alt="image"></p>
+<h1 id="jquery_ondocumentReady的寫法">jquery ondocumentReady的寫法</h1>
+<p><a href="http://api.jquery.com/ready/" target="_blank">ready</a></p>
+<h1 id="express_傳參數_jquery_ajax">express 傳參數 jquery ajax</h1>
+<ol>
+<li>在ejs裡面 include javascript</li>
+<li>測試jquery</li>
+<li>測試jquery button 事件</li>
+<li>發出request get , 並看發出的參數有沒有回傳</li>
+<li>發出request post , 並看發出的參數有沒有回傳</li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/gif/express-ajax.gif" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-20T03:03:02.000Z"><a href="/2014/05/20/20140520/">May 20 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/20/20140520/">2014/05/20</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="node_website_deployment">node website deployment</h1>
+<p><a href="http://www.slideshare.net/MinamoPH/nodejs-website-deployment" target="_blank">link</a></p>
+<p><a href="http://blog.codeship.io/2014/04/03/continuous-deployment-modulus-github-nodejs.html" target="_blank">codeship</a></p>
+<h1 id="使用_jQuery(document)-ready()_與_window-onload_注意事項">使用 jQuery(document).ready() 與 window.onload 注意事項</h1>
+<p><a href="http://blog.miniasp.com/post/2010/07/24/jQuery-ready-vs-load-vs-window-onload-event.aspx" target="_blank">link</a></p>
+<h1 id="imgur">imgur</h1>
+<p><a href="http://jackmew.imgur.com/all/" target="_blank">http://jackmew.imgur.com/all/</a></p>
+<h1 id="reddit">reddit</h1>
+<p>有點像 國外的ptt</p>
+<h1 id="flickr">flickr</h1>
+<p><a href="https://www.flickr.com/" target="_blank">https://www.flickr.com/</a></p>
+<h1 id="Gravatar">Gravatar</h1>
+<p><a href="http://en.gravatar.com/" target="_blank">A Globally Recongnized Avatar</a></p>
+<h1 id="ffmpeg_%_的意思">ffmpeg % 的意思</h1>
+<p>Thank you! One adustment: use out%02d.gif. This pads the number in the filename so that they are in proper alphabetical order. Otherwise the order ends up being 1,10,11,12,13,14,15,16,17,18,19,2,20,21,22,23… which gives the resulting gif a weird skipping effect. –  Alex Kahn Dec 17 ‘12 at 0:32</p>
+<p>也就是說他會自懂產生檔案名稱001 002 003 004 照順序向下排</p>
+<h1 id="詳細ffmpeg_&amp;_imageMAgick_解說">詳細ffmpeg &amp; imageMAgick 解說</h1>
+<p>Thanks for your reply. However I found out that ffmpeg is not really good at handling gif images so I used it to extract images but then use imagemagick to generate the gif. –  Marconi May 22 ‘11 at 1:20</p>
+<p><a href="http://blog.room208.org/post/48793543478" target="_blank">http://blog.room208.org/post/48793543478</a></p>
+<p>可以把原本100多mb的gif檔案 變成100多kb的檔案</p>
+<p>但犧牲很多畫質</p>
+<p>所以一定要有取捨</p>
+<p>採取的策略是一張png的質量大一點沒關係</p>
+<p>中間可能減少多點frame 畫面才不會太模糊</p>
+<p>這組合還不錯</p>
+<ol>
+<li><p>.mov 720p</p>
+</li>
+<li><p><code>ffmpeg -i screencast.mov -vf scale=640:-1 -r 5 output/%3d.png</code></p>
+</li>
+</ol>
+<ol>
+<li>`convert -delay 1x10 <code>seq -f %03g.png 10 3 1274</code> \<pre><code>   -<span class="ruby">coalesce -layers <span class="constant">OptimizeTransparency</span> \
+</span>   animation3.gif`
+</code></pre></li>
+</ol>
+<h1 id="tumblr">tumblr</h1>
+<p><a href="https://www.tumblr.com/" target="_blank">https://www.tumblr.com/</a></p>
+<h1 id="mongoose_get_start">mongoose get start</h1>
+<p>環境</p>
+<p>express 4.0.0</p>
+<p>npm 1.4.3</p>
+<p>node 0.10.26</p>
+<p>根據<a href="http://mongoosejs.com/docs/index.html" target="_blank">mongoose get started </a></p>
+<p>連線到<a href="https://mongolab.com/databases/jackmew#tools" target="_blank">mongolab</a>,<br>save 一筆資料 name=”fluffy”  到kitten collection裡 </p>
+<p>然後find所有在kitten collection裡面所有的document</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/video/mongoose_getStart.gif" alt="image"></p>
+<h1 id="改變express_的架構">改變express 的架構</h1>
+<p>原本的views folder都可以不要</p>
+<p>在public 加上html folder/     取代view  這裡面可以是jquery mobile或者sercha touch</p>
+<p>routes就做controller的事情 只接收request ,然後response data給view</p>
+<p>model 做處理資料的事情 callback還傳給routes</p>
+<p>app.js只負責require東西</p>
+<h1 id="express_callback的運作">express callback的運作</h1>
+<p>這部分 還是有點觀念沒有釐清的感覺</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-19T03:26:34.000Z"><a href="/2014/05/19/20140519/">May 19 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/19/20140519/">2014/05/19</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="wbase-test_done">wbase-test done</h1>
+<p>三天內完成對rest api 測試的小程式</p>
+<ol>
+<li>java.net.url 產生request 去call rest api</li>
+<li>json-simple 對回傳的json string做處理 ,又分為jsonObject(單一),jsonArray(多)</li>
+<li>java.util.properties,Emueration 抓.properties的參數</li>
+</ol>
+<h1 id="製作gif_demo短片">製作gif demo短片</h1>
+<p><a href="http://imgur.com/" target="_blank">http://imgur.com/</a><br><a href="https://www.flickr.com/" target="_blank">https://www.flickr.com/</a></p>
+<h1 id="Mac_screen_recording">Mac screen recording</h1>
+<p>Application/QuickTime Player</p>
+<p>在開啓的QuickTime Player點選右鍵 new screen recorder</p>
+<p>非常方便！</p>
+<p>都是high quality的影片</p>
+<p>通常轉成gif檔的限制都是100mb</p>
+<p>quicktime -&gt; file -&gt; export 可以變成比較小的檔案</p>
+<p>online tool轉起來超慢的.. 還要送到信箱 </p>
+<p><code>brew options ffmpeg</code><br><code>brew install ffmpeg</code><br>原本30mb的.mov 變成300mb的.gif…..</p>
+<p><code>brew install imagemagick</code></p>
+<p>超複雜 還沒用成功 考慮直接用影片？ 可是好像又有點奇怪</p>
+<h1 id="Convert_MOV_to_GIF_using_FFmpeg_and_ImageMagick">Convert MOV to GIF using FFmpeg and ImageMagick</h1>
+<p><a href="https://gist.github.com/tskaggs/6394639" target="_blank">link</a> 跟著做 可以達到不錯的效果</p>
+<p><code>ffmpeg -i screencast.mov -vf scale=320:-1 -r 10 output/ffout%3d.png</code> 要先自己新增一個output folder</p>
+<p><a href="http://superuser.com/questions/556029/how-do-i-convert-a-video-to-gif-using-ffmpeg-with-reasonable-quality" target="_blank">-t 10 限制影片長度 10秒</a></p>
+<p>-r 10 frame rate 10 fps</p>
+<p>scale=320 顯示的圖片寬度 高度會自動變化</p>
+<p><code>convert -delay 8 -loop 0 output/ffout*.png output/animation.gif</code></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-16T01:43:04.000Z"><a href="/2014/05/16/20140516/">May 16 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/16/20140516/">2014/05/16</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="java_in_terminal">java in terminal</h1>
+<p>將昨天寫的java程式 在terminal執行</p>
+<p><a href="http://introcs.cs.princeton.edu/java/15inout/mac-cmd.html" target="_blank">mac-cmd</a></p>
+<p><code>javac Hello.java</code> 將java檔 compile成.class</p>
+<p><code>java Hello</code></p>
+<p>但一直出現類似錯誤</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/java/1.png" alt="image"></p>
+<p>後來發現原因是若是在你的Hello.java有定義package<br>ex:package <code>org.ls.test</code><br>你需要到org的上層去執行<code>java org.ls.test.Hello</code></p>
+<p>加入json-simple-1.1.1.jar =&gt;要用JSONObject , JSONParser等..</p>
+<p><a href="http://stackoverflow.com/questions/8949413/how-to-run-java-program-in-terminal-with-external-library-jar" target="_blank">java -cp</a></p>
+<p>執行方式<code>java -cp .:../lib/json-simple-1.1.1.jar com.dl.test.Standalone</code></p>
+<h1 id="json-simple">json-simple</h1>
+<p>查他的api<br><a href="https://code.google.com/p/json-simple/" target="_blank">json-simple</a></p>
+<h1 id="param-properties">param.properties</h1>
+<p>我想把url定成properties<br>rest 也可以定成properties </p>
+<p><a href="http://www.mkyong.com/java/java-getresourceasstream-in-static-method/" target="_blank">java-getresourceasstream-in-static-method</a></p>
+<p><a href="http://www.mkyong.com/java/java-properties-file-examples/" target="_blank">java-properties-file-examples</a></p>
+<p><a href="http://programming.im.ncnu.edu.tw/J_Chapter2.htm" target="_blank">static block</a></p>
+<p><a href="http://www.ewdna.com/2008/12/javautilpropertiessetproperty.html" target="_blank">java.util.Properties</a></p>
+<p>但一直無法成功</p>
+<p>突然發現folder 跟 source folder是不一樣的 </p>
+<p>將url.properties方入source folder就可以抓到了！</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-15T05:37:42.000Z"><a href="/2014/05/15/20140515/">May 15 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/15/20140515/">2014/05/15</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="java-net-url">java.net.url</h1>
+<p><a href="http://www.codedata.com.tw/java/java-restful-1-jersey-and-jax-rs" target="_blank">java-restful</a>這個架構挺像我們wbase-web的方式</p>
+<p><a href="http://stackoverflow.com/questions/11706918/how-do-you-set-session-attributes-with-java-net-urlconnection" target="_blank">how-do-you-set-session-attributes-with-java-net-urlconnection</a> 結論是session是server端的東西 client端無法產生</p>
+<p>當建立連線後 會產生sessionID 之後再次連上去 會因為同樣的sessionID 所以就可以知道你已經登入過了</p>
+<p><a href="http://www.hccp.org/java-net-cookie-how-to.html" target="_blank">如何抓cookie 然後抓sessionID</a> 但是他寫了一個很大的CookieManager 我不需要那麼多功能</p>
+<p><a href="http://rritw.com/a/JAVAbiancheng/JAVAzonghe/20100829/15676.html" target="_blank">Java模擬網站登錄</a> 這個取得sessionID的方式比較適合我</p>
+<p><a href="http://stackoverflow.com/questions/2793150/how-to-use-java-net-urlconnection-to-fire-and-handle-http-requests" target="_blank">java.net.url post 這根本精華篇吧</a></p>
+<p><a href="http://examples.javacodegeeks.com/enterprise-java/rest/restful-java-client-with-java-net-url/" target="_blank">restful-java-client-with-java-net-url</a>借由這篇我才發現寫成這樣<code>&quot;{\&quot;id\&quot;:1,\&quot;firstName\&quot;:\&quot;Liam\&quot;,\&quot;age\&quot;:22,\&quot;lastName\&quot;:\&quot;Marco\&quot;}&quot;</code>就會是JSON格式</p>
+<p>然而我又發現到</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/url1.png" alt="image"></p>
+<p>是先將array 包起資料 然後再變成JSON的</p>
+<p>所以我的JSON資料應該最外層再包一層</p>
+<p><code>&quot;[{\&quot;id\&quot;:1,\&quot;firstName\&quot;:\&quot;Liam\&quot;,\&quot;age\&quot;:22,\&quot;lastName\&quot;:\&quot;Marco\&quot;}]&quot;</code></p>
+<p>就可以傳到</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/url2.png" alt="image"></p>
+<p>requestBody 就可以接收到參數了</p>
+<p><code>conn.getInputStream()</code> 實際產生連線的部分</p>
+<h1 id="java_連rest_api_測試">java 連rest api 測試</h1>
+<p>以java的方式 連上 url 去call rest api 來做測試</p>
+<p>還挺有趣的 而且明顯發現自己的sense變強了 雖然還是要查資料</p>
+<p>但寫比較快了 之後錄上影片</p>
+<p>明天要解決的問題</p>
+<ol>
+<li><p>String抓部分message</p>
+</li>
+<li><p>用Terminal(console) 執行此java code</p>
+</li>
+</ol>
+<h1 id="restClient">restClient</h1>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-14T10:40:25.000Z"><a href="/2014/05/14/20140514/">May 14 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/14/20140514/">2014/05/14</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="comment">comment</h1>
+<p>javadoc 可以自動產生</p>
+<p><a href="http://stackoverflow.com/questions/12708446/loop-focus-of-input-fields-inside-a-form" target="_blank">http://stackoverflow.com/questions/12708446/loop-focus-of-input-fields-inside-a-form</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-13T02:30:52.000Z"><a href="/2014/05/13/20140513/">May 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/13/20140513/">2014/05/13</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="mongolab">mongolab</h1>
+<p><a href="https://mongolab.com/" target="_blank">link</a></p>
+<h1 id="mongoDB">mongoDB</h1>
+<p><a href="http://docs.mongodb.org/manual/tutorial/query-documents" target="_blank">link</a></p>
+<h1 id="mongoose">mongoose</h1>
+<p><a href="http://mongoosejs.com/docs/index.html" target="_blank">Getting Started</a></p>
+<p>在<code>~/jackho/node/em101</code></p>
+<p><code>npm install mongoose</code></p>
+<p>就會在node-module裡面加入mongoose的模組</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/10.png" alt="image"></p>
+<p>基本上都是從Getting started 貼過來的code</p>
+<p><code>~/jackho/node/em101</code><br><code>node script.js</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/11.png" alt="image"></p>
+<p>這樣子就成功了!? 好酷！</p>
+<p>實作find</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/12.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/13.png" alt="image"></p>
+<h1 id="virtual">virtual</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/14.png" alt="image"></p>
+<p>可以做一個中介 的variable 組合不同抓回來的db data</p>
+<h1 id="mongoose_auto_increment">mongoose auto increment</h1>
+<h1 id="Jade_重視縮排">Jade 重視縮排</h1>
+<p>只要縮排一錯誤 就產生問題..</p>
+<p>input(type=”submit”) 按下去就會發送request</p>
+<h1 id="mongoose-simpledb">mongoose-simpledb</h1>
+<p><a href="https://github.com/codetunnel/mongoose-simpledb" target="_blank">Chevex</a></p>
+<p><code>~/jackho/node/em101_simpledb</code></p>
+<p><code>install mongoose-simpledb</code> </p>
+<p>mongoose要定義的schema 和 model的動作 區分開 減少複雜度</p>
+<p>建立dbmodels , mongoose-simpledb會自動將此folder裡面的js檔 視為model</p>
+<p><code>var db = simpledb.init(&#39;mongodb://localhost/test&#39;);</code> 建立資料庫連線</p>
+<p><code>`db.Kitten(model).findOne..</code> 而且不管你命名kitten.js or Kitten.js 在用db.Kitten時 都要是大寫..不知道為什麼 可能是作者定義的吧</p>
+<p>find , findById .. update等 都跟mongo原本的操作方式很像 可以去查mongo官網</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/15.png" alt="image"></p>
+<h1 id="html_jquery_in_express">html jquery in express</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/16.png" alt="image"></p>
+<p><a href="http://www.hacksparrow.com/how-to-server-static-html-files-in-express-js.html" target="_blank">將html放在public folder底下</a> 並且可以用jquery call ajax抓資料</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/17.png" alt="image"></p>
+<p>成功抓到資料了! 實現前端 後端 都是javascript</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-09T02:48:33.000Z"><a href="/2014/05/09/20140509/">May 9 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/09/20140509/">2014/05/09</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="introduce_node_2">introduce node 2</h1>
+<p><a href="http://www.youtube.com/watch?v=jo_B4LTHi3I" target="_blank">link</a></p>
+<p>最基本的tcp-server.js</p>
+<pre><code>var net = <span class="keyword">require</span>(<span class="string">'net'</span>);
+
+var server = net.createServer(function(<span class="keyword">socket</span>){
+    <span class="keyword">socket</span>.<span class="keyword">write</span>(<span class="string">'hello\n'</span>);
+    <span class="keyword">socket</span>.<span class="keyword">write</span>(<span class="string">'world\n'</span>);
+
+    <span class="keyword">socket</span>.on(<span class="string">'data'</span>,function(data){
+        <span class="keyword">socket</span>.<span class="keyword">write</span>(data);
+    });
+})
+
+server.<span class="keyword">listen</span>(<span class="number">8000</span>);
+</code></pre><p>只能自己的terminal回傳自己key在console的資料</p>
+<pre><code>net = <span class="built_in">require</span>(<span class="string">'net'</span>);
+
+<span class="keyword">var</span> sockets = [];
+
+<span class="keyword">var</span> s = net.Server(<span class="function"><span class="keyword">function</span><span class="params">(socket)</span>{</span>
+    sockets.push(socket);
+
+    socket.on(<span class="string">'data'</span>,<span class="function"><span class="keyword">function</span><span class="params">(d)</span>{</span>
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;sockets.length;i++)
+            sockets[i].write(d);
+    });
+});
+
+s.listen(<span class="number">8000</span>);
+</code></pre><p>new 一個array ,將大家的socket放在裡面    </p>
+<p>此時在另一個terminal就可以讀到共同的sockets data 然後data被write出來</p>
+<p>在結束後 remove dead socket    </p>
+<pre><code><span class="keyword">var</span> sockets = [];
+
+<span class="keyword">var</span> s = net.Server(<span class="function"><span class="keyword">function</span><span class="params">(socket)</span>{</span>
+    sockets.push(socket);
+
+    socket.on(<span class="string">'data'</span>,<span class="function"><span class="keyword">function</span><span class="params">(d)</span>{</span>
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;sockets.length;i++){
+            sockets[i].write(d);
+        }
+    });
+    <span class="comment">//remove dead socket</span>
+    socket.on(<span class="string">'end'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+        <span class="keyword">var</span> i = sockets.indexOf(socket);
+        sockets.splice(i,<span class="number">1</span>);
+    });
+});
+
+s.listen(<span class="number">8000</span>);    
+</code></pre><p>最後加上if (sockets[i] == socket) continue ;<br>來判斷若是自己的socket回應的資料 就skip掉 這樣就可以解決重複看到自己<br>打的文字的問題    </p>
+<pre><code>net = <span class="built_in">require</span>(<span class="string">'net'</span>);
+
+<span class="keyword">var</span> sockets = [];
+
+<span class="keyword">var</span> s = net.Server(<span class="function"><span class="keyword">function</span><span class="params">(socket)</span>{</span>
+    sockets.push(socket);
+
+    socket.on(<span class="string">'data'</span>,<span class="function"><span class="keyword">function</span><span class="params">(d)</span>{</span>
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;sockets.length;i++){
+            <span class="keyword">if</span> (sockets[i] == socket) <span class="keyword">continue</span>;
+            sockets[i].write(d);
+        }
+    });
+    <span class="comment">//remove dead socket</span>
+    socket.on(<span class="string">'end'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+        <span class="keyword">var</span> i = sockets.indexOf(socket);
+        sockets.splice(i,<span class="number">1</span>);
+    });
+});
+
+s.listen(<span class="number">8000</span>);    
+</code></pre><p>這樣就是個極小型的聊天室?!    </p>
+<h1 id="mongo_index">mongo index</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo18.png" alt="mongo">    </p>
+<p>ensureIndex 加上後就query很快了    </p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-08T04:04:08.000Z"><a href="/2014/05/08/20140508/">May 8 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/08/20140508/">2014/05/08</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="cornerstone">cornerstone</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/cornerstone/cs1.png" alt="cornerstone"></p>
+<p>在commit前 按下 <code>cmd+enter</code> 可以看你這次要commit和上一版本有什麼不一樣</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/cornerstone/cs2.png" alt="cornerstone"></p>
+<h1 id="根據視窗大小改變">根據視窗大小改變</h1>
+<p>原本是完全沒有根據視窗調整了 但還是很奇怪<br>而且之前看了 某些文章 調整layout部分根據視窗大小改變 需用% 或 em</p>
+<p>嘗試用div測試%</p>
+<p>用table排版 因為我不並不想整個div會動 只要左右縮排就好</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css25.png" alt="css"></p>
+<p>控制每一個td占有的寬度 並設定此table 寬度占有100%畫面</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css26.png" alt="css"></p>
+<p>較大</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css27.png" alt="css"></p>
+<p>較小</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/css/css28.png" alt="css"></p>
+<p>比較特別的是div內 有東西時會根據內容物調整最小限度 若沒有東西 可以一直縮小</p>
+<h1 id="introduce_Node_,_Ryan_Dahl">introduce Node , Ryan Dahl</h1>
+<p><a href="http://www.youtube.com/watch?v=jo_B4LTHi3I" target="_blank">Introduction to NodeJS with Ryan Dahl</a></p>
+<p>本身就具備shell的功能</p>
+<p>可以看到global variable </p>
+<p>可以自己建立variable</p>
+<p>define function</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node9.png" alt="node"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node10.png" alt="node"></p>
+<p>Node(javascript) setTimeout or setInterval 的function是很特別的,在其他語言php , java並沒有 ,其他語言的方式通常是sleep or stop 2秒 , 程式是被block住的,然而Node setTimeout雖然也是延遲2秒鐘 但在這中間的2秒鐘還是有在監聽其他事件 能同時處理其它事情 並沒有被block住 ,所以常聽到Node是non-blocking,也因此被認為效率比較好,但code比較難寫?</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node11.png" alt="node"></p>
+<p>一般:</p>
+<p><code>java,php &lt;--&gt; apache,IIS &lt;--&gt;browser</code></p>
+<p>node:</p>
+<p><code>Node &lt;--&gt; browser</code></p>
+<p>Node本身就包了Server功能 包括HTTP server &amp; TCP server</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node12.png" alt="node"></p>
+<p>只要簡單幾行code就包辦了server功能?</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node13.png" alt="node"></p>
+<p>可以看到write Header的訊息</p>
+<p>keep-alive : persisting connection ,  you can call request<br>every time</p>
+<p>transfer-encoding : chunked =&gt; streaming</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node14.png" alt="node"></p>
+<p>加入setTimeout , 此時同時開多個terminal curl 同一個localhost:8000 </p>
+<p>都可以Hello 等 兩秒 World,證明node可以處理兩個以上的request</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node15.png" alt="node"></p>
+<p>產生n 100 個reqesut c 100 concurrency同行進行的request , 測試Node可否支援</p>
+<p>接下來是tcp-server.js</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node16.png" alt="node"></p>
+<p>可用telnet , nc(netcat?)去測試</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node17.png" alt="node"></p>
+<p>這表示你可在console輸入資料 並且server抓到 並回應</p>
+<p>開始實做chat.js</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node18.png" alt="node"></p>
+<p>看到34.12分鐘</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+    <a href="/categories/blog/page/12/" class="alignleft prev">Prev</a>
+  
+  
+    <a href="/categories/blog/page/14/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

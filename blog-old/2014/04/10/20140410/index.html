@@ -1,0 +1,505 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2014/04/10 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  <meta name="description" content="Template Engines
+Jade — Haml inspired template engineHaml.js — Haml implementationEJS — Embedded JavaScript template enginehbs — adapter for Handlebar">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="2014/04/10"/>
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-10T01:26:51.000Z"><a href="/2014/04/10/20140410/">Apr 10 2014</a></time>
+      
+      
+  
+    <h1 class="title">2014/04/10</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Template_Engines">Template Engines</h2>
+<p>Jade — Haml inspired template engine<br>Haml.js — Haml implementation<br>EJS — Embedded JavaScript template engine<br>hbs — adapter for Handlebars.js, an extension of Mustache.js template engine<br>hulk-hogan — adapter for Twitter’s Hogan.js (Mustache syntax), with support for Partials<br>combyne.js — A template engine that hopefully works the way you’d expect.<br>swig — fast, Django-like template engine<br>whiskers — small, fast, mustachioed<br>Blade — HTML Template Compiler, inspired by Jade &amp; Haml<br>Haml-Coffee — Haml templates where you can write inline CoffeeScript.</p>
+<p>Webfiller — plain-html5 dual-side rendering, self-configuring routes, organized source tree, 100% js.</p>
+<h2 id="install_mongodb">install mongodb</h2>
+<p><code>brew install mongodb</code></p>
+<p><code>mongod</code> =&gt;出現一些資訊 要設定一些startup options</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo9.png" alt="mongodb"></p>
+<p><code>which mongod</code> =&gt; /usr/local/bin/mongod</p>
+<p>solution for **WARNING: <a href="http://stackoverflow.com/questions/16621763/mongod-mac-os-x-rlimits-warning" target="_blank">soft rlimits too low</a></p>
+<p>solution for <a href="http://stackoverflow.com/questions/8029064/new-to-mongodb-can-not-run-command-mongo" target="_blank">exception in initAndListen: 10296 dbpath (/data/db) does not exist, terminating</a> :<code>mkdir -p /data/db/</code> 會放上一個隱藏資料夾在root </p>
+<p>solution for <a href="http://stackoverflow.com/questions/7948789/mongodb-mongod-complains-that-there-is-no-data-db-folder" target="_blank">http://stackoverflow.com/questions/7948789/mongodb-mongod-complains-that-there-is-no-data-db-folder</a> 這表示那個資料夾權限不夠 <code>sudo chown ``id -u`` /data/db</code></p>
+<p>接下來再次執行<code>mongod</code> 依然會會出現很多資訊 但已經不再有error or exception</p>
+<p>發現直接執行<code>mongo</code>會無法開啓mongo shell </p>
+<p>solution for <a href="http://stackoverflow.com/questions/20383440/connect-failed-mongo-db-on-mac-osx" target="_blank">Error: couldn’t connect to server 127.0.0.1:27017 (127.0.0.1)</a></p>
+<p>所以最直接的安裝步驟 應該直接照著<a href="http://stackoverflow.com/users/1175235/ali-emre-cakmakoglu" target="_blank">Ali Emre Çakmakoğlu</a>的回應</p>
+<p><code>brew install mongodb</code></p>
+<p>create main db directory<br><code>sudo mkdir -p /data/db</code></p>
+<p>Make sure that you have a read and write permission on that directory<br><code>sudo chown ``id -u`` /data/db</code></p>
+<p>isten to default port<br><code>mongod</code></p>
+<p>Terminal會顯示listening <code>Cmd + T</code> 再開啓一個terminal </p>
+<p>輸入</p>
+<p><code>mongo</code> 就可以正常開啓mongo shell…</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo10.png" alt="mongo"></p>
+<h2 id="manage_mongodb">manage mongodb</h2>
+<p><a href="http://docs.mongodb.org/manual/tutorial/getting-started/" target="_blank">Getting Started with MongoDB</a></p>
+<p>之前wbase的案子已經有用過mongodb了 不過都沒有實際在本機上安裝過 現在來測試看看本機執行</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo11.png" alt="mongo"></p>
+<p>我們可以看到mongo初始是連接到localhost, port:27017</p>
+<p>在成功連進去mongo以後 會自動產生檔案 journal,mongod.lock</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo12.png" alt="mongo"></p>
+<p><code>db</code> 看你現在正用哪個db default:test</p>
+<p><code>use mydb</code> 轉到mydb</p>
+<p><code>show dbs</code> 看有哪些db 此時會發現沒有mydb 因為你還沒塞資料進去mydb</p>
+<p>產生兩筆資料</p>
+<p><code>j = { name : &quot;mongo&quot; }</code><br><code>k = { x : 3 }</code></p>
+<p>填入db裡面的testData(collection)</p>
+<p><code>db.testData.insert( j )</code><br><code>db.testData.insert( k )</code></p>
+<p><code>show collections</code> 看當前db(mydb)有哪些collection</p>
+<p>看collection:testData裡面有哪些資料(document)</p>
+<p><code>db.testData.find()</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo13.png" alt="mongo"></p>
+<p><a href="http://docs.mongodb.org/manual/tutorial/generate-test-data/" target="_blank">generate test data</a></p>
+<p>比較特別的事<a href="http://docs.mongodb.org/manual/tutorial/generate-test-data/" target="_blank">.mongorc.js</a></p>
+<p>你可以定義你的javascript放在home 也就是<code>~/.mongorc.js</code> 有點怪的是 丟很多東西在home 好像不好</p>
+<p>可是我放在別的folder時 mongo就找不到mongorc.js 先暫且放在home執行後 果然可以call自定義的javascript </p>
+<p>還滿酷的</p>
+<h2 id="Express_+_Mongodb">Express + Mongodb</h2>
+<p>發現一堆人在練習microblog 還滿有趣的 哈哈</p>
+<p>不過也因此可以很快找到解決怪問題的方法</p>
+<p>solution for <a href="http://cnodejs.org/topic/4f8698c1827290275d51511f" target="_blank">TypeError:Connot read property ‘Store’ of undefined</a></p>
+<p>似乎是connect-mongo版本更新後 寫法要改掉</p>
+<p><code>var MongoStore = require(&#39;connect-mongo&#39;);</code></p>
+<p>改成</p>
+<p><code>var MongoStore = require(&#39;connect-mongo&#39;)(express);</code></p>
+<p>solution for <a href="http://stackoverflow.com/questions/17490808/nodejsexpressmongodb-error-connecting-to-database" target="_blank">error connecting to database</a></p>
+<p>跟之前<code>mongo shell</code> 無法啓動一樣</p>
+<p>需要先<code>mongod</code>啓動listening 再下<code>node app.js</code></p>
+<p>啓動microblog後 進行註冊</p>
+<p>account:jackmew</p>
+<p>password:1234</p>
+<p>那要怎樣才能確定有insert進資料庫?</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo16.png" alt="mongo"></p>
+<p>但這方式很麻煩</p>
+<p>直接使用</p>
+<p><strong>Robomongo</strong>:mongo GUI tool</p>
+<p>設定</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo14.png" alt="mongo"></p>
+<p>很容易的就連進去了</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongo/mongo15.png" alt="mongo"></p>
+<p>可以看到密碼被加密了</p>
+<p>產生collection:sessions 紀錄使用資料</p>
+<h2 id="How_express_manipulate_mongo?">How express manipulate mongo?</h2>
+<p>接下來找到底express跟mongo到底是怎麼合在一起操作的?</p>
+<p>想想之前Java在Spring+Hibernate的架構下 Hibernate設定好 準備好JavaBean 接著就可以操作資料</p>
+<p>那express跟mongo連接的那一層是什麼?</p>
+<p>一堆資訊都在這:<br><a href="http://docs.mongodb.org/ecosystem/drivers/node-js/#node-js-language-center" target="_blank">mongoDB Node.js Language Center</a></p>
+<p><a href="http://runnable.com/node-mongodb-native" target="_blank">node-mongodb-native</a> 有實際demo的code</p>
+<p>The <strong>MongoDB Node.js driver</strong> is the officially supported node.js driver for MongoDB. 這個driver是由Christian Kvalheim寫的node-mongodb-native ,後來mongo跟他一起合作?</p>
+<p>這個driver也可以當成底層來support實現object mapping,比如<a href="http://mongoosejs.com/" target="_blank">Mongoose</a>(ODM :Object-Document_Mapper)</p>
+<p>還有<a href="http://mongoosejs.com/docs/index.html" target="_blank">mongoose tutorial</a></p>
+<p><code>npm install mongoose</code></p>
+<p>我用homebrew安裝mongodb,<code>brew install mongodb</code> </p>
+<p>不知道跟用npm安裝會不會不一樣….<code>npm install mongodb</code></p>
+<p>因為之後mongoose也是用<code>npm install mongoose</code> 路徑上的設定不知道會不會有問題?!</p>
+<p>應該說是NodeJS跟Mongo中間有個實現的driver,Express只是個架構?</p>
+<p>而且為了實現NodeJS+Mongo 不止require mongodb 還有require connect-mongo</p>
+<h2 id="Express_feature">Express feature</h2>
+<p><strong>RESTful</strong> : 表示它在轉換url的時候 就會去做相對應url的事情</p>
+<hr>
+<p>|HTTP Request | Express function|</p>
+<hr>
+<p>GET|app.get(path,callback)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">HTTP Request</th>
+<th style="text-align:right">Express function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">GET</td>
+<td style="text-align:right">app.get(path,callback)</td>
+</tr>
+<tr>
+<td style="text-align:left">POST</td>
+<td style="text-align:right">app.post(path,callback)</td>
+</tr>
+<tr>
+<td style="text-align:left">PUT</td>
+<td style="text-align:right">app.put(path,callback)</td>
+</tr>
+<tr>
+<td style="text-align:left">DELETE</td>
+<td style="text-align:right">app.delete(path,callback)</td>
+</tr>
+<tr>
+<td style="text-align:left">PATCH</td>
+<td style="text-align:right">app.patch(path,callback)</td>
+</tr>
+<tr>
+<td style="text-align:left">TRACE</td>
+<td style="text-align:right">app.trace(path,callback)</td>
+</tr>
+<tr>
+<td style="text-align:left">CONNECT</td>
+<td style="text-align:right">app.connect(path,callback)</td>
+</tr>
+<tr>
+<td style="text-align:left">OPTION</td>
+<td style="text-align:right">app.options(path,callback)</td>
+</tr>
+<tr>
+<td style="text-align:left">all method</td>
+<td style="text-align:right">app.all(path,callback)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>event-driven</strong> : 觸發事件的時候才會去做事情</p>
+<h2 id="node-inspector">node-inspector</h2>
+<p>我發現我好像不能在node server那邊debug</p>
+<p>還是要裝<a href="https://www.youtube.com/watch?v=03qGA-GJXjI" target="_blank">node-inspector</a></p>
+<p><code>sudo npm install node-inspector</code></p>
+<p>啓動node-inspector</p>
+<p><code>cmd + t</code>開啓另一個terminal 輸入 <code>node-inspector</code></p>
+<p>顯示<br>Node Inspector v0.7.3<br>Visit <a href="http://127.0.0.1:8080/debug?port=5858" target="_blank">http://127.0.0.1:8080/debug?port=5858</a> to start debugging. </p>
+<p>在另一個terminal啓動你的app</p>
+<p>cd到你要啓動的app位置</p>
+<p><code>node --debug app.js</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/node/node3.png" alt="node-inspector"></p>
+<p><code>node --debug-brk app.js</code> 一開始就停住app</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/blog/">blog</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/node/">node</a>, <a href="/tags/express/">express</a>, <a href="/tags/mongo/">mongo</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jackmew.github.io/2014/04/10/20140410/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

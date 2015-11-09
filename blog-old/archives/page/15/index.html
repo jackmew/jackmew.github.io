@@ -1,0 +1,1116 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 15 | Archives | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title">Archives</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-28T02:40:26.000Z"><a href="/2014/05/28/20140528/">May 28 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/28/20140528/">2014/05/28</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="cookie_和_session的不同">cookie 和 session的不同</h1>
+<p><a href="http://www.cnblogs.com/shiyangxt/articles/1305506.html" target="_blank">link</a></p>
+<p>client(cookie)  &lt;———————&gt; server(session)</p>
+<h1 id="取得所有header的方法">取得所有header的方法</h1>
+<p><a href="http://www.jguru.com/faq/view.jsp?EID=1259649" target="_blank">link</a></p>
+<p>問題是session好像並不在裡面</p>
+<p><a href="http://stackoverflow.com/questions/14860087/should-httpurlconnection-with-cookiemanager-automatically-handle-session-cookies" target="_blank">這好像才是解答</a></p>
+<h1 id="session_timeout">session timeout</h1>
+<h1 id="em">em</h1>
+<p><a href="http://stackoverflow.com/questions/12257158/zooming-on-chrome-causes-css-positioning-issues" target="_blank">the zoom problem is based on em</a></p>
+<p><a href="http://v1.jontangerine.com/log/2007/09/the-incredible-em-and-elastic-layouts-with-css" target="_blank">Elastic Layout</a></p>
+<p>大部分瀏覽器的default font size :16px</p>
+<p>em會根據parent來指定自己的單位,因此繼承了下來</p>
+<p>1em = 16px</p>
+<p>1px = 1 / 16 = 0.0625em</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-27T01:18:32.000Z"><a href="/2014/05/27/20140527/">May 27 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/27/20140527/">2014/05/27</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="語系判定">語系判定</h1>
+<p>jquery.validate的判定語系方式和使用payload的判定方式不同</p>
+<p>java : <a href="http://www.mkyong.com/spring/spring-resource-bundle-with-resourcebundlemessagesource-example/" target="_blank">ResourceBundleMessageSource</a></p>
+<p>一開始在判定要輸出什麼文字在動作完之後,是在前端做判斷,所以national language support(nls)裡面有error.js和message.js,用來做處理多國語言的情況,但是後來Jason認為,將資料傳到後端做處理後,就應該在處理的過程中就知道有是否新增成功,修改成功或失敗等訊息,所以改為文字訊息是從後端發出,也就是payload夾message到前端去做顯示,locale判斷你是處於哪個地區,再來決定是set哪種語言內容</p>
+<p><a href="http://www1.kokusaika.jp/advisory/org/en/js_point.html" target="_blank">javascript判斷語系</a></p>
+<h1 id="workflow:java_spring">workflow:java spring</h1>
+<p>controller做完新增 修改 刪除的動作後,用payload set進一些message 或 httpstatus之類的,傳到前端</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/locale/1.png" alt="image"></p>
+<p><code>messageResource.getMessage(&quot;0002&quot;, null, locale)</code><br>會根據locale去抓 src/main/resources/ status_en.properties or status_zn_CN.properties or status.properties(default)</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/locale/2.png" alt="image"></p>
+<p>而MessageResource.java又是使用ResourceBundleMessageResource.java的function =&gt; getMessage()</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/locale/3.png" alt="image"></p>
+<p>set ResourceBundleMessageSource的一些屬性</p>
+<p><code>bean.setFallbackToSystemLocale(false);</code> 預設是true,true表示會去抓啟動這個網頁的server是屬於哪種locale,而我是用Mac當作是Server來啟動此網頁,所以會去抓Mac的語系</p>
+<p>問題來了..</p>
+<p>我安裝Mac , Chrome時 一開始都是裝中文,但後來調為英文, </p>
+<p>但Spring在抓的時候,認為Chrome是中文 送回zh-TW , 但我們預設是status.properties 沒有status_zh_TW.properties,所以系統變成找不到相對應的語言檔,因此被視為無此檔案,使用setFallbackToSystemLocale(true)去抓系統語系,而Mac被視為是已經轉為英文的en_US,所以又被轉回英文,所以在每一次找不到相對應語言檔時,就會使用en_US</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/locale/4.png" alt="image"></p>
+<p>設定default locale , 但跟這次碰到的問題,沒有多大關係</p>
+<h1 id="workflow:jquery_validation">workflow:jquery validation</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/locale/5.png" alt="image"></p>
+<p>jquery moible load完 馬上load了jquery validate</p>
+<p>並定了檢驗顯示的錯誤訊息語言<code>require([&quot;weaver/jquery/localization/messages_zh_TW&quot;]);</code></p>
+<p><code>window.navigator.language</code> 可以看browser是哪種locale,原本想用這方法來判定根據不同locale使用不同的message.js,但是並不是每種瀏覽器都支援window.navigator.language…</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-26T04:12:25.000Z"><a href="/2014/05/26/20140526/">May 26 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/26/20140526/">2014/05/26</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="heroku_deploy_node">heroku deploy node</h1>
+<p><code>cd projectName</code></p>
+<p><code>git init</code></p>
+<p><code>git add.</code></p>
+<p><code>git commit -m &quot;你的commit註解&quot;</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/heroku/deploy1.png" alt="image"></p>
+<p><code>heroku login</code> </p>
+<p><code>heroku create url-name</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/heroku/deploy2.png" alt="image"></p>
+<p><code>git push heroku master</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/heroku/deploy3.png" alt="image"></p>
+<p><code>成功</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/heroku/deploy4.png" alt="image"></p>
+<p>但是發生了問題 : GET <a href="http://localhost:3000/find?monsterName=" target="_blank">http://localhost:3000/find?monsterName=</a> net::ERR_CONNECTION_REFUSED </p>
+<p>我發出個request 位置沒有改 ,有辦法變成自動偵測url? 我記得之前好像有做過</p>
+<p><code>var url = window.location;</code> 可以抓到當前的host</p>
+<p><code>var queryString = window.location.search</code> 可以抓到?後的參數</p>
+<p>接下來只要重複</p>
+<p><code>git add theFileYouWant</code></p>
+<p><code>git commit -m &quot;註解&quot;</code></p>
+<p><code>git push heroku master</code></p>
+<p>就成功了～</p>
+<h1 id="SASS_(Syntactically_Awesome_Style_Sheets)">SASS (Syntactically Awesome Style Sheets)</h1>
+<p>Mac 預設就有gem</p>
+<p><code>sudo gem install sass</code></p>
+<p><code>sass -v</code></p>
+<p><code>sass --watch style.scss:style.css</code></p>
+<h1 id="sass_variable">sass variable</h1>
+<h1 id="The_Cross-Browser_CSS3_Rule_Generator">The Cross-Browser CSS3 Rule Generator</h1>
+<p><a href="http://css3please.com/" target="_blank">link</a></p>
+<h1 id="Another_CSS_image_replacement_technique">Another CSS image replacement technique</h1>
+<p><a href="http://nicolasgallagher.com/another-css-image-replacement-technique/" target="_blank">link</a></p>
+<h1 id="css-trick">css-trick</h1>
+<p><a href="http://css-tricks.com/video-screencasts/" target="_blank">link</a></p>
+<h1 id="icon">icon</h1>
+<p><a href="https://github.com/intridea/authbuttons" target="_blank">link</a></p>
+<h1 id="sass_bites">sass bites</h1>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-23T02:46:37.000Z"><a href="/2014/05/23/20140523/">May 23 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/23/20140523/">2014/05/23</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="非常有用的callback教學_內容包括stream_,_module_也很重要">非常有用的callback教學 內容包括stream , module 也很重要</h1>
+<p><a href="https://github.com/maxogden/art-of-node#callbacks" target="_blank">art-of-node callbacks</a></p>
+<p>沒有加入callback,一般從上到下的執行方式</p>
+<pre><code><span class="keyword">var</span> myNumber = <span class="number">1</span>;
+<span class="function"><span class="keyword">function</span> <span class="title">addOne</span><span class="params">()</span><span class="comment">{
+    myNumber ++;
+}</span>
+<span class="title">addOne</span><span class="params">()</span>;</span>
+console.log(myNumber);
+</code></pre><p>output: 2</p>
+<p>在node中 關於hard disk , network ,connection db之類要花比較長時間的動作,都會做成async function,用非同步的方式處理</p>
+<p>這邊的例子是fs.readFile(‘something’,function);<br>也就是說fs.readFile讀到檔案後 再執行function</p>
+<pre><code><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);
+
+<span class="keyword">var</span> myNumber = <span class="literal">undefined</span>;
+
+<span class="function"><span class="keyword">function</span> <span class="title">addOne</span><span class="params">()</span>{</span>
+    <span class="comment">//當readFile讀完資料,再去做後面的callback function doneReading</span>
+    fs.readFile(<span class="string">'number.txt'</span>,<span class="function"><span class="keyword">function</span> <span class="title">doneReading</span><span class="params">(err,fileContent)</span>{</span>
+        myNumber = <span class="built_in">parseInt</span>(fileContent);
+        myNumber++;
+    });
+}
+
+addOne();
+<span class="comment">//問題是 我們沒有告訴console.log(myNumber)要等到fs.readFile結束 才執行</span>
+console.log(myNumber);
+</code></pre><p>output: undefined</p>
+<h2 id="為何會是這樣的結果呢?">為何會是這樣的結果呢?</h2>
+<ol>
+<li><p>執行node script.js     ,會先parse script.js裡面的code,並檢查有沒有syntax error    </p>
+</li>
+<li><p>define function, define variable</p>
+</li>
+<li>找到執行的動作    </li>
+</ol>
+<p>在這個例子中 addOne() 的確先被執行了,但是在async function時,等檔案找到 直到 回傳的這個中間的I/O讀取時間,是可以做其他動作的,所以找到下一個可以執行的動作,也就是console.log(myNumber),而這動作不需要什麼執行時間,所以就先印出結果了    </p>
+<h1 id="callback?">callback?</h1>
+<ol>
+<li>所謂的callback function,表示 這個function將在某個function執行之後執行.</li>
+<li>我們無法知道async function什麼時候會執行完成</li>
+<li>但我們知道async function的最後執行位置在哪裡 =&gt; async function的最後一行</li>
+</ol>
+<pre><code>    <span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);
+    <span class="keyword">var</span> myNumber = <span class="literal">undefined</span>;
+
+    <span class="function"><span class="keyword">function</span> <span class="title">addOne</span><span class="params">(callback)</span>{</span>
+        fs.readFile(<span class="string">'number.txt'</span>,<span class="function"><span class="keyword">function</span> <span class="title">doneReading</span><span class="params">(err,fileContents)</span>{</span>
+            myNumber = <span class="built_in">parseInt</span>(fileContents);
+            myNumber++;
+            <span class="comment">//我們可以知道 callback function的最後一行 必定最後執行</span>
+            callback();
+        });
+    }
+    <span class="function"><span class="keyword">function</span> <span class="title">logMyNumber</span><span class="params">()</span>{</span>
+        console.log(myNumber);
+    }
+
+    addOne(logMyNumber);
+</code></pre><p>所以我們將console.log(myNumber)包成function logMyNumber,變成addOne的callback function.</p>
+<p>所以現在的執行點變成一個,addOne(callback);</p>
+<p>並且我們從1.得知 fs.readFile讀到檔案後會去執行自己的callback doneReading,而3. 執行到最後一行 再去執行function logMyNumber.</p>
+<h1 id="callback的執行順序">callback的執行順序</h1>
+<ol>
+<li><p>a();<br>b();<br>c();</p>
+</li>
+</ol>
+<p>這三個function基本上會同時執行,執行快的就先做完</p>
+<ol>
+<li>closure ? hierarchy ?</li>
+</ol>
+<p>a(function(){<br>    b(function(){<br>        c();<br>    });<br>});</p>
+<p>a 執行完 執行b 再執行c</p>
+<h1 id="RequireBin_很酷的東西">RequireBin 很酷的東西</h1>
+<p><a href="http://requirebin.com/?gist=6031068" target="_blank">http://requirebin.com/?gist=6031068</a></p>
+<h1 id="回頭去看_昨天碰到的問題">回頭去看 昨天碰到的問題</h1>
+<p>我想用<a href="https://github.com/codetunnel/mongoose-simpledb" target="_blank">mongoose-simpledb</a>,做connect mongo的動作,但是碰到問題callback的問題    </p>
+<h2 id="我希望將mongo連線的資料變成另一個module">我希望將mongo連線的資料變成另一個module</h2>
+<p>settings.js</p>
+<pre><code><span class="built_in">module</span>.<span class="built_in">exports</span> = {
+    <span class="attribute">host</span>:<span class="string">'ds049898.mongolab.com:49898'</span>,
+    <span class="attribute">db</span>:<span class="string">'pokemon'</span>,
+    <span class="attribute">user</span>:<span class="string">'jmc'</span>,
+    <span class="attribute">password</span>:<span class="string">'jmcmongo'</span>
+};
+</code></pre><h2 id="連線的動作_也分為另一個module">連線的動作 也分為另一個module</h2>
+<p>connectDB.js</p>
+<pre><code>var simpledb = <span class="keyword">require</span>(<span class="string">'mongoose-simpledb'</span>);
+var settings = <span class="keyword">require</span>(<span class="string">'./settings'</span>);
+
+exports.connectDb = function(callback){
+
+    var DB;
+    var <span class="keyword">connect</span> = <span class="string">'mongodb://'</span>;
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.user);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(<span class="string">':'</span>);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.password);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(<span class="string">'@'</span>);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.host);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(<span class="string">'/'</span>);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.db);
+
+    console.<span class="keyword">log</span>(<span class="keyword">connect</span>);
+
+    var db = simpledb.init(<span class="keyword">connect</span>);
+    console.<span class="keyword">log</span>(<span class="string">"connect"</span>+db);
+    <span class="keyword">return</span> db;
+}
+</code></pre><h2 id="main">main</h2>
+<p>script.js</p>
+<pre><code><span class="keyword">var</span> connectStart = <span class="built_in">require</span>(<span class="string">'./connectDB'</span>);
+<span class="keyword">var</span> db = connectStart.connectDb()
+
+
+db.Fire.find({<span class="string">'name'</span>:<span class="string">'Charizard'</span>},<span class="function"><span class="keyword">function</span><span class="params">(err,result)</span>{</span>
+    <span class="keyword">if</span>(err) <span class="keyword">return</span> console.error(err);
+    console.log(result);
+});
+</code></pre><h1 id="db卻一直是undefined???">db卻一直是undefined???</h1>
+<p>因為connect db 這個動作是I/O 速度很慢 所以先被執行了db.Fire.find 此時db還沒連線,</p>
+<p>所以我們必須確定 在抓到db連線後 才回傳db  再去執行db.Fire.find</p>
+<p>connectDB.js</p>
+<pre><code>var simpledb = <span class="keyword">require</span>(<span class="string">'mongoose-simpledb'</span>);
+var settings = <span class="keyword">require</span>(<span class="string">'./settings'</span>);
+
+exports.connectDb = function(callback){
+
+    var <span class="keyword">connect</span> = <span class="string">'mongodb://'</span>;
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.user);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(<span class="string">':'</span>);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.password);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(<span class="string">'@'</span>);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.host);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(<span class="string">'/'</span>);
+    <span class="keyword">connect</span> = <span class="keyword">connect</span>.concat(settings.db);
+
+    console.<span class="keyword">log</span>(<span class="keyword">connect</span>);
+
+    simpledb.init(<span class="keyword">connect</span>,function(err,db){
+    <span class="keyword">if</span>(err) <span class="keyword">return</span> console.error(err);
+    console.<span class="keyword">log</span>(db);
+
+    callback &amp;&amp; callback(db);
+    });
+}
+</code></pre><p>main: script.js</p>
+<pre><code><span class="keyword">var</span> connectStart = <span class="built_in">require</span>(<span class="string">'./connectDB'</span>);
+<span class="keyword">var</span> db = <span class="literal">undefined</span>;
+connectStart.connectDb(<span class="function"><span class="keyword">function</span><span class="params">(dbConnected)</span>{</span>
+    console.log(<span class="string">"script:"</span>+dbConnected);
+    db = dbConnected;
+    console.log(db);
+    fireFind();
+});
+
+<span class="function"><span class="keyword">function</span> <span class="title">fireFind</span><span class="params">()</span>{</span>
+    db.Fire.find({<span class="string">'name'</span>:<span class="string">'Charizard'</span>},<span class="function"><span class="keyword">function</span><span class="params">(err,result)</span>{</span>
+        <span class="keyword">if</span>(err) <span class="keyword">return</span> console.error(err);
+        console.log(result);
+    });
+}
+</code></pre><ol>
+<li><p>connectStart.connectDb先執行 並執行了simpledb.init</p>
+</li>
+<li><p>simpledb.init執行完後,執行自己的function console.log(db),</p>
+</li>
+<li><p>執行傳進來的callback &amp;&amp; callback(db);</p>
+</li>
+<li><p>執行fireFind()</p>
+</li>
+</ol>
+<p>這個過程只有一個啓動點     connectStart.connectDb</p>
+<h1 id="為什麼app-js就可以直接用_var_db_=_simpledb-init(‘mongodb://localhost/test’);">為什麼app.js就可以直接用 var db = simpledb.init(‘mongodb://localhost/test’);</h1>
+<p>app.js    </p>
+<p>因為pattern是不同的</p>
+<p>一個callback 接一個 callback的做法 是要確保之間相依性 順序性的正確</p>
+<p>而    </p>
+<p>1.啟動server    </p>
+<p>2.連接資料庫    </p>
+<p>之間沒有相依性 看誰先做完都沒關係 接下來的啓動點呢 ? </p>
+<pre><code>    app.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span><span class="params">(req,res)</span></span>{
+        db.Kitten.findOne({<span class="string">'name.first'</span>:<span class="string">'mew'</span>},<span class="function"><span class="keyword">function</span><span class="params">(err,koda)</span></span>{
+            <span class="keyword">if</span> (err) <span class="keyword">return</span> console.<span class="built_in">error</span>(err);
+            console.log(koda);
+        });
+    });    
+</code></pre><p>接下來router(url),match到,發出一個request後才會動作,而在這之前db已經被assign值了</p>
+<h1 id="傳db_object">傳db object</h1>
+<p>此時又發現一個問題    </p>
+<p>models , controllers(routes) , views  , app.js =&gt; load 所有要load的東西</p>
+<p>包抓資料庫connect,可是我的model裡面也必須要有db object才行,要怎麼樣才能傳db?<br>結果<a href="https://github.com/codetunnel/mongoose-simpledb" target="_blank">Chevex也已經解決這問題    </a></p>
+<p>只要你執行過simpledb.init後,在任何地方 下<code>var db = require(&#39;mongoose-simpledb&#39;).db;</code>就可以抓到db!</p>
+<h1 id="完成基本的express_crud_要deploy">完成基本的express crud 要deploy</h1>
+<h1 id="node_heroku">node heroku</h1>
+<p><a href="http://www.bymichaellancaster.com/blog/deploying-nodejs-on-heroku-cloud/" target="_blank">http://www.bymichaellancaster.com/blog/deploying-nodejs-on-heroku-cloud/</a></p>
+<h1 id="grunt">grunt</h1>
+<p><a href="http://ithelp.ithome.com.tw/question/10120425?tag=ithome.nq" target="_blank">http://ithelp.ithome.com.tw/question/10120425?tag=ithome.nq</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-22T01:10:00.000Z"><a href="/2014/05/22/20140522/">May 22 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/22/20140522/">2014/05/22</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="mongoose-simpledb">mongoose-simpledb</h1>
+<p><a href="https://github.com/codetunnel/mongoose-simpledb" target="_blank">Chevex</a>製作的一個在express中 模組化使用mongoose的node-module:</p>
+<ol>
+<li>mongoose中的定義: schema -&gt; model -&gt; instance</li>
+</ol>
+<p>Schema</p>
+<p><code>var kittySchema = mongoose.Schema({
+    name: String
+});</code></p>
+<p>Model</p>
+<p><code>var Cat = mongoose.model(&#39;cat&#39;,kittySchema);</code><br>(     var modelName = mongoose.model(‘collectionName’);   )</p>
+<p>Instance</p>
+<p><code>var HelloKitty = new Cat({nam:&#39;HelloKitty&#39;});</code></p>
+<p>通常的用法是</p>
+<p>model -&gt; find,findOne …</p>
+<p><code>db.Cat.findOne({&#39;name&#39;:&#39;HelloKitty&#39;})</code></p>
+<p>Instance -&gt; save…</p>
+<p><code>db.HelloKitty.save()</code></p>
+<ol>
+<li>上面的schema -&gt; model -&gt; instance定義,在mongoose-simpledb中,都定義在dbmodels內,dbmodels的每一個js都是一個model</li>
+</ol>
+<p>ex:dbmodels/Kitten.js</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongoose/1.png" alt="image"></p>
+<p>因此schema,virtual properties,static function 都定義在裡面</p>
+<p>要注意的是kitten.js會自動被變成大寫的Kitten.js,所以引用時也都必須是大寫開頭.</p>
+<p>3.那要怎麼抓到這些model?</p>
+<p><code>var simpledb = require(&#39;mongoose-simpledb&#39;);</code></p>
+<p><code>var db = simpledb.init(&#39;mongodb://localhost/test&#39;);</code></p>
+<p>當simpledb.init連接上資料庫後 會回傳資料庫訊息和自動去抓/dbmodels,這些東西包成db object</p>
+<p>db.Kitten就會指到Kitten model</p>
+<p><code>db.Kitten.findOne({&#39;name.first&#39;:&#39;mew&#39;},function(err,koda){
+        if (err) return console.error(err);
+        console.log(koda);
+ });</code></p>
+<p>自己定義</p>
+<p><a href="http://www.pokemon.com/us/pokedex/charizard" target="_blank">charizard</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/mongoose/2.png" alt="image"></p>
+<p><a href="https://github.com/codetunnel/mongoose-auto-increment/issues/7ß" target="_blank">autoIncrement.initialize</a></p>
+<p>schema =&gt; pokemon</p>
+<p>model =&gt; fire</p>
+<p>instance =&gt; charizard</p>
+<p>突然想做把噴火龍直接存進mongo , 抓出來show在頁面上</p>
+<h1 id="express_photo_render?_send?">express photo render? send?</h1>
+<p>好像有點複雜</p>
+<p>要考慮upload , contentType , binary的處理 , 然後還有顯示的方式</p>
+<p>應該分成另一個project來做</p>
+<ol>
+<li><a href="https://gist.github.com/aheckmann/2408370" target="_blank">save image</a></li>
+<li>save audio</li>
+<li>save video </li>
+</ol>
+<p>save image最常用</p>
+<h1 id="UML_(Unified_Modeling_Language)">UML (Unified Modeling Language)</h1>
+<p><a href="http://alexdp.free.fr/violetumleditor/page.php?id=en:uml:intro" target="_blank">幫助理解OOP的架構和概念</a></p>
+<p>這是一種有效的方式讓end users和programmers 互相溝通理解的語言</p>
+<h1 id="diagrams">diagrams</h1>
+<ol>
+<li>static view        </li>
+</ol>
+<p>ex: class diagram </p>
+<ol>
+<li>dynamic view</li>
+</ol>
+<p>ex: sequence diagram</p>
+<p>最常用的兩個diagram</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-21T01:34:08.000Z"><a href="/2014/05/21/20140521/">May 21 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/21/20140521/">2014/05/21</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="callback">callback</h1>
+<p>自己多打幾字code , 就會比較有印象 也比較知道為什麼?</p>
+<p>一般的情況,當我們call一個function時,可以傳參數給它,然後這個function可以return值,這個值再拿去call別的function.</p>
+<p>callback 一樣可以傳參數給另個function , 也可以return值回來,<strong>同時自己再次call一次function</strong> .</p>
+<p>也就是說callback 表示你可以同時一次call複數個function</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/gif/callback.gif" alt="callback"></p>
+<h1 id="module">module</h1>
+<ol>
+<li>exports.functionName 包出一個function 給人使用</li>
+<li>module.exports = objectName 包出一個object</li>
+<li>module.exports{properties} 包參數</li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/gif/module.gif" alt="image"></p>
+<h1 id="bootstrap_with_jquery_mobile">bootstrap with jquery mobile</h1>
+<p><a href="http://stackoverflow.com/questions/18636919/can-i-use-bootstrap-3-together-with-jquery-mobile" target="_blank">can-i-use-bootstrap-3-together-with-jquery-mobile</a></p>
+<h1 id="express_with_ejs_template_engine_and_router">express with ejs template engine and router</h1>
+<p><code>express --ejs projectname</code><br><code>cd projectname</code><br><code>npm install</code></p>
+<p>設定route</p>
+<p><a href="http://expressjs.com/3x/api.html#req.params" target="_blank">express req.params</a></p>
+<ol>
+<li>建立一個ejs template engine的 express project</li>
+<li>測試url路徑</li>
+<li>如何抓url參數</li>
+</ol>
+<p>知道如何抓參數 卻還是不知道怎麼傳參數</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/gif/express_first_basicRouter.gif" alt="image"></p>
+<h1 id="jquery_ondocumentReady的寫法">jquery ondocumentReady的寫法</h1>
+<p><a href="http://api.jquery.com/ready/" target="_blank">ready</a></p>
+<h1 id="express_傳參數_jquery_ajax">express 傳參數 jquery ajax</h1>
+<ol>
+<li>在ejs裡面 include javascript</li>
+<li>測試jquery</li>
+<li>測試jquery button 事件</li>
+<li>發出request get , 並看發出的參數有沒有回傳</li>
+<li>發出request post , 並看發出的參數有沒有回傳</li>
+</ol>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/gif/express-ajax.gif" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-20T03:03:02.000Z"><a href="/2014/05/20/20140520/">May 20 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/20/20140520/">2014/05/20</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="node_website_deployment">node website deployment</h1>
+<p><a href="http://www.slideshare.net/MinamoPH/nodejs-website-deployment" target="_blank">link</a></p>
+<p><a href="http://blog.codeship.io/2014/04/03/continuous-deployment-modulus-github-nodejs.html" target="_blank">codeship</a></p>
+<h1 id="使用_jQuery(document)-ready()_與_window-onload_注意事項">使用 jQuery(document).ready() 與 window.onload 注意事項</h1>
+<p><a href="http://blog.miniasp.com/post/2010/07/24/jQuery-ready-vs-load-vs-window-onload-event.aspx" target="_blank">link</a></p>
+<h1 id="imgur">imgur</h1>
+<p><a href="http://jackmew.imgur.com/all/" target="_blank">http://jackmew.imgur.com/all/</a></p>
+<h1 id="reddit">reddit</h1>
+<p>有點像 國外的ptt</p>
+<h1 id="flickr">flickr</h1>
+<p><a href="https://www.flickr.com/" target="_blank">https://www.flickr.com/</a></p>
+<h1 id="Gravatar">Gravatar</h1>
+<p><a href="http://en.gravatar.com/" target="_blank">A Globally Recongnized Avatar</a></p>
+<h1 id="ffmpeg_%_的意思">ffmpeg % 的意思</h1>
+<p>Thank you! One adustment: use out%02d.gif. This pads the number in the filename so that they are in proper alphabetical order. Otherwise the order ends up being 1,10,11,12,13,14,15,16,17,18,19,2,20,21,22,23… which gives the resulting gif a weird skipping effect. –  Alex Kahn Dec 17 ‘12 at 0:32</p>
+<p>也就是說他會自懂產生檔案名稱001 002 003 004 照順序向下排</p>
+<h1 id="詳細ffmpeg_&amp;_imageMAgick_解說">詳細ffmpeg &amp; imageMAgick 解說</h1>
+<p>Thanks for your reply. However I found out that ffmpeg is not really good at handling gif images so I used it to extract images but then use imagemagick to generate the gif. –  Marconi May 22 ‘11 at 1:20</p>
+<p><a href="http://blog.room208.org/post/48793543478" target="_blank">http://blog.room208.org/post/48793543478</a></p>
+<p>可以把原本100多mb的gif檔案 變成100多kb的檔案</p>
+<p>但犧牲很多畫質</p>
+<p>所以一定要有取捨</p>
+<p>採取的策略是一張png的質量大一點沒關係</p>
+<p>中間可能減少多點frame 畫面才不會太模糊</p>
+<p>這組合還不錯</p>
+<ol>
+<li><p>.mov 720p</p>
+</li>
+<li><p><code>ffmpeg -i screencast.mov -vf scale=640:-1 -r 5 output/%3d.png</code></p>
+</li>
+</ol>
+<ol>
+<li>`convert -delay 1x10 <code>seq -f %03g.png 10 3 1274</code> \<pre><code>   -<span class="ruby">coalesce -layers <span class="constant">OptimizeTransparency</span> \
+</span>   animation3.gif`
+</code></pre></li>
+</ol>
+<h1 id="tumblr">tumblr</h1>
+<p><a href="https://www.tumblr.com/" target="_blank">https://www.tumblr.com/</a></p>
+<h1 id="mongoose_get_start">mongoose get start</h1>
+<p>環境</p>
+<p>express 4.0.0</p>
+<p>npm 1.4.3</p>
+<p>node 0.10.26</p>
+<p>根據<a href="http://mongoosejs.com/docs/index.html" target="_blank">mongoose get started </a></p>
+<p>連線到<a href="https://mongolab.com/databases/jackmew#tools" target="_blank">mongolab</a>,<br>save 一筆資料 name=”fluffy”  到kitten collection裡 </p>
+<p>然後find所有在kitten collection裡面所有的document</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/video/mongoose_getStart.gif" alt="image"></p>
+<h1 id="改變express_的架構">改變express 的架構</h1>
+<p>原本的views folder都可以不要</p>
+<p>在public 加上html folder/     取代view  這裡面可以是jquery mobile或者sercha touch</p>
+<p>routes就做controller的事情 只接收request ,然後response data給view</p>
+<p>model 做處理資料的事情 callback還傳給routes</p>
+<p>app.js只負責require東西</p>
+<h1 id="express_callback的運作">express callback的運作</h1>
+<p>這部分 還是有點觀念沒有釐清的感覺</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-19T03:26:34.000Z"><a href="/2014/05/19/20140519/">May 19 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/19/20140519/">2014/05/19</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="wbase-test_done">wbase-test done</h1>
+<p>三天內完成對rest api 測試的小程式</p>
+<ol>
+<li>java.net.url 產生request 去call rest api</li>
+<li>json-simple 對回傳的json string做處理 ,又分為jsonObject(單一),jsonArray(多)</li>
+<li>java.util.properties,Emueration 抓.properties的參數</li>
+</ol>
+<h1 id="製作gif_demo短片">製作gif demo短片</h1>
+<p><a href="http://imgur.com/" target="_blank">http://imgur.com/</a><br><a href="https://www.flickr.com/" target="_blank">https://www.flickr.com/</a></p>
+<h1 id="Mac_screen_recording">Mac screen recording</h1>
+<p>Application/QuickTime Player</p>
+<p>在開啓的QuickTime Player點選右鍵 new screen recorder</p>
+<p>非常方便！</p>
+<p>都是high quality的影片</p>
+<p>通常轉成gif檔的限制都是100mb</p>
+<p>quicktime -&gt; file -&gt; export 可以變成比較小的檔案</p>
+<p>online tool轉起來超慢的.. 還要送到信箱 </p>
+<p><code>brew options ffmpeg</code><br><code>brew install ffmpeg</code><br>原本30mb的.mov 變成300mb的.gif…..</p>
+<p><code>brew install imagemagick</code></p>
+<p>超複雜 還沒用成功 考慮直接用影片？ 可是好像又有點奇怪</p>
+<h1 id="Convert_MOV_to_GIF_using_FFmpeg_and_ImageMagick">Convert MOV to GIF using FFmpeg and ImageMagick</h1>
+<p><a href="https://gist.github.com/tskaggs/6394639" target="_blank">link</a> 跟著做 可以達到不錯的效果</p>
+<p><code>ffmpeg -i screencast.mov -vf scale=320:-1 -r 10 output/ffout%3d.png</code> 要先自己新增一個output folder</p>
+<p><a href="http://superuser.com/questions/556029/how-do-i-convert-a-video-to-gif-using-ffmpeg-with-reasonable-quality" target="_blank">-t 10 限制影片長度 10秒</a></p>
+<p>-r 10 frame rate 10 fps</p>
+<p>scale=320 顯示的圖片寬度 高度會自動變化</p>
+<p><code>convert -delay 8 -loop 0 output/ffout*.png output/animation.gif</code></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-16T01:43:04.000Z"><a href="/2014/05/16/20140516/">May 16 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/16/20140516/">2014/05/16</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="java_in_terminal">java in terminal</h1>
+<p>將昨天寫的java程式 在terminal執行</p>
+<p><a href="http://introcs.cs.princeton.edu/java/15inout/mac-cmd.html" target="_blank">mac-cmd</a></p>
+<p><code>javac Hello.java</code> 將java檔 compile成.class</p>
+<p><code>java Hello</code></p>
+<p>但一直出現類似錯誤</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/java/1.png" alt="image"></p>
+<p>後來發現原因是若是在你的Hello.java有定義package<br>ex:package <code>org.ls.test</code><br>你需要到org的上層去執行<code>java org.ls.test.Hello</code></p>
+<p>加入json-simple-1.1.1.jar =&gt;要用JSONObject , JSONParser等..</p>
+<p><a href="http://stackoverflow.com/questions/8949413/how-to-run-java-program-in-terminal-with-external-library-jar" target="_blank">java -cp</a></p>
+<p>執行方式<code>java -cp .:../lib/json-simple-1.1.1.jar com.dl.test.Standalone</code></p>
+<h1 id="json-simple">json-simple</h1>
+<p>查他的api<br><a href="https://code.google.com/p/json-simple/" target="_blank">json-simple</a></p>
+<h1 id="param-properties">param.properties</h1>
+<p>我想把url定成properties<br>rest 也可以定成properties </p>
+<p><a href="http://www.mkyong.com/java/java-getresourceasstream-in-static-method/" target="_blank">java-getresourceasstream-in-static-method</a></p>
+<p><a href="http://www.mkyong.com/java/java-properties-file-examples/" target="_blank">java-properties-file-examples</a></p>
+<p><a href="http://programming.im.ncnu.edu.tw/J_Chapter2.htm" target="_blank">static block</a></p>
+<p><a href="http://www.ewdna.com/2008/12/javautilpropertiessetproperty.html" target="_blank">java.util.Properties</a></p>
+<p>但一直無法成功</p>
+<p>突然發現folder 跟 source folder是不一樣的 </p>
+<p>將url.properties方入source folder就可以抓到了！</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-15T05:37:42.000Z"><a href="/2014/05/15/20140515/">May 15 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/15/20140515/">2014/05/15</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="java-net-url">java.net.url</h1>
+<p><a href="http://www.codedata.com.tw/java/java-restful-1-jersey-and-jax-rs" target="_blank">java-restful</a>這個架構挺像我們wbase-web的方式</p>
+<p><a href="http://stackoverflow.com/questions/11706918/how-do-you-set-session-attributes-with-java-net-urlconnection" target="_blank">how-do-you-set-session-attributes-with-java-net-urlconnection</a> 結論是session是server端的東西 client端無法產生</p>
+<p>當建立連線後 會產生sessionID 之後再次連上去 會因為同樣的sessionID 所以就可以知道你已經登入過了</p>
+<p><a href="http://www.hccp.org/java-net-cookie-how-to.html" target="_blank">如何抓cookie 然後抓sessionID</a> 但是他寫了一個很大的CookieManager 我不需要那麼多功能</p>
+<p><a href="http://rritw.com/a/JAVAbiancheng/JAVAzonghe/20100829/15676.html" target="_blank">Java模擬網站登錄</a> 這個取得sessionID的方式比較適合我</p>
+<p><a href="http://stackoverflow.com/questions/2793150/how-to-use-java-net-urlconnection-to-fire-and-handle-http-requests" target="_blank">java.net.url post 這根本精華篇吧</a></p>
+<p><a href="http://examples.javacodegeeks.com/enterprise-java/rest/restful-java-client-with-java-net-url/" target="_blank">restful-java-client-with-java-net-url</a>借由這篇我才發現寫成這樣<code>&quot;{\&quot;id\&quot;:1,\&quot;firstName\&quot;:\&quot;Liam\&quot;,\&quot;age\&quot;:22,\&quot;lastName\&quot;:\&quot;Marco\&quot;}&quot;</code>就會是JSON格式</p>
+<p>然而我又發現到</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/url1.png" alt="image"></p>
+<p>是先將array 包起資料 然後再變成JSON的</p>
+<p>所以我的JSON資料應該最外層再包一層</p>
+<p><code>&quot;[{\&quot;id\&quot;:1,\&quot;firstName\&quot;:\&quot;Liam\&quot;,\&quot;age\&quot;:22,\&quot;lastName\&quot;:\&quot;Marco\&quot;}]&quot;</code></p>
+<p>就可以傳到</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/url2.png" alt="image"></p>
+<p>requestBody 就可以接收到參數了</p>
+<p><code>conn.getInputStream()</code> 實際產生連線的部分</p>
+<h1 id="java_連rest_api_測試">java 連rest api 測試</h1>
+<p>以java的方式 連上 url 去call rest api 來做測試</p>
+<p>還挺有趣的 而且明顯發現自己的sense變強了 雖然還是要查資料</p>
+<p>但寫比較快了 之後錄上影片</p>
+<p>明天要解決的問題</p>
+<ol>
+<li><p>String抓部分message</p>
+</li>
+<li><p>用Terminal(console) 執行此java code</p>
+</li>
+</ol>
+<h1 id="restClient">restClient</h1>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+    <a href="/archives/page/14/" class="alignleft prev">Prev</a>
+  
+  
+    <a href="/archives/page/16/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

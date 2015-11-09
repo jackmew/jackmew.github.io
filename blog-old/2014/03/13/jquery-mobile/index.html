@@ -1,0 +1,404 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>jquery mobile | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  <meta name="description" content="在wbase的案子中 我們是使用jquery mobile 做我們的前端開發界面
+jquerymobile.com/
+基本上jquey mobile 的所有Widget 都具備跨平台的特性,也就是說你用它的UI在所有的瀏覽器啊,所有的平板,手機都不會產生異常,某個CSS不work之類的
+但是這也表示">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="jquery mobile"/>
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-13T08:45:34.000Z"><a href="/2014/03/13/jquery-mobile/">Mar 13 2014</a></time>
+      
+      
+  
+    <h1 class="title">jquery mobile</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>在wbase的案子中 我們是使用jquery mobile 做我們的前端開發界面</p>
+<p><a href="http://jquerymobile.com/" target="_blank">jquerymobile.com/</a></p>
+<p>基本上jquey mobile 的所有Widget 都具備跨平台的特性,也就是說你用它的UI在所有的瀏覽器啊,所有的平板,手機都不會產生異常,某個CSS不work之類的</p>
+<p>但是這也表示比較難自己刻出客制化的模樣,因為它已經定義出framework或者使用常規這樣,當你要改變原本它給你的設定時,會比較麻煩,要override某些特性,但</p>
+<p>override的同時又要注意會不會蓋掉你原本有用到的特性,如果都不改變它給你的widget,的確是非常好用的jquery UI,而且原本給你的模樣,其實也都有美化過了,但若是</p>
+<p>你每個地方都想要與他人不同,那就不推薦使用jquery mobile囉</p>
+<p>開發時最常看的Document</p>
+<p>jquery mobile <a href="http://demos.jquerymobile.com/1.4.2/" target="_blank">Demo</a></p>
+<p>jquery mobile API <a href="http://api.jquerymobile.com/" target="_blank">API</a></p>
+<h4 id="JQuery_Mobile_Theme">JQuery Mobile Theme</h4>
+<p>差不多就是改變顏色而已 </p>
+<p><a href="http://themeroller.jquerymobile.com/" target="_blank">http://themeroller.jquerymobile.com/</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/theme.png" alt="image"></p>
+<p>你可以自己配置A-Z種theme</p>
+<p>用data-theme=”a-z”    來選擇</p>
+<p>download下來後 放到</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/theme_2.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/wbase/theme_3.png" alt="image"></p>
+<p>在html裡引用 就會自動override原本的設定</p>
+<p>jquery mobile <a href="https://dl.dropboxusercontent.com/u/47510080/record/javascript/JQuery%20Mobile.pdf" target="_blank">筆記</a> </p>
+<p><a href="http://www.w3schools.com/jquerymobile/" target="_blank">w3c jquery mobile</a> </p>
+<h3 id="Your_own_jquery_mobile_icon">Your own jquery mobile icon</h3>
+<pre><code><span class="class">.ui-icon-dotted</span><span class="pseudo">:after</span> <span class="rules">{
+    <span class="rule"><span class="attribute">background-image</span>:<span class="value"> <span class="function">url(<span class="string">"../icon/dotted.png"</span>)</span></span></span>;
+    <span class="comment">/* Make your icon fit */</span>
+    <span class="rule"><span class="attribute">background-size</span>:<span class="value"> <span class="number">30</span>px <span class="number">30</span>px</span></span>;
+<span class="rule">}</span></span>
+</code></pre><p>dotted是你命名這個icon的名稱</p>
+<p>url是你圖片放置位置</p>
+<p>size若是你的圖片大小不是正方形 ,那你可能要花點時間,才能調出不扭曲的形狀</p>
+<p>原本jquery mobile icon是切出來方方正正的圖形</p>
+<h3 id="Override">Override</h3>
+<pre><code><span class="class">.ui-page</span> <span class="rules">{
+    <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">rgb(<span class="number">188</span>,<span class="number">188</span>,<span class="number">188</span>)</span> <span class="important">!important</span></span></span>;
+<span class="rule">}</span></span>
+</code></pre><p>override你原本頁面的背景顏色 </p>
+<p>在override時都要在後面加上<strong>!important</strong></p>
+<p>之前也有override botton大小,但是發現這個屬性會給其他tab input使用到,所以一改,其他地方也都會改到, 非常困擾</p>
+<h3 id="ui-field-contain">ui-field-contain</h3>
+<p><a href="http://demos.jquerymobile.com/1.4.2/forms-field-contain/#&amp;ui-state=dialog" target="_blank">form</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/jqm1.png" alt="form"></p>
+<p>要出現平行時 需加上class=”ui-field-contain”</p>
+<pre><code>&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"ui-field-contain"</span>&gt;
+    &lt;label <span class="keyword">for</span>=<span class="string">"textinput-1"</span>&gt;Text Input:&lt;/label&gt;
+    &lt;input type=<span class="string">"text"</span> <span class="property">name</span>=<span class="string">"textinput-1"</span> <span class="property">id</span>=<span class="string">"textinput-1"</span> placeholder=<span class="string">"Text input"</span> value=<span class="string">""</span>&gt;
+&lt;/<span class="keyword">div</span>&gt;
+</code></pre><p>然後這class在popup Widget or dialog Widget就無法產生效果,已經google到有很多人碰到這個bug</p>
+<p>最後只好自己在dialog裡面用table 排版</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/blog/">blog</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/jquery/">jquery</a>, <a href="/tags/jquery mobile/">jquery mobile</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jackmew.github.io/2014/03/13/jquery-mobile/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

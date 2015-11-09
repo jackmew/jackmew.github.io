@@ -1,0 +1,418 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2014/09/22 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  <meta name="description" content="TAF
+老實說一開始May要我做的時候,我整個突然有點空白,因為快一個月沒碰phonegap,jquery,一開始就開啟上次做的pdf,看之前是怎麼下phongap command 包括建立新專案 , 加入不同平台的支援 , build , 然後怎麼樣dubg , 最麻煩的的是要怎麼include ">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="2014/09/22"/>
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-22T01:46:43.000Z"><a href="/2014/09/22/20140922/">Sep 22 2014</a></time>
+      
+      
+  
+    <h1 class="title">2014/09/22</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="TAF">TAF</h1>
+<p>老實說一開始May要我做的時候,我整個突然有點空白,因為快一個月沒碰phonegap,jquery,一開始就開啟上次做的pdf,看之前是怎麼下phongap command 包括建立新專案 , 加入不同平台的支援 , build , 然後怎麼樣dubg , 最麻煩的的是要怎麼include phonegap or jquery mobile libraray , 似乎有個先後順序!? 然後我發現我有準備一個start project , 太棒了! , 所以我就直接用這個start 開始TAF專案 .</p>
+<h1 id="start">start</h1>
+<p><a href="https://github.com/jackmew/phonegap-JQM-start" target="_blank">phonegap-JQM-start</a></p>
+<p>這專案只是單純include library , 並且會等待到都ready以後 才會去執行main 這樣的概念 .</p>
+<p>但一開始真的也不太知道要做什麼 現在也不知道 ? 就快速的先拉出畫面再說 !</p>
+<p>所以我很快就做出基本的樣子</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/1.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/ㄉ2.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/3.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/4.png" alt="image"></p>
+<h1 id="工作日誌">工作日誌</h1>
+<h1 id="datepicker">datepicker</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/5.png" alt="image"></p>
+<p>基本上拉出這樣的畫面 很快就解決了 , 因為聽說需要抓時間 所以很直覺得就用了datepicker ! 但這時候的第一個問題就出現了 , 因為jquery mobile 所提供的方法 也是去使用jquery ui的datepicker , 然後再套上自己的jquery mobile ui(.css) 但是底子裡還是jquery ui , 所以我不得不多include了 jquery ui , 但我無法確定這樣子include會不會有問題…. , 總之 我先直接一個個用.css 手動override 原本的setting , 讓畫面看起來一致.</p>
+<h1 id="multidatespickr">multidatespickr</h1>
+<p>接下來 我發現 datepicker 無法一次選取多個時間 … 所以我找到了<a href="http://multidatespickr.sourceforge.net/" target="_blank">multidatespickr</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/6.png" alt="image"></p>
+<p>我發現 它預設的樣子 很好看 我很喜歡 , 就馬上測試如何使用 ,</p>
+<p>我寫了一些code來滿足需求</p>
+<p>並且自己加上一個input type=’text’ 偷藏起來 多選的結果 並放入array 中 , 但是這樣無法去除重複選取的內容 , 所以又寫了一些判斷式 remove 重複的部分 ,  後來我有模擬寫一個Set 來移除掉重複結果</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/8.png" alt="image"></p>
+<h1 id="$-each();">$.each();</h1>
+<p><a href="http://api.jquery.com/each/" target="_blank">link</a></p>
+<p>非常常用<a href="http://api.jquery.com/each/" target="_blank">$.each()</a>; 這個function非常好用!</p>
+<p>需要注意的是 它不像java 用break 中斷迴圈  ,  是用return false; 中斷迴圈</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/21.png" alt="image"></p>
+<h1 id="fullcalendar">fullcalendar</h1>
+<p>最後我發現我是需要calender 而不是datepicker </p>
+<p><a href="http://fullcalendar.io/docs/usage/" target="_blank">fullcalendar</a> , 這套library 似乎也是google 建立他們行事曆使用的library , 然後發現到fullcalender裡面又包了一個<a href="http://momentjs.com/" target="_blank">moment.js</a>,這個library 幫你迅速處理好時間方面的問題 , 你可以去call它的function來處你的時間上的需求.</p>
+<p>fullcalendar 非常的完善 document也寫得很好 , 但我還是花了很多時間去查如何使用這個library</p>
+<h1 id="center">center</h1>
+<p>最常用的是 <code>style=&quot;text-align:center&quot;</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/10.png" alt="image"></p>
+<p>通常我會在data-role=”content” 的內部再加上一個div 當作container來 center某部分 因為並不是全部都會需要center</p>
+<h1 id="討論室">討論室</h1>
+<h1 id="panel_with_listview">panel with listview</h1>
+<p>這個問題我花了非常多時間解決 , 問題在於jquery mobile 的版本很多 , 網路上找到的說法也很多,所以只得一個一個試試 , 最後還是回到了官方的解法<a href="http://demos.jquerymobile.com/1.3.0/docs/examples/panels/panel-styling.html" target="_blank">panel-styling</a> , 我發現這個code 完全沒這問題 , 所以就刪刪剪剪的把不需要的部分去除</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/9.png" alt="image"></p>
+<p>當我要使用的時候 只要加上 <code>class=&quot;modify_listview_panel&quot;</code> 就可以解決這問題.</p>
+<p><code>&lt;div data-role=&quot;panel&quot; id=&quot;fileListPanel&quot; class=&quot;modify_listview_panel&quot; data-display=&quot;overlay&quot;&gt;</code></p>
+<p>這個例子有點不明顯 , 在其他狀況 , 畫面話變得很醜 , 上下間距擠在一起 不然就是拉得很遠.<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/3/34.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/3/34.png" alt="image"></p>
+<h1 id="enhance_widget">enhance widget</h1>
+<p>在某些情況下 動態加入一段程式碼到畫面 , 這個畫面不會自動render , 所以畫面變得很醜 , 這時候只好自己去refresh這個widget (這時候又有一堆版本的不同問題…)</p>
+<p>ex: </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/13.png" alt="image"></p>
+<p><code>selector.append(&quot;xxx&quot;).collapsibleset(&quot;refresh&quot;),trigger(&quot;create&quot;);</code></p>
+<p>方法其實不止一種 , 但都是要加上跟邏輯沒關的部分 , 你會覺得自己在處理麻煩的小事 , 但又要花很多時間…</p>
+<p>這邊是幾種widget的refresh方式整理 <a href="http://andymatthews.net/read/2011/12/14/Refreshing-jQuery-Mobile-listviews,-buttons,-select-dropdowns,-and-input-fields" target="_blank">buttons,-select-dropdowns,-and-input-fields</a> , 有些方法已經太舊了..</p>
+<h1 id="bind_event的問題">bind event的問題</h1>
+<p>要記住 在widget產生之後 bind event才有用 , 這時候javascript的問題就出現了 , 在編寫的時候不會出現問題 , 一定要執行才會出現問題 , 有時候比較難去查 問題出在哪裡…</p>
+<h1 id="collapsible_open_and_close">collapsible open and close</h1>
+<p><a href="http://stackoverflow.com/questions/23566967/jquerymobile-1-4-2-animate-collapsible" target="_blank">animate-collapsible</a></p>
+<h1 id="local_notification">local notification</h1>
+<h1 id="jquery_mobile_page">jquery mobile page</h1>
+<p><a href="http://jackmew.github.io/2014/08/28/20140828/">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/2/33.png" alt="image"></p>
+<h1 id="refactor">refactor</h1>
+<h1 id="theme">theme</h1>
+<h1 id="icon_color">icon color</h1>
+<p><a href="http://www.bar54.de/2014/02/jquery-mobile-change-color-of-svg-icons/" target="_blank">link</a></p>
+<p>原本jquery.mobile.css </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/3/36.png" alt="image"></p>
+<p>override掉</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/3/37.png" alt="image"></p>
+<p>fff10a =&gt; 黃色</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/3/38.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/3/39.png" alt="image"></p>
+<p>原本的<code>Cpolygon%20fill%3D%22%23FFF</code></p>
+<p>加上三碼<code>Cpolygon%20fill%3D%22%23FFF10a</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/3/40.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/phonegap/evaluation/3/41.png" alt="image"></p>
+<h1 id="未讀_已讀_已加入重要訊息_排序">未讀 已讀 已加入重要訊息 排序</h1>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jackmew.github.io/2014/09/22/20140922/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

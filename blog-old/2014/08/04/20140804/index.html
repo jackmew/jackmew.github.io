@@ -1,0 +1,414 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>2014/08/04 | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  <meta name="description" content="Problem
+再次列出想知道的問題 再加上其他的問題
+
+cglib,jar  &amp;amp; asm.jar 這兩個必須要加入才能夠使用@Configuration , 那可以使用Maven加入嗎? 當然可以 , 可是在後來的專案中 都沒有特別加入這兩個.jar檔 所以猜測應該是被合起來到別的.jar">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="2014/08/04"/>
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-08-04T01:10:28.000Z"><a href="/2014/08/04/20140804/">Aug 4 2014</a></time>
+      
+      
+  
+    <h1 class="title">2014/08/04</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Problem">Problem</h1>
+<p>再次列出想知道的問題 再加上其他的問題</p>
+<ol>
+<li>cglib,jar  &amp; asm.jar 這兩個必須要加入才能夠使用@Configuration , 那可以使用Maven加入嗎? <a href="http://stackoverflow.com/questions/18224365/cglib-is-required-to-process-configuration-classes" target="_blank">當然可以</a> , 可是在後來的專案中 都沒有特別加入這兩個.jar檔 所以猜測應該是被合起來到別的.jar中 ==&gt; <a href="http://stackoverflow.com/questions/19800004/why-is-there-no-spring-asm-3-2-4-release-jar" target="_blank">合到spring-core中</a></li>
+<li>突然看到spring裡面有個.jar叫做 com.springsource.org.aspectj.weaver  ? weaver是什麼意思 ? 之前Jason做的檔案 or 檔案名稱 <a href="http://www.eclipse.org/aspectj/doc/released/devguide/ltw.html" target="_blank">也有叫做weaber的 </a> ==&gt;  <code>The AspectJ weaver takes class files as input and produces class files as output.</code> 大概就是把某些檔案包起來處理 再把他包起來拿出去 這種概念吧</li>
+<li>原本對Bean的做法是bean tag處理的就是要放入IoC 等待被ApplicatoinContext取出來使用(原本是Beanfactory).   那  springmvc是在什麼時候將@Bean @Controller @Repository 這些class , 或者說這些configuration是什麼時候放入IoC , 又在什麼時候取出來使用呢?  ==&gt; 在使用@Configuration &amp; @Bean 就會 register 到 IoC中 , @Autowired 就會取出來使用 .</li>
+<li>可是以上並沒有解釋到@Controller , @Service ,@Repository,@Component 他們是怎麼register到IoC中 ==&gt; <a href="http://www.mkyong.com/spring/spring-auto-scanning-components/" target="_blank">Spring Auto Scanning Components</a> ==&gt; 原來他們會自動register到IoC , 而他們之間有什麼差別呢？ ==&gt;<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/annotation/22.png" alt="image"> 其實沒什麼差別 , 可以全部用@Component取代 但為了Readibility 所以才分成很多種</li>
+<li>這時候又碰到一個問題,一定要加上Component Scan嗎? 明明是說Auto Scanning Component了 , 還要再加上Component Scan ? 這邊有一個<a href="http://stackoverflow.com/questions/7414794/difference-between-contextannotation-config-vs-contextcomponent-scan" target="_blank">context:annotation- config vs context:component-scan的問題</a> , 可是這並不是java config的方式 , 它一半還是用.xml設定….. ==&gt; 查資料的過程中 發現很多.xml設定的寫法 , 一半.xml 一半java config的寫法 , 全部java config的寫法 … 這是一種演進過程 !? , 而且往往會發現 在演進的過程中, 一些必用或常用的東西, 會直接納入default的設定 , 也就是說為什麼@Controller 不需要 @ComponentScan 就可以直接@RequestMapping的原因就是 在Springmvc的架構下 , controller就是要拿來mapping url的呀 那為啥還要每次都Component scan ? …當然這目前還是我的猜測. </li>
+</ol>
+<p><a href="http://www.luckyryan.com/2013/02/07/migrate-spring-mvc-servlet-xml-to-ja va-config/" target="_blank">migrate-spring-mvc-servlet-xml-to-java-config</a> 這篇裡面寫到一些東西 ==&gt;</p>
+<p><code>@EnableWebMVC, this is the same as &lt;mvc:annotation-driven/&gt;</code></p>
+<p><code>ComponentScan(basePackages = {“com.luckyryan.sample”}), this is the same as &lt;context:component-scan base-package=”com.luckyryan.sample”/&gt;</code></p>
+<p><code>Extend the class to use WebMvcConfigurerAdapter. This adds stub implementations from the WebMvcConfigurer interface which is used by @EnableWebMVC. It also gives us a chance to override resources and the default handler.</code> 這段很明確地說了 非常常用到的WebMvcConfigurerAdapter 是用來override resources/servelet handler 和 override viewResolver , 並且是跟@EnableWebMVC 搭配使用 , 這邊有個問題就是 , 就算不加入@EnableWebMVC 一樣可以使用WebMvcConfigurerAdapter , 所以說 可能是已經常常都是搭配使用的 既然如此 何必要每次都要加上@EnableWebMVC , 把他變成default設定就好啦! …當然是我的猜測 , 猜測是對的? ==&gt;  <a href="http://stackoverflow.com/questions/3977973/whats-the-difference-between-mvcannotation-driven-and-contextannotation" target="_blank">You don’t need to use it unless you need one or more of the features outlined in the aforementioned section of the docs.</a></p>
+<ol>
+<li><a href="http://stackoverflow.com/questions/9881611/whats-the-difference-between-jpa-and-hibernate" target="_blank">JPA vs Hibernate</a> ==&gt; JPA定義的是一種規格 , Hibernate的一種ORM的實作方式 並且你也可以實作JPA規格 , 接下來jdbc , jdbcTemplate , datasource , hibernate 之間的關係 ??? 有點複雜呀 , <a href="http://openhome.cc/Gossip/SpringGossip/" target="_blank">持久層</a> , 大概可以總結的就是, 有非常多的技術,裡面各有優缺點 , 但是目前所要使用的功能都太簡單,所以無法去分辨哪種情況要使用哪種東西…</li>
+</ol>
+<h1 id="重新回到Spring_Security">重新回到Spring Security</h1>
+<h1 id="spring-ex08-security">spring-ex08-security</h1>
+<p>in-memory的 security實作</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/security/3.png" alt="image"></p>
+<p>帳號密碼直接放在程式碼中,這表示也不能動態加入新的使用者</p>
+<h1 id="spring-ex09-security">spring-ex09-security</h1>
+<p><a href="http://dtr-trading.blogspot.tw/2014/04/spring-mvc-4-security-part-2.html" target="_blank">link</a></p>
+<p>改成從database資料進行帳號密碼驗證 , 抓USERS(domain object:User) , 比對帳號密碼,</p>
+<p>Spring Security database schema &amp; UserDetailsService</p>
+<p>Spring Security’s UserDetails</p>
+<p>@SuppressWarnings :<a href="http://openhome.cc/Gossip/JavaGossip-V2/AnnotationSuppressWarnings.htm" target="_blank">不在編譯完成後出現警告</a></p>
+<h1 id="spring-ex10-security">spring-ex10-security</h1>
+<p><a href="http://dtr-trading.blogspot.tw/2014/04/spring-mvc-4-spring-security-32-part-3.html" target="_blank">link</a></p>
+<p>再加入ROLES(domain object:Role) ,USERS/ROLES 都有Primary key 指到 USER/ROLES這個table , User has Role</p>
+<p>ROLES會決定你可以操作哪些東西: add authorization to the controllers and methods.</p>
+<h1 id="spring-ex11-auth">spring-ex11-auth</h1>
+<p><a href="http://dtr-trading.blogspot.tw/2014/04/spring-security-32-authorization-part-1.html" target="_blank">link</a></p>
+<p>add role based authorization to the CRUD application we’ve been building.</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/security/4.png" alt="image"></p>
+<p>只有role:admin 才能進入strategy/後面的頁面 或者CRUD操作</p>
+<h1 id="spring-ex12-auth">spring-ex12-auth</h1>
+<p><a href="http://dtr-trading.blogspot.tw/2014/04/spring-security-32-authorization-part-2.html" target="_blank">link</a></p>
+<ol>
+<li>add a custom access denied (403) page =&gt; WEB-INF/views/error</li>
+<li><p>create class to handle the access denied exception =&gt; implements AccessDeniedHandler</p>
+</li>
+<li><p>在DatabaseConfig加入@Bean AccessDeniedExceptionHandler =&gt; 很怪 為什麼會加在DatabaseConfig…?</p>
+</li>
+<li><p>SecurityConfig去@Autowired這個bean,並且設定頁面error權限</p>
+</li>
+<li><p>Error controller 導到/error/accessDeniedPage</p>
+</li>
+</ol>
+<p>必須先讓頁面出現Access deny 的頁面 , 才能夠用AccessDeniedHandler這class去處理.</p>
+<h1 id="spring-ex13-auth">spring-ex13-auth</h1>
+<p>用兩個Annotation取代 .antMatchers(“/strategy/**”).hasRole(“ADMIN”) </p>
+<ol>
+<li>SecurityConfig : @EnableGlobalMethodSecurity(prePostEnabled=true) //enable global method security </li>
+</ol>
+<ol>
+<li>StrategyController : @PreAuthorize(“hasRole(‘ROLE_ADMIN’)”)</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/blog/">blog</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/springmvc/">springmvc</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jackmew.github.io/2014/08/04/20140804/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

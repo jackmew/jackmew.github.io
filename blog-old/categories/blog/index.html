@@ -1,0 +1,811 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>blog | Jackmew blog</title>
+  <meta name="author" content="jackmew">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Jackmew blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Jackmew blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title category">blog</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-01-26T03:32:57.000Z"><a href="/2015/01/26/20150126/">Jan 26 2015</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/01/26/20150126/">2015/01/26</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Date">Date</h1>
+<p>Date getYear , getDate deprecated</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/5.png" alt="image"></p>
+<p>用Calendar來取值 <a href="http://stackoverflow.com/questions/9474121/i-want-to-get-year-month-day-etc-from-java-date-to-compare-with-gregorian-calen" target="_blank">link</a></p>
+<p>取完後 以下是在append 0  在10以下的數字</p>
+<p>接下來要set date 到 item裡</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/6.png" alt="image"></p>
+<p>但12都 會顯示為00 <a href="http://stackoverflow.com/questions/17341214/difference-between-java-hhmm-and-hhmm-on-simpledateformat" target="_blank">HH v.s hh</a></p>
+<p>hh用在12 h , HH : 24H</p>
+<p>接下來 要在DateField 上可以顯示到minute的時間 , 要設定dateFormat &amp; Resolution</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/7.png" alt="image"></p>
+<h1 id="white-space_&amp;_word-wrap">white-space &amp; word-wrap</h1>
+<p><a href="http://www.puritys.me/docs-blog/article-31-CSS-%E8%AA%9E%E6%B3%95%EF%BC%8C%E6%96%87%E5%AD%97%E6%8F%9B%E8%A1%8C%EF%BC%8C%E5%BC%B7%E8%BF%AB%E4%B8%8D%E6%8F%9B%E8%A1%8C%E3%80%82.html#vj-t1" target="_blank">link</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-01-16T03:01:52.000Z"><a href="/2015/01/16/20150116/">Jan 16 2015</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/01/16/20150116/">2015/01/16</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Modify_Form">Modify Form</h1>
+<p><a href="https://vaadin.com/book/-/page/components.datefield.html" target="_blank">DateField</a>在setValue()時 , 一定是set Date , 所以Form裡面 要可以設定Item的型別為Date.class . </p>
+<p>原本想說setValue 都會是String , 所以強制讓Class<String> 都只能是String .</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/32.png" alt="image"></p>
+<p>我想要讓他addField時 可以決定要用String 或 Date</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/33.png" alt="image"></p>
+<p>但沒辦法 , 因為都判定為Class</p>
+<p>請教Jason後 , 原來還可以這樣</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/34.png" alt="image"></p>
+<p>其實連&lt;?&gt; 都可以不用 , 不過就會出現Warning , 因為editor覺得你可能忘記加入型別了 , 加上&lt;?&gt; warning 消失 , 也覺得加入任何型別</p>
+<p>因此都改為Class&lt;?&gt;<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/1.png" alt="image"></p>
+<h1 id="DateField_Resolution">DateField Resolution</h1>
+<p>還沒完 , 想要指定DateField顯示格式 <code>df.setDateFormat(&quot;yyyy-MM-dd HH:mm&quot;);</code></p>
+<p>但時間的部分一直是 00:00:00 , 無法抓到時間??? 可是我印出來是有時間的..</p>
+<p>後來發現DateField還有一個參數 Resolution , 決定可以顯示的..解析度? </p>
+<p><code>df.setResolution(Resolution.MINUTE))</code></p>
+<p>這樣就可以正確顯示</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/2.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/3.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/6/4.png" alt="image"></p>
+<p>而且setResolution後 <a href="http://stackoverflow.com/questions/17316931/how-to-have-a-vaadin-component-to-choose-date-and-time-both" target="_blank">PopupDateField</a>,會多出來可以選擇時間 .</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-01-15T03:40:57.000Z"><a href="/2015/01/15/20150115/">Jan 15 2015</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/01/15/20150115/">2015/01/15</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="vaadin_i18n">vaadin i18n</h1>
+<p>zh-TW ==&gt; language-country </p>
+<h1 id="Resource_Bundle">Resource Bundle</h1>
+<p>我們分為兩種 </p>
+<ol>
+<li>message.properties 顯示訊息 可以夾帶參數 有區分大小寫</li>
+<li>term.properties 顯示畫面上的字 傳進來都會轉成大寫去Mapping(因為在中文的意義上 大小寫沒有分別)</li>
+</ol>
+<p>ex : user , User =&gt; 都轉為 USER 找到==&gt; 使用者</p>
+<h1 id="Locale">Locale</h1>
+<ol>
+<li>連上我們server , 同時會夾帶(language,country)</li>
+<li>browser上的locale (我們作法default這樣處理)</li>
+<li>使用者可以選擇想要顯示的locale (存在workbench)</li>
+</ol>
+<h1 id="MessageSource">MessageSource</h1>
+<p>之前在Spring Boot 或什麼地方 就常看到 用到Messgae Source來做i18n的方式 , 但還真沒看到去extends MessageSource , 然後寫自己的custom function .</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/29.png" alt="image"></p>
+<p>在這邊設定是抓什麼樣的檔案名稱(預設是message.properties)-改為-&gt;term.properties</p>
+<p>並設定encoding方式為UTF-8</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/30.png" alt="image"></p>
+<p>設定getTerm 也就是get mapping到的文字的方式 , 並加上了 _ 取代掉空白 . </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/31.png" alt="image"></p>
+<h1 id="eclipse_-properties">eclipse .properties</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/23.png" alt="image"></p>
+<p>儘管已經設定eclipse的workspace 編碼為UTF-8 , 在大部分Java程式 , 會將編碼都用UTF-8 , 但是.properties有自己預設的ISO-8859-1的編碼方式 , 因此eclispse 沒有去強制改變.properties的編碼方式</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/24.png" alt="image"></p>
+<p>出現亂碼 因此要手動改變編碼</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/25.png" alt="image"></p>
+<h1 id="TestNG">TestNG</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/26.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/27.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/28.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-01-14T08:30:40.000Z"><a href="/2015/01/14/20150114/">Jan 14 2015</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/01/14/20150114/">2015/01/14</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="vaadin_包兩層TabSheet_(global_variable)">vaadin 包兩層TabSheet (global variable)</h1>
+<p>會access不到TextField , 應該是其他component 也會出現問題.</p>
+<p>……</p>
+<p>發現到不是這問題…</p>
+<p>是因為我用了global variable , 這個global variable 又再次被別人給new走了 , 所以我現在access到的global variable 對象 變成另外一個 , 所以我一直控制不到我想要控制的component .</p>
+<p>因此得到以下想法 :<br>所謂Bad smell , 包括不該使用global variable等方式 , 並不是不能用(在某些情況 是必須用) , 而是常用的話 容易出現一些無法發現問題在哪裡的錯誤 , compiler無法幫妳檢查到的錯 … 在程式規模 變得越來越大以後 , 這種無法發現的問題 會非常非常非常的頭痛 , 你根本找不到問題在哪裡 儘管是簡單又微小的問題 . </p>
+<p>Jason寫的Form :</p>
+<ol>
+<li><p>儲存Fields(TextField , DateField ,ComboBox ….) , 就像是多了一層scope , 藉由Form來access 其他component , 減少global variable .</p>
+</li>
+<li><p>存的同時 會存Property(設定好ItemId , value , class型別 ) , 放入PropertysetItem </p>
+</li>
+<li><p>有PropertysetItem 就可以用來set value , setValues(直接對已經儲存好的Field , setValue)</p>
+</li>
+</ol>
+<h1 id="inner_class">inner class</h1>
+<p>的確 可以用form來造成部分scope , 但是這時候又有grid , 同樣的grid要存在哪呢….? </p>
+<p>再來了解一次問題</p>
+<p>1 , 2 , 3 , 4 , 5 . 五的畫面</p>
+<ol>
+<li>是 1 2 3 4 的集合</li>
+</ol>
+<p>因此我去reuse 1 2 3 4 . 但出現問題 . </p>
+<p>我出現問題的部分是 5 用到 1 2 3 4 的global variable . </p>
+<p>所以我無法access到1 2 3 4的Field(TextField,ComboBox,DataField …).</p>
+<h1 id="第一個解法_:_Form">第一個解法 : Form</h1>
+<p>1 2 3 4 都有各自的Form去存Field</p>
+<p>因此 5 也要有好幾個Form 來存1 2 3 4 的不同Form …怪</p>
+<p>此時又發現Grid 也是要reuse , 但也是global … 靠…Form存Grid也怪..</p>
+<h1 id="第二個解法_:_Class">第二個解法 : Class</h1>
+<p>超簡單的畫面 獨立一個Class , 怪…</p>
+<h1 id="第三個解法_:_Inner_Class">第三個解法 : Inner Class</h1>
+<p>Inner class可以造成獨立的scope , 也不用獨立一個class . 我竟然沒想到..</p>
+<p>接下來的問題是1 , 5 內的欄位 , 應該是同一個dataSource , 同一個資料來源 , </p>
+<p>所以我應該去bind 1 , 5 上面同樣名字 卻不同instance的物件 , 來保持顯示資料一樣 .</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-01-04T18:40:39.000Z"><a href="/2015/01/05/20150105/">Jan 5 2015</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/01/05/20150105/">2015/01/05</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="eCard_zoom">eCard zoom</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/kineticjs/1/1.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/jquery/kineticjs/1/2.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-12-23T03:10:24.000Z"><a href="/2014/12/23/20141223/">Dec 23 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/12/23/20141223/">2014/12/23</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="RecruiterReferedViewer">RecruiterReferedViewer</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/12.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/13.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/14.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/15.png" alt="image"></p>
+<h1 id="NewApplicants">NewApplicants</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/16.png" alt="image"><br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/17.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/18.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/19.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/20.png" alt="image"></p>
+<h1 id="原本_Site">原本 Site</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/21.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/22.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-12-19T06:35:13.000Z"><a href="/2014/12/19/20141219/">Dec 19 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/12/19/20141219/">2014/12/19</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Resume_Review">Resume Review</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/42.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/43.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/44.png" alt="image"></p>
+<h1 id="Date">Date</h1>
+<p><a href="https://vaadin.com/forum/#!/thread/19826/19033" target="_blank">vaadin-forum</a></p>
+<p><a href="http://www.mkyong.com/java/how-to-convert-string-to-date-java/" target="_blank">mykong</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/4.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/5.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/6.png" alt="image"></p>
+<h1 id="OptionGroup_caption">OptionGroup caption</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/1.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/3.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/4.png" alt="image"></p>
+<h1 id="Garbage_Collection_(GC)">Garbage Collection (GC)</h1>
+<p>一沒有hold住 , 很快就釋放記憶體 . </p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/7.png" alt="image"></p>
+<p>所以一被remove掉 就被回收了</p>
+<h1 id="vaadin_UI_,_session">vaadin UI , session</h1>
+<p>設計time out的原因是 , user可能使用到一半會直接關閉browser , 但是這樣就無法釋放resource了 , 因此都會設定time out , 時間到就清除 .</p>
+<p>database connection這種 也有time out , 但是對於close的要求 很嚴謹 , 因為使用的資源相對非常大 , 無法同時建立太多connection .</p>
+<h1 id="Resume_Review_修改">Resume Review 修改</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/8.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/9.png" alt="image"></p>
+<h1 id="Interview_List">Interview List</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/10.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/5/11.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-12-17T01:46:26.000Z"><a href="/2014/12/17/20141217/">Dec 17 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/12/17/20141217/">2014/12/17</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="NewApplicants">NewApplicants</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/19.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/20.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/21.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/22.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/23.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/24.png" alt="image"></p>
+<h1 id="Requisition_Management">Requisition Management</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/25.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/26.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/27.png" alt="image"></p>
+<h1 id="Requisition_Management_更改">Requisition Management 更改</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/35.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/36.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/37.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/38.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/39.png" alt="image"></p>
+<h1 id="form">form</h1>
+<p>我認為要分成2種狀態</p>
+<ol>
+<li><p>填入查詢條件</p>
+</li>
+<li><p>填入資料</p>
+</li>
+</ol>
+<p>填入查詢條件 不會有textarea , 所以不用考慮textarea不整齊的問題 </p>
+<h1 id="table">table</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/28.png" alt="image"></p>
+<p>固定第一個column的寬 : <code>gridjr.setColumnWidth(&quot;language&quot;, 100);</code></p>
+<p>第二個column會很長 設成scrollable : <code>gridjr.setColumnWidth(&quot;requirements&quot;, -1);</code></p>
+<h1 id="table_content_換行">table content 換行</h1>
+<p>先讓java String 換行 : <code>\n</code></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/30.png" alt="image"></p>
+<p><a href="http://stackoverflow.com/questions/3056834/replace-n-and-r-n-with-br-in-java" target="_blank">\n replaced with br</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/31.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/32.png" alt="image"></p>
+<p>但是此時的行高太小</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/33.png" alt="image"></p>
+<h1 id="textarea才會換行">textarea才會換行</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/34.png" alt="image"></p>
+<h1 id="改變modal的背景顏色">改變modal的背景顏色</h1>
+<p>原本很深 改淺一點</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/40.png" alt="image"></p>
+<h1 id="改變window_header">改變window header</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/41.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-12-12T09:22:04.000Z"><a href="/2014/12/12/20141212/">Dec 12 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/12/12/20141212/">2014/12/12</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="only_icon">only icon</h1>
+<p><a href="https://vaadin.com/wiki/-/wiki/Main/Using+font+icons" target="_blank">link</a></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/13.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-12-10T07:38:06.000Z"><a href="/2014/12/10/20141210/">Dec 10 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/12/10/20141210/">2014/12/10</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="RecruiterReferedManager">RecruiterReferedManager</h1>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/3.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/4.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/5.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/6.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/7.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/8.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/9.png" alt="image"></p>
+<p>accordion 改成 tabsheet</p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/10.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/11.png" alt="image"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/leandev/erec/4/12.png" alt="image"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+  
+    <a href="/categories/blog/page/2/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:jackmew.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/blog/">blog</a><small>177</small></li>
+  
+    <li><a href="/categories/developent/">developent</a><small>2</small></li>
+  
+    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/C/">C</a><small>1</small></li>
+  
+    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
+  
+    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/REST/">REST</a><small>1</small></li>
+  
+    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/tags/bower/">bower</a><small>1</small></li>
+  
+    <li><a href="/tags/callback/">callback</a><small>2</small></li>
+  
+    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
+  
+    <li><a href="/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/tags/compass/">compass</a><small>1</small></li>
+  
+    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
+  
+    <li><a href="/tags/css/">css</a><small>7</small></li>
+  
+    <li><a href="/tags/development/">development</a><small>4</small></li>
+  
+    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
+  
+    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
+  
+    <li><a href="/tags/express/">express</a><small>8</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>3</small></li>
+  
+    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
+  
+    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
+  
+    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
+  
+    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/host/">host</a><small>1</small></li>
+  
+    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>4</small></li>
+  
+    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
+  
+    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
+  
+    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/json/">json</a><small>1</small></li>
+  
+    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
+  
+    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
+  
+    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
+  
+    <li><a href="/tags/mac/">mac</a><small>6</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>5</small></li>
+  
+    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
+  
+    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
+  
+    <li><a href="/tags/mou/">mou</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/node/">node</a><small>10</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
+  
+    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
+  
+    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
+  
+    <li><a href="/tags/safari/">safari</a><small>1</small></li>
+  
+    <li><a href="/tags/sass/">sass</a><small>5</small></li>
+  
+    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
+  
+    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
+  
+    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
+  
+    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
+  
+    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
+  
+    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
+  
+    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
+  
+    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
+  
+    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
+  
+    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
+  
+    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
+  
+    <li><a href="/tags/validate/">validate</a><small>1</small></li>
+  
+    <li><a href="/tags/validation/">validation</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
+  
+    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
+  
+    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
+  
+    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 jackmew
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
