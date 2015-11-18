@@ -1,482 +1,218 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
-  <title>spring | Jackmew blog</title>
-  <meta name="author" content="jackmew">
-  
-  
+  <title>Tag: spring | zestlifia old blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="zestlifia old blog">
+<meta property="og:url" content="http://www.zestlifia.tw/blog-old/tags/spring/index.html">
+<meta property="og:site_name" content="zestlifia old blog">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zestlifia old blog">
+<meta name="twitter:description">
+  
+    <link rel="alternative" href="/atom.xml" title="zestlifia old blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico?">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog-old/css/style.css" type="text/css">
+  
 
-  
-  <meta property="og:site_name" content="Jackmew blog"/>
-
-  
-    <meta property="og:image" content="undefined"/>
-  
-
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
 </head>
-
-
 <body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Jackmew blog</a></h1>
-  <h2><a href="/"></a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/">Home</a></li>
-    
-      <li><a href="/archives">Archives</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title tag">spring</h2>
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zestlifia old blog</a>
+      </h1>
       
-        <div class="icon"></div>
-        <time datetime="2014-08-18T01:12:23.000Z"><a href="/2014/08/18/20140818/">Aug 18 2014</a></time>
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.zestlifia.tw/blog-old"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+  
+    
+    
       
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/blog-old/archives/2014" class="archive-year">2014</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/blog-old/2014/08/18/20140818/" class="archive-article-date">
+  <time datetime="2014-08-18T01:12:23.000Z" itemprop="datePublished">Aug 18</time>
+</a>
       
   
-    <h1 class="title"><a href="/2014/08/18/20140818/">2014/08/18</a></h1>
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/blog-old/2014/08/18/20140818/">2014/08/18</a>
+    </h1>
   
 
     </header>
-    <div class="entry">
-      
-        <h1 id="Java_DataBase_Connection_(JDBC)">Java DataBase Connection (JDBC)</h1>
-<p>在Java語言中，JDBC（Java DataBase CONnection）是應用程序與數據庫溝通的橋梁</p>
-<p><a href="http://www.autooo.net/utf8-classid124-id56542.html" target="_blank">講解了為何會出現Connection Pool</a></p>
-<h1 id="DriverManager_vs_DataSource">DriverManager vs DataSource</h1>
-<p><a href="http://www.coderanch.com/t/499766/JDBC/databases/difference-Driver-Manager-Data-Source" target="_blank">link</a></p>
-<p>DriverManager 基於JDBC建立一次性資料庫連線 .</p>
-<p>Datasource : 儲存連接資料庫的相關資訊,標示與描述其所代表真實世界中的database 屬性 ex:database path(url) , database name , 連接時與server的協議 . </p>
-<p>建立connection pool(內有多條connection , 可控管connection數目) , distributed technology</p>
-<p><a href="http://muscle-liu.iteye.com/blog/391916" target="_blank">connection pool 的開發問題</a></p>
-<h1 id="Java_Naming_and_Directory_Interfacae_(JNDI)">Java Naming and Directory Interfacae (JNDI)</h1>
-<h1 id="realize_JDBC_and_JNDI">realize JDBC and JNDI</h1>
-<p><a href="http://my.oschina.net/lyzg/blog/55176" target="_blank">link</a></p>
-<p>其實這兩者之間沒有什麼關係 , JNDI 跟 Datasource比較有關係</p>
-<p>JNDI : 為了存取 連接兩個不同service(而這service的命名方式和目錄名稱 可能會不同) , 所定義的規範. </p>
-<p>是一個<a href="http://publib.boulder.ibm.com/wasce/V3.0.0/zh_TW/jndi.html" target="_blank">連線儲存區介面</a>。 在執行時期，開發人員可以利用這個介面來間接存取所有 Java 資源。 JNDI 有助於解決程式碼和外部資源之間，緊密連結的問題。 </p>
-<h1 id="JNDI_-&gt;_Datasource_-&gt;_JDBC">JNDI -&gt; Datasource -&gt; JDBC</h1>
-<p><a href="http://www.mpinfo.com.tw/TechnologyColumnFiles/JavaAPsvr_T_200606.htm" target="_blank">這篇很清楚的 講了之間的關係</a></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/3/2.png" alt="JDBC"></p>
-<p>這個jar檔 就做好了JDBC的事情</p>
-<h1 id="Java_Persistence_API_(JPA)">Java Persistence API (JPA)</h1>
-<p><a href="http://www.cnblogs.com/holbrook/archive/2012/12/30/2839842.html" target="_blank">寫的挺好的</a></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/3/1.png" alt="JPA vs Hibernate"></p>
-<h1 id="JPA_vs_Hibernate">JPA vs Hibernate</h1>
-<p><a href="http://stackoverflow.com/questions/9881611/whats-the-difference-between-jpa-and-hibernate" target="_blank">link</a></p>
-<h1 id="Hibernate">Hibernate</h1>
-<p><a href="http://openhome.cc/Gossip/HibernateGossip/" target="_blank">link</a></p>
-<p>所以說Hibernate比較重要的是ORM(Object/Relational Mapping)</p>
-<p>Hibernate is just one <strong>persistence provider</strong> which is a fine choice. On top of that there is JPA which is a specification. I would choose this over hibernate specific code. <a href="http://www.coderanch.com/t/587275/Spring/Choosing-Spring-JDBC-Template-Spring" target="_blank">Spring data</a> is another project which abstracts things even more and is definitely worthwhile if you choose the ORM route. </p>
-<h1 id="Spring_Data_JPA">Spring Data JPA</h1>
-<p>jpaRepository extends PaginAndSoringRepository extends CrudRepository </p>
-<p><a href="http://blogs.isostech.com/database/jpa-spring-data-awesomeness/" target="_blank">非常精辟的講解</a></p>
-<p>Spring Data JPA 不再需要DAO層</p>
-<p><a href="http://www.ibm.com/developerworks/cn/opensource/os-cn-spring-jpa/" target="_blank">使用 Spring Data JPA 簡化 JPA 開發</a></p>
-<p>当你看到 UserDao.findUserById() 这样一个方法声明，大致应该能判断出这是根据给定条件的 ID 查询出满足条件的 User 对象。Spring Data JPA 做的便是规范方法的名字，根据符合规范的名字来确定方法需要实现什么样的逻辑。</p>
-<p>==&gt; </p>
-<p>通过解析方法名创建查询</p>
-<h1 id="EJB_vs_Spring">EJB vs Spring</h1>
-<p><a href="http://www.infoq.com/cn/articles/ejb3-spring-compare" target="_blank">link</a></p>
-<p><a href="http://www.360doc.com/content/10/0526/16/284485_29633270.shtml" target="_blank">link</a></p>
-<p>很多人認為 , EJB 3 中 通過使用@PersistenceContext 註釋 提供的entityManager對象 來獲得JPA的數據訪問  =&gt; EJB使用JPA操作數據對象</p>
-<p>而在Spring中 通過對SessionFactory對象的注入(injection),獲得Hibernate數據訪問   =&gt; Spring使用Hibernate來操作數據對象</p>
-<h1 id="EntityManger">EntityManger</h1>
-<p>在JPA:</p>
-<p>EntityManagerFactory -&gt; EntityManager -&gt; PersistenceContext(管理一堆Entity)</p>
-<p>在Hibernate:</p>
-<p>SessionFactory -&gt; currentSession </p>
-<h1 id="EntityManager_vs_Hibernate">EntityManager vs Hibernate</h1>
-<p><a href="http://www.theserverside.com/news/2240186700/The-JPA-20-EntityManager-vs-the-Hibernate-Session-Which-one-to-use" target="_blank">link</a></p>
-<p>Hibernate ORM provides CRUD-based interaction . </p>
-<p>EntityManager is part of the Java Persistence API .</p>
-<p>所以說無論有沒有使用Hibernate , 只要使用Relational database , 都會使用到EntityManager ?</p>
-<h1 id="Hibernate_Entity_Manager_Reference_Guide">Hibernate Entity Manager Reference Guide</h1>
-<p><a href="https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Web_Platform/5/html/Hibernate_Entity_Manager_Reference_Guide/" target="_blank">link</a>ㄌ</p>
-<p>EJB 3 提供的方式 , EntityManager滿足JPA .</p>
-<h1 id="MJORM(mongo-java-orm)">MJORM(mongo-java-orm)</h1>
-<p>Hibernate/JPA/Spring Data JPA ==&gt; Relational database</p>
-<p>MJORM/Spring Data Mongo ==&gt; Document database</p>
-<h1 id="Histroy">Histroy</h1>
-<p>Hibernate —&gt; JPA —&gt; Spring Data JPA</p>
-<h1 id="Spring_Boot_embeded_database_support">Spring Boot embeded database support</h1>
-<p><a href="http://docs.spring.io/spring-boot/docs/1.2.0.BUILD-SNAPSHOT/reference/htmlsingle/#boot-features-embedded-database-support" target="_blank">link</a></p>
-<h1 id="Spring_Data_JPA-1">Spring Data JPA</h1>
-<p> You can create concrete repositories by creating repository interfaces and letting Spring Data JPA do all the heavy lifting.</p>
-<p><a href="http://www.petrikainulainen.net/spring-data-jpa-tutorial/" target="_blank">Spring Data JPA Tutorial</a></p>
-<p>using Hibernate as your JPA provider</p>
-<p>jpaRepository findAll() 回傳的就是List&lt;?&gt;</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/3/3.png" alt="image"></p>
-<p><a href="http://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/CrudRepository.html" target="_blank">CrudRepository</a></p>
-<p><a href="http://docs.spring.io/spring-data/data-commons/docs/1.7.0.RELEASE/api//org/springframework/data/repository/PagingAndSortingRepository.html" target="_blank">PagingAndSortingRepository</a></p>
-<p><a href="http://docs.spring.io/spring-data/jpa/docs/current/api/org/springframework/data/jpa/repository/JpaRepository.html" target="_blank">JpaRepository</a></p>
-<h1 id="Spring_Data_JPA_三種Query">Spring Data JPA 三種Query</h1>
-<p><a href="http://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-three-custom-queries-with-query-methods/" target="_blank">link</a></p>
-<h3 id="1-_Query_Creation_from_Method_Name">1. Query Creation from Method Name</h3>
-<p>根據method Name 轉換成相對應的sql query</p>
-<p><a href="http://docs.spring.io/spring-data/data-jpa/docs/current/reference/html/jpa.repositories.html#jpa.query-methods.query-creation" target="_blank">function名稱 對應方式</a></p>
-<h3 id="2-_JPA_Named_Queries">2. JPA Named Queries</h3>
-<p>在Entity上 寫下sql query , </p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/3/4.png" alt="image"></p>
-<p>去對應到repository</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/3/5.png" alt="image"></p>
-<p>很特別的做法 但感覺一點都不實用</p>
-<h3 id="3-_@Query_Annotation">3. @Query Annotation</h3>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/3/6.png" alt="image"></p>
-<p>挺正常的做法</p>
-<p>我覺得用1 , 3 就很夠用了</p>
-<p>接下來做 like 還有 date</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
   </div>
 </article>
-
-
-
   
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-05-12T01:13:07.000Z"><a href="/2014/05/12/20140512/">May 12 2014</a></time>
-      
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/blog-old/2014/05/12/20140512/" class="archive-article-date">
+  <time datetime="2014-05-12T01:13:07.000Z" itemprop="datePublished">May 12</time>
+</a>
       
   
-    <h1 class="title"><a href="/2014/05/12/20140512/">2014/05/12</a></h1>
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/blog-old/2014/05/12/20140512/">2014/05/12</a>
+    </h1>
   
 
     </header>
-    <div class="entry">
-      
-        <h1 id="GDB_=&gt;_node-inspector">GDB =&gt; node-inspector</h1>
-<h1 id="VA_run_in_the_chrome">VA run in the chrome</h1>
-<h1 id="Node-js_MongoDB_Tutorial_using_Mongoose">Node.js MongoDB Tutorial using Mongoose</h1>
-<p><a href="https://www.youtube.com/watch?v=5e1NEdfs4is&amp;src_vid=FqMIyTH9wSg&amp;feature=iv&amp;annotation_id=annotation_419083267" target="_blank">simple</a></p>
-<p><a href="https://www.youtube.com/watch?v=CIPbmPUKyMI" target="_blank">mongo 101</a></p>
-<p><a href="https://www.youtube.com/watch?v=rt3VUVPa6W4" target="_blank">green</a></p>
-<p><a href="https://www.youtube.com/watch?v=D7ymgAvbjF0" target="_blank">實作聊天室</a></p>
-<h1 id="ServiceConfig">ServiceConfig</h1>
-<p>設定spring與mongo的連接</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc1.png" alt="image"></p>
-<p>Environment去抓 連接相關資訊 變數 從app.properties</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc2.png" alt="image"></p>
-<p><code>app.properties</code>放了db.name host.name</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc3.png" alt="image"></p>
-<h1 id="i18n">i18n</h1>
-<p>需要提到的是 使用了require.js 區分模組 所以不管要用哪個東西 都需要先定義模組位置,要使用時先include進來</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc4.png" alt="image"></p>
-<p>接下來就像是給予include進來的物件名字</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc5.png" alt="image"></p>
-<p>使用方法 就是用給予的物件名稱 去.出來</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc6.png" alt="image"></p>
-<p>資料在<code>label.UIDWidget.js</code> 意料之外的是i18n也是js檔</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/sc7.png" alt="image"></p>
-<h1 id="express">express</h1>
-<p><code>npm update</code> 可以update之前由npm安裝的套件 , 可是無法update自己</p>
-<p>express3.0.0  =&gt; express4.0.0</p>
-<p><code>express --hogan -c less exp2014_ex4.0.0</code> 產生template engine:hogan template , 俱有less功能 的專案 名稱:exp2014_ex4.0.0</p>
-<p><code>cd exp2014_ex4.0.0</code></p>
-<p><code>npm install</code> 根據package.json產生檔案</p>
-<p>啟動server方式也改變了 我用supervisor來自動refresh node</p>
-<p><code>supervisor bin/www</code></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/4.png" alt="image"></p>
-<p>app.js:</p>
-<p>先require(import) 某個routes(用來對應url 達到rest)<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/1.png" alt="image"></p>
-<p>在express4.0.0 router才有get function</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/5.png" alt="image"></p>
-<p>開啟瀏覽器</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/6.png" alt="image"></p>
-<p>我們可以看到name:’Jack’ , age:24 被render到template上了</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/2.png" alt="image"></p>
-<p>res.send只是傳資料的行為 就像是之前的ResponseEntity </p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/3.png" alt="image"></p>
-<h2 id="query_string">query string</h2>
-<p>可以很容易取得url上的query string</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/7.png" alt="image"></p>
-<p>另外一種奇怪的方式 取得參數</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/8.png" alt="image"></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/express/9.png" alt="image"></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
   </div>
 </article>
-
-
-
-  
-
-  <nav id="pagination">
   
   
-  <div class="clearfix"></div>
-</nav>
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Search">
-    <input type="hidden" name="q" value="site:jackmew.github.io">
-  </form>
-</div>
+    </div></section>
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog-old/categories/blog/">blog</a><span class="category-list-count">176</span></li><li class="category-list-item"><a class="category-list-link" href="/blog-old/categories/developent/">developent</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog-old/categories/leandev/">leandev</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
 
   
-<div class="widget tag">
-  <h3 class="title">Categories</h3>
-  <ul class="entry">
-  
-    <li><a href="/categories/blog/">blog</a><small>177</small></li>
-  
-    <li><a href="/categories/developent/">developent</a><small>2</small></li>
-  
-    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
-  
-  </ul>
-</div>
-
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/CSS/">CSS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/JQuery/">JQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/JQuery-Validate/">JQuery Validate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/Jquery-mobile/">Jquery mobile</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/MVC/">MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/REST/">REST</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/android/">android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/blog/">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/bower/">bower</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/callback/">callback</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/canvas/">canvas</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/command/">command</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/compass/">compass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/cordova/">cordova</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/css/">css</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/development/">development</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/dropbox/">dropbox</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/eclipse/">eclipse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/exception-handle/">exception handle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/express/">express</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/git/">git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/groovy/">groovy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/gwt/">gwt</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/heroku/">heroku</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/hibernate/">hibernate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/host/">host</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/hosting/">hosting</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/java/">java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/javasciprt/">javasciprt</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/javascript/">javascript</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/jquery-mobile/">jquery mobile</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/jquery-plugin/">jquery plugin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/json/">json</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/jsonp/">jsonp</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/kinecticjs/">kinecticjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/kineticjs/">kineticjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/log4j/">log4j</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/mac/">mac</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/maven/">maven</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/mobile/">mobile</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/mongo/">mongo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/mou/">mou</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/node/">node</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/nodejs/">nodejs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/phoneGap/">phoneGap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/phonegap/">phonegap</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/php/">php</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/plugin/">plugin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/remote-debug/">remote debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/ripple/">ripple</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/safari/">safari</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/sass/">sass</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/sencha/">sencha</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/spring/">spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/spring-boot/">spring boot</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/spring-data-jpa/">spring data jpa</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/spring-data-rest/">spring data rest</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/spring-securitry/">spring securitry</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/springboot/">springboot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/springmvc/">springmvc</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/springsecurity/">springsecurity</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/sublime/">sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/tbs/">tbs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/terminal/">terminal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/thymeleaf/">thymeleaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/unit-test/">unit test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/vaadin/">vaadin</a><span class="tag-list-count">36</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/vaddin/">vaddin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/validate/">validate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/validation/">validation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/vim/">vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/wbase/">wbase</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/weinre/">weinre</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/yahoo-finance-api/">yahoo finance api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/yeoman/">yeoman</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
 
   
-<div class="widget tag">
-  <h3 class="title">Tags</h3>
-  <ul class="entry">
-  
-    <li><a href="/tags/C/">C</a><small>1</small></li>
-  
-    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
-  
-    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
-  
-    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
-  
-    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
-  
-    <li><a href="/tags/Java/">Java</a><small>1</small></li>
-  
-    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
-  
-    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
-  
-    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
-  
-    <li><a href="/tags/REST/">REST</a><small>1</small></li>
-  
-    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
-  
-    <li><a href="/tags/android/">android</a><small>1</small></li>
-  
-    <li><a href="/tags/apache/">apache</a><small>1</small></li>
-  
-    <li><a href="/tags/blog/">blog</a><small>1</small></li>
-  
-    <li><a href="/tags/bower/">bower</a><small>1</small></li>
-  
-    <li><a href="/tags/callback/">callback</a><small>2</small></li>
-  
-    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
-  
-    <li><a href="/tags/command/">command</a><small>1</small></li>
-  
-    <li><a href="/tags/compass/">compass</a><small>1</small></li>
-  
-    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
-  
-    <li><a href="/tags/css/">css</a><small>7</small></li>
-  
-    <li><a href="/tags/development/">development</a><small>4</small></li>
-  
-    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
-  
-    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
-  
-    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
-  
-    <li><a href="/tags/express/">express</a><small>8</small></li>
-  
-    <li><a href="/tags/git/">git</a><small>3</small></li>
-  
-    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
-  
-    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
-  
-    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
-  
-    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
-  
-    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
-  
-    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
-  
-    <li><a href="/tags/host/">host</a><small>1</small></li>
-  
-    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
-  
-    <li><a href="/tags/java/">java</a><small>4</small></li>
-  
-    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
-  
-    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
-  
-    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
-  
-    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
-  
-    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
-  
-    <li><a href="/tags/json/">json</a><small>1</small></li>
-  
-    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
-  
-    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
-  
-    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
-  
-    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
-  
-    <li><a href="/tags/mac/">mac</a><small>6</small></li>
-  
-    <li><a href="/tags/maven/">maven</a><small>5</small></li>
-  
-    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
-  
-    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
-  
-    <li><a href="/tags/mou/">mou</a><small>1</small></li>
-  
-    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
-  
-    <li><a href="/tags/node/">node</a><small>10</small></li>
-  
-    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
-  
-    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
-  
-    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
-  
-    <li><a href="/tags/php/">php</a><small>1</small></li>
-  
-    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
-  
-    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
-  
-    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
-  
-    <li><a href="/tags/safari/">safari</a><small>1</small></li>
-  
-    <li><a href="/tags/sass/">sass</a><small>5</small></li>
-  
-    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
-  
-    <li><a href="/tags/shell/">shell</a><small>1</small></li>
-  
-    <li><a href="/tags/spring/">spring</a><small>2</small></li>
-  
-    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
-  
-    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
-  
-    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
-  
-    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
-  
-    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
-  
-    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
-  
-    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
-  
-    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
-  
-    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
-  
-    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
-  
-    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
-  
-    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
-  
-    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
-  
-    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
-  
-    <li><a href="/tags/validate/">validate</a><small>1</small></li>
-  
-    <li><a href="/tags/validation/">validation</a><small>1</small></li>
-  
-    <li><a href="/tags/vim/">vim</a><small>1</small></li>
-  
-    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
-  
-    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
-  
-    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
-  
-    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
-  
-  </ul>
-</div>
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog-old/tags/C/" style="font-size: 10px;">C</a> <a href="/blog-old/tags/CSS/" style="font-size: 11px;">CSS</a> <a href="/blog-old/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/blog-old/tags/JQuery/" style="font-size: 11px;">JQuery</a> <a href="/blog-old/tags/JQuery-Validate/" style="font-size: 10px;">JQuery Validate</a> <a href="/blog-old/tags/Java/" style="font-size: 10px;">Java</a> <a href="/blog-old/tags/Jquery-mobile/" style="font-size: 10px;">Jquery mobile</a> <a href="/blog-old/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/blog-old/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/blog-old/tags/REST/" style="font-size: 10px;">REST</a> <a href="/blog-old/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/blog-old/tags/android/" style="font-size: 10px;">android</a> <a href="/blog-old/tags/apache/" style="font-size: 10px;">apache</a> <a href="/blog-old/tags/blog/" style="font-size: 10px;">blog</a> <a href="/blog-old/tags/bower/" style="font-size: 10px;">bower</a> <a href="/blog-old/tags/callback/" style="font-size: 11px;">callback</a> <a href="/blog-old/tags/canvas/" style="font-size: 11px;">canvas</a> <a href="/blog-old/tags/command/" style="font-size: 10px;">command</a> <a href="/blog-old/tags/compass/" style="font-size: 10px;">compass</a> <a href="/blog-old/tags/cordova/" style="font-size: 12px;">cordova</a> <a href="/blog-old/tags/css/" style="font-size: 16px;">css</a> <a href="/blog-old/tags/development/" style="font-size: 13px;">development</a> <a href="/blog-old/tags/dropbox/" style="font-size: 11px;">dropbox</a> <a href="/blog-old/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/blog-old/tags/exception-handle/" style="font-size: 10px;">exception handle</a> <a href="/blog-old/tags/express/" style="font-size: 17px;">express</a> <a href="/blog-old/tags/git/" style="font-size: 12px;">git</a> <a href="/blog-old/tags/gradle/" style="font-size: 11px;">gradle</a> <a href="/blog-old/tags/groovy/" style="font-size: 10px;">groovy</a> <a href="/blog-old/tags/gwt/" style="font-size: 14px;">gwt</a> <a href="/blog-old/tags/heroku/" style="font-size: 13px;">heroku</a> <a href="/blog-old/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blog-old/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/blog-old/tags/host/" style="font-size: 10px;">host</a> <a href="/blog-old/tags/hosting/" style="font-size: 10px;">hosting</a> <a href="/blog-old/tags/java/" style="font-size: 13px;">java</a> <a href="/blog-old/tags/javasciprt/" style="font-size: 11px;">javasciprt</a> <a href="/blog-old/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/blog-old/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/blog-old/tags/jquery-mobile/" style="font-size: 13px;">jquery mobile</a> <a href="/blog-old/tags/jquery-plugin/" style="font-size: 10px;">jquery plugin</a> <a href="/blog-old/tags/json/" style="font-size: 10px;">json</a> <a href="/blog-old/tags/jsonp/" style="font-size: 11px;">jsonp</a> <a href="/blog-old/tags/kinecticjs/" style="font-size: 10px;">kinecticjs</a> <a href="/blog-old/tags/kineticjs/" style="font-size: 10px;">kineticjs</a> <a href="/blog-old/tags/log4j/" style="font-size: 10px;">log4j</a> <a href="/blog-old/tags/mac/" style="font-size: 15px;">mac</a> <a href="/blog-old/tags/maven/" style="font-size: 14px;">maven</a> <a href="/blog-old/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/blog-old/tags/mongo/" style="font-size: 13px;">mongo</a> <a href="/blog-old/tags/mou/" style="font-size: 10px;">mou</a> <a href="/blog-old/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/blog-old/tags/node/" style="font-size: 18px;">node</a> <a href="/blog-old/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/blog-old/tags/phoneGap/" style="font-size: 10px;">phoneGap</a> <a href="/blog-old/tags/phonegap/" style="font-size: 18px;">phonegap</a> <a href="/blog-old/tags/php/" style="font-size: 10px;">php</a> <a href="/blog-old/tags/plugin/" style="font-size: 10px;">plugin</a> <a href="/blog-old/tags/remote-debug/" style="font-size: 10px;">remote debug</a> <a href="/blog-old/tags/ripple/" style="font-size: 10px;">ripple</a> <a href="/blog-old/tags/safari/" style="font-size: 10px;">safari</a> <a href="/blog-old/tags/sass/" style="font-size: 14px;">sass</a> <a href="/blog-old/tags/sencha/" style="font-size: 19px;">sencha</a> <a href="/blog-old/tags/shell/" style="font-size: 10px;">shell</a> <a href="/blog-old/tags/spring/" style="font-size: 11px;">spring</a> <a href="/blog-old/tags/spring-boot/" style="font-size: 14px;">spring boot</a> <a href="/blog-old/tags/spring-data-jpa/" style="font-size: 14px;">spring data jpa</a> <a href="/blog-old/tags/spring-data-rest/" style="font-size: 10px;">spring data rest</a> <a href="/blog-old/tags/spring-securitry/" style="font-size: 10px;">spring securitry</a> <a href="/blog-old/tags/springboot/" style="font-size: 12px;">springboot</a> <a href="/blog-old/tags/springmvc/" style="font-size: 14px;">springmvc</a> <a href="/blog-old/tags/springsecurity/" style="font-size: 10px;">springsecurity</a> <a href="/blog-old/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/blog-old/tags/tbs/" style="font-size: 11px;">tbs</a> <a href="/blog-old/tags/terminal/" style="font-size: 10px;">terminal</a> <a href="/blog-old/tags/thymeleaf/" style="font-size: 10px;">thymeleaf</a> <a href="/blog-old/tags/unit-test/" style="font-size: 10px;">unit test</a> <a href="/blog-old/tags/vaadin/" style="font-size: 20px;">vaadin</a> <a href="/blog-old/tags/vaddin/" style="font-size: 10px;">vaddin</a> <a href="/blog-old/tags/validate/" style="font-size: 10px;">validate</a> <a href="/blog-old/tags/validation/" style="font-size: 10px;">validation</a> <a href="/blog-old/tags/vim/" style="font-size: 10px;">vim</a> <a href="/blog-old/tags/wbase/" style="font-size: 13px;">wbase</a> <a href="/blog-old/tags/weinre/" style="font-size: 10px;">weinre</a> <a href="/blog-old/tags/yahoo-finance-api/" style="font-size: 10px;">yahoo finance api</a> <a href="/blog-old/tags/yeoman/" style="font-size: 10px;">yeoman</a>
+    </div>
+  </div>
 
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2015/02/">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2015/01/">January 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/12/">December 2014</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/11/">November 2014</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/10/">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/09/">September 2014</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/08/">August 2014</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/07/">July 2014</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/06/">June 2014</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/05/">May 2014</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/04/">April 2014</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/03/">March 2014</a><span class="archive-list-count">33</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog-old/2015/11/19/sublime/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/blog-old/2015/11/19/Working-Record/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/blog-old/2015/11/19/20141120/">2014/11/20</a>
+          </li>
+        
+          <li>
+            <a href="/blog-old/2015/03/27/20150325/">2015/03/25</a>
+          </li>
+        
+          <li>
+            <a href="/blog-old/2015/02/12/20150212/">2015/02/12</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
 </aside>
-    <div class="clearfix"></div>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 John Ho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-  &copy; 2015 jackmew
+    <a href="/" class="mobile-nav-link">Home</a>
   
-</div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
+  <link rel="stylesheet" href="/blog-old/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/blog-old/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
+<script src="/blog-old/js/script.js" type="text/javascript"></script>
 
+  </div>
 </body>
 </html>

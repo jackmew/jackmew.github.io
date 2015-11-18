@@ -1,663 +1,256 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
-  <title>heroku | Jackmew blog</title>
-  <meta name="author" content="jackmew">
-  
-  
+  <title>Tag: heroku | zestlifia old blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="zestlifia old blog">
+<meta property="og:url" content="http://www.zestlifia.tw/blog-old/tags/heroku/index.html">
+<meta property="og:site_name" content="zestlifia old blog">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zestlifia old blog">
+<meta name="twitter:description">
+  
+    <link rel="alternative" href="/atom.xml" title="zestlifia old blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico?">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog-old/css/style.css" type="text/css">
+  
 
-  
-  <meta property="og:site_name" content="Jackmew blog"/>
-
-  
-    <meta property="og:image" content="undefined"/>
-  
-
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
 </head>
-
-
 <body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Jackmew blog</a></h1>
-  <h2><a href="/"></a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zestlifia old blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.zestlifia.tw/blog-old"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+  
     
-      <li><a href="/">Home</a></li>
     
-      <li><a href="/archives">Archives</a></li>
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/blog-old/archives/2014" class="archive-year">2014</a>
+        </div>
+        <div class="archives">
     
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title tag">heroku</h2>
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-09-12T01:38:44.000Z"><a href="/2014/09/12/20140911/">Sep 12 2014</a></time>
-      
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/blog-old/2014/09/12/20140911/" class="archive-article-date">
+  <time datetime="2014-09-12T01:38:44.000Z" itemprop="datePublished">Sep 12</time>
+</a>
       
   
-    <h1 class="title"><a href="/2014/09/12/20140911/">2014/09/11</a></h1>
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/blog-old/2014/09/12/20140911/">2014/09/11</a>
+    </h1>
   
 
     </header>
-    <div class="entry">
-      
-        <h1 id="Heroku_Postgresql">Heroku Postgresql</h1>
-<p><a href="https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-the-add-on" target="_blank">link</a></p>
-<p>buildpacks : what compiles your application into a runnable entity on Heroku.</p>
-<h1 id="postgresql_command">postgresql command</h1>
-<p><code>\l</code> =&gt; list all database<br><code>\d</code> =&gt; list all table<br><code>\du</code> =&gt; list all user</p>
-<p>解決一開始登入postgres.app時 沒有自動建立database的問題 <a href="https://github.com/PostgresApp/PostgresApp/issues/139" target="_blank">link</a></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/1.png" alt="image"></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/2.png" alt="image"></p>
-<p>create db新增資料庫 , create user , grant user <a href="http://postgresguide.com/setup/users.html#adding-a-user" target="_blank">link</a></p>
-<p>CRUD <a href="https://www.digitalocean.com/community/tutorials/how-to-create-remove-manage-tables-in-postgresql-on-a-cloud-server" target="_blank">How To Create, Remove, &amp; Manage Tables in PostgreSQL on a Cloud Server</a></p>
-<p>select 查詢  <a href="http://postgresguide.com/SQL/select.html" target="_blank">link</a></p>
-<h1 id="workflow">workflow</h1>
-<p>登入 並且列出database / table</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/3.png" alt="image"></p>
-<p>建立 新的使用者</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/4.png" alt="image"></p>
-<p><code>\du</code> 列出所有使用者</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/5.png" alt="image"></p>
-<p>建立資料庫 並給予使用者權限</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/6.png" alt="image"></p>
-<p>建立table</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/7.png" alt="image"></p>
-<p>insert 資料 , select</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/8.png" alt="image"></p>
-<p>where , update </p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/9.png" alt="image"></p>
-<h1 id="在spring_boot_連上_postgres_database">在spring boot 連上 postgres database</h1>
-<p>原本用mysql實作的部分 改成postgres database</p>
-<p>建立Monster table  </p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/12.png" alt="image"></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/13.png" alt="image"></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/14.png" alt="image"></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/11.png" alt="image"></p>
-<p>spring boot 連線到postgres</p>
-<p><a href="http://stackoverflow.com/questions/23287462/spring-boot-fails-to-load-datasource-using-postgresql-driver" target="_blank">spring-boot-fails-to-load-datasource-using-postgresql-driver</a></p>
-<p>首先去maven repository 找到postgresql drive</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/15.png" alt="image"></p>
-<p>加到pom.xml</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/16.png" alt="image"></p>
-<p>application.properties 原本mysql的部分改成postgresql</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/17.png" alt="image"></p>
-<p>用pgadmin 看 postgresql</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/18.png" alt="image"></p>
-<p>成功抓到!</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/19.png" alt="image"></p>
-<h1 id="接下來要嘗試去抓heroku_提供的postgresql">接下來要嘗試去抓heroku 提供的postgresql</h1>
-<p>從~/spring/ptf/.git 檔案 所以heroku可以去抓到ptf 這個專案的相關資料</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/20.png" alt="image"></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/21.png" alt="image"></p>
-<p>接下來這個就跟<code>psql</code> 下達指令在我們termial情形一樣 , 但前面都加了<code>heroku pg:psql</code> 就可以連上這個project 提供的 postgres database , 太酷了 !!!</p>
-<p>重複將建立monster table ,並塞入資料</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/22.png" alt="image"></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/23.png" alt="image"></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/24.png" alt="image"></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/25.png" alt="image"></p>
-<h1 id="pgadmin_link_to_heroku_postgres_database">pgadmin link to heroku postgres database</h1>
-<p><code>heroku pg:credentials HEROKU_POSTGRESQL_VIOLET_URL</code></p>
-<p>會印出登入需要的資訊</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/26.png" alt="image"></p>
-<p><a href="http://stackoverflow.com/questions/11769860/connect-to-a-heroku-database-with-pgadmin" target="_blank">Maintenance  DB 其實是這邊的dbname</a></p>
-<p>成功了!!! </p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/27.png" alt="image"></p>
-<h1 id="接下來就是spring_boot_連連看!">接下來就是spring boot 連連看!</h1>
-<p>將database_url 改掉</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/28.png" alt="image"></p>
-<p>但這時候出現的一個問題</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/29.png" alt="image"> </p>
-<p>知道是要<a href="https://devcenter.heroku.com/articles/connecting-to-relational-databases-on-heroku-with-java" target="_blank">加上ssl , sslfactory</a></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/32.png" alt="image"></p>
-<p>但是要怎麼加?<a href="http://stackoverflow.com/questions/23041164/how-to-do-i-deploy-a-spring-app-using-postgresql-to-heroku-using-spring-boot" target="_blank">link</a> , 這是用xml設定的方式</p>
-<p>但在spring boot 都是設定在applicaiton.properties才對呀</p>
-<p>隨便亂試試看…</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/30.png" alt="image"></p>
-<p>就成功了!!!</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/31.png" alt="image"></p>
-<p>唯一的問題是建立連線速度超慢<code>Started App in 152.321 seconds JVM running for 153.307</code></p>
-<p><code>git status</code></p>
-<p><code>git add</code></p>
-<p><code>git commit -m &quot;xxxx&quot;</code></p>
-<p><code>git push heroku master</code></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/33.png" alt="image"></p>
-<p>成功啦!</p>
-<p>證明git 可以同時push到 好幾個地方 <a href="http://stackoverflow.com/questions/12708716/link-heroku-app-to-github-repo-for-what" target="_blank">link</a></p>
-<p>所以我將這個project 也push到github</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/postgres/34.png" alt="image"></p>
-<h1 id="開始實作User_login">開始實作User login</h1>
-<p>出現奇怪問題<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/1/9.png" alt="image"><br><a href="http://stackoverflow.com/questions/10628099/hibernate-could-not-get-next-sequence-value" target="_blank">link</a></p>
-<p>似乎是postgres 產生serial id的方式 不同</p>
-<p>要把</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/1/10.png" alt="image"></p>
-<p>換成</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/peak/1/11.png" alt="image"></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
   </div>
 </article>
-
-
-
   
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-06-05T01:09:10.000Z"><a href="/2014/06/05/20140605/">Jun 5 2014</a></time>
-      
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/blog-old/2014/06/05/20140605/" class="archive-article-date">
+  <time datetime="2014-06-05T01:09:10.000Z" itemprop="datePublished">Jun 5</time>
+</a>
       
   
-    <h1 class="title"><a href="/2014/06/05/20140605/">2014/06/05</a></h1>
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/blog-old/2014/06/05/20140605/">2014/06/05</a>
+    </h1>
   
 
     </header>
-    <div class="entry">
-      
-        <h1 id="preloader">preloader</h1>
-<p>在頁面中加入太多webgl的模型和圖片 導致開啓app後 會不能動<br>應該要load完這些東西 才進去app!?</p>
-<p><a href="http://stackoverflow.com/questions/10214065/how-can-i-detect-if-an-image-object-is-being-displayed" target="_blank">link</a></p>
-<p>一進去app 會先到讀取頁面 這邊可以顯示說 這app功能 製作者等<br>讀完才進去app</p>
-<p>這個解決方式 可能會導致 進去app時間延長</p>
-<p>另一個解決方式是 有model的頁面 用external html的方式換頁面,表示當換到此頁面的時候才會去load模型,而這樣做的缺點是,每次進去此頁面 都要重新load一次model</p>
-<h1 id="window-location-host">window.location.host</h1>
-<p><a href="http://stackoverflow.com/questions/6725890/window-location-host-vs-window-location-hostname-and-cross-browser-compatibility" target="_blank">link</a></p>
-<h1 id="填入listview">填入listview</h1>
-<p>listview 要 refresh</p>
-<p>並且用<a href="http://jsfiddle.net/VqULm/" target="_blank">$.each</a></p>
-<pre><code><span class="function"><span class="keyword">function</span> <span class="title">addLoginUser_listview</span><span class="params">(result)</span>{</span>
-    $(<span class="string">"#listview_result-user li"</span>).remove();
-    console.log(result[<span class="number">0</span>].name);
-
-    <span class="comment">//$('#listview_result-user').append('&lt;li&gt;&lt;a&gt;hello&lt;/a&gt;&lt;/li&gt;').listview('refresh');</span>
-    <span class="keyword">var</span> output=<span class="string">''</span>;
-    $.each(result,<span class="function"><span class="keyword">function</span><span class="params">(index,value)</span>{</span>
-        output += <span class="string">'&lt;li&gt;&lt;a&gt;'</span>+value.name+<span class="string">'&lt;/a&gt;&lt;/li&gt;'</span>
-    });
-    $(<span class="string">'#listview_result-user'</span>).append(output).listview(<span class="string">'refresh'</span>);
-}
-</code></pre><h1 id="phonegap_geolocation">phonegap geolocation</h1>
-<p><a href="http://blog.csdn.net/debug_today/article/details/18738211" target="_blank">link</a></p>
-<p><a href="http://docs.phonegap.com/zh/3.1.0/cordova_geolocation_geolocation.md.html" target="_blank">link</a>    </p>
-<h1 id="peaches_deploy_heroku">peaches deploy heroku</h1>
-<p>出現一個奇怪的問題    </p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/git/1.png" alt="image">    </p>
-<p>竟然是reinitialize ?? 其實一開始我沒發現有啥問題    </p>
-<p>但是在commit之後 看git status 竟然出現之前commit的東西,這樣會把我另一個專案蓋掉! 奇怪 為什麼?</p>
-<p>這明明是新的?    </p>
-<p>才想到 原來我這專案 是直接複製原本專案來改的 所以底下藏了同一個隱藏檔<code>.git</code>    </p>
-<p>先把commit的    reset掉</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/git/3.png" alt="image">    </p>
-<p>找到隱藏的.git</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/git/4.png" alt="image">    </p>
-<p>將它刪除 <code>rm -rf .git</code></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/git/5.png" alt="image"></p>
-<p>然後再次<code>git init</code>    </p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/git/6.png" alt="image">    </p>
-<p>這次就是initialzed了    </p>
-<p><code>git commit -m &quot;註解&quot;</code>    </p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/git/7.png" alt="image">    </p>
-<p>登入heroku 並且 create新的repository 並給url</p>
-<p><code>git push heroku master</code></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/git/8.png" alt="image">    </p>
-<p>成功了    !!!</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/git/9.png" alt="image">    </p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
   </div>
 </article>
-
-
-
   
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-05-26T04:12:25.000Z"><a href="/2014/05/26/20140526/">May 26 2014</a></time>
-      
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/blog-old/2014/05/26/20140526/" class="archive-article-date">
+  <time datetime="2014-05-26T04:12:25.000Z" itemprop="datePublished">May 26</time>
+</a>
       
   
-    <h1 class="title"><a href="/2014/05/26/20140526/">2014/05/26</a></h1>
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/blog-old/2014/05/26/20140526/">2014/05/26</a>
+    </h1>
   
 
     </header>
-    <div class="entry">
-      
-        <h1 id="heroku_deploy_node">heroku deploy node</h1>
-<p><code>cd projectName</code></p>
-<p><code>git init</code></p>
-<p><code>git add.</code></p>
-<p><code>git commit -m &quot;你的commit註解&quot;</code></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/heroku/deploy1.png" alt="image"></p>
-<p><code>heroku login</code> </p>
-<p><code>heroku create url-name</code></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/heroku/deploy2.png" alt="image"></p>
-<p><code>git push heroku master</code></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/heroku/deploy3.png" alt="image"></p>
-<p><code>成功</code></p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/heroku/deploy4.png" alt="image"></p>
-<p>但是發生了問題 : GET <a href="http://localhost:3000/find?monsterName=" target="_blank">http://localhost:3000/find?monsterName=</a> net::ERR_CONNECTION_REFUSED </p>
-<p>我發出個request 位置沒有改 ,有辦法變成自動偵測url? 我記得之前好像有做過</p>
-<p><code>var url = window.location;</code> 可以抓到當前的host</p>
-<p><code>var queryString = window.location.search</code> 可以抓到?後的參數</p>
-<p>接下來只要重複</p>
-<p><code>git add theFileYouWant</code></p>
-<p><code>git commit -m &quot;註解&quot;</code></p>
-<p><code>git push heroku master</code></p>
-<p>就成功了～</p>
-<h1 id="SASS_(Syntactically_Awesome_Style_Sheets)">SASS (Syntactically Awesome Style Sheets)</h1>
-<p>Mac 預設就有gem</p>
-<p><code>sudo gem install sass</code></p>
-<p><code>sass -v</code></p>
-<p><code>sass --watch style.scss:style.css</code></p>
-<h1 id="sass_variable">sass variable</h1>
-<h1 id="The_Cross-Browser_CSS3_Rule_Generator">The Cross-Browser CSS3 Rule Generator</h1>
-<p><a href="http://css3please.com/" target="_blank">link</a></p>
-<h1 id="Another_CSS_image_replacement_technique">Another CSS image replacement technique</h1>
-<p><a href="http://nicolasgallagher.com/another-css-image-replacement-technique/" target="_blank">link</a></p>
-<h1 id="css-trick">css-trick</h1>
-<p><a href="http://css-tricks.com/video-screencasts/" target="_blank">link</a></p>
-<h1 id="icon">icon</h1>
-<p><a href="https://github.com/intridea/authbuttons" target="_blank">link</a></p>
-<h1 id="sass_bites">sass bites</h1>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
   </div>
 </article>
-
-
-
   
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-03-13T01:30:53.000Z"><a href="/2014/03/13/heroku/">Mar 13 2014</a></time>
-      
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/blog-old/2014/03/13/heroku/" class="archive-article-date">
+  <time datetime="2014-03-13T01:30:53.000Z" itemprop="datePublished">Mar 13</time>
+</a>
       
   
-    <h1 class="title"><a href="/2014/03/13/heroku/">heroku</a></h1>
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/blog-old/2014/03/13/heroku/">heroku</a>
+    </h1>
   
 
     </header>
-    <div class="entry">
-      
-        <h3 id="PaaS">PaaS</h3>
-<p>在那時候我還不是很了解hosting是什麼意思,就覺得heroku界面很酷,好像用了就會很屌,所以就去試試看.原來這就是之前唸書時常聽到的PaaS(Platform-as-a-Service),在Heroku上是比較配合Ruby的開發,但官方還是有提供java和node的開發啦.</p>
-<p>幾種我聽過的</p>
-<ul>
-<li>Phpfog =&gt; php</li>
-<li>Heroku =&gt; ruby</li>
-<li>OpenShift =&gt; java Linux</li>
-<li>GAE(google App Engine) =&gt; java</li>
-</ul>
-<p>其實都可互相通用?</p>
-<p>這些平台的目的 減少心思投入在系統管理,架構 專注在應用程式開發上,但話說回來 要熟悉使用某平台 本身就要改變自己熟悉的framework還有版本控制等習慣,而我試用的狀況下server是沒用過的Jetty.</p>
-<p>不過還是覺得很厲害,像在現在的公司,也是老闆構思專案架構,將workflow定義好,其中細節再交給我們去做,因為所謂架構(framework)是一連串經驗的集合,經驗不足時只有在做到某個部分才會理解,oh~原來是因為xxxx….才要….</p>
-<p>MVC,一堆Design pattern 都是驗經累積的成果,因為往往在專案還是很小的時候不會發生問題,但專案一變大,又不是一人開發,就會碰到很多問題,也是在這時候才徹底理解為何要<img src="http://" alt="image"></p>
-<p>所以平台的彈性和資源若是提供的不夠充分,使用起來綁手綁腳就會讓人不想要使用咧.</p>
-<h3 id="Heroku_with_java">Heroku with java</h3>
-<p>以下是當初的練習java deploy的過程<a href="http://" target="_blank">link</a></p>
-<p>應該是不難吧,但愚蠢的我還是花了很多時間</p>
-<p>話說還是要用到git呢</p>
-<pre><code><span class="char">$ </span>git clone <span class="method">git:</span>//github.com/heroku/some-sample.git
-<span class="char">$ </span>cd some-sample
-<span class="char">$ </span>heroku create
-<span class="char">$ </span>git push heroku master
-<span class="char">$ </span>heroku open
-</code></pre><p>當下達heroku指令時他會去比對隱藏檔.git , 這個檔案才會去找到heroku git repository裡 你上傳的檔案 然後到該資料夾下<code>heroku app:info</code>看到heroku server給的資訊</p>
-<p>Eclipse上有Heroku plugin</p>
-<p>詳細請參照<a href="https://devcenter.heroku.com/articles/getting-started-with-java" target="_blank">Java on Heroku</a></p>
-<p>SSH key<a href="https://wiki.archlinux.org/index.php/SSH_Keys_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank">公私鑰</a></p>
-<p>當初因為重復設定ssh key 害我搞了老半天</p>
-<p><code>heroku keys</code><br>可以看到你的ssh key</p>
-<p>使用免費模式只能deploy上去5個專案 之前在eclipse一直失敗 卻有部署上heroku 然後就搞不懂為何一直不能成功! 登入你的賬號密碼後 進入<a href="http://" target="_blank">https://dashboard.heroku.com/apps</a>就可以看現在有幾個專案在部署到上面.也可以在command line下<code>heroku apps</code></p>
-<p>很容易就可以在local和server端啓動程式 <a href="http://rocky-forest-1180.herokuapp.com/" target="_blank">rocky-forest</a></p>
-<p>但是你的build環境要再重新設定 這還真是麻煩</p>
-<h3 id="PostgresSQL">PostgresSQL</h3>
-<p>當建立新專案時 會自動給一個postgreSQL database 可以在這邊看你專案的<a href="https://addons.heroku.com/" target="_blank">database</a></p>
-<p>但要怎麼直接去看資料庫有什麼資料?</p>
-<p>homebrew安裝postgreSQL</p>
-<p><code>brew update</code></p>
-<p><code>brew install postgresql</code></p>
-<p><code>heroku config | grep HEROKU_POSTGRESQL</code>印出</p>
-<pre><code><span class="label">HEROKU_POSTGRESQL_GRAY_URL:</span> 
-<span class="label">postgres:</span>//jljzwoiuwqslga:Xxxx_3hArzYS5vXH39YK82Ku6i@ec2-<span class="number">54</span>-<span class="number">197</span>-<span class="number">240</span>-<span class="number">180.</span>compute-<span class="number">1.</span>amazonaws<span class="preprocessor">.com</span>:<span class="number">5432</span>/d42uia967k30vj
-</code></pre><p>根據參照<code>postgres://user:password@hostname:port/dbname</code></p>
-<p>user: jljzwoiuwqslga</p>
-<p>password: Xxxx_3hArzYS5vXH39YK82Ku6i</p>
-<p>hostname: ec2-54-197-240-180.compute-1.amazonaws.com</p>
-<p>port: 5432</p>
-<p>dbname: d42uia967k30vj</p>
-<p>我有改掉password</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/heroku/postgres1.png" alt="postgresSQL"></p>
-<p>成功登入~ 但常常跳出沒有權限可以管理資料庫? …</p>
-<p>找到Table person 可以select insert 執行後也可以在server上看到變化</p>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/heroku/postgres2.png" alt="postgresSQL"></p>
-<h3 id="SpringMVC">SpringMVC</h3>
-<p>一直無法在local端執行</p>
-<p>直到找到rocky-forest-1180底下的readme</p>
-<p>first build with:</p>
-<p><code>$ mvn clean install</code> 常用 可以理解</p>
-<p>Then run it with:</p>
-<p><code>$ java -jar target/dependency/webapp-runner.jar target/*.war</code> 這裡跟我們用tomcat deploy的時候差很多 不是很能理解 但後來在Spring的教學又看到類似的東西 就有去研究一下</p>
-<p>稍微統整一下 建置一個環境要做的事情</p>
-<p>一開始svn checkout source code  |   git   clone source code</p>
-<p>基本上裡面都會包含一些設定檔xml , pom.xml | procfile</p>
-<p>接下來要看你有沒有安裝正確的<code>java</code>版本  <code>maven</code>版本<code>tomcat</code>|<code>jetty</code><br>安裝好以後 路徑也ok就可以成功了</p>
-<p>但那是在command line執行成功</p>
-<p>不代表你在eclipse的build環境也架構好了 eclipse裡面也有git 叫做<a href="https://www.eclipse.org/egit/" target="_blank">Egit</a></p>
-<p>而我們開發的專案不止一個 但enviromental variables卻是不同的</p>
-<p>所以會有一個setenv.sh檔案 裡面set(export) enviromental variables</p>
-<p>之前Heroku java是建立了heroku的專案 會自動配一個database</p>
-<p>若是你建立了blank的專案 就必須要手動加入一個database 在heroku中database屬於add-ons的其中之一 當你deploy專案上heroku之後 你可以點選add-ons加上 postgreSQL database ,建立之後 點選資料庫 就會出現detail<br><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/heroku/postgres3.png" alt="postgreSQL"> </p>
-<p>在rocky-forest-1180/target/classes/applicationContext.xml設定<br>並加入</p>
-<pre><code>&lt;<span class="keyword">property</span> <span class="property">name</span>=<span class="string">"connectionProperties"</span> value=<span class="string">"ssl=true;sslfactory=org.postgresql.ssl.NonValidatingFactory;"</span>/&gt;
-</code></pre><p>我們在local端執行就可以抓到database資料了!</p>
-<p>血淚史</p>
-<p><a href="https://dl.dropboxusercontent.com/u/47510080/record/heroku/heroku1.pdf" target="_blank">heroku1</a><br><a href="https://dl.dropboxusercontent.com/u/47510080/record/heroku/heroku2.pdf" target="_blank">heroku2</a><br><a href="https://dl.dropboxusercontent.com/u/47510080/record/heroku/heroku3.pdf" target="_blank">heroku3</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
   </div>
 </article>
-
-
-
-  
-
-  <nav id="pagination">
   
   
-  <div class="clearfix"></div>
-</nav>
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Search">
-    <input type="hidden" name="q" value="site:jackmew.github.io">
-  </form>
-</div>
+    </div></section>
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog-old/categories/blog/">blog</a><span class="category-list-count">176</span></li><li class="category-list-item"><a class="category-list-link" href="/blog-old/categories/developent/">developent</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog-old/categories/leandev/">leandev</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
 
   
-<div class="widget tag">
-  <h3 class="title">Categories</h3>
-  <ul class="entry">
-  
-    <li><a href="/categories/blog/">blog</a><small>177</small></li>
-  
-    <li><a href="/categories/developent/">developent</a><small>2</small></li>
-  
-    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
-  
-  </ul>
-</div>
-
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/CSS/">CSS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/JQuery/">JQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/JQuery-Validate/">JQuery Validate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/Jquery-mobile/">Jquery mobile</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/MVC/">MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/REST/">REST</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/android/">android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/blog/">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/bower/">bower</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/callback/">callback</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/canvas/">canvas</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/command/">command</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/compass/">compass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/cordova/">cordova</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/css/">css</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/development/">development</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/dropbox/">dropbox</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/eclipse/">eclipse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/exception-handle/">exception handle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/express/">express</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/git/">git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/groovy/">groovy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/gwt/">gwt</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/heroku/">heroku</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/hibernate/">hibernate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/host/">host</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/hosting/">hosting</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/java/">java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/javasciprt/">javasciprt</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/javascript/">javascript</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/jquery-mobile/">jquery mobile</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/jquery-plugin/">jquery plugin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/json/">json</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/jsonp/">jsonp</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/kinecticjs/">kinecticjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/kineticjs/">kineticjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/log4j/">log4j</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/mac/">mac</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/maven/">maven</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/mobile/">mobile</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/mongo/">mongo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/mou/">mou</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/node/">node</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/nodejs/">nodejs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/phoneGap/">phoneGap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/phonegap/">phonegap</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/php/">php</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/plugin/">plugin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/remote-debug/">remote debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/ripple/">ripple</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/safari/">safari</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/sass/">sass</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/sencha/">sencha</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/spring/">spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/spring-boot/">spring boot</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/spring-data-jpa/">spring data jpa</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/spring-data-rest/">spring data rest</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/spring-securitry/">spring securitry</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/springboot/">springboot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/springmvc/">springmvc</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/springsecurity/">springsecurity</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/sublime/">sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/tbs/">tbs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/terminal/">terminal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/thymeleaf/">thymeleaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/unit-test/">unit test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/vaadin/">vaadin</a><span class="tag-list-count">36</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/vaddin/">vaddin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/validate/">validate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/validation/">validation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/vim/">vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/wbase/">wbase</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/weinre/">weinre</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/yahoo-finance-api/">yahoo finance api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/yeoman/">yeoman</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
 
   
-<div class="widget tag">
-  <h3 class="title">Tags</h3>
-  <ul class="entry">
-  
-    <li><a href="/tags/C/">C</a><small>1</small></li>
-  
-    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
-  
-    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
-  
-    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
-  
-    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
-  
-    <li><a href="/tags/Java/">Java</a><small>1</small></li>
-  
-    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
-  
-    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
-  
-    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
-  
-    <li><a href="/tags/REST/">REST</a><small>1</small></li>
-  
-    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
-  
-    <li><a href="/tags/android/">android</a><small>1</small></li>
-  
-    <li><a href="/tags/apache/">apache</a><small>1</small></li>
-  
-    <li><a href="/tags/blog/">blog</a><small>1</small></li>
-  
-    <li><a href="/tags/bower/">bower</a><small>1</small></li>
-  
-    <li><a href="/tags/callback/">callback</a><small>2</small></li>
-  
-    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
-  
-    <li><a href="/tags/command/">command</a><small>1</small></li>
-  
-    <li><a href="/tags/compass/">compass</a><small>1</small></li>
-  
-    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
-  
-    <li><a href="/tags/css/">css</a><small>7</small></li>
-  
-    <li><a href="/tags/development/">development</a><small>4</small></li>
-  
-    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
-  
-    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
-  
-    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
-  
-    <li><a href="/tags/express/">express</a><small>8</small></li>
-  
-    <li><a href="/tags/git/">git</a><small>3</small></li>
-  
-    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
-  
-    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
-  
-    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
-  
-    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
-  
-    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
-  
-    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
-  
-    <li><a href="/tags/host/">host</a><small>1</small></li>
-  
-    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
-  
-    <li><a href="/tags/java/">java</a><small>4</small></li>
-  
-    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
-  
-    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
-  
-    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
-  
-    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
-  
-    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
-  
-    <li><a href="/tags/json/">json</a><small>1</small></li>
-  
-    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
-  
-    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
-  
-    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
-  
-    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
-  
-    <li><a href="/tags/mac/">mac</a><small>6</small></li>
-  
-    <li><a href="/tags/maven/">maven</a><small>5</small></li>
-  
-    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
-  
-    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
-  
-    <li><a href="/tags/mou/">mou</a><small>1</small></li>
-  
-    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
-  
-    <li><a href="/tags/node/">node</a><small>10</small></li>
-  
-    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
-  
-    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
-  
-    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
-  
-    <li><a href="/tags/php/">php</a><small>1</small></li>
-  
-    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
-  
-    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
-  
-    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
-  
-    <li><a href="/tags/safari/">safari</a><small>1</small></li>
-  
-    <li><a href="/tags/sass/">sass</a><small>5</small></li>
-  
-    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
-  
-    <li><a href="/tags/shell/">shell</a><small>1</small></li>
-  
-    <li><a href="/tags/spring/">spring</a><small>2</small></li>
-  
-    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
-  
-    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
-  
-    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
-  
-    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
-  
-    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
-  
-    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
-  
-    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
-  
-    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
-  
-    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
-  
-    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
-  
-    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
-  
-    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
-  
-    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
-  
-    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
-  
-    <li><a href="/tags/validate/">validate</a><small>1</small></li>
-  
-    <li><a href="/tags/validation/">validation</a><small>1</small></li>
-  
-    <li><a href="/tags/vim/">vim</a><small>1</small></li>
-  
-    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
-  
-    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
-  
-    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
-  
-    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
-  
-  </ul>
-</div>
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog-old/tags/C/" style="font-size: 10px;">C</a> <a href="/blog-old/tags/CSS/" style="font-size: 11px;">CSS</a> <a href="/blog-old/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/blog-old/tags/JQuery/" style="font-size: 11px;">JQuery</a> <a href="/blog-old/tags/JQuery-Validate/" style="font-size: 10px;">JQuery Validate</a> <a href="/blog-old/tags/Java/" style="font-size: 10px;">Java</a> <a href="/blog-old/tags/Jquery-mobile/" style="font-size: 10px;">Jquery mobile</a> <a href="/blog-old/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/blog-old/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/blog-old/tags/REST/" style="font-size: 10px;">REST</a> <a href="/blog-old/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/blog-old/tags/android/" style="font-size: 10px;">android</a> <a href="/blog-old/tags/apache/" style="font-size: 10px;">apache</a> <a href="/blog-old/tags/blog/" style="font-size: 10px;">blog</a> <a href="/blog-old/tags/bower/" style="font-size: 10px;">bower</a> <a href="/blog-old/tags/callback/" style="font-size: 11px;">callback</a> <a href="/blog-old/tags/canvas/" style="font-size: 11px;">canvas</a> <a href="/blog-old/tags/command/" style="font-size: 10px;">command</a> <a href="/blog-old/tags/compass/" style="font-size: 10px;">compass</a> <a href="/blog-old/tags/cordova/" style="font-size: 12px;">cordova</a> <a href="/blog-old/tags/css/" style="font-size: 16px;">css</a> <a href="/blog-old/tags/development/" style="font-size: 13px;">development</a> <a href="/blog-old/tags/dropbox/" style="font-size: 11px;">dropbox</a> <a href="/blog-old/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/blog-old/tags/exception-handle/" style="font-size: 10px;">exception handle</a> <a href="/blog-old/tags/express/" style="font-size: 17px;">express</a> <a href="/blog-old/tags/git/" style="font-size: 12px;">git</a> <a href="/blog-old/tags/gradle/" style="font-size: 11px;">gradle</a> <a href="/blog-old/tags/groovy/" style="font-size: 10px;">groovy</a> <a href="/blog-old/tags/gwt/" style="font-size: 14px;">gwt</a> <a href="/blog-old/tags/heroku/" style="font-size: 13px;">heroku</a> <a href="/blog-old/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blog-old/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/blog-old/tags/host/" style="font-size: 10px;">host</a> <a href="/blog-old/tags/hosting/" style="font-size: 10px;">hosting</a> <a href="/blog-old/tags/java/" style="font-size: 13px;">java</a> <a href="/blog-old/tags/javasciprt/" style="font-size: 11px;">javasciprt</a> <a href="/blog-old/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/blog-old/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/blog-old/tags/jquery-mobile/" style="font-size: 13px;">jquery mobile</a> <a href="/blog-old/tags/jquery-plugin/" style="font-size: 10px;">jquery plugin</a> <a href="/blog-old/tags/json/" style="font-size: 10px;">json</a> <a href="/blog-old/tags/jsonp/" style="font-size: 11px;">jsonp</a> <a href="/blog-old/tags/kinecticjs/" style="font-size: 10px;">kinecticjs</a> <a href="/blog-old/tags/kineticjs/" style="font-size: 10px;">kineticjs</a> <a href="/blog-old/tags/log4j/" style="font-size: 10px;">log4j</a> <a href="/blog-old/tags/mac/" style="font-size: 15px;">mac</a> <a href="/blog-old/tags/maven/" style="font-size: 14px;">maven</a> <a href="/blog-old/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/blog-old/tags/mongo/" style="font-size: 13px;">mongo</a> <a href="/blog-old/tags/mou/" style="font-size: 10px;">mou</a> <a href="/blog-old/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/blog-old/tags/node/" style="font-size: 18px;">node</a> <a href="/blog-old/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/blog-old/tags/phoneGap/" style="font-size: 10px;">phoneGap</a> <a href="/blog-old/tags/phonegap/" style="font-size: 18px;">phonegap</a> <a href="/blog-old/tags/php/" style="font-size: 10px;">php</a> <a href="/blog-old/tags/plugin/" style="font-size: 10px;">plugin</a> <a href="/blog-old/tags/remote-debug/" style="font-size: 10px;">remote debug</a> <a href="/blog-old/tags/ripple/" style="font-size: 10px;">ripple</a> <a href="/blog-old/tags/safari/" style="font-size: 10px;">safari</a> <a href="/blog-old/tags/sass/" style="font-size: 14px;">sass</a> <a href="/blog-old/tags/sencha/" style="font-size: 19px;">sencha</a> <a href="/blog-old/tags/shell/" style="font-size: 10px;">shell</a> <a href="/blog-old/tags/spring/" style="font-size: 11px;">spring</a> <a href="/blog-old/tags/spring-boot/" style="font-size: 14px;">spring boot</a> <a href="/blog-old/tags/spring-data-jpa/" style="font-size: 14px;">spring data jpa</a> <a href="/blog-old/tags/spring-data-rest/" style="font-size: 10px;">spring data rest</a> <a href="/blog-old/tags/spring-securitry/" style="font-size: 10px;">spring securitry</a> <a href="/blog-old/tags/springboot/" style="font-size: 12px;">springboot</a> <a href="/blog-old/tags/springmvc/" style="font-size: 14px;">springmvc</a> <a href="/blog-old/tags/springsecurity/" style="font-size: 10px;">springsecurity</a> <a href="/blog-old/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/blog-old/tags/tbs/" style="font-size: 11px;">tbs</a> <a href="/blog-old/tags/terminal/" style="font-size: 10px;">terminal</a> <a href="/blog-old/tags/thymeleaf/" style="font-size: 10px;">thymeleaf</a> <a href="/blog-old/tags/unit-test/" style="font-size: 10px;">unit test</a> <a href="/blog-old/tags/vaadin/" style="font-size: 20px;">vaadin</a> <a href="/blog-old/tags/vaddin/" style="font-size: 10px;">vaddin</a> <a href="/blog-old/tags/validate/" style="font-size: 10px;">validate</a> <a href="/blog-old/tags/validation/" style="font-size: 10px;">validation</a> <a href="/blog-old/tags/vim/" style="font-size: 10px;">vim</a> <a href="/blog-old/tags/wbase/" style="font-size: 13px;">wbase</a> <a href="/blog-old/tags/weinre/" style="font-size: 10px;">weinre</a> <a href="/blog-old/tags/yahoo-finance-api/" style="font-size: 10px;">yahoo finance api</a> <a href="/blog-old/tags/yeoman/" style="font-size: 10px;">yeoman</a>
+    </div>
+  </div>
 
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2015/02/">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2015/01/">January 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/12/">December 2014</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/11/">November 2014</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/10/">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/09/">September 2014</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/08/">August 2014</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/07/">July 2014</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/06/">June 2014</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/05/">May 2014</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/04/">April 2014</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/03/">March 2014</a><span class="archive-list-count">33</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog-old/2015/11/19/sublime/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/blog-old/2015/11/19/Working-Record/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/blog-old/2015/11/19/20141120/">2014/11/20</a>
+          </li>
+        
+          <li>
+            <a href="/blog-old/2015/03/27/20150325/">2015/03/25</a>
+          </li>
+        
+          <li>
+            <a href="/blog-old/2015/02/12/20150212/">2015/02/12</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
 </aside>
-    <div class="clearfix"></div>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 John Ho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-  &copy; 2015 jackmew
+    <a href="/" class="mobile-nav-link">Home</a>
   
-</div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
+  <link rel="stylesheet" href="/blog-old/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/blog-old/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
+<script src="/blog-old/js/script.js" type="text/javascript"></script>
 
+  </div>
 </body>
 </html>

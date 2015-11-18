@@ -1,81 +1,138 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
-  <title>2014/07/30 | Jackmew blog</title>
-  <meta name="author" content="jackmew">
-  
-  <meta name="description" content="Thymeleaf Expression Syntax
+  <title>2014/07/30 | zestlifia old blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="#Thymeleaf Expression Syntax
 為了理解form show error message =&amp;gt; ex:
 data-th-if=”${fields.hasErrors(‘type’)}” 
 是怎麼運作的 , 只好去看Expression Syntax
 
-Message Ex">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+##Message Expression #{…} :
+負責的部分是去抓message.properties 裡面的k">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2014/07/30">
+<meta property="og:url" content="http://www.zestlifia.tw/blog-old/2014/07/30/20140730/index.html">
+<meta property="og:site_name" content="zestlifia old blog">
+<meta property="og:description" content="#Thymeleaf Expression Syntax
+為了理解form show error message =&amp;gt; ex:
+data-th-if=”${fields.hasErrors(‘type’)}” 
+是怎麼運作的 , 只好去看Expression Syntax
 
-  <meta property="og:title" content="2014/07/30"/>
-  <meta property="og:site_name" content="Jackmew blog"/>
+##Message Expression #{…} :
+負責的部分是去抓message.properties 裡面的k">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/1.png">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/3.png">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/4.png">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/2.png">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/5.png">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/6.png">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/7.png">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/8.png">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/9.png">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/10.png">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/11.png">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/12.png">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/13.png">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/14.png">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/15.png">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/16.png">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/17.png">
+<meta property="og:updated_time" content="2014-07-30T10:32:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2014/07/30">
+<meta name="twitter:description" content="#Thymeleaf Expression Syntax
+為了理解form show error message =&amp;gt; ex:
+data-th-if=”${fields.hasErrors(‘type’)}” 
+是怎麼運作的 , 只好去看Expression Syntax
 
+##Message Expression #{…} :
+負責的部分是去抓message.properties 裡面的k">
   
-    <meta property="og:image" content="undefined"/>
+    <link rel="alternative" href="/atom.xml" title="zestlifia old blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico?">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog-old/css/style.css" type="text/css">
   
 
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Jackmew blog" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
 </head>
-
-
 <body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Jackmew blog</a></h1>
-  <h2><a href="/"></a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zestlifia old blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.zestlifia.tw/blog-old"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-20140730" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog-old/2014/07/30/20140730/" class="article-date">
+  <time datetime="2014-07-30T00:58:44.000Z" itemprop="datePublished">2014-07-30</time>
+</a>
     
-      <li><a href="/">Home</a></li>
+  <div class="article-category">
+    <a class="article-category-link" href="/blog-old/categories/blog/">blog</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
     
-      <li><a href="/archives">Archives</a></li>
     
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+      <header class="article-header">
+        
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-07-30T00:58:44.000Z"><a href="/2014/07/30/20140730/">Jul 30 2014</a></time>
-      
-      
-  
-    <h1 class="title">2014/07/30</h1>
+    <h1 class="article-title" itemprop="name">
+      2014/07/30
+    </h1>
   
 
-    </header>
-    <div class="entry">
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Thymeleaf_Expression_Syntax">Thymeleaf Expression Syntax</h1>
+        <p>#Thymeleaf Expression Syntax</p>
 <p>為了理解form show error message =&gt; ex:</p>
 <p>data-th-if=”${fields.hasErrors(‘type’)}” </p>
-<p>是怎麼運作的 , 只好去看<a href="http://www.thymeleaf.org/doc/usingthymeleaf.html#standard-expression-syntax" target="_blank">Expression Syntax</a></p>
+<p>是怎麼運作的 , 只好去看<a href="http://www.thymeleaf.org/doc/usingthymeleaf.html#standard-expression-syntax" target="_blank" rel="external">Expression Syntax</a></p>
 <p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/1.png" alt="image"></p>
-<h2 id="Message_Expression_#{…}_:">Message Expression #{…} :</h2>
+<p>##Message Expression #{…} :</p>
 <p>負責的部分是去抓message.properties 裡面的key/value</p>
 <p>可以在message裡面加入參數</p>
 <p>hello.first=Nice to meet you, {0} ! ==&gt; java.text.MessageFormat的用法</p>
-<h2 id="Variable_${…}_=&gt;_OGNL(Object-Graph_Naviation_Language)">Variable ${…} =&gt; OGNL(Object-Graph Naviation Language)</h2>
-<p>早期Struct 2 — EL — #{} —&gt; 去抓JSP各種資源</p>
-<p>EL — 被取代 —&gt; <a href="http://commons.apache.org/proper/commons-ognl/" target="_blank">OGNL</a></p>
+<p>##Variable ${…} =&gt; OGNL(Object-Graph Naviation Language)</p>
+<p>早期Struct 2 – EL – #{} –&gt; 去抓JSP各種資源</p>
+<p>EL – 被取代 –&gt; <a href="http://commons.apache.org/proper/commons-ognl/" target="_blank" rel="external">OGNL</a></p>
 <p>是一種操作物件屬性的運算式語言</p>
 <ol>
 <li><p>支援給予值操作和運算式串聯</p>
@@ -87,404 +144,249 @@ Message Ex">
 <li><p>能夠存取物件的方法</p>
 </li>
 </ol>
-<h2 id="Thymeleaf_對_所有Serlet資源作存取:session,locale,_對request傳過來的參數做存取">Thymeleaf 對 所有Serlet資源作存取:session,locale, 對request傳過來的參數做存取</h2>
-<p><a href="http://www.thymeleaf.org/doc/usingthymeleaf.html#appendix-a-expression-basic-objects" target="_blank">link</a></p>
+<p>##Thymeleaf 對 所有Serlet資源作存取:session,locale, 對request傳過來的參數做存取</p>
+<p><a href="http://www.thymeleaf.org/doc/usingthymeleaf.html#appendix-a-expression-basic-objects" target="_blank" rel="external">link</a></p>
 <p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/3.png" alt="image"></p>
 <p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/4.png" alt="image"></p>
-<h2 id="Expression_Utitity_Object">Expression Utitity Object</h2>
-<p><a href="http://www.thymeleaf.org/doc/usingthymeleaf.html#appendix-b-expression-utility-objects" target="_blank">link</a></p>
+<p>##Expression Utitity Object</p>
+<p><a href="http://www.thymeleaf.org/doc/usingthymeleaf.html#appendix-b-expression-utility-objects" target="_blank" rel="external">link</a></p>
 <p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/2.png" alt="image"></p>
 <p>這些Utility 對傳過來的Object or request parameter進行操作 處理 , 就像是我們之前jquery.ajax 傳接資料後 , 對資料進行存取一樣</p>
-<h2 id="Expressions_on_selection(asterisk_syntax)_*{…}">Expressions on selection(asterisk syntax) *{…}</h2>
-<p>跟${…} 做類似的事情 都是取variable , 但是*{…} 範圍較小 是已經被選擇(selection)的variable </p>
+<h2 id="Expressions_on_selection(asterisk_syntax)_*{…}">Expressions on selection(asterisk syntax) *{…}</h2><p>跟${…} 做類似的事情 都是取variable , 但是*{…} 範圍較小 是已經被選擇(selection)的variable </p>
 <p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/5.png" alt="image"></p>
 <p>比如說 已經確定是抓到session裡面夾了user object , user object中當然也有參數 , 這已經被選擇(selection)的<br>的variable就可以被*{…]存取</p>
-<h2 id="Link_URLs_@{…}">Link URLs @{…}</h2>
-<p><a href="http://www.thymeleaf.org/doc/usingthymeleaf.html#link-urls" target="_blank">link</a></p>
+<p>##Link URLs @{…}</p>
+<p><a href="http://www.thymeleaf.org/doc/usingthymeleaf.html#link-urls" target="_blank" rel="external">link</a></p>
 <p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/6.png" alt="image"></p>
 <p>給予url 位置的syntax 並且可以夾帶dynamic variable</p>
-<h2 id="相對路徑_引用bootstrap">相對路徑 引用bootstrap</h2>
+<p>##相對路徑 引用bootstrap</p>
 <p><code>&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;../../resources/css/bootstrap-3.1.1.min.css&quot; th:href=&quot;@{/resources/css/bootstrap-3.1.1.min.css}&quot; /&gt;</code></p>
-<h2 id="夾帶參數">夾帶參數</h2>
+<p>##夾帶參數</p>
 <p><code>&lt;a href=&quot;#&quot;    data-th-href=&quot;@{/strategy/edit(id=${strategy.id})}&quot;&gt;</code></p>
 <p>按下Edit</p>
 <p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/7.png" alt="image"></p>
 <p>那裡面的url就包了strategy.id的參數</p>
 <p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/8.png" alt="image"></p>
-<h2 id="一次夾帶多個參數_用,分開">一次夾帶多個參數 用,分開</h2>
+<p>##一次夾帶多個參數 用,分開</p>
 <p><code>&lt;a href=&quot;#&quot;    data-th-href=&quot;@{/strategy/delete(id=${strategy.id},phase=stage)}&quot;&gt;</code></p>
 <p>按下Delete</p>
 <p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/9.png" alt="image"></p>
 <p>夾帶id=9&amp;phase=stage 兩個參數</p>
 <p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/10.png" alt="image"></p>
-<h2 id="th:text">th:text</h2>
+<p>##th:text </p>
 <p>showing text</p>
-<h2 id="th:utext">th:utext</h2>
-<p><a href="http://www.thymeleaf.org/doc/usingthymeleaf.html#unescaped-text" target="_blank">showing unescaped text</a></p>
-<h1 id="data-th-text_—取代—&gt;_th:text">data-th-text —取代—&gt; th:text</h1>
-<p><a href="https://github.com/thymeleaf/thymeleaf/issues/93" target="_blank">因為要符和HTML5 validation</a></p>
-<h1 id="Thymeleaf_local_variable">Thymeleaf local variable</h1>
-<p><a href="http://stackoverflow.com/questions/20728660/setting-up-a-value-for-a-variable-name-in-thymeleaf" target="_blank">link</a></p>
+<p>##th:utext</p>
+<p><a href="http://www.thymeleaf.org/doc/usingthymeleaf.html#unescaped-text" target="_blank" rel="external">showing unescaped text</a></p>
+<p>#data-th-text –取代–&gt; th:text</p>
+<p><a href="https://github.com/thymeleaf/thymeleaf/issues/93" target="_blank" rel="external">因為要符和HTML5 validation</a></p>
+<p>#Thymeleaf local variable</p>
+<p><a href="http://stackoverflow.com/questions/20728660/setting-up-a-value-for-a-variable-name-in-thymeleaf" target="_blank" rel="external">link</a></p>
 <p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/11.png" alt="image"></p>
-<h1 id="一堆Attribue_th:atti_,_th:text…">一堆Attribue th:atti , th:text…</h1>
-<p><a href="http://www.thymeleaf.org/doc/usingthymeleaf.html#setting-attribute-values" target="_blank">link</a></p>
-<h1 id="這篇值得看一下_springmvc_+_mongo_+_thymeleaf_+_ajax">這篇值得看一下 springmvc + mongo + thymeleaf + ajax</h1>
-<p><a href="http://xpadro.blogspot.tw/2014/02/thymeleaf-integration-with-spring-part-1.html" target="_blank">link</a></p>
-<h1 id="現在的問題是_要怎麼最簡單的設定_Thymeleaf_？">現在的問題是 要怎麼最簡單的設定 Thymeleaf ？</h1>
-<p>其實之前template找不到的問題是可以由<a href="http://docs.spring.io/spring-boot/docs/1.1.4.RELEASE/reference/htmlsingle/#common-application-properties" target="_blank">application.properties</a>設定 </p>
-<h2 id="THYMELEAF_(ThymeleafAutoConfiguration)">THYMELEAF (ThymeleafAutoConfiguration)</h2>
-<p>spring.thymeleaf.prefix=classpath:/templates/</p>
+<p>#一堆Attribue th:atti , th:text…</p>
+<p><a href="http://www.thymeleaf.org/doc/usingthymeleaf.html#setting-attribute-values" target="_blank" rel="external">link</a></p>
+<p>#這篇值得看一下 springmvc + mongo + thymeleaf + ajax</p>
+<p><a href="http://xpadro.blogspot.tw/2014/02/thymeleaf-integration-with-spring-part-1.html" target="_blank" rel="external">link</a></p>
+<p>#現在的問題是 要怎麼最簡單的設定 Thymeleaf ？</p>
+<p>其實之前template找不到的問題是可以由<a href="http://docs.spring.io/spring-boot/docs/1.1.4.RELEASE/reference/htmlsingle/#common-application-properties" target="_blank" rel="external">application.properties</a>設定 </p>
+<p>##THYMELEAF (ThymeleafAutoConfiguration)<br>spring.thymeleaf.prefix=classpath:/templates/</p>
 <p>spring.thymeleaf.suffix=.html</p>
 <p>spring.thymeleaf.mode=HTML5</p>
 <p>spring.thymeleaf.encoding=UTF-8</p>
-<p>spring.thymeleaf.content-type=text/html # ;charset=<encoding> is added</p>
+<p>spring.thymeleaf.content-type=text/html # ;charset=<encoding> is added</encoding></p>
 <p>spring.thymeleaf.cache=true # set to false for hot refresh</p>
 <p>這邊的classpath: 會是src/main/resource</p>
 <p>可以直接改成<code>spring.thymeleaf.prefix=WEB-INF/templates/</code> 就可以改變你template放置的目錄(預設是放在src/main/resources/templates)</p>
 <p>但是在使用#{…} 去抓external message 時 一直抓不到, 我一直以為Thymeleaf的設定哪裡有錯 ,<br>所以就從剛好有找到的資料下手</p>
 <p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/12.png" alt="image"></p>
 <p>但還是一直出現找不到template的錯誤訊息,一定要設定application.properties的參數才行</p>
-<p>直到我找到<a href="http://stackoverflow.com/questions/22899132/thymeleaf-fails-on-gradle-build" target="_blank">link</a> , 根據<a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/thymeleaf/ThymeleafAutoConfiguration.java" target="_blank">ThymeleafAutoConfiguration</a>的內容 此回應者的內容 you need to use the conventional bean name for the template resolver (“defaultTemplateResolver”), so that Boot knows what you are doing. </p>
-<p>而從<a href="http://docs.spring.io/spring-javaconfig/docs/1.0.0.M4/reference/html/ch02s02.html" target="_blank">java bean</a> 知道 By default, the bean name will be the same as the method name .</p>
+<p>直到我找到<a href="http://stackoverflow.com/questions/22899132/thymeleaf-fails-on-gradle-build" target="_blank" rel="external">link</a> , 根據<a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/thymeleaf/ThymeleafAutoConfiguration.java" target="_blank" rel="external">ThymeleafAutoConfiguration</a>的內容 此回應者的內容 you need to use the conventional bean name for the template resolver (“defaultTemplateResolver”), so that Boot knows what you are doing. </p>
+<p>而從<a href="http://docs.spring.io/spring-javaconfig/docs/1.0.0.M4/reference/html/ch02s02.html" target="_blank" rel="external">java bean</a> 知道 By default, the bean name will be the same as the method name .</p>
 <p>所以我嘗試將ThymeleafViewResolver 的function name:thymeleafTemplateResolver 改為 defaultTemplateResolver</p>
 <p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/13.png" alt="image"></p>
 <p>結果就可以了!</p>
 <p>研究發現同樣的bean name 才能去override原本的bean</p>
 <p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/14.png" alt="image"></p>
-<h1 id="完整的Structure">完整的Structure</h1>
-<p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/15.png" alt="image"></p>
+<h1 id="完整的Structure">完整的Structure</h1><p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/15.png" alt="image"></p>
 <p>我希望主要進入程式點(entry point) 程式越少越好 , 各個不同部分的configuration 由不同的class去負責</p>
 <p>由此圖可以看到 我將Configuration分為三個部分</p>
 <p>1.DatabaseConfig</p>
 <p>2.SpringContext</p>
 <p>3.Thymeleaf</p>
-<h3 id="App">App</h3>
+<p>###App</p>
 <p>然而App 自己本身extends WebMvcConfigurerAdapter , 其實SpringContext的部分就是在做WebMvcConfigurerAdatper本身要做的事情,用來override某些設定, 但是就之前所說的 , 我希望儘量將Configuration分散 , 所以另外分成SpringContext</p>
-<h3 id="SpringContext">SpringContext</h3>
+<p>###SpringContext</p>
 <ol>
 <li><p>控管哪些resources可以被使用,並決定哪個可以被設定成external message(message.properties)</p>
 </li>
 <li><p>設定Locale , 決定defaultLocale ,或根據server決定locale</p>
 </li>
 </ol>
-<h3 id="Thymeleaf">Thymeleaf</h3>
+<p>###Thymeleaf</p>
 <ol>
 <li><p>決定Spring的template engine</p>
 </li>
 <li><p>設定template放置的位置prefix:WEB-INF/template , postfix:.html , cacheable : false(讓Thymeleaf可以直接refresh)</p>
 </li>
 </ol>
-<h3 id="DatabaseConfig">DatabaseConfig</h3>
+<p>###DatabaseConfig</p>
 <ol>
 <li>設定database 連線</li>
 <li>將連線資料包成dataSource</li>
 <li>設定transaction</li>
 </ol>
 <p>其他部分跟以往的設計一樣</p>
-<h3 id="Model_,_Dao_,_Service_,Controller">Model , Dao , Service ,Controller</h3>
-<p>有需要稍微了解請看<a href="http://jackmew.github.io/2014/07/29/20140729/">link</a></p>
-<h3 id="專案結構">專案結構</h3>
+<p>###Model , Dao , Service ,Controller</p>
+<p>有需要稍微了解請看<a href="http://jackmew.github.io/2014/07/29/20140729/" target="_blank" rel="external">link</a></p>
+<p>###專案結構</p>
 <p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/16.png" alt="image"></p>
 <p><img src="https://dl.dropboxusercontent.com/u/47510080/markdown/spring/thymeleaf/17.png" alt="image"></p>
 <p>之後還會加入SecurityConfig</p>
 <p>還會再做一個完全用application.properties定義的project</p>
-<p>因為找到<a href="http://docs.spring.io/spring-boot/docs/1.1.4.RELEASE/reference/htmlsingle/#common-application-properties" target="_blank">International</a></p>
+<p>因為找到<a href="http://docs.spring.io/spring-boot/docs/1.1.4.RELEASE/reference/htmlsingle/#common-application-properties" target="_blank" rel="external">International</a></p>
 <p>INTERNATIONALIZATION (MessageSourceAutoConfiguration)</p>
 <p>spring.messages.basename=messages</p>
 <p>spring.messages.cacheSeconds=-1</p>
 <p>spring.messages.encoding=UTF-8</p>
 <p>可能可以直接取代SpringContext 內 ResourceBundleMessageSource的部分 .</p>
-<h1 id="Message_Queue">Message Queue</h1>
-<p><a href="http://lab.howie.tw/2012/07/whats-different-between-amqp-and-jms.html" target="_blank">AMQP , JMS</a></p>
+<p>#Message Queue</p>
+<p><a href="http://lab.howie.tw/2012/07/whats-different-between-amqp-and-jms.html" target="_blank" rel="external">AMQP , JMS</a></p>
 
       
     </div>
-    <footer>
+    <footer class="article-footer">
+      <a data-url="http://www.zestlifia.tw/blog-old/2014/07/30/20140730/" data-id="cih51d85v0000psrg2cpcak3y" class="article-share-link">Share</a>
       
-        
-  
-  <div class="categories">
-    <a href="/categories/blog/">blog</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/spring boot/">spring boot</a>
-  </div>
-
-        
-  <div class="addthis addthis_toolbox addthis_default_style">
-    
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-    
-    
-      <a class="addthis_button_tweet"></a>
-    
-    
-      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    
-    
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-    
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
-
       
-      <div class="clearfix"></div>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog-old/tags/spring-boot/">spring boot</a></li></ul>
+
     </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog-old/2014/07/31/20140731/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          2014/07/31
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog-old/2014/07/29/20140729/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">2014/07/29</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-
-<section id="comment">
-  <h1 class="title">Comments</h1>
-
-  
-      <div id="fb-root"></div>
-<script>
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-</script>
-
-<div class="fb-comments" data-href="http://jackmew.github.io/2014/07/30/20140730/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
-      
-  
 </section>
-
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Search">
-    <input type="hidden" name="q" value="site:jackmew.github.io">
-  </form>
-</div>
-
-  
-<div class="widget tag">
-  <h3 class="title">Categories</h3>
-  <ul class="entry">
-  
-    <li><a href="/categories/blog/">blog</a><small>177</small></li>
-  
-    <li><a href="/categories/developent/">developent</a><small>2</small></li>
-  
-    <li><a href="/categories/leandev/">leandev</a><small>1</small></li>
-  
-  </ul>
-</div>
-
-
-  
-<div class="widget tag">
-  <h3 class="title">Tags</h3>
-  <ul class="entry">
-  
-    <li><a href="/tags/C/">C</a><small>1</small></li>
-  
-    <li><a href="/tags/CSS/">CSS</a><small>2</small></li>
-  
-    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
-  
-    <li><a href="/tags/JQuery/">JQuery</a><small>2</small></li>
-  
-    <li><a href="/tags/JQuery Validate/">JQuery Validate</a><small>1</small></li>
-  
-    <li><a href="/tags/Java/">Java</a><small>1</small></li>
-  
-    <li><a href="/tags/Jquery mobile/">Jquery mobile</a><small>1</small></li>
-  
-    <li><a href="/tags/MVC/">MVC</a><small>1</small></li>
-  
-    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
-  
-    <li><a href="/tags/REST/">REST</a><small>1</small></li>
-  
-    <li><a href="/tags/ajax/">ajax</a><small>1</small></li>
-  
-    <li><a href="/tags/android/">android</a><small>1</small></li>
-  
-    <li><a href="/tags/apache/">apache</a><small>1</small></li>
-  
-    <li><a href="/tags/blog/">blog</a><small>1</small></li>
-  
-    <li><a href="/tags/bower/">bower</a><small>1</small></li>
-  
-    <li><a href="/tags/callback/">callback</a><small>2</small></li>
-  
-    <li><a href="/tags/canvas/">canvas</a><small>2</small></li>
-  
-    <li><a href="/tags/command/">command</a><small>1</small></li>
-  
-    <li><a href="/tags/compass/">compass</a><small>1</small></li>
-  
-    <li><a href="/tags/cordova/">cordova</a><small>3</small></li>
-  
-    <li><a href="/tags/css/">css</a><small>7</small></li>
-  
-    <li><a href="/tags/development/">development</a><small>4</small></li>
-  
-    <li><a href="/tags/dropbox/">dropbox</a><small>2</small></li>
-  
-    <li><a href="/tags/eclipse/">eclipse</a><small>1</small></li>
-  
-    <li><a href="/tags/exception handle/">exception handle</a><small>1</small></li>
-  
-    <li><a href="/tags/express/">express</a><small>8</small></li>
-  
-    <li><a href="/tags/git/">git</a><small>3</small></li>
-  
-    <li><a href="/tags/gradle/">gradle</a><small>2</small></li>
-  
-    <li><a href="/tags/groovy/">groovy</a><small>1</small></li>
-  
-    <li><a href="/tags/gwt/">gwt</a><small>5</small></li>
-  
-    <li><a href="/tags/heroku/">heroku</a><small>4</small></li>
-  
-    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
-  
-    <li><a href="/tags/hibernate/">hibernate</a><small>1</small></li>
-  
-    <li><a href="/tags/host/">host</a><small>1</small></li>
-  
-    <li><a href="/tags/hosting/">hosting</a><small>1</small></li>
-  
-    <li><a href="/tags/java/">java</a><small>4</small></li>
-  
-    <li><a href="/tags/javasciprt/">javasciprt</a><small>2</small></li>
-  
-    <li><a href="/tags/javascript/">javascript</a><small>7</small></li>
-  
-    <li><a href="/tags/jquery/">jquery</a><small>1</small></li>
-  
-    <li><a href="/tags/jquery mobile/">jquery mobile</a><small>4</small></li>
-  
-    <li><a href="/tags/jquery plugin/">jquery plugin</a><small>1</small></li>
-  
-    <li><a href="/tags/json/">json</a><small>1</small></li>
-  
-    <li><a href="/tags/jsonp/">jsonp</a><small>2</small></li>
-  
-    <li><a href="/tags/kinecticjs/">kinecticjs</a><small>1</small></li>
-  
-    <li><a href="/tags/kineticjs/">kineticjs</a><small>1</small></li>
-  
-    <li><a href="/tags/log4j/">log4j</a><small>1</small></li>
-  
-    <li><a href="/tags/mac/">mac</a><small>6</small></li>
-  
-    <li><a href="/tags/maven/">maven</a><small>5</small></li>
-  
-    <li><a href="/tags/mobile/">mobile</a><small>1</small></li>
-  
-    <li><a href="/tags/mongo/">mongo</a><small>4</small></li>
-  
-    <li><a href="/tags/mou/">mou</a><small>1</small></li>
-  
-    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
-  
-    <li><a href="/tags/node/">node</a><small>10</small></li>
-  
-    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
-  
-    <li><a href="/tags/phoneGap/">phoneGap</a><small>1</small></li>
-  
-    <li><a href="/tags/phonegap/">phonegap</a><small>10</small></li>
-  
-    <li><a href="/tags/php/">php</a><small>1</small></li>
-  
-    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
-  
-    <li><a href="/tags/remote debug/">remote debug</a><small>1</small></li>
-  
-    <li><a href="/tags/ripple/">ripple</a><small>1</small></li>
-  
-    <li><a href="/tags/safari/">safari</a><small>1</small></li>
-  
-    <li><a href="/tags/sass/">sass</a><small>5</small></li>
-  
-    <li><a href="/tags/sencha/">sencha</a><small>13</small></li>
-  
-    <li><a href="/tags/shell/">shell</a><small>1</small></li>
-  
-    <li><a href="/tags/spring/">spring</a><small>2</small></li>
-  
-    <li><a href="/tags/spring boot/">spring boot</a><small>5</small></li>
-  
-    <li><a href="/tags/spring data jpa/">spring data jpa</a><small>5</small></li>
-  
-    <li><a href="/tags/spring data rest/">spring data rest</a><small>1</small></li>
-  
-    <li><a href="/tags/spring securitry/">spring securitry</a><small>1</small></li>
-  
-    <li><a href="/tags/springboot/">springboot</a><small>3</small></li>
-  
-    <li><a href="/tags/springmvc/">springmvc</a><small>5</small></li>
-  
-    <li><a href="/tags/springsecurity/">springsecurity</a><small>1</small></li>
-  
-    <li><a href="/tags/sublime/">sublime</a><small>2</small></li>
-  
-    <li><a href="/tags/tbs/">tbs</a><small>2</small></li>
-  
-    <li><a href="/tags/terminal/">terminal</a><small>1</small></li>
-  
-    <li><a href="/tags/thymeleaf/">thymeleaf</a><small>1</small></li>
-  
-    <li><a href="/tags/unit test/">unit test</a><small>1</small></li>
-  
-    <li><a href="/tags/vaadin/">vaadin</a><small>36</small></li>
-  
-    <li><a href="/tags/vaddin/">vaddin</a><small>1</small></li>
-  
-    <li><a href="/tags/validate/">validate</a><small>1</small></li>
-  
-    <li><a href="/tags/validation/">validation</a><small>1</small></li>
-  
-    <li><a href="/tags/vim/">vim</a><small>1</small></li>
-  
-    <li><a href="/tags/wbase/">wbase</a><small>4</small></li>
-  
-    <li><a href="/tags/weinre/">weinre</a><small>1</small></li>
-  
-    <li><a href="/tags/yahoo finance api/">yahoo finance api</a><small>1</small></li>
-  
-    <li><a href="/tags/yeoman/">yeoman</a><small>1</small></li>
-  
-  </ul>
-</div>
-
-</aside>
-    <div class="clearfix"></div>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog-old/categories/blog/">blog</a><span class="category-list-count">176</span></li><li class="category-list-item"><a class="category-list-link" href="/blog-old/categories/developent/">developent</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog-old/categories/leandev/">leandev</a><span class="category-list-count">1</span></li></ul>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+
   
-  &copy; 2015 jackmew
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/CSS/">CSS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/JQuery/">JQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/JQuery-Validate/">JQuery Validate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/Jquery-mobile/">Jquery mobile</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/MVC/">MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/REST/">REST</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/android/">android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/blog/">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/bower/">bower</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/callback/">callback</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/canvas/">canvas</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/command/">command</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/compass/">compass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/cordova/">cordova</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/css/">css</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/development/">development</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/dropbox/">dropbox</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/eclipse/">eclipse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/exception-handle/">exception handle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/express/">express</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/git/">git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/groovy/">groovy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/gwt/">gwt</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/heroku/">heroku</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/hibernate/">hibernate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/host/">host</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/hosting/">hosting</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/java/">java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/javasciprt/">javasciprt</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/javascript/">javascript</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/jquery-mobile/">jquery mobile</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/jquery-plugin/">jquery plugin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/json/">json</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/jsonp/">jsonp</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/kinecticjs/">kinecticjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/kineticjs/">kineticjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/log4j/">log4j</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/mac/">mac</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/maven/">maven</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/mobile/">mobile</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/mongo/">mongo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/mou/">mou</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/node/">node</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/nodejs/">nodejs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/phoneGap/">phoneGap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/phonegap/">phonegap</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/php/">php</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/plugin/">plugin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/remote-debug/">remote debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/ripple/">ripple</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/safari/">safari</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/sass/">sass</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/sencha/">sencha</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/spring/">spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/spring-boot/">spring boot</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/spring-data-jpa/">spring data jpa</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/spring-data-rest/">spring data rest</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/spring-securitry/">spring securitry</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/springboot/">springboot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/springmvc/">springmvc</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/springsecurity/">springsecurity</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/sublime/">sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/tbs/">tbs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/terminal/">terminal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/thymeleaf/">thymeleaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/unit-test/">unit test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/vaadin/">vaadin</a><span class="tag-list-count">36</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/vaddin/">vaddin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/validate/">validate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/validation/">validation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/vim/">vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/wbase/">wbase</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/weinre/">weinre</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/yahoo-finance-api/">yahoo finance api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog-old/tags/yeoman/">yeoman</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
   
-</div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog-old/tags/C/" style="font-size: 10px;">C</a> <a href="/blog-old/tags/CSS/" style="font-size: 11px;">CSS</a> <a href="/blog-old/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/blog-old/tags/JQuery/" style="font-size: 11px;">JQuery</a> <a href="/blog-old/tags/JQuery-Validate/" style="font-size: 10px;">JQuery Validate</a> <a href="/blog-old/tags/Java/" style="font-size: 10px;">Java</a> <a href="/blog-old/tags/Jquery-mobile/" style="font-size: 10px;">Jquery mobile</a> <a href="/blog-old/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/blog-old/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/blog-old/tags/REST/" style="font-size: 10px;">REST</a> <a href="/blog-old/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/blog-old/tags/android/" style="font-size: 10px;">android</a> <a href="/blog-old/tags/apache/" style="font-size: 10px;">apache</a> <a href="/blog-old/tags/blog/" style="font-size: 10px;">blog</a> <a href="/blog-old/tags/bower/" style="font-size: 10px;">bower</a> <a href="/blog-old/tags/callback/" style="font-size: 11px;">callback</a> <a href="/blog-old/tags/canvas/" style="font-size: 11px;">canvas</a> <a href="/blog-old/tags/command/" style="font-size: 10px;">command</a> <a href="/blog-old/tags/compass/" style="font-size: 10px;">compass</a> <a href="/blog-old/tags/cordova/" style="font-size: 12px;">cordova</a> <a href="/blog-old/tags/css/" style="font-size: 16px;">css</a> <a href="/blog-old/tags/development/" style="font-size: 13px;">development</a> <a href="/blog-old/tags/dropbox/" style="font-size: 11px;">dropbox</a> <a href="/blog-old/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/blog-old/tags/exception-handle/" style="font-size: 10px;">exception handle</a> <a href="/blog-old/tags/express/" style="font-size: 17px;">express</a> <a href="/blog-old/tags/git/" style="font-size: 12px;">git</a> <a href="/blog-old/tags/gradle/" style="font-size: 11px;">gradle</a> <a href="/blog-old/tags/groovy/" style="font-size: 10px;">groovy</a> <a href="/blog-old/tags/gwt/" style="font-size: 14px;">gwt</a> <a href="/blog-old/tags/heroku/" style="font-size: 13px;">heroku</a> <a href="/blog-old/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blog-old/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/blog-old/tags/host/" style="font-size: 10px;">host</a> <a href="/blog-old/tags/hosting/" style="font-size: 10px;">hosting</a> <a href="/blog-old/tags/java/" style="font-size: 13px;">java</a> <a href="/blog-old/tags/javasciprt/" style="font-size: 11px;">javasciprt</a> <a href="/blog-old/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/blog-old/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/blog-old/tags/jquery-mobile/" style="font-size: 13px;">jquery mobile</a> <a href="/blog-old/tags/jquery-plugin/" style="font-size: 10px;">jquery plugin</a> <a href="/blog-old/tags/json/" style="font-size: 10px;">json</a> <a href="/blog-old/tags/jsonp/" style="font-size: 11px;">jsonp</a> <a href="/blog-old/tags/kinecticjs/" style="font-size: 10px;">kinecticjs</a> <a href="/blog-old/tags/kineticjs/" style="font-size: 10px;">kineticjs</a> <a href="/blog-old/tags/log4j/" style="font-size: 10px;">log4j</a> <a href="/blog-old/tags/mac/" style="font-size: 15px;">mac</a> <a href="/blog-old/tags/maven/" style="font-size: 14px;">maven</a> <a href="/blog-old/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/blog-old/tags/mongo/" style="font-size: 13px;">mongo</a> <a href="/blog-old/tags/mou/" style="font-size: 10px;">mou</a> <a href="/blog-old/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/blog-old/tags/node/" style="font-size: 18px;">node</a> <a href="/blog-old/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/blog-old/tags/phoneGap/" style="font-size: 10px;">phoneGap</a> <a href="/blog-old/tags/phonegap/" style="font-size: 18px;">phonegap</a> <a href="/blog-old/tags/php/" style="font-size: 10px;">php</a> <a href="/blog-old/tags/plugin/" style="font-size: 10px;">plugin</a> <a href="/blog-old/tags/remote-debug/" style="font-size: 10px;">remote debug</a> <a href="/blog-old/tags/ripple/" style="font-size: 10px;">ripple</a> <a href="/blog-old/tags/safari/" style="font-size: 10px;">safari</a> <a href="/blog-old/tags/sass/" style="font-size: 14px;">sass</a> <a href="/blog-old/tags/sencha/" style="font-size: 19px;">sencha</a> <a href="/blog-old/tags/shell/" style="font-size: 10px;">shell</a> <a href="/blog-old/tags/spring/" style="font-size: 11px;">spring</a> <a href="/blog-old/tags/spring-boot/" style="font-size: 14px;">spring boot</a> <a href="/blog-old/tags/spring-data-jpa/" style="font-size: 14px;">spring data jpa</a> <a href="/blog-old/tags/spring-data-rest/" style="font-size: 10px;">spring data rest</a> <a href="/blog-old/tags/spring-securitry/" style="font-size: 10px;">spring securitry</a> <a href="/blog-old/tags/springboot/" style="font-size: 12px;">springboot</a> <a href="/blog-old/tags/springmvc/" style="font-size: 14px;">springmvc</a> <a href="/blog-old/tags/springsecurity/" style="font-size: 10px;">springsecurity</a> <a href="/blog-old/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/blog-old/tags/tbs/" style="font-size: 11px;">tbs</a> <a href="/blog-old/tags/terminal/" style="font-size: 10px;">terminal</a> <a href="/blog-old/tags/thymeleaf/" style="font-size: 10px;">thymeleaf</a> <a href="/blog-old/tags/unit-test/" style="font-size: 10px;">unit test</a> <a href="/blog-old/tags/vaadin/" style="font-size: 20px;">vaadin</a> <a href="/blog-old/tags/vaddin/" style="font-size: 10px;">vaddin</a> <a href="/blog-old/tags/validate/" style="font-size: 10px;">validate</a> <a href="/blog-old/tags/validation/" style="font-size: 10px;">validation</a> <a href="/blog-old/tags/vim/" style="font-size: 10px;">vim</a> <a href="/blog-old/tags/wbase/" style="font-size: 13px;">wbase</a> <a href="/blog-old/tags/weinre/" style="font-size: 10px;">weinre</a> <a href="/blog-old/tags/yahoo-finance-api/" style="font-size: 10px;">yahoo finance api</a> <a href="/blog-old/tags/yeoman/" style="font-size: 10px;">yeoman</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2015/02/">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2015/01/">January 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/12/">December 2014</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/11/">November 2014</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/10/">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/09/">September 2014</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/08/">August 2014</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/07/">July 2014</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/06/">June 2014</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/05/">May 2014</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/04/">April 2014</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog-old/archives/2014/03/">March 2014</a><span class="archive-list-count">33</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog-old/2015/11/19/sublime/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/blog-old/2015/11/19/Working-Record/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/blog-old/2015/11/19/20141120/">2014/11/20</a>
+          </li>
+        
+          <li>
+            <a href="/blog-old/2015/03/27/20150325/">2015/03/25</a>
+          </li>
+        
+          <li>
+            <a href="/blog-old/2015/02/12/20150212/">2015/02/12</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 John Ho<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
+  <link rel="stylesheet" href="/blog-old/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/blog-old/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
+<script src="/blog-old/js/script.js" type="text/javascript"></script>
 
+  </div>
 </body>
 </html>
